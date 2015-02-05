@@ -31,18 +31,57 @@ Edit view
 </template>
 
 <template name="projectAdd">
-Add Project
-<label> Name:
-<input name="name" class="projectName" />
-</label>
-<br/>
-<label>
-Client:
-{{> inputAutocomplete settings=settings id="msg" class="client" placeholder="Chat..."}}
-</label>
-<br/>
-<button class="addProj">Add Project</button>
-<a href="/projects">List</a>
+	Add Project
+	<form>
+	<label> Title:
+		<input name="title" class="title" />
+	</label>
+	<br/>
+	<label> Suit no:
+		<input name="suitno" class="suitno" />
+	</label>
+	<br/>
+	<label>
+	Client:
+		{{> inputAutocomplete name="client" autocomplete="off" settings=client id="msg" class="client" placeholder="Clients"}}
+	</label>
+	<br/>
+	<label>
+		Description:
+		<textarea name="description" class="description" placeholder="Case Description"></textarea>
+	</label>
+	<br/>
+	<label>
+		Type of case:
+		<select name="type" class="type">
+		  <option value="audi">Bankrupcy</option>
+		  <option value="business">Business</option>
+		  <option value="criminal">Criminal</option>
+		  <option value="civil">Civil</option>
+		  <option value="commercial">Commercial</option>
+		  <option value="corporate">Corporate</option>
+		  <option value="employment">Employment</option>
+		  <option value="family">Family</option>
+		  <option value="immigration">Immigration</option>
+		  <option value="insurance">Insurance</option>
+		  <option value="personalinjury">Personal Injury</option>
+		  <option value="tax">Tax</option>
+		</select>
+	</label>
+	<br/>
+	<label>
+		Lawyer Incharge:
+		{{> inputAutocomplete name="lawyer" autocomplete="off" settings=lawyer id="msg" class="client" placeholder="Clients"}}
+	</label>
+	<br/>
+	<label>
+		Court:
+		{{> inputAutocomplete name="court" autocomplete="off" settings=court id="court" class="court" placeholder="Court" }}
+	</label>
+	<br/>
+	<button class="addProj">Add Project</button>
+	</form>
+	<a href="/projects">List</a>
 </template>
 
 <template name="projectPill">

@@ -7,6 +7,8 @@ Meteor.startup(function(){
 // Collections
 Projects = new Meteor.Collection('projects')
 Clients = new Meteor.Collection('clients')
+Lawyers = new Meteor.Collection('lawyers')
+Courts = new Meteor.Collection('courts')
 
 // Routes
 Router.route('/projects', {
@@ -39,10 +41,11 @@ if (Meteor.isClient) {
 
   Template.projectAdd.events({
     'click .addProj': function (event) {
-      var post = {
-        'name': $(".projectName").val()
-      }
-      Projects.insert(post, function(error, _id){
+      event.preventDefault();
+      var formJSON = $(event.target).closest("form").serializeJSON();
+      
+      Projects.insert(formJSON, function(error, _id){
+        debugger;
         Router.go('projectDetails', {_id: _id});
       });
     }
@@ -62,7 +65,9 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.projectAdd.settings = function() {
+  // Try to extend default autocomplete settings here instead of copying
+
+  Template.projectAdd.client = function() {
     return {
      position: "bottom",
      limit: 5,
@@ -72,7 +77,41 @@ if (Meteor.isClient) {
          field: "name",
          template: Template.projectPill,
          callback: function() {
-          alert("Some fries motherfucker!!!")
+          //alert("Client autocomplete!!!")
+         }
+       }
+     ]
+    }
+  };
+
+  Template.projectAdd.lawyer = function() {
+    return {
+     position: "bottom",
+     limit: 5,
+     rules: [
+       {
+         collection: Lawyers,
+         field: "name",
+         template: Template.projectPill,
+         callback: function() {
+            //alert("lawyer autocomplete!!!")
+         }
+       }
+     ]
+    }
+  };
+
+  Template.projectAdd.court = function() {
+    return {
+     position: "bottom",
+     limit: 5,
+     rules: [
+       {
+         collection: Courts,
+         field: "name",
+         template: Template.projectPill,
+         callback: function() {
+          //alert("court autocomplete selected!!!")
          }
        }
      ]
@@ -84,7 +123,5 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
-    Clients.insert({'name': 'Rishabh Saxena'})
-    Clients.insert({'name': 'Shashwat Kumar'})
   });
 }

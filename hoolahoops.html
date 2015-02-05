@@ -1,0 +1,50 @@
+<head>
+  <title>eilegal</title>
+</head>
+
+<!-- Project Templates -->
+<template name="projects">
+	<a href="/projects/add">Add Project</a>
+	{{#each projects}}
+		{{> projectRow}}
+	{{/each}}
+</template>
+
+<template name="projectRow">
+<h1>{{name}}</h1>
+<a href="/projects/{{_id}}">Details</a>
+<button class="delete">Delete</button>
+</template>
+
+<template name="projectDetails">
+<h1>{{name}}</h1>
+<a href="/projects/{{_id}}/edit">Edit</a>
+<a href="/projects">List</a>
+<button class="delete">Delete</button>
+</template>
+
+<template name="projectEdit">
+<h1>{{name}}</h1>
+Edit view
+<a href="/projects/{{_id}}">Details</a>
+<a href="/projects">List</a>
+</template>
+
+<template name="projectAdd">
+Add Project
+<label> Name:
+<input name="name" class="projectName" />
+</label>
+<br/>
+<label>
+Client:
+{{> inputAutocomplete settings=settings id="msg" class="client" placeholder="Chat..."}}
+</label>
+<br/>
+<button class="addProj">Add Project</button>
+<a href="/projects">List</a>
+</template>
+
+<template name="projectPill">
+    <span class="label">{{name}}</span>
+</template>

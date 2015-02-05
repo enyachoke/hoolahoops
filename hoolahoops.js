@@ -45,7 +45,6 @@ if (Meteor.isClient) {
       var formJSON = $(event.target).closest("form").serializeJSON();
       
       Projects.insert(formJSON, function(error, _id){
-        debugger;
         Router.go('projectDetails', {_id: _id});
       });
     }

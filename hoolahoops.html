@@ -4,10 +4,12 @@
 
 <!-- Project Templates -->
 <template name="projects">
+	<div class="card-panel teal lighten-2">
 	<a href="/projects/add">Add Project</a>
 	{{#each projects}}
 		{{> projectRow}}
 	{{/each}}
+	</div>
 </template>
 
 <template name="projectRow">

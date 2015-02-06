@@ -4,18 +4,33 @@
 
 <!-- Project Templates -->
 <template name="projects">
-	<div class="card-panel teal lighten-2">
 	<a href="/projects/add">Add Project</a>
-	{{#each projects}}
-		{{> projectRow}}
-	{{/each}}
-	</div>
+	<table>
+	<tr>
+		<th>Title</th>
+		<th>Client</th>
+		<th>Lawyer</th>
+		<th>Court</th>
+		<th>Actions</th>
+		<th>Last Update</th>
+	</tr>
+		{{#each projects}}
+			{{> projectRow}}
+		{{/each}}
+	</table>
 </template>
 
 <template name="projectRow">
-<h1>{{title}}</h1>
-<a href="/projects/{{_id}}">Details</a>
-<button class="delete">Delete</button>
+<tr>
+	<td>{{title}}</td>
+	<td>{{client}}</td>
+	<td>{{lawyer}}</td>
+	<td>{{court}}</td>
+	<td>
+	<button class="delete">Delete</button>
+	<a href="/projects/{{_id}}">Details</a></td>
+</tr>
+
 </template>
 
 <template name="projectDetails">

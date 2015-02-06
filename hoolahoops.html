@@ -30,8 +30,56 @@
 </template>
 
 <template name="projectEdit">
-<h1>{{title}}</h1>
-Edit view
+Edit Project
+	<form>
+	<label> Title:
+		<input name="title" class="title" value="{{title}}"/>
+	</label>
+	<br/>
+	<label> Suit no:
+		<input name="suitno" class="suitno" value="{{suitno}}"/>
+	</label>
+	<br/>
+	<label>
+	Client:
+		{{> inputAutocomplete name="client" autocomplete="off" settings=clients id="msg" class="client" value=client}}
+	</label>
+	<br/>
+	<label>
+		Description:
+		<textarea name="description" class="description" placeholder="Case Description">{{description}}</textarea>
+	</label>
+	<br/>
+	<label>
+		Type of case:
+		<select name="type" class="type" value="type">
+		  <option value="audi">Bankrupcy</option>
+		  <option value="business">Business</option>
+		  <option value="criminal">Criminal</option>
+		  <option value="civil">Civil</option>
+		  <option value="commercial">Commercial</option>
+		  <option value="corporate">Corporate</option>
+		  <option value="employment">Employment</option>
+		  <option value="family">Family</option>
+		  <option value="immigration">Immigration</option>
+		  <option value="insurance">Insurance</option>
+		  <option value="personalinjury">Personal Injury</option>
+		  <option value="tax">Tax</option>
+		</select>
+	</label>
+	<br/>
+	<label>
+		Lawyer Incharge:
+		{{> inputAutocomplete name="lawyer" autocomplete="off" settings=lawyers id="msg" class="client" value=lawyer}}
+	</label>
+	<br/>
+	<label>
+		Court:
+		{{> inputAutocomplete name="court" autocomplete="off" settings=courts id="court" class="court" value=court}}
+	</label>
+	<br/>
+	<button class="editProj">Edit Project</button>
+	</form>
 <a href="/projects/{{_id}}">Details</a>
 <a href="/projects">List</a>
 </template>

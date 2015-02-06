@@ -43,12 +43,23 @@ if (Meteor.isClient) {
     'click .addProj': function (event) {
       event.preventDefault();
       var formJSON = $(event.target).closest("form").serializeJSON();
-      
+      // TODO: get client, lawyer reference here. Maybe write a reference pluging here
       Projects.insert(formJSON, function(error, _id){
         Router.go('projectDetails', {_id: _id});
       });
     }
   });
+
+  Template.projectEdit.events({
+    'click .editProj': function (event){
+      event.preventDefault();
+      var currentId = this._id;
+      var formJSON = $(event.target).closest("form").serializeJSON();
+      Projects.update(this._id, {$set: formJSON}, function(error){
+        Router.go('projectDetails', {_id: currentId});
+      });
+    }
+  })
 
   Template.projectRow.events({
     'click .delete': function (event) {
@@ -116,6 +127,10 @@ if (Meteor.isClient) {
      ]
     }
   };
+
+  Template.projectEdit.clients = Template.projectAdd.client
+  Template.projectEdit.courts = Template.projectAdd.court
+  Template.projectEdit.lawyers = Template.projectAdd.lawyer
 }
 
 // Server specific code

@@ -11,14 +11,13 @@
 </template>
 
 <template name="projectRow">
-<h1>{{name}}</h1>
+<h1>{{title}}</h1>
 <a href="/projects/{{_id}}">Details</a>
 <button class="delete">Delete</button>
 </template>
 
 <template name="projectDetails">
-<h1>{{name}}</h1>
-<div>{{title}}</div>
+<h1>{{title}}</h1>
 <div>{{suitno}}</div>
 <div>{{client}}</div>
 <div>{{type}}</div>
@@ -31,7 +30,7 @@
 </template>
 
 <template name="projectEdit">
-<h1>{{name}}</h1>
+<h1>{{title}}</h1>
 Edit view
 <a href="/projects/{{_id}}">Details</a>
 <a href="/projects">List</a>

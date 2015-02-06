@@ -53,6 +53,6 @@ courts = [
 	{'name': 'Uttarakhand High Court'}
 ]
 
-db.clients.insert(clientData)
-db.lawyers.insert(lawyerData)
-db.courts.insert(courts)
+//db.clients.insert(clientData)
+//db.lawyers.insert(lawyerData)
+//db.courts.insert(courts)

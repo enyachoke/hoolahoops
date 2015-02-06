@@ -1,3 +1,6 @@
+// Open a shell using meteor mongo
+// Paste this code there
+
 clientData = [
 	{'name': 'Shashwat Kumar'},
 	{'name': 'Rishabh Saxena'},
@@ -49,3 +52,7 @@ courts = [
 	{'name': 'Tripura High Court'},
 	{'name': 'Uttarakhand High Court'}
 ]
+
+db.clients.insert(clientData)
+db.lawyers.insert(lawyerData)
+db.courts.insert(courts)

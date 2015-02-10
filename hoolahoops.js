@@ -190,6 +190,7 @@ if (Meteor.isClient) {
     }
   };
 
+//
   Template.projectAdd.court = function() {
     return {
      position: "bottom",

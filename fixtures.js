@@ -1,6 +1,17 @@
 // Open a shell using meteor mongo
 // Paste this code there
 
+
+
+hearings = [
+	{
+		'title' : 'yo vs oyo',
+		'court' : 'Delhi High Court',
+		'proceedings' : 'case suspended',
+		'date' : '12/12/12'
+	}
+]
+
 clientData = [
 	{'name': 'Shashwat Kumar'},
 	{'name': 'Rishabh Saxena'},

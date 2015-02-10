@@ -9,8 +9,11 @@ Projects = new Meteor.Collection('projects')
 Clients = new Meteor.Collection('clients')
 Lawyers = new Meteor.Collection('lawyers')
 Courts = new Meteor.Collection('courts')
+Hearings = new Meteor.Collection('hearings');
 
 // Routes
+
+//project
 Router.route('/projects', {
   name: 'projects'
 });
@@ -29,6 +32,28 @@ Router.route('/projects/:_id/edit', {
   data: function () { return Projects.findOne(this.params._id); }
 });
 
+
+//hearings
+Router.route('/hearings', {
+  name: 'hearings'
+});
+
+Router.route('/hearings/add', {
+  name: 'hearingAdd'
+})
+
+Router.route('/hearings/:_id', {
+  name: 'hearingDetails',
+  data: function () { return Hearings.findOne(this.params._id); }
+});
+
+Router.route('/hearings/:_id/edit', {
+  name: 'hearingEdit',
+  data: function () { return Hearings.findOne(this.params._id); }
+});
+
+
+
 // Client specific code
 if (Meteor.isClient) {
   Template.projects.helpers({
@@ -36,6 +61,60 @@ if (Meteor.isClient) {
       return Projects.find({});
     }
   })
+
+  Template.hearings.helpers({
+    hearings: function () {
+      return Hearings.find({});
+    }
+  })
+
+  Template.hearingAdd.events({
+    'click .addHearing': function (event) {
+      //alert("HIgh There!");
+      event.preventDefault();
+      var formJSON = $(event.target).closest("form").serializeJSON();
+      // TODO: get client, lawyer reference here. Maybe write a reference pluging here
+      Hearings.insert(formJSON, function(error, _id){
+        Router.go('hearingDetails', {_id: _id});
+      });
+    }
+  });
+
+  Template.hearingRow.events({
+    'click .delete': function (event) {
+      Hearings.remove(this._id);
+    }
+  });
+
+  Template.hearingEdit.events({
+    'click .editHearing': function (event){
+      event.preventDefault();
+      var currentId = this._id;
+      var formJSON = $(event.target).closest("form").serializeJSON();
+      Hearings.update(this._id, {$set: formJSON}, function(error){
+        Router.go('hearingDetails', {_id: currentId});
+      });
+    }
+  })
+
+  Template.hearingDetails.events({
+    'click .delete': function (event) {
+      Hearings.remove(this._id, function(){
+        Router.go('hearings');
+      });
+    }
+  });
+
+
+
+  Template.projectDetails.events({
+    'click .delete': function (event) {
+      Projects.remove(this._id, function(){
+        Router.go('projects');
+      });
+    }
+  });
+
 
   Template.projectEdit.helpers({});
 

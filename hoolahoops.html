@@ -33,6 +33,88 @@
 
 </template>
 
+
+<template name="hearings">
+	<a href="/hearings/add">Add Hearing</a>
+	<table>
+	<tr>
+		<th>Title</th>
+		<th>Court</th>
+		<th>Date</th>
+	</tr>
+		 {{#each hearings}}
+			{{> hearingRow}}
+		{{/each}} 
+	</table>
+</template>
+
+<template name="hearingRow">
+
+	<tr>
+		<td>{{title}}</td>
+		<td>{{court}}</td>
+		<td>{{date}}</td>
+		<td>
+		<button class="delete">Delete</button>
+		<a href="/hearings/{{_id}}/edit">Edit</a>
+		<a href="/hearings/{{_id}}">Details</a></td>
+	</tr>
+	
+</template>
+
+<template name="hearingAdd">
+
+	<form>
+		<label> Title:
+			<input name="title" class="title" value="{{title}}"/>
+		</label>
+		<br/>
+		<label> Court:
+			<input name="court" class="court" value="{{court}}"/>
+		</label>
+		<br/>
+		<label> Date:
+			<input name="date" class="date" value="{{date}}"/>
+		</label>
+		<br/>
+		<button class="addHearing">Add Hearing</button>
+	</form>
+
+</template>
+
+<template name="hearingEdit">
+	<form>
+		<label> Title:
+			<input name="title" class="title" value="{{title}}"/>
+		</label>
+		<br/>
+		<label> Court:
+			<input name="court" class="court" value="{{court}}"/>
+		</label>
+		<br/>
+		<label> Date:
+			<input name="date" class="date" value="{{date}}"/>
+		</label>
+		<br/>
+		<button class="editHearing">Save Hearing</button>
+	</form>
+</template>
+
+<template name="hearingDetails">
+	<tr>
+		<td>{{title}}</td>
+		<td>{{court}}</td>
+		<td>{{date}}</td>
+		<td>
+		<button class="delete">Delete</button>
+		<a href="/hearings/{{_id}}/edit">Edit</a></td>
+	</tr>
+</template>
+
+
+
+
+
 <template name="projectDetails">
 <h1>{{title}}</h1>
 <div>{{suitno}}</div>

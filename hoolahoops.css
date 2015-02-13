@@ -1,5 +1,74 @@
 /* CSS declarations go here */
 
+body {
+	background: #eee;
+}
+
+/* Nav Elements */
+
+.brand-logo {
+	padding-left: 1.5rem !important;
+}
+
+
 /* css overrides */
+
+/* Project List */ 
+
+table tr td,
+table tr th {
+	padding: 1rem 0 !important;
+}
+
+.project-row {
+	position: relative;
+}
+
+	.project-row__action {
+		position: absolute;
+	}
+
+	.project-type {
+		margin-left: 0.75rem; 
+	}
+
+/* Add and Edit Project Forms */
+
+.add-project,
+.edit-project {
+	margin: 1rem auto;
+	max-width: 1200px;
+	padding: 0; 
+}
+
+	.form-header {
+		margin: 0;
+		padding: 3.5rem 2.5rem;
+		color: white;	
+	}
+
+	.form-container {
+		margin-bottom: 0;
+		padding: 2.5rem 2.5rem 0;
+	}
+
 select {
-  display: block; }
+  display: block;
+  padding: 0.75rem 1rem;
+}
+
+select option {
+	padding: 0.5rem;
+}
+
+select option:hover {
+	background: #eee;
+}
+
+.projects-container {
+	float: left;
+	padding: 2rem;
+	margin: 1rem;
+	background: white;
+}
+

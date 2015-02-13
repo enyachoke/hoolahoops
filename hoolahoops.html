@@ -3,32 +3,54 @@
 </head>
 
 <!-- Project Templates -->
+       
+
 <template name="projects">
-	<a href="/projects/add">Add Project</a>
-	<table>
-	<tr>
-		<th>Title</th>
-		<th>Client</th>
-		<th>Lawyer</th>
-		<th>Court</th>
-		<th>Actions</th>
-		<th>Last Update</th>
-	</tr>
-		{{#each projects}}
-			{{> projectRow}}
-		{{/each}}
-	</table>
+	  <nav>
+	    <div class="nav-wrapper teal">
+	      <a href="#" class="brand-logo">El-Legal</a>
+	      <ul id="nav-mobile" class="right side-nav">
+	        <li class="active"><a href="/projects">Projects</a></li>
+	        <li><a href="/hearings">Hearings</a></li>
+	      </ul>
+	    </div>
+	  </nav>
+    <div class="container projects-container">
+    	<div class="row">  
+			<a class="waves-effect waves-light btn" href="/projects/add">Add Project</a>
+		</div>
+		<table class="bordered hoverable responsive-table">
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Title</th>
+					<th>Client</th>
+					<th>Lawyer</th>
+					<th>Court</th>
+					<th>Last Update</th>
+					<th>Next Hearing</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each projects}}
+					{{> projectRow}}
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
 </template>
 
 <template name="projectRow">
-<tr>
+<tr class="project-row">
+	<td> <i class="small center-align mdi-action-query-builder grey-text project-type"></i> </td>
 	<td>{{title}}</td>
 	<td>{{client}}</td>
 	<td>{{lawyer}}</td>
 	<td>{{court}}</td>
-	<td>
-	<button class="delete">Delete</button>
-	<a href="/projects/{{_id}}">Details</a></td>
+	<td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td>
+	<td>Feb 27, 2015 </td>
+	<td><a href="/projects/{{_id}}" class="project-row__action">Details</a></td>
+	<td><a class="delete project-row__action">Delete</a></td>
 </tr>
 
 </template>
@@ -129,112 +151,132 @@
 </template>
 
 <template name="projectEdit">
-Edit Project
-	<form>
-	<label> Title:
-		<input name="title" class="title" value="{{title}}"/>
-	</label>
-	<br/>
-	<label> Suit no:
-		<input name="suitno" class="suitno" value="{{suitno}}"/>
-	</label>
-	<br/>
-	<label>
-	Client:
-		{{> inputAutocomplete name="client" autocomplete="off" settings=clients id="msg" class="client" value=client}}
-	</label>
-	<br/>
-	<label>
-		Description:
-		<textarea name="description" class="description" placeholder="Case Description">{{description}}</textarea>
-	</label>
-	<br/>
-	<label>
-		Type of case:
-		<select name="type" class="browser-default" style="display: block" value="type">
-		  <option value="audi">Bankrupcy</option>
-		  <option value="business">Business</option>
-		  <option value="criminal">Criminal</option>
-		  <option value="civil">Civil</option>
-		  <option value="commercial">Commercial</option>
-		  <option value="corporate">Corporate</option>
-		  <option value="employment">Employment</option>
-		  <option value="family">Family</option>
-		  <option value="immigration">Immigration</option>
-		  <option value="insurance">Insurance</option>
-		  <option value="personalinjury">Personal Injury</option>
-		  <option value="tax">Tax</option>
-		</select>
-	</label>
-	<br/>
-	<label>
-		Lawyer Incharge:
-		{{> inputAutocomplete name="lawyer" autocomplete="off" settings=lawyers id="msg" class="client" value=lawyer}}
-	</label>
-	<br/>
-	<label>
-		Court:
-		{{> inputAutocomplete name="court" autocomplete="off" settings=courts id="court" class="court" value=court}}
-	</label>
-	<br/>
-	<button class="editProj">Edit Project</button>
-	</form>
-<a href="/projects/{{_id}}">Details</a>
-<a href="/projects">List</a>
+	<div class="container card-panel edit-project">
+		<h4 class="teal form-header">Edit case</h4>
+		<div class="row form-container">
+			<form class="col s12">
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					<input name="title" id="project__title" type="text" value="{{title}}">
+					<label class="active" for="project__title">Title</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					<input name="suitno" id="project__suitno" type="text" value="{{suitno}}">
+					<label class="active" for="project__suitno">Suit No</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					<input name="clients" id="project__clients" type="text" value="{{client}}">
+					<label class="active" for="project__clients">Clients</label>
+				</div>
+				<div class="col l4 m6 s12">
+			        <label class="active" >Type of Case</label>
+			        <select name="type" value="{{type}}">
+						<option value="" disabled>Choose your option</option>
+						<option value="audi">Bankrupcy</option>
+						<option value="business">Business</option>
+						<option value="criminal">Criminal</option>
+						<option value="civil">Civil</option>
+						<option value="commercial">Commercial</option>
+						<option value="corporate">Corporate</option>
+						<option value="employment">Employment</option>
+						<option value="family">Family</option>
+						<option value="immigration">Immigration</option>
+						<option value="insurance">Insurance</option>
+						<option value="personalinjury">Personal Injury</option>
+						<option value="tax">Tax</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+		      <div class="input-field col s12">
+		        <textarea name="description" class="materialize-textarea" ></textarea>
+		        <label class="active" >Case Description</label>
+		      </div>
+	    	</div>
+	    	<div class="row">
+				<div class="input-field col s12 m6">
+					<input name="laywer" id="project__laywer" type="text">
+					<label class="active" for="project__laywer">Lawyer</label>
+				</div>
+
+				<div class="input-field col s12 m6">
+					<input name="court" id="project__court" type="text">
+					<label class="active" for="project__court">Court</label>
+				</div>
+			</div>
+			<a class="addProj waves-effect waves-light btn">Save changes</a>
+			<a href="/projects" class="waves-effect waves-teal btn-flat">Cancel</a>
+			<a href="/projects/{{_id}}" class="waves-effect waves-teal btn-flat">View Details</a>
+			</form>
+		</div>	
+	</div>
 </template>
 
 <template name="projectAdd">
-	Add Project
-	<form>
-	<label> Title:
-		<input name="title" class="title" />
-	</label>
-	<br/>
-	<label> Suit no:
-		<input name="suitno" class="suitno" />
-	</label>
-	<br/>
-	<label>
-	Client:
-		{{> inputAutocomplete name="client" autocomplete="off" settings=client id="msg" class="client" placeholder="Clients"}}
-	</label>
-	<br/>
-	<label>
-		Description:
-		<textarea name="description" class="description" placeholder="Case Description"></textarea>
-	</label>
-	<br/>
-	<label>
-		Type of case:
-		<select name="type" class="type">
-		  <option value="audi">Bankrupcy</option>
-		  <option value="business">Business</option>
-		  <option value="criminal">Criminal</option>
-		  <option value="civil">Civil</option>
-		  <option value="commercial">Commercial</option>
-		  <option value="corporate">Corporate</option>
-		  <option value="employment">Employment</option>
-		  <option value="family">Family</option>
-		  <option value="immigration">Immigration</option>
-		  <option value="insurance">Insurance</option>
-		  <option value="personalinjury">Personal Injury</option>
-		  <option value="tax">Tax</option>
-		</select>
-	</label>
-	<br/>
-	<label>
-		Lawyer Incharge:
-		{{> inputAutocomplete name="lawyer" autocomplete="off" settings=lawyer id="msg" class="client" placeholder="Clients"}}
-	</label>
-	<br/>
-	<label>
-		Court:
-		{{> inputAutocomplete name="court" autocomplete="off" settings=court id="court" class="court" placeholder="Court" }}
-	</label>
-	<br/>
-	<button class="addProj">Add Project</button>
-	</form>
-	<a href="/projects">List</a>
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Add a case</h4>
+		<div class="row form-container">
+			<form class="col s12">
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					<input name="title" id="project__title" type="text" class="validate">
+					<label for="project__title">Title</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					<input name="suitno" id="project__suitno" type="text" class="validate">
+					<label for="project__suitno">Suit No</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					<input name="clients" id="project__clients" type="text" class="validate">
+					<label for="project__clients">Clients</label>
+				</div>
+				<div class="col l4 m6 s12">
+			        <label>Type of Case</label>
+			        <select name="type">
+						<option value="" disabled selected>Choose your option</option>
+						<option value="audi">Bankrupcy</option>
+						<option value="business">Business</option>
+						<option value="criminal">Criminal</option>
+						<option value="civil">Civil</option>
+						<option value="commercial">Commercial</option>
+						<option value="corporate">Corporate</option>
+						<option value="employment">Employment</option>
+						<option value="family">Family</option>
+						<option value="immigration">Immigration</option>
+						<option value="insurance">Insurance</option>
+						<option value="personalinjury">Personal Injury</option>
+						<option value="tax">Tax</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+		      <div class="input-field col s12">
+		        <textarea name="description" class="materialize-textarea" ></textarea>
+		        <label>Case Description</label>
+		      </div>
+	    	</div>
+	    	<div class="row">
+				<div class="input-field col s12 m6">
+					<input name="laywer" id="project__laywer" type="text" class="validate">
+					<label for="project__laywer">Lawyer</label>
+				</div>
+
+				<div class="input-field col s12 m6">
+					<input name="court" id="project__court" type="text" class="validate">
+					<label for="project__court">Court</label>
+				</div>
+			</div>
+			<a class="addProj waves-effect waves-light btn">Save</a>
+			<a class="waves-effect waves-teal btn-flat" href="/projects">CANCEL</a>
+			</form>
+		</div>	
+	</div>
 </template>
 
 <template name="projectPill">

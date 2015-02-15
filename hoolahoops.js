@@ -4,7 +4,7 @@ Meteor.startup(function(){
     
 });
 
-// Collections
+// Collections. Prob define schema here as well
 Projects = new Meteor.Collection('projects')
 Clients = new Meteor.Collection('clients')
 Lawyers = new Meteor.Collection('lawyers')
@@ -13,7 +13,11 @@ Hearings = new Meteor.Collection('hearings');
 
 // Routes
 
-//project
+//projects
+Router.route('/', {
+  name: 'home'
+})
+
 Router.route('/projects', {
   name: 'projects'
 });

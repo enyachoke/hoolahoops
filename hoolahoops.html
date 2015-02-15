@@ -15,11 +15,8 @@
 	      </ul>
 	    </div>
 	  </nav>
-    <div class="container projects-container">
-    	<div class="row">  
-			<a class="waves-effect waves-light btn" href="/projects/add">Add Project</a>
-		</div>
-		<table class="bordered hoverable responsive-table">
+    <div class="container project-list-container">
+		<table class="bordered hoverable responsive-table projects-table">
 			<thead>
 				<tr>
 					<th>Status</th>
@@ -37,20 +34,21 @@
 				{{/each}}
 			</tbody>
 		</table>
+	<a href="projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
 	</div>
 </template>
 
 <template name="projectRow">
 <tr class="project-row">
-	<td> <i class="small center-align mdi-action-query-builder grey-text project-type"></i> </td>
+	<td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td>
 	<td>{{title}}</td>
 	<td>{{client}}</td>
 	<td>{{lawyer}}</td>
 	<td>{{court}}</td>
 	<td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td>
 	<td>Feb 27, 2015 </td>
-	<td><a href="/projects/{{_id}}" class="project-row__action">Details</a></td>
-	<td><a class="delete project-row__action">Delete</a></td>
+	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
+	<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
 </tr>
 
 </template>
@@ -138,16 +136,89 @@
 
 
 <template name="projectDetails">
-<h1>{{title}}</h1>
-<div>{{suitno}}</div>
-<div>{{client}}</div>
-<div>{{type}}</div>
-<div>{{description}}</div>
-<div>{{lawyer}}</div>
-<div>{{court}}</div>
-<a href="/projects/{{_id}}/edit">Edit</a>
-<a href="/projects">List</a>
-<button class="delete">Delete</button>
+	  <nav>
+	    <div class="nav-wrapper teal">
+	      <a href="#" class="brand-logo">El-Legal</a>
+	      <ul id="nav-mobile" class="right side-nav">
+	        <li><a href="/projects">Projects</a></li>
+	        <li><a href="/hearings">Hearings</a></li>
+	      </ul>
+	    </div>
+	  </nav>
+
+	  <div class="container project-container">
+	  	<div class="row">
+		  	<div class="col s12  project-title">
+		  		<h3>{{title}}</h3>
+		  	</div>
+		 </div>
+	  	<div class="row">
+	  		<div class="col s8 white project-details">
+		  		<div class="row">
+			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >SUIT NO</h6>
+			  			<p>{{suitno}}</p>	
+			  		</div>
+			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >CLIENT</h6>
+			  			<p>{{cleient}}</p>	
+			  		</div>
+			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >TYPE</h6>
+			  			<p>{{type}}</p>	
+			  		</div>
+			  	</div>
+			  	<div class="row">
+					<div class="col s12">
+						<h6 class="grey-text">DESCRIPTION</h6>
+			  			<p>{{description}}</p>
+					</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col s6">
+			  			<h6 class="grey-text">LAWYER</h6>
+			  			<p>{{lawyer}}</p>
+			  		</div>
+			  		<div class="col s6">
+			  			<h6 class="grey-text">COURT</h6>
+			  			<p>{{court}}</p>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col s6">
+			  			<h6 class="grey-text">LAST UPDATE</h6>
+			  			<p>20 February, 2015</p>
+			  		</div>
+			  		<div class="col s6">
+			  			<h6 class="grey-text">NEXT HEARING</h6>
+			  			<p>27 February, 2015</p>
+			  		</div>
+			  	</div>
+		  	</div>
+			<div class="col s4 white project-details">
+				<div class="row">
+					<div class="col s12">
+						<a href="/projects/{{_id}}/edit" class="waves-effect waves-light btn">Update Project</a>
+						<a href="/projects" class="waves-effect waves-teal btn-flat delete">Delete Project</a>
+					</div>
+				</div>
+
+				<hr class="divider">
+
+				<div class="row">
+					<div class="col s12 project-notes">
+						<h6 class="grey-text">TODO</h6>
+						<ul class="collection">
+					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+					    </ul>
+					</div>
+					<a class="waves-effect waves-teal btn-flat"> Add ToDo</a>
+				</div>
+			</div>
+		  </div>
+	  	</div>
 </template>
 
 <template name="projectEdit">

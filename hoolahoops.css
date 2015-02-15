@@ -11,9 +11,41 @@ body {
 }
 
 
-/* css overrides */
+/* ICONS*/
+
+.mdi-action-description {
+	color: #ccc;
+	text-decoration: none; 
+}
+
+.mdi-action-description:hover,
+.mdi-action-description:active {
+	color: #26a69a;
+}
+
+.mdi-action-delete {
+	color: #ccc;
+	text-decoration: none; 
+}
+
+.mdi-action-delete:hover,
+.mdi-action-delete:active {
+	color: #f44336;
+}
 
 /* Project List */ 
+
+.project-list-container {
+	float: left;
+	padding: 2rem;
+	margin: 1rem;
+	background: white;
+	position: relative;
+}
+
+.projects-table {
+	margin-bottom: 5rem;
+}
 
 table tr td,
 table tr th {
@@ -24,13 +56,64 @@ table tr th {
 	position: relative;
 }
 
-	.project-row__action {
-		position: absolute;
-	}
+.project-type {
+	margin-left: 0.75rem; 
+}
 
-	.project-type {
-		margin-left: 0.75rem; 
-	}
+.add-project-icon {
+	float: right;
+	position: absolute;
+	bottom: 1rem;
+	right: 3rem;
+}
+
+
+
+/* Project Details */
+
+.project-container {
+	margin: 2rem auto;
+}
+
+.project-container .row:first-child {
+	margin-bottom: 0;
+}
+
+.project-details {
+	padding: 2rem !important;
+}
+
+/* .project-details .row {
+	margin-bottom: 0;
+} */
+
+.project-title {
+	background: background: #009688; /* Old browsers */
+	background: -moz-linear-gradient(top,  #009688 0%, #14bcab 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#009688), color-stop(100%,#14bcab)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #009688 0%,#14bcab 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #009688 0%,#14bcab 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #009688 0%,#14bcab 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #009688 0%,#14bcab 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009688', endColorstr='#14bcab',GradientType=0 ); /* IE6-9 */
+	
+	padding: 4rem 2rem !important;
+	color: white;
+}
+
+.project-details p {
+	line-height: 1.5em;
+	font-size: 1.2em;
+
+}
+
+.project-notes {
+	margin-top: 1.5rem;
+}
+
+.project-notes .collection li {
+
+}
 
 /* Add and Edit Project Forms */
 
@@ -65,10 +148,4 @@ select option:hover {
 	background: #eee;
 }
 
-.projects-container {
-	float: left;
-	padding: 2rem;
-	margin: 1rem;
-	background: white;
-}
 

@@ -4,9 +4,22 @@ Meteor.startup(function(){
     
 });
 
-// Collections. Prob define schema here as well
+// Schemas:
+clientSchema = new SimpleSchema({
+  name: {
+    type: String
+  }
+});
+
+this.books = new Meteor.Collection('Books', {
+  schema: bookSchema
+});
+
+// Collections: Define collections here
 Projects = new Meteor.Collection('projects')
-Clients = new Meteor.Collection('clients')
+Clients = new Meteor.Collection('clients', {
+  schema: clientSchema
+})
 Lawyers = new Meteor.Collection('lawyers')
 Courts = new Meteor.Collection('courts')
 Hearings = new Meteor.Collection('hearings');

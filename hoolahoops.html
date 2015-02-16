@@ -355,5 +355,8 @@
 </template>
 
 <template name="home">
-<img src="http://images1.wikia.nocookie.net/__cb20070823162139/bioshock/images/7/70/Welcome_to_Rapture.jpg">
+This is home
+    {{#autoForm id="1" doc=this type="method" meteormethod='save' schema='clientSchema'}}
+        <div>{{> afFieldInput  type='xautocomplete' formid="1" name='clients' call='clients' xmultiple=true fieldref='name'}}</div>
+    {{/autoForm}}
 </template>

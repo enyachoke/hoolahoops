@@ -11,10 +11,6 @@ clientSchema = new SimpleSchema({
   }
 });
 
-this.books = new Meteor.Collection('Books', {
-  schema: bookSchema
-});
-
 // Collections: Define collections here
 Projects = new Meteor.Collection('projects')
 Clients = new Meteor.Collection('clients', {

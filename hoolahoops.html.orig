@@ -287,6 +287,59 @@
 </template>
 
 <template name="projectAdd">
+<<<<<<< HEAD
+	Add Project
+	<form>
+	<label> Title:
+		<input name="title" class="title" />
+	</label>
+	<br/>
+	<label> Suit no:
+		<input name="suitno" class="suitno" />
+	</label>
+	<br/>
+	<label>
+	Client:
+		{{> inputAutocomplete name="client" autocomplete="off" value="benizakura" settings=client id="msg" class="client" placeholder="Clients"}}
+	</label>
+	<br/>
+	<label>
+		Description:
+		<textarea name="description" class="description" placeholder="Case Description"></textarea>
+	</label>
+	<br/>
+	<label>
+		Type of case:
+		<select name="type" class="type">
+		  <option value="audi">Bankrupcy</option>
+		  <option value="business">Business</option>
+		  <option value="criminal">Criminal</option>
+		  <option value="civil">Civil</option>
+		  <option value="commercial">Commercial</option>
+		  <option value="corporate">Corporate</option>
+		  <option value="employment">Employment</option>
+		  <option value="family">Family</option>
+		  <option value="immigration">Immigration</option>
+		  <option value="insurance">Insurance</option>
+		  <option value="personalinjury">Personal Injury</option>
+		  <option value="tax">Tax</option>
+		</select>
+	</label>
+	<br/>
+	<label>
+		Lawyer Incharge:
+		{{> inputAutocomplete name="lawyer" autocomplete="off" settings=lawyer id="msg" class="client" placeholder="Clients"}}
+	</label>
+	<br/>
+	<label>
+		Court:
+		{{> inputAutocomplete name="court" autocomplete="off" settings=court id="court" class="court" placeholder="Court" }}
+	</label>
+	<br/>
+	<button class="addProj">Add Project</button>
+	</form>
+	<a href="/projects">List</a>
+=======
 	<div class="container card-panel add-project">
 		<h4 class="teal form-header">Add a case</h4>
 		<div class="row form-container">
@@ -348,6 +401,7 @@
 			</form>
 		</div>	
 	</div>
+>>>>>>> frontEndUpdate
 </template>
 
 <template name="projectPill">
@@ -355,12 +409,8 @@
 </template>
 
 <template name="home">
-	{{#autoForm collection="clients" id="insertBookForm" type="insert"}}
-    <fieldset>
-      <legend>Add a Book</legend>
-      {{> afQuickField name='name'}}
-    </fieldset>
-    <button type="submit" class="btn btn-primary">Insert</button>
-  	{{/autoForm}}
- 
+This is home
+    {{#autoForm id="1" doc=this type="method" meteormethod='save' schema='clientSchema'}}
+        <div>{{> afFieldInput  type='xautocomplete' formid="1" name='clients' call='clients' xmultiple=true fieldref='name'}}</div>
+    {{/autoForm}}
 </template>

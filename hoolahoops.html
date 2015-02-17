@@ -5,7 +5,7 @@
 <!-- Project Templates -->
        
 
-<template name="projects">
+<!--template name="projects">
 	  <nav>
 	    <div class="nav-wrapper teal">
 	      <a href="#" class="brand-logo">El-Legal</a>
@@ -352,15 +352,16 @@
 
 <template name="projectPill">
     <span class="label">{{name}}</span>
+</template-->
+
+<template name="clients">
+<td>{{this.name}}</td>
 </template>
 
 <template name="home">
-	{{#autoForm collection="clients" id="insertBookForm" type="insert"}}
-    <fieldset>
-      <legend>Add a Book</legend>
-      {{> afQuickField name='name'}}
-    </fieldset>
-    <button type="submit" class="btn btn-primary">Insert</button>
-  	{{/autoForm}}
- 
-</template>
+	{{#autoForm id="insertClientForm" doc=this type="method" meteormethod='saveClientData' schema='clientSchema'}}
+		<div>{{> afFieldInput name="name"}}</div>
+        <div>{{> afFieldInput  type='xautocomplete' formid="insertClientForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderClients'}}</div>
+        <button class="btn btn-primary" type="submit">Insert</button>
+    {{/autoForm}}
+ </template>

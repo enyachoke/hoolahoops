@@ -4,21 +4,65 @@ Meteor.startup(function(){
     
 });
 
+SimpleSchema.debug = true
+
 // Schemas:
 clientSchema = new SimpleSchema({
   name: {
     type: String
+  },
+  clientId: {
+    type: String,
+    optional: true
+  },
+  clientIds: {
+    type: [String],
+    optional: true
   }
 });
 
 // Collections: Define collections here
 Projects = new Meteor.Collection('projects')
-Clients = new Meteor.Collection('clients', {
-  schema: clientSchema
-})
+Clients = new Meteor.Collection('clients')
 Lawyers = new Meteor.Collection('lawyers')
 Courts = new Meteor.Collection('courts')
 Hearings = new Meteor.Collection('hearings');
+
+// Attach the schema
+Clients.attachSchema(clientSchema)
+
+// Define meteor methods
+Meteor.methods({
+  'clients': function(query) {
+    console.log("Hello!")
+    if (query !== '') {
+      return Clients.find({
+        name: {
+          $regex: "^.*" + query + ".*$",
+          $options: 'i'
+        }
+      }).fetch();
+    } else {
+      return [];
+    }
+  },
+  'saveClientData': function(doc, set, _id) {
+    console.log(Math.random())
+    if (_id) {
+      return Clients.update({
+        _id: _id
+      }, set);
+    } else {
+      return Clients.insert(doc);
+    }
+  }
+});
+
+// Render functions
+renderClients = function(x) {
+  console.log(Template)
+  return Blaze.toHTMLWithData(Template.clients, x);
+};
 
 // Routes
 
@@ -69,161 +113,161 @@ Router.route('/hearings/:_id/edit', {
 
 // Client specific code
 if (Meteor.isClient) {
-  Template.projects.helpers({
-    projects: function () {
-      return Projects.find({});
-    }
-  })
+//   Template.projects.helpers({
+//     projects: function () {
+//       return Projects.find({});
+//     }
+//   })
 
-  Template.hearings.helpers({
-    hearings: function () {
-      return Hearings.find({});
-    }
-  })
+//   Template.hearings.helpers({
+//     hearings: function () {
+//       return Hearings.find({});
+//     }
+//   })
 
-  Template.hearingAdd.events({
-    'click .addHearing': function (event) {
-      //alert("HIgh There!");
-      event.preventDefault();
-      var formJSON = $(event.target).closest("form").serializeJSON();
-      // TODO: get client, lawyer reference here. Maybe write a reference pluging here
-      Hearings.insert(formJSON, function(error, _id){
-        Router.go('hearingDetails', {_id: _id});
-      });
-    }
-  });
+//   Template.hearingAdd.events({
+//     'click .addHearing': function (event) {
+//       //alert("HIgh There!");
+//       event.preventDefault();
+//       var formJSON = $(event.target).closest("form").serializeJSON();
+//       // TODO: get client, lawyer reference here. Maybe write a reference pluging here
+//       Hearings.insert(formJSON, function(error, _id){
+//         Router.go('hearingDetails', {_id: _id});
+//       });
+//     }
+//   });
 
-  Template.hearingRow.events({
-    'click .delete': function (event) {
-      Hearings.remove(this._id);
-    }
-  });
+//   Template.hearingRow.events({
+//     'click .delete': function (event) {
+//       Hearings.remove(this._id);
+//     }
+//   });
 
-  Template.hearingEdit.events({
-    'click .editHearing': function (event){
-      event.preventDefault();
-      var currentId = this._id;
-      var formJSON = $(event.target).closest("form").serializeJSON();
-      Hearings.update(this._id, {$set: formJSON}, function(error){
-        Router.go('hearingDetails', {_id: currentId});
-      });
-    }
-  })
+//   Template.hearingEdit.events({
+//     'click .editHearing': function (event){
+//       event.preventDefault();
+//       var currentId = this._id;
+//       var formJSON = $(event.target).closest("form").serializeJSON();
+//       Hearings.update(this._id, {$set: formJSON}, function(error){
+//         Router.go('hearingDetails', {_id: currentId});
+//       });
+//     }
+//   })
 
-  Template.hearingDetails.events({
-    'click .delete': function (event) {
-      Hearings.remove(this._id, function(){
-        Router.go('hearings');
-      });
-    }
-  });
-
-
-
-  Template.projectDetails.events({
-    'click .delete': function (event) {
-      Projects.remove(this._id, function(){
-        Router.go('projects');
-      });
-    }
-  });
+//   Template.hearingDetails.events({
+//     'click .delete': function (event) {
+//       Hearings.remove(this._id, function(){
+//         Router.go('hearings');
+//       });
+//     }
+//   });
 
 
-  Template.projectEdit.helpers({});
 
-  Template.projectAdd.events({
-    'click .addProj': function (event) {
-      event.preventDefault();
-      var formJSON = $(event.target).closest("form").serializeJSON();
-      // TODO: get client, lawyer reference here. Maybe write a reference pluging here
-      Projects.insert(formJSON, function(error, _id){
-        Router.go('projectDetails', {_id: _id});
-      });
-    }
-  });
+//   Template.projectDetails.events({
+//     'click .delete': function (event) {
+//       Projects.remove(this._id, function(){
+//         Router.go('projects');
+//       });
+//     }
+//   });
 
-  Template.projectEdit.events({
-    'click .editProj': function (event){
-      event.preventDefault();
-      var currentId = this._id;
-      var formJSON = $(event.target).closest("form").serializeJSON();
-      Projects.update(this._id, {$set: formJSON}, function(error){
-        Router.go('projectDetails', {_id: currentId});
-      });
-    }
-  })
 
-  Template.projectRow.events({
-    'click .delete': function (event) {
-      Projects.remove(this._id);
-    }
-  });
+//   Template.projectEdit.helpers({});
 
-  Template.projectDetails.events({
-    'click .delete': function (event) {
-      Projects.remove(this._id, function(){
-        Router.go('projects');
-      });
-    }
-  });
+//   Template.projectAdd.events({
+//     'click .addProj': function (event) {
+//       event.preventDefault();
+//       var formJSON = $(event.target).closest("form").serializeJSON();
+//       // TODO: get client, lawyer reference here. Maybe write a reference pluging here
+//       Projects.insert(formJSON, function(error, _id){
+//         Router.go('projectDetails', {_id: _id});
+//       });
+//     }
+//   });
 
-  // Try to extend default autocomplete settings here instead of copying
+//   Template.projectEdit.events({
+//     'click .editProj': function (event){
+//       event.preventDefault();
+//       var currentId = this._id;
+//       var formJSON = $(event.target).closest("form").serializeJSON();
+//       Projects.update(this._id, {$set: formJSON}, function(error){
+//         Router.go('projectDetails', {_id: currentId});
+//       });
+//     }
+//   })
 
-  Template.projectAdd.client = function() {
-    return {
-     position: "bottom",
-     limit: 5,
-     rules: [
-       {
-         collection: Clients,
-         field: "name",
-         template: Template.projectPill,
-         callback: function() {
-          //alert("Client autocomplete!!!")
-         }
-       }
-     ]
-    }
-  };
+//   Template.projectRow.events({
+//     'click .delete': function (event) {
+//       Projects.remove(this._id);
+//     }
+//   });
 
-  Template.projectAdd.lawyer = function() {
-    return {
-     position: "bottom",
-     limit: 5,
-     rules: [
-       {
-         collection: Lawyers,
-         field: "name",
-         template: Template.projectPill,
-         callback: function() {
-            //alert("lawyer autocomplete!!!")
-         }
-       }
-     ]
-    }
-  };
+//   Template.projectDetails.events({
+//     'click .delete': function (event) {
+//       Projects.remove(this._id, function(){
+//         Router.go('projects');
+//       });
+//     }
+//   });
 
-//
-  Template.projectAdd.court = function() {
-    return {
-     position: "bottom",
-     limit: 5,
-     rules: [
-       {
-         collection: Courts,
-         field: "name",
-         template: Template.projectPill,
-         callback: function() {
-          //alert("court autocomplete selected!!!")
-         }
-       }
-     ]
-    }
-  };
+//   // Try to extend default autocomplete settings here instead of copying
 
-  Template.projectEdit.clients = Template.projectAdd.client
-  Template.projectEdit.courts = Template.projectAdd.court
-  Template.projectEdit.lawyers = Template.projectAdd.lawyer
+//   Template.projectAdd.client = function() {
+//     return {
+//      position: "bottom",
+//      limit: 5,
+//      rules: [
+//        {
+//          collection: Clients,
+//          field: "name",
+//          template: Template.projectPill,
+//          callback: function() {
+//           //alert("Client autocomplete!!!")
+//          }
+//        }
+//      ]
+//     }
+//   };
+
+//   Template.projectAdd.lawyer = function() {
+//     return {
+//      position: "bottom",
+//      limit: 5,
+//      rules: [
+//        {
+//          collection: Lawyers,
+//          field: "name",
+//          template: Template.projectPill,
+//          callback: function() {
+//             //alert("lawyer autocomplete!!!")
+//          }
+//        }
+//      ]
+//     }
+//   };
+
+// //
+//   Template.projectAdd.court = function() {
+//     return {
+//      position: "bottom",
+//      limit: 5,
+//      rules: [
+//        {
+//          collection: Courts,
+//          field: "name",
+//          template: Template.projectPill,
+//          callback: function() {
+//           //alert("court autocomplete selected!!!")
+//          }
+//        }
+//      ]
+//     }
+//   };
+
+  //Template.projectEdit.clients = Template.projectAdd.client
+  //Template.projectEdit.courts = Template.projectAdd.court
+  //Template.projectEdit.lawyers = Template.projectAdd.lawyer
 }
 
 // Server specific code

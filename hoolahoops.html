@@ -41,10 +41,22 @@
 <template name="projectRow">
 <tr class="project-row">
 	<td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td>
-	<td>{{title}}</td>
-	<td>{{client}}</td>
-	<td>{{lawyer}}</td>
-	<td>{{court}}</td>
+	<td>{{name}}</td>
+	<td>
+	{{#each clients}}
+		{{name}}
+	{{/each}}
+	</td>
+	<td>
+	{{#each lawyers}}
+		{{name}}
+	{{/each}}
+	</td>
+	<td>
+	{{#with court}}
+		{{name}}
+	{{/with}}
+	</td>
 	<td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td>
 	<td>Feb 27, 2015 </td>
 	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
@@ -149,7 +161,7 @@
 	  <div class="container project-container">
 	  	<div class="row">
 		  	<div class="col s12  project-title">
-		  		<h3>{{title}}</h3>
+		  		<h3>{{name}}</h3>
 		  	</div>
 		 </div>
 	  	<div class="row">
@@ -161,7 +173,12 @@
 			  		</div>
 			  		<div class="col l4 m4 s12">
 			  			<h6 class="grey-text" >CLIENT</h6>
-			  			<p>{{client}}</p>	
+			  			<p>
+			  			{{#each clients}}
+							{{name}}
+						{{/each}}
+						</p>
+
 			  		</div>
 			  		<div class="col l4 m4 s12">
 			  			<h6 class="grey-text" >TYPE</h6>
@@ -177,11 +194,15 @@
 			  	<div class="row">
 			  		<div class="col s6">
 			  			<h6 class="grey-text">LAWYER</h6>
-			  			<p>{{lawyer}}</p>
+			  			<p>{{#each lawyers}}
+							{{name}}
+						{{/each}}</p>
 			  		</div>
 			  		<div class="col s6">
 			  			<h6 class="grey-text">COURT</h6>
-			  			<p>{{court}}</p>
+			  			<p>{{#with court}}
+							{{name}}
+						{{/with}}</p>
 			  		</div>
 			  	</div>
 			  	<div class="row">
@@ -301,21 +322,20 @@
 			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
 			<div class="row">
 				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput name="name" id="project__title" class="validate"}}
+					{{> afFieldInput name="name" id="project__title"}}
 					<label for="project__title">Title</label>
 				</div>
 				<div class="input-field col l4 m6 s12">
-					{{> afFieldInput name="suitno" id="project__suitno" class="validate"}}
+					{{> afFieldInput name="suitno" id="project__suitno"}}
 					<label for="project__suitno">Suit No</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete' class="validate"}}
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete'}}
 					<label for="project__clients">Clients</label>
 				</div>
 				<div class="col l4 m6 s12">
-			        <label>Type of Case</label>
 			        {{> afQuickField name='type' options='allowed'}}
 				</div>
 			</div>
@@ -327,17 +347,17 @@
 	    	</div>
 	    	<div class="row">
 				<div class="input-field col s12 m6">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer" class="validate"}}
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
 					<label for="project__laywer">Lawyer</label>
 				</div>
 
 				<div class="input-field col s12 m6">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court" class="validate"}}
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
 					<label for="project__court">Court</label>
 				</div>
 			</div>
 			<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
-			<a class="waves-effect waves-teal btn-flat" href="/projects">CANCEL</a>
+			<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>
 			{{/autoForm}}
 			<!-- Form ends -->
 		</div>	
@@ -363,7 +383,9 @@
 	{{#autoForm id="insertProjectForm" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
 		{{> afQuickField name="name"}}
 
-		{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete'}}
-        <button class="btn btn-primary" type="submit">Insert</button>
+		{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete'}}
+
+		{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete'}}
+		<button class="btn btn-primary" type="submit">Insert</button>
     {{/autoForm}}
  </template>

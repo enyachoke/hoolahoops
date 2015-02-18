@@ -14,9 +14,6 @@ clientSchema = new SimpleSchema({
   projectIds: {
     type: [String],
     optional: true
-  },
-  clientIds: {
-    type: [String]
   }
 });
 
@@ -32,6 +29,7 @@ projectSchema = new SimpleSchema({
   type: {
     type: String,
     optional: true,
+    label: 'Type of case',
     allowedValues: ['audi', 'business', 'criminal', 'civil', 'commercial', 'corporate', 'family', 'immigration', 'insurance', 'personalinjury', 'tax']
     // TODO: Provide labels here
   },
@@ -42,15 +40,18 @@ projectSchema = new SimpleSchema({
   },
   clientIds: {
     optional: true,
-    type: [String]
+    type: [String],
+    label: 'Clients'
   },
   lawyerIds: {
     optional: true,
-    type: [String]
+    type: [String],
+    label: 'Lawyers'
   },
   courtId: {
     optional: true,
-    type: String
+    type: String,
+    label: 'Court'
   }
 });
 
@@ -167,7 +168,13 @@ Router.route('/', {
 })
 
 Router.route('/projects', {
-  name: 'projects'
+  name: 'projects',
+  waitOn: function () {
+    return Meteor.subscribe('projects');
+  },
+  data: function() {
+    return Projects.find();
+  }
 });
 
 Router.route('/projects/add', {
@@ -176,18 +183,27 @@ Router.route('/projects/add', {
 
 Router.route('/projects/:_id', {
   name: 'projectDetails',
+  waitOn: function() {
+    return Meteor.subscribe('projects');
+  },
   data: function () { return Projects.findOne(this.params._id); }
 });
 
 Router.route('/projects/:_id/edit', {
   name: 'projectEdit',
+  waitOn: function() {
+    return Meteor.subscribe('projects');
+  },
   data: function () { return Projects.findOne(this.params._id); }
 });
 
 
 //hearings
 Router.route('/hearings', {
-  name: 'hearings'
+  name: 'hearings',
+  waitOn: function() {
+    return Meteor.subscribe('PDetail', this.params.shortname);
+  }
 });
 
 Router.route('/hearings/add', {
@@ -210,34 +226,20 @@ Router.route('/hearings/:_id/edit', {
 if (Meteor.isClient) {
   // Subscribe to the published data stream
   Meteor.subscribe('clients');
-  Meteor.subscribe('projects');
   Meteor.subscribe('lawyers');
   Meteor.subscribe('courts');
 
-  // Template project helpers
-  Template.projects.helpers({
-    projects: function () {
-      return Projects.find({});
-    }
-  })
-
-  Template.hearings.helpers({
-    hearings: function () {
-      return Hearings.find({});
-    }
-  })
-
-  Template.hearingAdd.events({
-    'click .addHearing': function (event) {
-      //alert("HIgh There!");
-      event.preventDefault();
-      var formJSON = $(event.target).closest("form").serializeJSON();
-      // TODO: get client, lawyer reference here. Maybe write a reference pluging here
-      Hearings.insert(formJSON, function(error, _id){
-        Router.go('hearingDetails', {_id: _id});
-      });
-    }
-  });
+  // Template.hearingAdd.events({
+  //   'click .addHearing': function (event) {
+  //     //alert("HIgh There!");
+  //     event.preventDefault();
+  //     var formJSON = $(event.target).closest("form").serializeJSON();
+  //     // TODO: get client, lawyer reference here. Maybe write a reference pluging here
+  //     Hearings.insert(formJSON, function(error, _id){
+  //       Router.go('hearingDetails', {_id: _id});
+  //     });
+  //   }
+  // });
 
   Template.hearingRow.events({
     'click .delete': function (event) {
@@ -272,6 +274,13 @@ if (Meteor.isClient) {
     }
   });
 
+  // TODO: Remove me. Put me into wait block in subscribe method.
+  Template.projects.helpers({
+    'projects': function() {
+      return Projects.find();
+    }
+  });
+
   Template.projectEdit.helpers({});
 
   Template.projectEdit.events({
@@ -291,6 +300,44 @@ if (Meteor.isClient) {
     }
   });
 
+  // TODO: Move this out of here into joins or whatever
+  Template.projectRow.helpers({
+    'lawyers': function() {
+      var post = this;
+      console.log("inside post", this);
+      var cursor = Lawyers.find({_id: {$in:this.lawyerIds}});
+      console.log(cursor.fetch());
+      return cursor;
+    },
+    'clients': function() {
+      var post = this;
+      console.log("inside client helper", this);
+      return Clients.find({_id: {$in:this.clientIds}});
+    },
+    'court': function() {
+      return Courts.findOne({_id: this.courtId});
+    }
+  });
+
+  // TODO: Really ugly code here. It's late and i'm tired. Copy pasting. Need to remove this asap.
+  Template.projectDetails.helpers({
+    'lawyers': function() {
+      var post = this;
+      console.log("inside post", this);
+      var cursor = Lawyers.find({_id: {$in:this.lawyerIds}});
+      console.log(cursor.fetch());
+      return cursor;
+    },
+    'clients': function() {
+      var post = this;
+      console.log("inside client helper", this);
+      return Clients.find({_id: {$in:this.clientIds}});
+    },
+    'court': function() {
+      return Courts.findOne({_id: this.courtId});
+    }
+  });
+
   Template.projectDetails.events({
     'click .delete': function (event) {
       Projects.remove(this._id, function(){
@@ -306,13 +353,13 @@ if (Meteor.isServer) {
     // code to run on server at startup
     
     // Publish the collection. TODO: Only publish part of the collection to which the user has permissions. Also how do we limit data size in meteor? Should be handled with pagination.
-    Meteor.publish('clients', function(){
+    Meteor.publish('clients', function() {
       return Clients.find();
     });
 
-    Meteor.publish('projects', function(){
+    Meteor.publish('projects', function() {
       return Projects.find();
-    });
+    })
 
     Meteor.publish('lawyers', function(){
       return Lawyers.find();

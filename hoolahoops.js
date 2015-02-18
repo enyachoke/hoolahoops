@@ -11,15 +11,68 @@ clientSchema = new SimpleSchema({
   name: {
     type: String
   },
-  clientId: {
-    type: String,
+  projectIds: {
+    type: [String],
     optional: true
   },
   clientIds: {
+    type: [String]
+  }
+});
+
+projectSchema = new SimpleSchema({
+  name: {
+    type: String,
+    optional: true,
+  },
+  suitno: {
+    type: String,
+    optional: true,
+  },
+  type: {
+    type: String,
+    optional: true,
+    allowedValues: ['audi', 'business', 'criminal', 'civil', 'commercial', 'corporate', 'family', 'immigration', 'insurance', 'personalinjury', 'tax']
+    // TODO: Provide labels here
+  },
+  description: {
+    type: String,
+    optional: true,
+    label: 'Case Description'
+  },
+  clientIds: {
+    optional: true,
+    type: [String]
+  },
+  lawyerIds: {
+    optional: true,
+    type: [String]
+  },
+  courtId: {
+    optional: true,
+    type: String
+  }
+});
+
+lawyerSchema = new SimpleSchema({
+  name: {
+    type: String
+  },
+  projectIds: {
     type: [String],
     optional: true
   }
 });
+
+courtSchema = new SimpleSchema({
+  name: {
+    type: String
+  },
+  projectIds: {
+    type: [String],
+    optional: true
+  }
+})
 
 // Collections: Define collections here
 Projects = new Meteor.Collection('projects')
@@ -29,14 +82,48 @@ Courts = new Meteor.Collection('courts')
 Hearings = new Meteor.Collection('hearings');
 
 // Attach the schema
-Clients.attachSchema(clientSchema)
+Clients.attachSchema(clientSchema);
+Projects.attachSchema(projectSchema);
+Lawyers.attachSchema(lawyerSchema);
+Courts.attachSchema(courtSchema);
 
-// Define meteor methods
+// Define meteor methods. TODO: Move to server
 Meteor.methods({
+  'debug': function(a,b,c) {
+    console.log(a,b,c);
+    debugger;
+  },
+  // TODO: Have proxy method for clients, lawyers and courts
   'clients': function(query) {
-    console.log("Hello!")
+    console.log("Fetching clients!")
     if (query !== '') {
       return Clients.find({
+        name: {
+          $regex: "^.*" + query + ".*$",
+          $options: 'i'
+        }
+      }).fetch();
+    } else {
+      return [];
+    }
+  },
+  'lawyers': function(query) {
+    console.log("Fetching lawyers!")
+    if (query !== '') {
+      return Lawyers.find({
+        name: {
+          $regex: "^.*" + query + ".*$",
+          $options: 'i'
+        }
+      }).fetch();
+    } else {
+      return [];
+    }
+  },
+  'courts': function(query) {
+    console.log("Fetching courts!")
+    if (query !== '') {
+      return Courts.find({
         name: {
           $regex: "^.*" + query + ".*$",
           $options: 'i'
@@ -55,18 +142,26 @@ Meteor.methods({
     } else {
       return Clients.insert(doc);
     }
+  },
+  'saveProjectData': function(doc, set, _id) {
+    console.log(Math.random())
+    console.log(doc, set, _id)
+    if (_id) {
+      return Projects.update({
+        _id: _id
+      }, set);
+    } else {
+      return Projects.insert(doc);
+    }
   }
 });
 
-// Render functions
-renderClients = function(x) {
-  console.log(Template)
-  return Blaze.toHTMLWithData(Template.clients, x);
-};
+// Render functions. Add any custom render function here
+renderDefaultAutocomplete = function(x) {
+  return Blaze.toHTMLWithData(Template.autocomplete, x)
+}
 
 // Routes
-
-//projects
 Router.route('/', {
   name: 'home'
 })
@@ -113,6 +208,13 @@ Router.route('/hearings/:_id/edit', {
 
 // Client specific code
 if (Meteor.isClient) {
+  // Subscribe to the published data stream
+  Meteor.subscribe('clients');
+  Meteor.subscribe('projects');
+  Meteor.subscribe('lawyers');
+  Meteor.subscribe('courts');
+
+  // Template project helpers
   Template.projects.helpers({
     projects: function () {
       return Projects.find({});
@@ -162,8 +264,6 @@ if (Meteor.isClient) {
     }
   });
 
-
-
   Template.projectDetails.events({
     'click .delete': function (event) {
       Projects.remove(this._id, function(){
@@ -172,19 +272,7 @@ if (Meteor.isClient) {
     }
   });
 
-
   Template.projectEdit.helpers({});
-
-  Template.projectAdd.events({
-    'click .addProj': function (event) {
-      event.preventDefault();
-      var formJSON = $(event.target).closest("form").serializeJSON();
-      // TODO: get client, lawyer reference here. Maybe write a reference pluging here
-      Projects.insert(formJSON, function(error, _id){
-        Router.go('projectDetails', {_id: _id});
-      });
-    }
-  });
 
   Template.projectEdit.events({
     'click .editProj': function (event){
@@ -210,69 +298,28 @@ if (Meteor.isClient) {
       });
     }
   });
-
-  // Try to extend default autocomplete settings here instead of copying
-
-  Template.projectAdd.client = function() {
-    return {
-     position: "bottom",
-     limit: 5,
-     rules: [
-       {
-         collection: Clients,
-         field: "name",
-         template: Template.projectPill,
-         callback: function() {
-          //alert("Client autocomplete!!!")
-         }
-       }
-     ]
-    }
-  };
-
-  Template.projectAdd.lawyer = function() {
-    return {
-     position: "bottom",
-     limit: 5,
-     rules: [
-       {
-         collection: Lawyers,
-         field: "name",
-         template: Template.projectPill,
-         callback: function() {
-            //alert("lawyer autocomplete!!!")
-         }
-       }
-     ]
-    }
-  };
-
-//
-  Template.projectAdd.court = function() {
-    return {
-     position: "bottom",
-     limit: 5,
-     rules: [
-       {
-         collection: Courts,
-         field: "name",
-         template: Template.projectPill,
-         callback: function() {
-          //alert("court autocomplete selected!!!")
-         }
-       }
-     ]
-    }
-  };
-
-  Template.projectEdit.clients = Template.projectAdd.client
-  Template.projectEdit.courts = Template.projectAdd.court
-  Template.projectEdit.lawyers = Template.projectAdd.lawyer
 }
 
 // Server specific code
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+    
+    // Publish the collection. TODO: Only publish part of the collection to which the user has permissions. Also how do we limit data size in meteor? Should be handled with pagination.
+    Meteor.publish('clients', function(){
+      return Clients.find();
+    });
+
+    Meteor.publish('projects', function(){
+      return Projects.find();
+    });
+
+    Meteor.publish('lawyers', function(){
+      return Lawyers.find();
+    });
+
+    Meteor.publish('courts', function(){
+      return Courts.find();
+    })
   });
 }

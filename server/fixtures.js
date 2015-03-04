@@ -1,7 +1,4 @@
-// Open a shell using meteor mongo
-// Paste this code there
-
-
+// Default data to insert
 
 hearings = [
 	{
@@ -12,20 +9,20 @@ hearings = [
 	}
 ]
 
-clientData = [
-	{'name': 'Shashwat Kumar'},
-	{'name': 'Rishabh Saxena'},
-	{'name': 'Shubham Agrawal'},
-	{'name': 'Abhay Kumar'},
-	{'name': 'Virender Kumar'},
-	{'name': 'Vivek Joshi'},
-	{'name': 'Suneedhi Parihas'},
-	{'name': 'Ishtar Vineta'},
-	{'name': 'Ashok Mishra'},
-	{'name': 'Sanjay Nigam'}
+clients = [
+	{'name': 'Shashwat Kumar', '_id': '121'},
+	{'name': 'Rishabh Saxena', '_id': '122'},
+	{'name': 'Shubham Agrawal', '_id': '123'},
+	{'name': 'Abhay Kumar', '_id': '124'},
+	{'name': 'Virender Kumar', '_id': '125'},
+	{'name': 'Vivek Joshi', '_id': '126'},
+	{'name': 'Suneedhi Parihas', '_id': '127'},
+	{'name': 'Ishtar Vineta', '_id': '128'},
+	{'name': 'Ashok Mishra', '_id': '129'},
+	{'name': 'Sanjay Nigam', '_id': '130'}
 ]
 
-lawyerData = [
+lawyers = [
 	{'name': 'Shashwat Kumar', '_id': '1'},
 	{'name': 'Rishabh Saxena', '_id': '2'},
 	{'name': 'Shubham Agrawal', '_id': '3'},
@@ -64,6 +61,20 @@ courts = [
 	{'name': 'Uttarakhand High Court', '_id': 'abcd23451'}
 ]
 
-//db.clients.insert(clientData)
-//db.lawyers.insert(lawyerData)
-//db.courts.insert(courts)
+// DEFAULT DATA
+// TODO: Move all of this into a separate migrations
+// Insert into db. TODO: Move this into helper functions and remove repetition
+_.each(clients, function(client){
+	//if(!Clients.findOne(client._id))
+		Clients.upsert(client['_id'], {$set: client});
+});
+
+_.each(lawyers, function(lawyer){
+	//if(!Lawyers.findOne(lawyer._id))
+		Lawyers.upsert(lawyer['_id'], {$set: lawyer});
+});
+
+_.each(courts, function(court){
+	//if(!Clients.findOne(court._id))
+		Courts.upsert(court['_id'], {$set: court});
+});

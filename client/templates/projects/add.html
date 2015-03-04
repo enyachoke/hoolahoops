@@ -1,0 +1,56 @@
+<template name="projectAdd">
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Add a matter</h4>
+		<div class="row form-container">
+
+			<!-- Form starts>
+			{{#autoForm id="insertClientForm" doc=this type="method" meteormethod='saveClientData' schema='clientSchema'}}
+		<div>{{> afFieldInput name="name"}}</div>
+        <div>{{> afFieldInput  type='xautocomplete' formid="insertClientForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderClients'}}</div>
+        <button class="btn btn-primary" type="submit">Insert</button>
+    {{/autoForm}}-->
+
+			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="name" id="project__title"}}
+					<label for="project__title">Title</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					{{> afFieldInput name="suitno" id="project__suitno"}}
+					<label for="project__suitno">Suit No</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete'}}
+					<label for="project__clients">Clients</label>
+				</div>
+				<div class="col l4 m6 s12">
+			        {{> afQuickField name='type' options='allowed'}}
+				</div>
+			</div>
+			
+			<div class="row">
+		      <div class="input-field col s12">
+		        {{> afQuickField name='description' rows='6' class='materialize-textarea'}}
+		      </div>
+	    	</div>
+	    	<div class="row">
+				<div class="input-field col s12 m6">
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+					<label for="project__laywer">Lawyer</label>
+				</div>
+
+				<div class="input-field col s12 m6">
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
+					<label for="project__court">Court</label>
+				</div>
+			</div>
+			<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
+			<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>
+			{{/autoForm}}
+			<!-- Form ends -->
+		</div>	
+	</div>
+</template>

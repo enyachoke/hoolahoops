@@ -1,0 +1,13 @@
+<template name="hearingRow">
+
+	<tr>
+		<td>{{title}}</td>
+		<td>{{court}}</td>
+		<td>{{date}}</td>
+		<td>
+		<button class="delete">Delete</button>
+		<a href="/hearings/{{_id}}/edit">Edit</a>
+		<a href="/hearings/{{_id}}">Details</a></td>
+	</tr>
+	
+</template>

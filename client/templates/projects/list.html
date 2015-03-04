@@ -1,0 +1,32 @@
+<template name="projects">
+	  <nav>
+	    <div class="nav-wrapper teal">
+	      <a href="#" class="brand-logo">TCL-India</a>
+	      <ul id="nav-mobile" class="right side-nav">
+	        <li class="active"><a href="/projects">Projects</a></li>
+	        <!--li><a href="/hearings">Hearings</a></li-->
+	      </ul>
+	    </div>
+	  </nav>
+    <div class="container project-list-container">
+		<table class="bordered hoverable responsive-table projects-table">
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Title</th>
+					<th>Client</th>
+					<th>Lawyer</th>
+					<th>Court</th>
+					<th>Last Update</th>
+					<th>Next Hearing</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each projects}}
+					{{> projectRow}}
+				{{/each}}
+			</tbody>
+		</table>
+	<a href="projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
+	</div>
+</template>

@@ -1,0 +1,190 @@
+<template name="projectDetails">
+	  <nav>
+	    <div class="nav-wrapper teal">
+	      <a href="#" class="brand-logo">TCL-India</a>
+	      <ul id="nav-mobile" class="right side-nav">
+	        <li><a href="/projects">Matters</a></li>
+	        <!--li><a href="/hearings">Hearings</a></li-->
+	      </ul>
+	    </div>
+	  </nav>
+
+	  <div class="container project-container">
+	  	<div class="row">
+		  	<div class="col s12  project-title">
+		  		<h3>{{name}}</h3>
+		  	</div>
+		 </div>
+	  	<div class="row">
+	  		<div class="col s8 white project-details">
+		  		<div class="row">
+			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >SUIT NO</h6>
+			  			<p>{{suitno}}</p>	
+			  		</div>
+			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >CLIENT</h6>
+			  			<p>
+			  			{{#each clients}}
+							{{name}}
+						{{/each}}
+						</p>
+
+			  		</div>
+			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >TYPE</h6>
+			  			<p>{{type}}</p>	
+			  		</div>
+			  	</div>
+			  	<div class="row">
+					<div class="col s12">
+						<h6 class="grey-text">DESCRIPTION</h6>
+			  			<p>{{description}}</p>
+					</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col s6">
+			  			<h6 class="grey-text">LAWYER</h6>
+			  			<p>{{#each lawyers}}
+							{{name}}
+						{{/each}}</p>
+			  		</div>
+			  		<div class="col s6">
+			  			<h6 class="grey-text">COURT</h6>
+			  			<p>{{#with court}}
+							{{name}}
+						{{/with}}</p>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col s6">
+			  			<h6 class="grey-text">LAST UPDATE</h6>
+			  			<p>20 February, 2015</p>
+			  		</div>
+			  		<div class="col s6">
+			  			<h6 class="grey-text">NEXT HEARING</h6>
+			  			<p>27 February, 2015</p>
+			  		</div>
+			  	</div>
+
+		  	</div>
+			<div class="col s4 white project-details" style="height: 493px;">
+				<div class="row">
+					<div class="col s12">
+						<!--a href="/projects/{{_id}}/edit" class="waves-effect waves-light btn">Update Project</a-->
+						<a href="/projects" class="waves-effect waves-teal btn-flat delete">Delete Project</a>
+					</div>
+				</div>
+
+				<hr class="divider">
+
+				<div class="row">
+					<div class="col s12 project-notes">
+						<!--h6 class="grey-text">TODO</h6>
+						<ul class="collection">
+					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+					    </ul-->
+					</div>
+					<!--a class="waves-effect waves-teal btn-flat"> Add ToDo</a-->
+				</div>
+			</div>
+		  </div>
+
+		  <!-- Activity Feed -->
+			  	<div class="row col s12 white project-details">
+			  		<h3>Case History</h3>
+				  	<table class="bordered hoverable responsive-table projects-table">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Description</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+								
+				<tr>
+	 				<td>  03-FEB-2015 </td>
+					<td>     Listed In Court 1 As Item No 16</td>
+					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+				</tr>
+
+				<tr>
+					<td>13-JAN-2015</td>
+					<td>Listed In Court 1 As Item No 3</td>
+					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+				</tr>
+
+				<tr>
+				<td>13-JAN-2015</td>
+				<td>Certified Copy of ORDER Applied By PURNIMA    Vide Diary No : 374/2015</td>
+				<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+				</tr>
+
+<tr>
+<td>07-JAN-2015</td>
+
+<td>Vakalatnama/Appearance Filed By SANJAY GHOSH</td>
+								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+
+</tr>
+
+<tr>
+<td>06-JAN-2015</td>
+
+<td>Listed In Court 1 As Item No 3</td>
+								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+
+</tr>
+
+<tr>
+<td>02-DEC-2014</td>
+
+<td>Listed In Court 1 As Item No 1</td>
+								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+
+</tr>
+
+<tr>
+<td>18-OCT-2014</td>
+
+<td>Vakalatnama/Appearance Filed By PURNIMA MAHESHWARI</td>
+								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+
+</tr>
+
+<tr>
+<td>17-OCT-2014</td>
+
+<td>Listed In Court 1 As Item No 18</td>
+								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+
+</tr>
+
+<tr>
+<td>16-OCT-2014</td>
+
+<td>CM APPL.-17276/2014 For MISCELLANEOUS Filed By On Behalf of SHASHI BALA</td>
+								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+
+
+</tr>
+
+							
+						</tbody>
+					</table>
+			  	</div>
+			  	<!-- Table ends -->
+	  	</div>
+</template>

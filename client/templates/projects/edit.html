@@ -1,0 +1,64 @@
+<template name="projectEdit">
+	<div class="container card-panel edit-project">
+		<h4 class="teal form-header">Edit case</h4>
+		<div class="row form-container">
+			<form class="col s12">
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					<input name="title" id="project__title" type="text" value="{{title}}">
+					<label class="active" for="project__title">Title</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					<input name="suitno" id="project__suitno" type="text" value="{{suitno}}">
+					<label class="active" for="project__suitno">Suit No</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col l8 m6 s12">
+					<input name="clients" id="project__clients" type="text" value="{{client}}">
+					<label class="active" for="project__clients">Clients</label>
+				</div>
+				<div class="col l4 m6 s12">
+			        <label class="active" >Type of Case</label>
+			        <select name="type" value="{{type}}">
+						<option value="" disabled>Choose your option</option>
+						<option value="audi">Bankrupcy</option>
+						<option value="business">Business</option>
+						<option value="criminal">Criminal</option>
+						<option value="civil">Civil</option>
+						<option value="commercial">Commercial</option>
+						<option value="corporate">Corporate</option>
+						<option value="employment">Employment</option>
+						<option value="family">Family</option>
+						<option value="immigration">Immigration</option>
+						<option value="insurance">Insurance</option>
+						<option value="personalinjury">Personal Injury</option>
+						<option value="tax">Tax</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+		      <div class="input-field col s12">
+		        <textarea name="description" class="materialize-textarea" ></textarea>
+		        <label class="active" >Case Description</label>
+		      </div>
+	    	</div>
+	    	<div class="row">
+				<div class="input-field col s12 m6">
+					<input name="laywer" id="project__laywer" type="text">
+					<label class="active" for="project__laywer">Lawyer</label>
+				</div>
+
+				<div class="input-field col s12 m6">
+					<input name="court" id="project__court" type="text">
+					<label class="active" for="project__court">Court</label>
+				</div>
+			</div>
+			<a class="addProj waves-effect waves-light btn">Save changes</a>
+			<a href="/projects" class="waves-effect waves-teal btn-flat">Cancel</a>
+			<a href="/projects/{{_id}}" class="waves-effect waves-teal btn-flat">View Details</a>
+			</form>
+		</div>	
+	</div>
+</template>

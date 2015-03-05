@@ -1,13 +1,17 @@
 <template name="hearings">
 	<a href="/hearings/add">Add Hearing</a>
-	<table>
+	<!-- <table>
 	<tr>
 		<th>Title</th>
 		<th>Court</th>
 		<th>Date</th>
 	</tr>
 		 {{#each hearings}}
-			{{> hearingRow}}
-		{{/each}} 
-	</table>
+			<tr>{{title}}</tr>
+		{{/each}}
+
+	</table> -->
+	 {{#each hearings}}
+		{{title}}
+	{{/each}}
 </template>

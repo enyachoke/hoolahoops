@@ -15,4 +15,8 @@ Meteor.startup(function () {
     Meteor.publish('courts', function(){
       return Courts.find();
     })
+	
+	Meteor.publish('hearings', function(){
+		return Hearings.find();
+	})
 });

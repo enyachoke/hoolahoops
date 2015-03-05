@@ -1,4 +1,4 @@
-// TODO: Really ugly code here. It's late and i'm tired. Copy pasting. Need to remove this asap.
+// TODO: Really ugly code here. It's late and i'm tired. Copy pasting. Need to remove this asap. haha LOL
   Template.projectDetails.helpers({
     'lawyers': function() {
       var post = this;

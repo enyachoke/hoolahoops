@@ -28,6 +28,9 @@
 				{{> afFieldInput name="court" id="hearing__court"}}
 				<label for="hearing__court">Court</label>
 			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="type" options=options id="event_type"}}
+			</div>
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
 		{{/autoForm}}

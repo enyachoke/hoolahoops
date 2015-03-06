@@ -16,21 +16,20 @@
 		<button class="addHearing">Add Hearing</button>
 	</form> -->
 		{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
-			<div class="input-field col l8 m6 s12">
-				{{> afFieldInput name="title" id="hearing__title"}}
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
 				<label for="hearing__title">Title</label>
+				
 			</div>
 			<div class="input-field col l4 m6 s12">
-				{{> afFieldInput name="date" type="date" id="hearing__suitno"}}
-				<label for="hearing__suitno">Date</label>
-			</div>
-			<div class="input-field col l4 m6 s12">
-				{{> afFieldInput name="court" id="hearing__court"}}
-				<label for="hearing__court">Court</label>
+				{{> afFieldInput name="date" type="date" id="hearing__date"}}
+				<!-- <label for="hearing__date">Date</label> -->
 			</div>
 			<div class="input-field col l4 m6 s12">
 				{{> afFieldInput name="type" options=options id="event_type"}}
 			</div>
+			
+			
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
 		{{/autoForm}}

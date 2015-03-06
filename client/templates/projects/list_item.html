@@ -1,6 +1,6 @@
 <template name="projectRow">
 <tr class="project-row">
-	<td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td>
+	<!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
 	<td>{{name}}</td>
 	<td>
 	{{#each clients}}
@@ -12,11 +12,11 @@
 		{{name}}
 	{{/each}}
 	</td>
-	<td>
+	<!-- <td>
 	{{#with court}}
 		{{name}}
 	{{/with}}
-	</td>
+	</td> -->
 	<td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td>
 	<td>Feb 27, 2015 </td>
 	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>

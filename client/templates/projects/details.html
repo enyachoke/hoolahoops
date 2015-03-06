@@ -22,7 +22,17 @@
 			  			<h6 class="grey-text" >SUIT NO</h6>
 			  			<p>{{suitno}}</p>	
 			  		</div>
+					<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >UNIQUE ID</h6>
+			  			<!-- <p>{{uid}}</p> -->	
+			  		</div>
+					
 			  		<div class="col l4 m4 s12">
+			  			<h6 class="grey-text" >PRACTICE AREA</h6>
+			  			<!-- <p>{{prac_area}}</p> -->	
+			  		</div>
+					
+					<div class="col l4 m4 s12">
 			  			<h6 class="grey-text" >CLIENT</h6>
 			  			<p>
 			  			{{#each clients}}
@@ -91,7 +101,8 @@
 				</div>
 			</div>
 		  </div>
-
+	  	<a href="/hearings/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
+		  
 		  <!-- Activity Feed -->
 			  	<div class="row col s12 white project-details">
 			  		<h3>Case History</h3>
@@ -107,80 +118,16 @@
 							
 								
 				<tr>
-	 				<td>  03-FEB-2015 </td>
+					
+	 				<!-- <td>  03-FEB-2015 </td>
 					<td>     Listed In Court 1 As Item No 16</td>
-					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
+					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td> -->
 
 				</tr>
-
-				<tr>
-					<td>13-JAN-2015</td>
-					<td>Listed In Court 1 As Item No 3</td>
-					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-				</tr>
-
-				<tr>
-				<td>13-JAN-2015</td>
-				<td>Certified Copy of ORDER Applied By PURNIMA    Vide Diary No : 374/2015</td>
-				<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-				</tr>
-
-<tr>
-<td>07-JAN-2015</td>
-
-<td>Vakalatnama/Appearance Filed By SANJAY GHOSH</td>
-								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-
-</tr>
-
-<tr>
-<td>06-JAN-2015</td>
-
-<td>Listed In Court 1 As Item No 3</td>
-								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-
-</tr>
-
-<tr>
-<td>02-DEC-2014</td>
-
-<td>Listed In Court 1 As Item No 1</td>
-								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-
-</tr>
-
-<tr>
-<td>18-OCT-2014</td>
-
-<td>Vakalatnama/Appearance Filed By PURNIMA MAHESHWARI</td>
-								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-
-</tr>
-
-<tr>
-<td>17-OCT-2014</td>
-
-<td>Listed In Court 1 As Item No 18</td>
-								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-
-</tr>
-
-<tr>
-<td>16-OCT-2014</td>
-
-<td>CM APPL.-17276/2014 For MISCELLANEOUS Filed By On Behalf of SHASHI BALA</td>
-								<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>
-
-
-</tr>
-
+				{{ #each feed}}
+					{{ date }}
+				{{ /each}}
+			
 							
 						</tbody>
 					</table>

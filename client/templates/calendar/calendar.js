@@ -28,7 +28,10 @@ Template.calendar.rendered= function(){
 			element.prepend('<input type="checkbox" class="complete-event">');
 			element.children('input').css('position','relative').css('left','0px');
 		}
-	}
+	},
+    header: {
+           center: 'month, agendaWeek, agendaDay' // buttons for switching between views
+       }
 
     });
 	//	debugger

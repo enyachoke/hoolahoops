@@ -46,6 +46,51 @@
 					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
 					<label for="project__court">Court</label>
 				</div>
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="followup"  id="followup_date"}}
+					<label for="followup_date">Followup Date</label>
+				</div>
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
+					<label for="statute_of_limitation">Statute of Limitation</label>
+				</div>
+				
+				<h5>Billing</h5>
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_retainer"  id="bill_retainer"}}
+					<label for="bill_retainer">Retainer</label>
+				</div>
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_hearing_partner"  id="bill_hearing_partner"}}
+					<label for="bill_hearing_partner">bill_hearing_partner</label>
+				</div>
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_hearing_sr_associate"  id="bill_hearing_sr_associate"}}
+					<label for="bill_hearing_sr_associate">bill_hearing_sr_associate</label>
+				</div>
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_hearing_associate"  id="bill_hearing_associate"}}
+					<label for="bill_hearing_associate">bill_hearing_associate</label>
+				</div>
+				
+				<h5>Reminders</h5>
+				
+				
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="days_before_followup"  id="days_before_followup"}}
+					<label for="days_before_followup">days before followup</label>
+				</div>
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="days_before_sol"  id="days_before_sol"}}
+					<label for="days_before_sol">days before statute of limitation</label>
+				</div>
+				
 			</div>
 			<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
 			<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>

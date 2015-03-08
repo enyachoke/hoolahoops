@@ -1,0 +1,47 @@
+<template name="taskRow">
+	<tr>
+		<td>{{date}}</td>
+		<td>{{desc}}</td>
+		<th><a href="/tasks/{{_id}}/">Details </a></th>
+		<th><button id='delete_task'>Delete</button></th>
+	</tr>
+</template>
+
+<template name="tasks">
+	<a href='add'>add task</a>
+	<table>
+		<tr>
+			<th> Deadline </th>
+			<th> Description </th>
+			
+		</tr>
+	{{# each tasks}}
+	{{ > taskRow}}
+	{{/each}}
+	</table>	
+</template>
+
+<template name="taskDetails">
+	{{date}},{{desc}}
+</template>
+
+<template name="addTask">
+	{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput  type='xautocomplete' formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
+			<label for="task__case">Matter</label>
+			
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="date" type="date" id="deadine"}}
+			<label for="deadine">Deadline</label>
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="desc"  id="desc"}}
+		</div>
+		
+		
+	<button class="waves-effect waves-light btn" type="submit">Insert</button>
+	<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+	{{/autoForm}}
+</template>

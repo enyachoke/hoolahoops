@@ -19,4 +19,13 @@ Meteor.startup(function () {
 	Meteor.publish('hearings', function(){
 		return Hearings.find();
 	})
+	
+	Meteor.publish('events', function(){
+		return Events.find();
+	})
+	
+	Meteor.publish('tasks', function(){
+		return Tasks.find();
+	})
+	
 });

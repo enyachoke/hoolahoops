@@ -148,4 +148,8 @@ select option:hover {
 	background: #eee;
 }
 
+.event-completed{
+	text-decoration : line-through;
+}
+
 /* Semantic ui label */

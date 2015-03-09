@@ -4,19 +4,20 @@ Template.calendar.rendered= function(){
 		defaultView : 'month',
 		events: function(start, end, callback){
 			var events = [];
-			var project;
+			var project ;
 			var event_title;
 			var desc;
+			
 			calEvents = Events.find();
 			console.log(calEvents);
 			//debugger;	
 			calEvents.forEach(function(e){
 				//debugger;
-				
+				project= Projects.findOne({_id : e.caseID});
 				switch( e.type ){
 				case 'hearings' : 
 					if (e.date instanceof Date){
-						project = Projects.findOne({_id : e.caseID});
+						
 						event_title = project.name;
 						events.push({
 							title : event_title,
@@ -29,18 +30,30 @@ Template.calendar.rendered= function(){
 					
 				case 'tasks'  : 
 					if(e.date instanceof Date){
-						debugger;
 						desc = Tasks.findOne({_id : e.taskId}).desc
+						
 						events.push({
-							title : desc,
+							title : project.name+':'+desc,
 							date : e.date,
 							type : e.type,
-							url : '/tasks/'+e.taskId
+							className : 'task' 
+							//url : '/tasks/'+e.taskId
 						});
 					}
+					break;
+				case 'meetings' : 
+					
+					events.push({
+						title : 'Meeting :'+project.name,
+						date : e.date,
+						type : e.type,
+						url : '/meetings/'+e.meetingId
+					});
+					break;
+						
 				}
 				
-			
+				
 			})
 		
 			callback(events);
@@ -50,7 +63,7 @@ Template.calendar.rendered= function(){
 				//element.children().children('.fc-event-time').prepend('<input type="checkbox" class="complete-event">');
 				//element.children().children('.fc-event-time').children().css('position','relative').css('left','0px');
 				// }
-				if( event.type == 'tasks' ){
+				if( event.type == 'tasks' ) {
 					element.prepend('<input type="checkbox" class="complete-event">');
 					element.children('input').css('position','relative').css('left','0px');
 				}
@@ -62,8 +75,9 @@ Template.calendar.rendered= function(){
 		});
 		//	debugger
 		//template events
+		
 		$('.complete-event').change(function() {
-			$(this).parent().next().toggleClass('event-completed');              
+			$(this).parent(".task").find('.fc-event-title').toggleClass('event-completed');              
 		});
 	
 		//hearings 

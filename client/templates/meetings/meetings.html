@@ -1,0 +1,30 @@
+<template name="meetings">
+	
+</template>
+
+<template name="meetingRow">
+	
+</template>
+
+<template name="meetingDetails">
+	{{date}},{{matter}}
+</template>
+
+<template name="addMeeting">
+	{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
+			<label for="meeting_case">Matter</label>
+			
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="date" type="date" id="hearing__date"}}
+			<!-- <label for="hearing__date">Date</label> -->
+		</div>
+		
+		
+		
+	<button class="waves-effect waves-light btn" type="submit">Insert</button>
+	<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+	{{/autoForm}}
+</template>

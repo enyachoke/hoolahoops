@@ -1,9 +1,10 @@
-var clocktimer,time,x;
+var clocktimer,time,x,lap;
 var update = {};
 
 Template.timetracker.update = function() {
-	time = document.getElementById('duration');
-	time.value = formatTime(x.time());
+	// time = document.getElementById('duration');
+// 	time.value = formatTime(x.time());
+	Session.set('timeTracked',formatTime(x.time()));
 }
 
 Template.timetracker.events({
@@ -30,5 +31,8 @@ Template.timetracker.events({
 
 Template.timetracker.rendered = function() {
 	x = new clsStopwatch();
+	if( lap = Session.get('lapTime') ){
+		x.updateLapTime(parseInt(lap));
+	}
 	Template.timetracker.update();
 }

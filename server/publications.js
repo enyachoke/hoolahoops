@@ -32,4 +32,8 @@ Meteor.startup(function () {
 		return Meetings.find();
 	})
 	
+	Meteor.publish('timesheets', function(){
+		return Timesheets.find();
+	})
+	
 });

@@ -30,4 +30,9 @@ clsStopwatch =  function() {
 		this.time = function() {
 			return lapTime + (startAt ? now() - startAt : 0); 
 		};
+		
+		this.updateLapTime = function(ms){
+			lapTime = ms;
+			startAt = 0;
+		};
 	};

@@ -1,0 +1,52 @@
+<template name="addClient">
+	{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
+		
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="name" type="text" id="name"}}
+			<label for="name">Name</label>
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="phone" type="number" id="ph"}}
+			<label for="ph">Phone Number</label>
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="email" type="email" id="email"}}
+			<label for="email">E-Mail</label>
+		</div>
+		
+		
+		
+	<button class="waves-effect waves-light btn" type="submit">Insert</button>
+	<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
+	{{/autoForm}}
+</template>
+
+<template name="clientDetails">
+	<p>Name : {{name}}</p>
+	<p>Email : {{email}}</p>
+	<p>Phone Number : {{phone}}</p>
+	<a href="/clients/{{_id}}/edit">Edit</a>
+</template>
+
+<template name="editClient">
+	{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
+		
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="name" type="text" id="name"}}
+			<label for="name">Name</label>
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="phone" type="number" id="ph"}}
+			<label for="ph">Phone Number</label>
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="email" type="email" id="email"}}
+			<label for="email">E-Mail</label>
+		</div>
+		
+		
+		
+	<button class="waves-effect waves-light btn" type="submit">Update</button>
+	<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
+	{{/autoForm}}
+</template>

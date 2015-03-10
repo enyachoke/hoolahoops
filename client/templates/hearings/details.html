@@ -1,22 +1,25 @@
 <template name="hearingDetails">
-	<tr>
+	<!-- <tr>
 		<td>{{title}}</td>
 		<td>{{court}}</td>
 		<td>{{date}}</td>
 		<td>
 		<button class="delete">Delete</button>
 		<a href="/hearings/{{_id}}/edit">Edit</a></td>
-	</tr> 
+	</tr>  -->
 	
-	<h5>proceedings</h5>
-	<h5>judge</h5>
-	<h5>date</h5>
-	<h5>time</h5>
-	<h5>court</h5>
-	<h5>court room</h5>
-	<h5>billing details</h5>
+	<p>proceedings: {{proceedings}}</p>
+	<p>lawyer : {{attorney}}</p>
+	<p>judge : {{judge}}</p>
+	<p>date : {{date}}</p>
+	<!-- <p>time : {{}}</p>-->
+	<p>court : {{court}}</p>
+	<!-- <p>court room</p> -->
+	<p>billing details : {{bill_amt}}</p>
 	<button>generate bill</button>
 	<button>update client</button>
+	<button class="delete">Delete</button>
+	<a href="/hearings/{{_id}}/edit">Edit</a>
 </template>
 
 

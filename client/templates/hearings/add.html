@@ -8,15 +8,34 @@
 			</div>
 			<div class="input-field col l4 m6 s12">
 				{{> afFieldInput name="date" type="date" id="hearing__date"}}
-				<!-- <label for="hearing__date">Date</label> -->
+				<label for="hearing__date">Date</label>
 			</div>
 			<!-- <div class="input-field col l4 m6 s12">
 				{{> afFieldInput name="type" options=options id="event_type"}}
 			</div> -->
-			
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="proceedings" type="textarea" class="materialize-textarea" id="proceedings"}}
+				<label for="proceedings">Proceedings</label>
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="judge" type="text" id="judge"}}
+				<label for="judge">Judge</label>
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="bill_amt" type="number" id="amount"}}
+				<label for="amount">Bill Amount</label>
+			</div>
+			<div class="input-field col s12 m6">
+				{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='lawyerId' call='lawyers' fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project_lawyer"}}
+				<!-- <label for="project_lawyer">Lawyer</label> -->
+			</div>
 			
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
+		
+	
+		  
 
 </template>
+

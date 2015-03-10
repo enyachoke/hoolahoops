@@ -13,6 +13,10 @@ Template.hearingDetails.helpers({
 	},
 	'title' : function(){
 		return Session.get('project_title');
+	},
+	'attorney' : function(){
+		debugger;
+		return Lawyers.findOne({_id: this.lawyerId}).name;
 	}
 });
 

@@ -16,3 +16,9 @@
       return Courts.findOne({_id: this.courtId});
     }
   });
+  
+  Template.projectRow.events({
+      'click .delete': function (event) {
+        Projects.remove(this._id);
+      }
+  })

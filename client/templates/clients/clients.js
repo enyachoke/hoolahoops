@@ -1,10 +1,10 @@
-Template.clients.helpers({
+Template.clientsList.helpers({
 	'clients' : function(){
 		return Clients.find();
 	}
 });
 
-Template.clients.events({
+Template.clientsList.events({
 	'click #delete' :function(){
 		Clients.remove(this._id);
 	}

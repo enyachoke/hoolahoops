@@ -51,7 +51,8 @@
 	{{/autoForm}}
 </template>
 
-<template name='contacts'>
+<template name='clientsList'>
+	<p><a href='/clients/add'>Add contact</a></p>
 	{{ #each clients}}
 	<p>{{ > clientRow }}</p>
 	{{/each}}

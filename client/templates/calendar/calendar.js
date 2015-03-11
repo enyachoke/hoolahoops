@@ -1,6 +1,7 @@
-var hearings=[], meetings=[], task_deadlines=[];	
+var hearings, meetings, task_deadlines;	
 
 Template.calendar.rendered= function(){
+	hearings=[], meetings=[], task_deadlines=[];
 	
 	calEvents = Events.find();
 	calEvents.forEach(function(e){
@@ -14,7 +15,8 @@ Template.calendar.rendered= function(){
 					title : event_title,
 					date : e.date,
 					type : e.type,
-					url : '/hearings/'+e.hearingId
+					url : '/hearings/'+e.hearingId,
+					className : 'hearing'
 				});
 			}
 			break;
@@ -38,7 +40,8 @@ Template.calendar.rendered= function(){
 				title : 'Meeting :'+project.name,
 				date : e.date,
 				type : e.type,
-				url : '/meetings/'+e.meetingId
+				url : '/meetings/'+e.meetingId, 
+				className : 'meeting'
 			});
 			break;
 				
@@ -48,13 +51,32 @@ Template.calendar.rendered= function(){
 	});
 	
 	$('#calendar').fullCalendar({
-		 
+		dayClick: function(date, jsEvent, view) {
+		        // alert('Clicked on: ' + date);
+//
+// 		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+//
+// 		        alert('Current view: ' + view.name);
+//
+// 		        // change the day's background color just for fun
+// 		        $(this).css('background-color', 'red');
+							$('#modal1').openModal();
+		    }
 	});
+	
+	$('#calendar').fullCalendar('removeEventSource', hearings);
+	$('#calendar').fullCalendar('removeEventSource', meetings);
+	$('#calendar').fullCalendar('removeEventSource', task_deadlines);
+	
 	$('#calendar').fullCalendar( 'addEventSource', hearings);
 	$('#calendar').fullCalendar( 'addEventSource', meetings);
- 	$('#calendar').fullCalendar( 'addEventSource', task_deadlines);
-}
+	$('#calendar').fullCalendar( 'addEventSource', task_deadlines);
+		
+	
+	
 
+}
+//avoid id 
 Template.calendar.events({
 	'change #hearings' : function(event){
 		if ( event.target.checked)
@@ -73,8 +95,28 @@ Template.calendar.events({
 		{$('#calendar').fullCalendar( 'addEventSource', task_deadlines);}
 		else
 		{$('#calendar').fullCalendar( 'removeEventSource', task_deadlines);}
+	},
+	'click #modal_hearing' : function(e){
+		e.preventDefault();
+		$('#modal1').closeModal();
+		//debugger;
+		Router.go('hearingAdd');
+	},
+	'click #modal_meeting' : function(e){
+		e.preventDefault();
+		$('#modal1').closeModal();
+		//debugger;
+		Router.go('addMeeting');
+	},
+	'click #modal_task' : function(e){
+		e.preventDefault();
+		$('#modal1').closeModal();
+		debugger;
+		Router.go('addTask');
 	}
 })
+
+
 
 
 

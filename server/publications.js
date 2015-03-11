@@ -36,4 +36,9 @@ Meteor.startup(function () {
 		return Timesheets.find();
 	})
 	
+	Meteor.publish('events1', function(){
+		return Events1.find();
+	})
+	
 });
+

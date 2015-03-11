@@ -50,3 +50,13 @@
 	<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
 	{{/autoForm}}
 </template>
+
+<template name='clients'>
+	{{ #each clients}}
+	<p>{{ > clientRow }}</p>
+	{{/each}}
+</template>
+
+<template name='clientRow'>
+	{{email}},{{name}},{{phone}}, <a href='/clients/{{_id}}/edit'>Edit</a>, <button id='delete'>Delete</button>
+</template>

@@ -30,3 +30,9 @@ Template.editTimesheet.helpers({
 		return Session.get('timeTracked');
 	}
 });
+
+Template.timesheetRow.events({
+	'click #delete' : function(){
+		Timesheets.remove(this._id);
+	}
+});

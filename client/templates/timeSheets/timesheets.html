@@ -37,13 +37,13 @@
 </template>
 
 <template name="timesheetRow">
-	{{duration}},{{case}},<a href="/timesheets/{{_id}}/edit">edit</a>
+	{{duration}},{{case}},<a href="/timesheets/{{_id}}/edit">edit</a>, <button id='delete'>Delete</button>
 </template>
 
 <template name="editTimesheet">
-	<h1>
+	<!-- <h1>
 		time from session : {{session_time}}
-	</h1>
+	</h1> -->
 	{{ # autoForm id="insertTimesheetForm" class="col s12" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
 		
 		<p>

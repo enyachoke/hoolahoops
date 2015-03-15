@@ -40,5 +40,13 @@ Meteor.startup(function () {
 		return Events1.find();
 	})
 	
+	Meteor.publish('tasks', function(){
+		return Tasks.find();
+	})
+
+	Meteor.publish('bills', function(){
+		return Bills.find();
+	})
+	
 });
 

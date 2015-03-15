@@ -1,0 +1,24 @@
+<template name="bills">
+	<button> Mark As Paid</button>
+	{{#each bills}}
+	<p>{{ > billRow }}</p>
+	{{ /each }}
+</template>
+
+<template name="billDetails">
+	<!-- {{case_title}}, {{client}}, {{date}}, {{amount}}, {{}} -->
+</template>
+
+<template name="billRow">
+	<input type='checkbox'></input>
+	{{case_title}}, {{date}}, Amount :{{amount}}
+	<p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
+	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p>
+	____________________
+</template>
+
+<template name="editBill">
+</template>
+
+<template name="addBill">
+</template>

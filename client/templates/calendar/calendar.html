@@ -4,7 +4,7 @@
 	</div>
 
 	<form action="#">
-		<div>
+	<div>
 	  <p>
 	    <input type="checkbox" id="hearings" checked="checked"/>
 	    <label for="hearings">Hearings</label>
@@ -26,7 +26,15 @@
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
 			<span>Add</span>
-      <p><a href="/hearings/add" id="modal_hearing">Hearing</a></p>
+			{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
+				<label for="hearing__title">Title</label>
+				
+			</div>
+			{{/autoForm}}
+			{{yo}}
+      		<p><a href="/hearings/add" id="modal_hearing">Hearing</a></p>
 			<p><a href="/meetings/add" id="modal_meeting">Meeting</a></p>
 			<p><a href="/tasks/add" id="modal_task">Task Deadline</a></p>
     </div>

@@ -1,4 +1,4 @@
-var hearings, meetings, task_deadlines;	
+var hearings, meetings, task_deadlines,court;	
 
 Template.calendar.rendered= function(){
 	hearings=[], meetings=[], task_deadlines=[];
@@ -6,13 +6,15 @@ Template.calendar.rendered= function(){
 	calEvents = Events.find();
 	calEvents.forEach(function(e){
 		project= Projects.findOne({_id : e.caseID});
+		if (project)
 		switch( e.type ){
 		case 'hearings' : 
 			if (e.date instanceof Date){
 				
 				event_title = project.name;
+				court = Courts.findOne(project.courtId).name;
 				hearings.push({
-					title : event_title,
+					title : 'Hearing:'+event_title+","+court,
 					date : e.date,
 					type : e.type,
 					url : '/hearings/'+e.hearingId,
@@ -115,6 +117,11 @@ Template.calendar.events({
 		Router.go('addTask');
 	}
 })
+
+Template.calendar.helpers({
+	yo : function(){
+	}
+});
 
 
 

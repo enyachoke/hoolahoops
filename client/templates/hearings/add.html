@@ -21,8 +21,11 @@
 				{{> afFieldInput name="judge" type="text" id="judge"}}
 				<label for="judge">Judge</label>
 			</div>
+			<div class="col l4 m6 s12" id="attended_by_type"> 
+			        {{> afQuickField name='attendedBy' options='allowed'}}
+			</div>
 			<div class="input-field col l4 m6 s12">
-				{{> afFieldInput name="bill_amt" type="number" id="amount"}}
+				<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
 				<label for="amount">Bill Amount</label>
 			</div>
 			<div class="input-field col s12 m6">
@@ -34,7 +37,8 @@
 		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
 		
-	
+
+		
 		  
 
 </template>

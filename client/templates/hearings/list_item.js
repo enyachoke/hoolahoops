@@ -11,7 +11,7 @@ Template.hearingRow.helpers({
 		return court.name;
 	},
 	'title' : function(){
-		return Session.get('project_title');
+		return Projects.findOne({_id : this.caseId}).name;
 	}
 });
 

@@ -38,7 +38,8 @@
 	    	</div>
 	    	<div class="row">
 				<div class="input-field col s12 m6">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+					<!-- {{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}} -->
+					{{> afQuickField name="lawyerIds" type="select2" multiple=true data-tags=true}}
 					<label for="project__laywer">Lawyer</label>
 				</div>
 

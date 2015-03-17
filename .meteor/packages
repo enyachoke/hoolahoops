@@ -23,3 +23,5 @@ meteorhacks:npm
 npm-container
 wylio:mandrill
 vsivsi:job-collection
+aldeed:autoform
+aldeed:autoform-select2

@@ -7,4 +7,5 @@ Meteor.startup(function() {
 
     // Start the job queue
     myJobs.startJobs();
+
 });

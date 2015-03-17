@@ -1,20 +1,64 @@
 <template name="bills">
-	<button> Mark As Paid</button>
-	{{#each bills}}
-	<p>{{ > billRow }}</p>
-	{{ /each }}
-</template>
+
+	{{ #if bills_unpaid_exist }} 
+	<button id="mark_as_paid"> Mark As Paid</button>
+	<table class="centered hoverable" >
+	<thead>
+        <tr >
+        	<th data-field="id"></th>
+            <th data-field="id">Title</th>
+            <th data-field="name">Date</th>
+            <th data-field="price">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+	{{#each bills_unpaid}}
+		{{ > billRow }}
+	{{ /each }}	
+	</tbody>
+	</table>
+	{{/if}}
+	<!-- paid bills put in separate template later-->
+	<p><b>PAID BILLS</b></p>
+	<button id="mark_as_unpaid"> Mark As unPaid</button>
+	<table class="centered striped" >
+	<thead>
+        <tr>
+        	<th data-field="id"></th>
+            <th data-field="id">Title</th>
+            <th data-field="name">Date</th>
+            <th data-field="price">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+	{{#each bills_paid}}
+		{{ > billRow }}
+	{{ /each }}	
+	</tbody>
+	</table>
+<!-- 	{{> reactiveTable settings=settings}}
+ --></template>
 
 <template name="billDetails">
-	<!-- {{case_title}}, {{client}}, {{date}}, {{amount}}, {{}} -->
+	{{case_title}}, {{client}}, {{date}}, {{amount}}
+	<p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
+	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p>
 </template>
 
 <template name="billRow">
-	<input type='checkbox'></input>
-	{{case_title}}, {{date}}, Amount :{{amount}}
-	<p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
-	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p>
-	____________________
+	<tr class="bill_row">
+		<td>
+			<input type='checkbox' class="paid" id="{{_id}}" value="paid" style="position: relative;left: 0px;">
+		</td>
+		<td>{{case_title}}</td>
+		<td>{{date}}</td>
+		<td>{{amount}}</td>
+		<td><a href="/bills/{{_id}}"><i class="bill_details small center-align mdi-action-description"></i></a></td>
+	</tr>
+	<!-- <p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
+	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p> -->
+		
+
 </template>
 
 <template name="editBill">

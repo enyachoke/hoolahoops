@@ -9,7 +9,6 @@ insecure
 iron:router
 mizzao:autocomplete
 pcel:serialize
-d0minikk:materialize-meteor
 aldeed:simple-schema
 miguelalarcos:afwrap-xautocomplete
 aldeed:collection2
@@ -24,4 +23,4 @@ npm-container
 wylio:mandrill
 vsivsi:job-collection
 aldeed:autoform
-aldeed:autoform-select2
+d0minikk:materialize-meteor

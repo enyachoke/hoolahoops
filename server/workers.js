@@ -1,28 +1,47 @@
 var workers = Job.processJobs('myJobQueue', 'addDemo',
   function(job, cb) {
-    // This will only be called if a
-    // 'sendEmail' job is obtained
-    //var email = job.data; // Only one email per job
-    // sendEmail(email.address, email.subject, email.message,
-    //   function(err) {
-    //     if (err) {
-    //       job.log("Sending failed with error" + err, {
-    //         level: 'warning'
-    //       });
-    //       job.fail("" + err);
-    //     } else {
-    //       job.done();
-    //     }
-    //     // Be sure to invoke the callback
-    //     // when work on this job has finished
-    //     cb();
-    //   }
-    // );
-    Demos.insert({
-      name: Math.random() * 100
+    var status = Meteor.Mandrill.sendTemplate({
+        "template_name": job.data.template,
+        "template_content": [
+          {
+            'summary': 'Akira Kurokawa' 
+          }
+        ],
+        "message": {
+            "from_email": "shashwat@dinasource.com",
+            "from_name": "Satsuki Momoi",
+            "global_merge_vars": job.data.merge_vars,
+            // Not using customer specific merge_vars right now. Need to add support for this.
+            // "merge_vars": [
+            //     {
+            //         "rcpt": "email@example.com",
+            //         "vars": [
+            //             {
+            //                 "name": "fname",
+            //                 "content": "John"
+            //             },
+            //             {
+            //                 "name": "lname",
+            //                 "content": "Smith"
+            //             }
+            //         ]
+            //     }
+            // ],
+            "to": [
+                {"email": "shashwat@dinasource.com"}
+            ]
+        }
     });
-
-    job.done();
+    
+    if (status && status.statusCode == 200) {
+        job.done();
+    }
+    else {
+        job.log("Sending email failed", {
+            level: 'warning'
+        });
+        job.fail("sending email failed");
+    }
 
     cb();
   }

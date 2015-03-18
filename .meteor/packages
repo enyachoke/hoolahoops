@@ -21,6 +21,7 @@ meteorhacks:npm
 
 npm-container
 wylio:mandrill
-vsivsi:job-collection
 aldeed:autoform
 d0minikk:materialize-meteor
+matb33:collection-hooks
+vsivsi:job-collection

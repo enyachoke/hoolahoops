@@ -39,6 +39,7 @@
 	    	<div class="row">
 				<div class="input-field col s12 m6">
 					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+
 					<label for="project__laywer">Lawyer</label>
 				</div>
 
@@ -83,12 +84,7 @@
 				
 				
 				<div class="input-field col s12 m6">
-					{{> afFieldInput name="days_before_followup"  id="days_before_followup"}}
-					<label for="days_before_followup">days before followup</label>
-				</div>
-				<div class="input-field col s12 m6">
-					{{> afFieldInput name="days_before_sol"  id="days_before_sol"}}
-					<label for="days_before_sol">days before statute of limitation</label>
+					{{> afQuickField name='reminders'}}
 				</div>
 				
 			</div>

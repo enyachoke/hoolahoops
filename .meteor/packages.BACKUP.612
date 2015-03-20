@@ -16,6 +16,13 @@ reywood:publish-composite
 underscore
 mrt:fullcalendar
 natestrauser:font-awesome
+<<<<<<< HEAD
+aslagle:reactive-table
+meteorhacks:npm
+
+
+npm-container
+=======
 meteorhacks:npm
 
 
@@ -25,3 +32,4 @@ aldeed:autoform
 d0minikk:materialize-meteor
 matb33:collection-hooks
 vsivsi:job-collection
+>>>>>>> origin/mandrill_reminders

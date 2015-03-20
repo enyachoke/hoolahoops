@@ -28,15 +28,17 @@ hearingSchema = new SimpleSchema({
 		type : Number,
 		label : 'Bill Amount'
 	},
-	'reminders' : {
-		optional : true,
-		type : String
-	},
+<<<<<<< HEAD
 	'attendedBy' : {
 		optional : true,
 		type : String,
 		label : 'Attended By',
 		allowedValues: ['Partner','Sr Associate','Associate']
+=======
+	'reminders' : {
+		optional : true,
+		type : String
+>>>>>>> origin/mandrill_reminders
 	}
 	
 	

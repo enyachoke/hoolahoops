@@ -174,7 +174,38 @@ Meteor.methods({
 			return Timesheets.insert(doc);
 		}
 	},
+<<<<<<< HEAD
+	'saveLawyerData': function(doc, set, _id) {
+		console.log(Math.random())
+		console.log(doc, set, _id)
+		if (_id) {
+			return Lawyers.update({
+				//update event here
+				_id: _id
+			}, set);
+		} else {
+			//var res = 
+			return Lawyers.insert(doc);
+		}
+	},
+	'googleAccessToken' : function(){
+		debugger;
+		var google = Meteor.require('googleapis');
+		var OAuth2 = google.auth.OAuth2;
+		var CLIENT_ID = "1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com";
+		var CLIENT_SECRET = "GF3m9QmVZYKkAHbRgx_SASrz";
+		var REDIRECT_URL = "http://localhost:3000";
+		
+		var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+		debugger;
+		// var oauth2Client = Async.runSync(function(done){
+		// 	var client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+		// });
+
+	}
+=======
   'addReminder': function() {
     
   }
+>>>>>>> origin/mandrill_reminders
 });

@@ -1,14 +1,12 @@
 Meteor.startup(function() {
 	// Mandrill config
-    Meteor.Mandrill.config({
-        username: "thegreatshasha@gmail.com",
-        key: "2hd3_l9CBJE5Q-DR5QG5RA"
-    });
 
-    // Start the job queue
-    myJobs.startJobs();
+    // Meteor.Mandrill.config({
+    //     username: "thegreatshasha@gmail.com",
+    //     key: "2hd3_l9CBJE5Q-DR5QG5RA"
+    // });
 
-	 // // Start the job queue
+    // // Start the job queue
     // myJobs.startJobs();
     var test = "5";
     function test123(){
@@ -34,5 +32,14 @@ expiry_date: 1426787511725 };
 	];
 	DRIVE = GOOGLE.drive('v2');
 
+
+
+    Meteor.Mandrill.config({
+        username: "thegreatshasha@gmail.com",
+        key: "2hd3_l9CBJE5Q-DR5QG5RA"
+    });
+
+    // Start the job queue
+    myJobs.startJobs();
 
 });

@@ -9,6 +9,7 @@ insecure
 iron:router
 mizzao:autocomplete
 pcel:serialize
+d0minikk:materialize-meteor
 aldeed:simple-schema
 miguelalarcos:afwrap-xautocomplete
 aldeed:collection2
@@ -16,12 +17,8 @@ reywood:publish-composite
 underscore
 mrt:fullcalendar
 natestrauser:font-awesome
+aslagle:reactive-table
 meteorhacks:npm
 
 
 npm-container
-wylio:mandrill
-aldeed:autoform
-d0minikk:materialize-meteor
-matb33:collection-hooks
-vsivsi:job-collection

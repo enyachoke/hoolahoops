@@ -1,5 +1,31 @@
 aldeed:autoform@5.0.2
 aldeed:collection2@2.3.2
+<<<<<<< HEAD
+aldeed:simple-schema@1.3.1
+anti:i18n@0.4.3
+aslagle:reactive-table@0.7.0
+autoupdate@1.2.0
+base64@1.0.3
+binary-heap@1.0.3
+blaze@2.1.0
+blaze-tools@1.0.3
+boilerplate-generator@1.0.3
+callback-hook@1.0.3
+check@1.0.5
+coffeescript@1.0.6
+d0minikk:materialize-meteor@1.95.1
+dandv:caret-position@2.1.0-3
+ddp@1.1.0
+deps@1.0.7
+ejson@1.0.6
+fastclick@1.0.3
+geojson-utils@1.0.3
+html-tools@1.0.4
+htmljs@1.0.4
+http@1.1.0
+id-map@1.0.3
+insecure@1.0.3
+=======
 aldeed:simple-schema@1.3.0
 application-configuration@1.0.4
 autoupdate@1.1.5
@@ -25,6 +51,7 @@ htmljs@1.0.3
 http@1.0.10
 id-map@1.0.2
 insecure@1.0.2
+>>>>>>> origin/mandrill_reminders
 iron:controller@1.0.7
 iron:core@1.0.7
 iron:dynamic-template@1.0.7
@@ -33,6 +60,18 @@ iron:location@1.0.7
 iron:middleware-stack@1.0.7
 iron:router@1.0.7
 iron:url@1.0.7
+<<<<<<< HEAD
+jquery@1.11.3_2
+json@1.0.3
+launch-screen@1.0.2
+livedata@1.0.13
+logging@1.0.7
+meteor@1.1.5
+meteor-platform@1.2.2
+meteorhacks:async@1.0.0
+meteorhacks:npm@1.2.2
+miguelalarcos:afwrap-xautocomplete@0.3.1
+=======
 jquery@1.11.3
 json@1.0.2
 launch-screen@1.0.1
@@ -44,6 +83,7 @@ meteor-platform@1.2.1
 meteorhacks:async@1.0.0
 meteorhacks:npm@1.2.2
 miguelalarcos:afwrap-xautocomplete@0.3.0
+>>>>>>> origin/mandrill_reminders
 miguelalarcos:xautocomplete@0.3.0
 minifiers@1.1.4
 minimongo@1.0.7
@@ -55,8 +95,13 @@ mrt:fullcalendar@1.6.1
 mrt:jquery-ui@1.9.2
 natestrauser:font-awesome@4.3.0
 npm-container@1.0.0
+<<<<<<< HEAD
+observe-sequence@1.0.5
+ordered-dict@1.0.3
+=======
 observe-sequence@1.0.4
 ordered-dict@1.0.2
+>>>>>>> origin/mandrill_reminders
 pcel:serialize@1.0.0
 random@1.0.3
 reactive-dict@1.1.0
@@ -64,6 +109,19 @@ reactive-var@1.0.5
 reload@1.1.3
 retry@1.0.3
 reywood:publish-composite@1.3.5
+<<<<<<< HEAD
+routepolicy@1.0.5
+session@1.1.0
+spacebars@1.0.6
+spacebars-compiler@1.0.5
+templating@1.1.0
+tracker@1.0.6
+ui@1.0.6
+underscore@1.0.3
+url@1.0.4
+webapp@1.2.0
+webapp-hashing@1.0.3
+=======
 routepolicy@1.0.4
 session@1.0.5
 spacebars@1.0.5
@@ -77,3 +135,4 @@ vsivsi:job-collection@0.0.18
 webapp@1.1.6
 webapp-hashing@1.0.2
 wylio:mandrill@0.2.1
+>>>>>>> origin/mandrill_reminders

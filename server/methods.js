@@ -124,23 +124,23 @@ Meteor.methods({
 		return response_get_list;
 
 	},
-	// 'getFolderId' : function(){
-	// 	//listing files
-	// 	OAUTH2_CLIENT.setCredentials(TOKENS);
-	// 	var drive = GOOGLE.drive('v2');
- //      	var response_list_req = Async.runSync(function(done){
- //      		drive.files.list({
- //      			maxResults : 5,
- //      			'q' : 'pets',
-	// 			auth: OAUTH2_CLIENT
- //      		},function(err, response){
- //      			done(err, response);
- //      			console.log('files',err, response);
- //      		});
- //      	});
+	'getFolderId' : function(){
+		//listing files
+		OAUTH2_CLIENT.setCredentials(TOKENS);
+		var drive = GOOGLE.drive('v2');
+      	var response_list_req = Async.runSync(function(done){
+      		drive.files.list({
+      			maxResults : 5,
+      			'q' : "title='pets'",
+				auth: OAUTH2_CLIENT
+      		},function(err, response){
+      			done(err, response);
+      			console.log('files',err, response);
+      		});
+      	});
 
-	// 	return response_list_req;
-	// },
+		return response_list_req;
+	},
 	'insertFolder' : function (title){
 		OAUTH2_CLIENT.setCredentials(TOKENS);
       	var response = Async.runSync(function(done) {

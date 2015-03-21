@@ -2,8 +2,8 @@ AutoForm.hooks({
   insertProjectForm: {
     
     onSuccess:function(operation, result, template){
-        debugger;
-        //Router.go('projectDetails',{'_id':result});
+        //debugger;
+        Router.go('projectDetails',{'_id':result});
     }
     // ,
     // // formToDoc: function(doc) {

@@ -49,19 +49,22 @@
 		hearings.forEach(function(h){
 			feed.push({
 				data : h,
-				type : 'hearing'
+				type : 'Hearing',
+				desc : ":"+Lawyers.findOne({_id : h.lawyerId}).name
 			});
 		});
 		meetings.forEach(function(h){
 			feed.push({
 				data : h,
-				type : 'meeting'
+				type : 'Meeting',
+				desc : ":" + h.agenda
 			});
 		})	
 		tasks.forEach(function(h){
 			feed.push({
 				data : h,
-				type : 'task'
+				type : 'Task',
+				desc : ":"+h.desc
 			});
 		})
 

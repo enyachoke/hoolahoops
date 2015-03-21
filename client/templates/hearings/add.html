@@ -1,5 +1,5 @@
 <template name="hearingAdd">
-
+		<div class="container">
 		{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
 			<div class="input-field col l4 m6 s12">
 				{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
@@ -39,7 +39,7 @@
 		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
 		
-
+	</div>
 		
 		  
 

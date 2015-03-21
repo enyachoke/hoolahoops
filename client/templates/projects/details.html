@@ -124,7 +124,7 @@
 				{{ #each feed}}
 					<tr>
 						<td>{{ data.date }}</td>
-						<td>{{ type }}</td>
+						<td>{{type}} {{ desc }}</td>
 						<td><a href="/{{type}}s/{{data._id}}"><i class="small center-align mdi-action-description"></i></a></td>
 					</tr>
 				{{ /each}}

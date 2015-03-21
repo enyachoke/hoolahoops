@@ -15,7 +15,7 @@
 		<button class="editHearing">Save Hearing</button>
 	</form> -->
 		
-		
+		<div class="container">
 		
 		{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
 			<div class="input-field col l4 m6 s12">
@@ -51,6 +51,7 @@
 			</div>
 			
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
-		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+		<a class="waves-effect waves-teal btn-flat" href="/hearings/{{_id}}" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
+	</div>
 </template>

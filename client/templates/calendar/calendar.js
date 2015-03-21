@@ -86,8 +86,7 @@ Template.calendar.rendered= function(){
 	    },
 	    viewRender : function( view, element ){
 	    	debugger;
-	    },
-	    defaultView : 'agendaDay'
+	    }
 	});
 	
 	$('#calendar').fullCalendar('removeEventSource', hearings);

@@ -5,6 +5,12 @@ Template.meetingDetails.helpers({
 	}
 });
 
+Template.meetingDetails.events({
+	'click .delete' : function(e){
+		Meetings.remove(this._id);
+	}
+});
+
 Template.meetings.helpers({
 	'meetings' : function(){
 		return Meetings.find();

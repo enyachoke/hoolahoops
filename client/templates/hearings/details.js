@@ -12,7 +12,7 @@ Template.hearingDetails.helpers({
 		return court.name;
 	},
 	'title' : function(){
-		return Session.get('project_title');
+		return Projects.findOne({_id : this.caseId}).name;
 	},
 	'attorney' : function(){
 		 ;
@@ -22,3 +22,12 @@ Template.hearingDetails.helpers({
 
 Template.hearingDetails.rendered = function() {
 };
+
+Template.hearingDetails.events({
+	'click .delete' : function(e){
+		e.preventDefault();
+		var caseId = this.caseId;
+		Hearings.remove(this._id);
+		Router.go( "/projects/"+caseId);
+	}
+});

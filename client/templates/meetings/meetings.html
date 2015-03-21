@@ -1,8 +1,10 @@
 <template name="meetings">
+	<div class="container">
 	<a href='/meetings/add'>Add meetings</a>
 	{{ #each meetings}}
 		<p>{{ > meetingRow }}</p>
 	{{/each}}
+	</div>
 </template>
 
 <template name="meetingRow">
@@ -10,10 +12,32 @@
 </template>
 
 <template name="meetingDetails">
-	{{date}}, {{matter}}, {{minutes}}, <a href='/meetings/{{_id}}/edit'>edit</a> 
+	 
+
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			  	<div class="col s12  project-title">
+			  		<h3>Meeting : {{matter}} on {{date}} </h3>
+			  	</div>
+		</div>
+		<ul class="collection">
+	      <li class="collection-item">Minutes {{minutes}}</li>
+	      <li class="collection-item">Date : {{date}}</li>
+		</ul>
+		<a href='/meetings/{{_id}}/edit' class="waves-effect waves-light btn">Edit</a> 
+		<a class="delete waves-effect waves-light btn">Delete</a> 
+		<a href="/projects/{{caseId}}" class="waves-effect waves-light btn">Back</a>
+	</div>
+
+
 </template>
 
 <template name="addMeeting">
+	<div class="container">
 	{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
 		<div class="input-field col l4 m6 s12">
 			{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
@@ -21,8 +45,12 @@
 			
 		</div>
 		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="date" type="date" id="hearing__date"}}
+			{{> afFieldInput name="date" type="date" id="date"}}
 			<!-- <label for="hearing__date">Date</label> -->
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="agenda" type="text" id="agenda"}}
+			<label for="agenda">Agenda</label>
 		</div>
 		<div class="input-field col l4 m6 s12">
 			{{> afFieldInput name="minutes" type="text" id="minutes"}}
@@ -31,28 +59,36 @@
 		
 		
 	<button class="waves-effect waves-light btn" type="submit">Insert</button>
-	<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+	<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position: absolute;">Cancel</a>
 	{{/autoForm}}
+	</div>
 </template>
 
 <template name="editMeeting">
-	{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-			<label for="meeting_case">Matter</label>
+	<div class="container">
+		{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
+				<label for="meeting_case">Matter</label>
+				
+			</div>
+
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="date" type="date" id="hearing__date"}}
+				<!-- <label for="hearing__date">Date</label> -->
+			</div>
+			<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="agenda" type="text" id="agenda"}}
+			<label for="agenda">Agenda</label>
+			</div>
 			
-		</div>
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="date" type="date" id="hearing__date"}}
-			<!-- <label for="hearing__date">Date</label> -->
-		</div>
-		
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="minutes" type="text" id="minutes"}}
-			<label for="minutes">Minutes</label>
-		</div>
-		
-	<button class="waves-effect waves-light btn" type="submit">Insert</button>
-	<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
-	{{/autoForm}}
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="minutes" type="text" id="minutes"}}
+				<label for="minutes">Minutes</label>
+			</div>
+			
+		<button class="waves-effect waves-light btn" type="submit">Insert</button>
+		<a class="waves-effect waves-teal btn-flat" href="/projects/{{caseId}}" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+	</div>
 </template>

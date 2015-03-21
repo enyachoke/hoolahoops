@@ -9,3 +9,20 @@ Template.taskRow.events({
 		Tasks.remove(this._id);
 	}
 });
+
+Template.taskDetails.events({
+	'click .Mark_As_Done' : function(){
+		Tasks.update({ _id : this._id},{$set :{ 'completed' : true }});
+	},
+	'click .Mark_As_Incomplete' : function(){
+		debugger;
+		Tasks.update({ _id : this._id},{$set :{ 'completed' : false }});
+	}
+
+});
+
+Template.addTask.rendered = function(){
+	 $('.datepicker').pickadate({
+    
+ 	 }	);
+}

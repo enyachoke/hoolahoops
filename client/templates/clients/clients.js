@@ -9,3 +9,10 @@ Template.clientsList.events({
 		Clients.remove(this._id);
 	}
 });
+
+Template.clientDetails.events({
+	'click .delete' :function(){
+		Clients.remove(this._id);
+		Router.go('clientsList');
+	}
+});

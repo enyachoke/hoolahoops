@@ -1,4 +1,5 @@
 <template name="addClient">
+	<div class="container">
 	{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
 		
 		<div class="input-field col l4 m6 s12">
@@ -17,18 +18,36 @@
 		
 		
 	<button class="waves-effect waves-light btn" type="submit">Insert</button>
-	<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
+	<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 	{{/autoForm}}
+	</div>
 </template>
 
 <template name="clientDetails">
-	<p>Name : {{name}}</p>
-	<p>Email : {{email}}</p>
-	<p>Phone Number : {{phone}}</p>
-	<a href="/clients/{{_id}}/edit">Edit</a>
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container">
+	<div class="row">
+		  	<div class="col s12  project-title">
+		  		<h3>Client : {{name}}</h3>
+		  	</div>
+	</div>
+	<ul class="collection">
+      <li class="collection-item">Email : {{email}}</li>
+      <li class="collection-item">Phone Number : {{phone}}</li>
+	</ul>
+	<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
+	<a class="delete waves-effect waves-light btn">Delete</a>
+	<a href="/clients" class="waves-effect waves-light btn">Back</a>
+	</div>
+	
+	
 </template>
 
 <template name="editClient">
+	<div class="container">
 	{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
 		
 		<div class="input-field col l4 m6 s12">
@@ -47,17 +66,42 @@
 		
 		
 	<button class="waves-effect waves-light btn" type="submit">Update</button>
-	<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
+	<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 	{{/autoForm}}
+	</div>
 </template>
 
-<template name='clientsList'>
-	<p><a href='/clients/add'>Add contact</a></p>
-	{{ #each clients}}
-	<p>{{ > clientRow }}</p>
-	{{/each}}
+<template name='clientsList'>	
+	<div class="row">
+		{{> navigation}}
+	</div>
+	<div class="container ">
+		<a class="waves-effect waves-light btn"  href='/clients/add'>Add contact</a>
+		<table class="centered striped bordered" >
+				<thead>
+			        <tr>
+			            <th data-field="id">Name</th>
+			            <th data-field="name">Phone</th>
+			            <th data-field="price">Email</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+				{{ #each clients}}
+				{{ > clientRow }}
+				{{/each}}
+				</tbody>
+		</table>
+	</div>
+
+
 </template>
 
 <template name='clientRow'>
-	{{email}},{{name}},{{phone}}, <a href='/clients/{{_id}}/edit'>Edit</a>, <button id='delete'>Delete</button>, <a href="/clients/{{_id}}">Details</a>
+	<tr>
+	<td>{{name}}</td>
+	<td>{{phone}}</td>
+	<td>{{email}}</td>
+	<td><a class="waves-effect waves-light btn col s8" href='/clients/{{_id}}/edit'>Edit</a></td>
+	<td><a class="waves-effect waves-light btn col s8" href="/clients/{{_id}}">Details</a></td>
+	</tr>
 </template>

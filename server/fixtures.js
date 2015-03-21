@@ -10,29 +10,29 @@ hearings = [
 ]
 
 clients = [
-	{'name': 'Shashwat Kumar', '_id': '121'},
-	{'name': 'Rishabh Saxena', '_id': '122'},
-	{'name': 'Shubham Agrawal', '_id': '123'},
-	{'name': 'Abhay Kumar', '_id': '124'},
-	{'name': 'Virender Kumar', '_id': '125'},
-	{'name': 'Vivek Joshi', '_id': '126'},
-	{'name': 'Suneedhi Parihas', '_id': '127'},
-	{'name': 'Ishtar Vineta', '_id': '128'},
-	{'name': 'Ashok Mishra', '_id': '129'},
-	{'name': 'Sanjay Nigam', '_id': '130'}
+	{'name': 'Shashwat Kumar', '_id': '121', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Rishabh Saxena', '_id': '122', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Shubham Agrawal', '_id': '123', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Abhay Kumar', '_id': '124', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Virender Kumar', '_id': '125', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Vivek Joshi', '_id': '126', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Suneedhi Parihas', '_id': '127', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Ishtar Vineta', '_id': '128', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Ashok Mishra', '_id': '129', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Sanjay Nigam', '_id': '130', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"}
 ]
 
 lawyers = [
-	{'name': 'Shashwat Kumar', '_id': '1'},
-	{'name': 'Rishabh Saxena', '_id': '2'},
-	{'name': 'Shubham Agrawal', '_id': '3'},
-	{'name': 'Abhay Kumar', '_id': '45'},
-	{'name': 'Virender Kumar', '_id': '46'},
-	{'name': 'Vivek Joshi', '_id': '47'},
-	{'name': 'Suneedhi Parihas', '_id': '48'},
-	{'name': 'Ishtar Vineta', '_id': '488'},
-	{'name': 'Ashok Mishra', '_id': '49'},
-	{'name': 'Sanjay Nigam', '_id': '41'}
+	{'name': 'Shashwat Kumar', '_id': '1', "phone" : 9561905813, "email" : "shashwat@dinasource.com"},
+	{'name': 'Rishabh Saxena', '_id': '2', "phone" : 9561905813, "email" : "thegreatshasha@gmail.com"},
+	{'name': 'Shubham Agrawal', '_id': '3', "phone" : 9561905813, "email" : "thegreatshasha1@gmail.com"},
+	{'name': 'Abhay Kumar', '_id': '45', "phone" : 9561905813, "email" : "thegreatshasha2@gmail.com"},
+	{'name': 'Virender Kumar', '_id': '46', "phone" : 9561905813, "email" : "thegreatshasha3@gmail.com"},
+	{'name': 'Vivek Joshi', '_id': '47', "phone" : 9561905813, "email" : "thegreatshasha4@gmail.com"},
+	{'name': 'Suneedhi Parihas', '_id': '48', "phone" : 9561905813, "email" : "thegreatshasha5@gmail.com"},
+	{'name': 'Ishtar Vineta', '_id': '488', "phone" : 9561905813, "email" : "thegreatshasha6@gmail.com"},
+	{'name': 'Ashok Mishra', '_id': '49', "phone" : 9561905813, "email" : "thegreatshasha7@gmail.com"},
+	{'name': 'Sanjay Nigam', '_id': '41', "phone" : 9561905813, "email" : "thegreatshasha8@gmail.com"}
 ]
 
 // Possibly a type variable here

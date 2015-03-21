@@ -153,3 +153,39 @@ select option:hover {
 }
 
 /* Semantic ui label */
+/* Table*/
+.ui.table {
+  width: 100%;
+  background: #ffffff;
+  margin: 1em 0em;
+  border: 1px solid #d0d0d0;
+  box-shadow: none;
+  border-radius: 0.25rem;
+  color: rgba(0, 0, 0, 0.8);
+  border-collapse: separate;
+  border-spacing: 0px;
+  font-size: 1em;
+}
+.ui.table:first-child {
+  margin-top: 0em;
+}
+.ui.table:last-child {
+  margin-bottom: 0em;
+}
+
+/* Table Row */
+.ui.table tr td {
+  border-top: 1px solid #d4d4d5;
+}
+.ui.table tr:first-child td {
+  border-top: none;
+}
+
+/*TODO: remove the !important */
+/* Table Cells */
+.ui.table td {
+  padding: 0.7em 0.8em !important;
+  text-align: left;
+  vertical-align: middle;
+}
+

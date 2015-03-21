@@ -50,21 +50,24 @@
 			feed.push({
 				data : h,
 				type : 'Hearing',
-				desc : ":"+Lawyers.findOne({_id : h.lawyerId}).name
+				desc : ":"+Lawyers.findOne({_id : h.lawyerId}).name,
+				date : h.date.format('{dd}-{month}-{yy}')
 			});
 		});
 		meetings.forEach(function(h){
 			feed.push({
 				data : h,
 				type : 'Meeting',
-				desc : ":" + h.agenda
+				desc : ":" + h.agenda,
+				date: h.date.format('{dd}-{month}-{yy}')
 			});
 		})	
 		tasks.forEach(function(h){
 			feed.push({
 				data : h,
 				type : 'Task',
-				desc : ":"+h.desc
+				desc : ":"+h.desc,
+				date : h.date.format('{dd}-{month}-{yy}')
 			});
 		})
 

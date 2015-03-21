@@ -184,9 +184,11 @@ Template.billRow.helpers({
 Template.billDetails.helpers({
 	'amount' : function(){
 		var amt=0;
+
 		if (this.type == 'hearings'){
 			amt = Hearings.findOne(this.hearingId).bill_amt;	
 		}
+		debugger;
 		return amt;
 	},
 	'date' : function(){

@@ -57,7 +57,8 @@ Hearings.after.insert( function(hearingId, doc){
 
 	var bill_res = Bills.insert({
 					'hearingId' : doc._id,
-					'type' : 'hearings' 
+					'type' : 'hearings',
+					'paid' : false 
 				});
 	console.log('bill_res',bill_res);
 

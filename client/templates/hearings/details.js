@@ -17,6 +17,9 @@ Template.hearingDetails.helpers({
 	'attorney' : function(){
 		 ;
 		return Lawyers.findOne({_id: this.lawyerId}).name;
+	},
+	'formatted_date' : function(){
+		return this.date.format('{dd}-{month}-{yy}');
 	}
 });
 

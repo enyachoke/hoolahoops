@@ -86,7 +86,6 @@ Template.calendar.rendered= function(){
 	    },
 	    viewRender : function( view, element ){
 	    	debugger;
-	    	$('#calendar').fullCalendar('rerender');
 	    },
 	    defaultView : 'agendaDay'
 	});

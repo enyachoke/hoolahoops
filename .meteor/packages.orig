@@ -5,7 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 iron:router
 mizzao:autocomplete
 pcel:serialize
@@ -14,13 +13,21 @@ miguelalarcos:afwrap-xautocomplete
 aldeed:collection2
 reywood:publish-composite
 underscore
-mrt:fullcalendar
 natestrauser:font-awesome
 meteorhacks:npm
-aslagle:reactive-table
+
+
 npm-container
 wylio:mandrill
 aldeed:autoform
 d0minikk:materialize-meteor
 matb33:collection-hooks
 vsivsi:job-collection
+<<<<<<< HEAD
+mrt:fullcalendar
+=======
+accounts-password
+insecure
+zimme:iron-router-auth
+accounts-ui-unstyled
+>>>>>>> origin/mandrill_reminders

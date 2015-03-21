@@ -1,3 +1,81 @@
+<<<<<<< HEAD
+Router.route('/googleauth',function(){
+
+	if (this.params.query.code !=undefined ){
+		Meteor.call('getGoogleAuthToken',this.params.query.code,function(err,res){console.log('res',res)});	
+	}
+	this.render('yo');
+});
+
+Router.route('/documents',function(){
+
+	if (this.params.query.code !=undefined ){
+		Meteor.call('getGoogleAuthToken',this.params.query.code,function(err,res){console.log('res',res)});	
+	}
+	this.render('docs');
+});
+
+
+
+Router.route('/bills',{
+	name : 'bills',
+	waitOn : function(){
+		return [ Meteor.subscribe('lawyers'), Meteor.subscribe('bills'), Meteor.subscribe('projects'), Meteor.subscribe('hearings'), Meteor.subscribe('clients') ];
+	}
+});
+
+Router.route('/bills/add',{
+	name : 'addBill',
+});
+
+Router.route('/bills/:_id',{
+	name : 'billDetails',
+	waitOn : function(){
+		return [ Meteor.subscribe('bills'), Meteor.subscribe('projects'), Meteor.subscribe('hearings'), Meteor.subscribe('clients'),Meteor.subscribe('lawyers') ];
+	},
+	data : function (){
+		 ;
+		return Bills.findOne(this.params._id);
+	}
+});
+
+Router.route('/bills/:_id/edit',{
+	name : 'editBill',
+	waitOn : function(){
+		return [ Meteor.subscribe('bills'), Meteor.subscribe('projects'), Meteor.subscribe('hearings'), Meteor.subscribe('clients') ];
+	}
+});
+
+
+Router.route('/lawyers',{
+	name : 'lawyers',
+	waitOn : function(){
+		return Meteor.subscribe('lawyers');
+	}
+});
+
+Router.route('/lawyers/add',{
+	name : 'addLawyer'
+});
+
+Router.route('/lawyers/:_id/edit',{
+	name : 'editLawyer',
+	waitOn : function(){
+		return Meteor.subscribe('lawyers');
+	},	
+  data: function () { return Lawyers.findOne(this.params._id); }
+});
+
+Router.route('/lawyers/:_id',{
+	name : 'lawyerDetails',
+    waitOn: function () {
+      return Meteor.subscribe('lawyers');
+    },
+	data: function(){ return Lawyers.findOne({_id : this.params._id}) }
+});
+
+
+=======
 Router.plugin('auth');
 
 Router.route('/',{
@@ -8,6 +86,7 @@ Router.route('/login', {
   name: 'login'
 });
 
+>>>>>>> origin/mandrill_reminders
 Router.route('/clients/add',{
 	name : 'addClient'
 });
@@ -157,7 +236,11 @@ Router.route('/projects/add', {
 Router.route('/projects/:_id', {
   name: 'projectDetails',
   waitOn: function() {
-    return [Meteor.subscribe('hearings'), Meteor.subscribe('projects'), Meteor.subscribe('courts'), Meteor.subscribe('lawyers'), Meteor.subscribe('clients')];
+<<<<<<< HEAD
+    return [Meteor.subscribe('projects'), Meteor.subscribe('tasks'), Meteor.subscribe('meetings'), Meteor.subscribe('hearings'), Meteor.subscribe('courts'), Meteor.subscribe('lawyers'), Meteor.subscribe('clients')];
+=======
+    return [Meteor.subscribe('hearings'), Meteor.subscribe('projects'), Meteor.subscribe('courts'), Meteor.subscribe('lawyers')];
+>>>>>>> origin/mandrill_reminders
   },
   data: function () { return Projects.findOne(this.params._id) }
 });

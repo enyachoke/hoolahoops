@@ -18,7 +18,14 @@ Template.taskDetails.events({
 		debugger;
 		Tasks.update({ _id : this._id},{$set :{ 'completed' : false }});
 	}
+	
 
+});
+
+Template.taskDetails.helpers({
+	'formatted_date' : function (){
+		return this.date.format('{dd}-{mm}-{yy}');
+	}
 });
 
 Template.addTask.rendered = function(){

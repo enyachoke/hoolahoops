@@ -2,6 +2,10 @@ Template.meetingDetails.helpers({
 	'matter' : function(){
 		var matter = Projects.findOne({_id : this.caseId});
 		return matter.name;
+	},
+	'formatted_date' : function (){
+		debugger;
+		return this.date.format('{dd}-{mm}-{yy}');
 	}
 });
 

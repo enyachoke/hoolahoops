@@ -21,12 +21,13 @@
 	<div class="container">
 		<div class="row">
 			  	<div class="col s12  project-title">
-			  		<h3>Meeting : {{matter}} on {{date}} </h3>
+			  		<h3>Meeting : {{matter}} on {{formatted_date}} </h3>
 			  	</div>
 		</div>
 		<ul class="collection">
 	      <li class="collection-item">Minutes {{minutes}}</li>
-	      <li class="collection-item">Date : {{date}}</li>
+	      <li class="collection-item">Date : {{formatted_date}}</li>
+	      <li class="collection-item">Agenda : {{agenda}}</li>
 		</ul>
 		<a href='/meetings/{{_id}}/edit' class="waves-effect waves-light btn">Edit</a> 
 		<a class="delete waves-effect waves-light btn">Delete</a> 

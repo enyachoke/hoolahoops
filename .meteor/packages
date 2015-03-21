@@ -29,6 +29,5 @@ accounts-password
 
 zimme:iron-router-auth
 accounts-ui-unstyled
-mquandalle:bower
 jeremy:selectize
 comerc:autoform-selectize

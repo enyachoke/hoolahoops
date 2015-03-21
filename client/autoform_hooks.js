@@ -15,6 +15,10 @@ AutoForm.hooks({
     insertTaskForm : {
     onSuccess:function(operation, result, template){
         Router.go('taskDetails',{'_id':result});
+    }},
+    insertLawyerForm : {
+    onSuccess:function(operation, result, template){
+        Router.go('lawyerDetails',{'_id':result});
     }}
 
 

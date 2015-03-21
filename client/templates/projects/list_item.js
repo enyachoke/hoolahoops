@@ -14,6 +14,9 @@
     },
     'court': function() {
       return Courts.findOne({_id: this.courtId});
+    },
+    'next_hearing' : function(){
+      return Hearings.find({ date : {$gt : new Date()}}).fetch()[0].date.format('{dd}-{month}-{yy}');
     }
   });
   

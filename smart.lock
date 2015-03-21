@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "fullcalendar": {},
-      "moment": {}
+      "moment": {},
+      "sugarjs": {}
     },
     "packages": {
       "fullcalendar": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/acreeger/meteor-moment.git",
         "tag": "v2.8.1",
         "commit": "722ea63783d594341023836b7d418ab2567dab8c"
+      },
+      "sugarjs": {
+        "git": "https://github.com/crapthings/meteor-sugarjs.git",
+        "tag": "v1.4.0.1",
+        "commit": "2841738b2c28d2d97c6cf3c41c4558f59f93db0e"
       },
       "jquery-ui": {
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",

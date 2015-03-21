@@ -1,48 +1,77 @@
 <template name="bills">
+	<div class="row">
+		{{ > navigation}}
+	</div>	
+	<div class="container">
+		<div class="row">
 
-	{{ #if bills_unpaid_exist }} 
-	<button id="mark_as_paid"> Mark As Paid</button>
-	<table class="centered hoverable" >
-	<thead>
-        <tr >
-        	<th data-field="id"></th>
-            <th data-field="id">Title</th>
-            <th data-field="name">Date</th>
-            <th data-field="price">Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-	{{#each bills_unpaid}}
-		{{ > billRow }}
-	{{ /each }}	
-	</tbody>
-	</table>
-	{{/if}}
-	<!-- paid bills put in separate template later-->
-	<p><b>PAID BILLS</b></p>
-	<button id="mark_as_unpaid"> Mark As unPaid</button>
-	<table class="centered striped" >
-	<thead>
-        <tr>
-        	<th data-field="id"></th>
-            <th data-field="id">Title</th>
-            <th data-field="name">Date</th>
-            <th data-field="price">Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-	{{#each bills_paid}}
-		{{ > billRow }}
-	{{ /each }}	
-	</tbody>
-	</table>
-<!-- 	{{> reactiveTable settings=settings}}
- --></template>
+			{{ #if bills_unpaid_exist }} 
+			<p><h5>UNPAID BILLS</h5></p>
+			<button id="mark_as_paid" class="waves-effect waves-light btn"> Mark As Paid</button>
+
+			<table class="centered hoverable" >
+			<thead>
+		        <tr >
+		        	<th data-field="id"></th>
+		            <th data-field="id">Title</th>
+		            <th data-field="name">Date</th>
+		            <th data-field="price">Amount</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+			{{#each bills_unpaid}}
+				{{ > billRow }}
+			{{ /each }}	
+			</tbody>
+			</table>
+			{{/if}}
+		</div>
+		<!-- paid bills put in separate template later-->
+		<div class="row">
+			<p><h5>PAID BILLS</h5></p>
+			<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As unPaid</button>
+			<table class="centered striped" >
+			<thead>
+		        <tr>
+		        	<th data-field="id"></th>
+		            <th data-field="id">Title</th>
+		            <th data-field="name">Date</th>
+		            <th data-field="price">Amount</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+			{{#each bills_paid}}
+				{{ > billRow }}
+			{{ /each }}	
+			</tbody>
+			</table>
+		<!-- 	{{> reactiveTable settings=settings}}
+
+		 -->
+	 	</div>
+	</div>
+	</template>
 
 <template name="billDetails">
-	{{case_title}}, {{client}}, {{date}}, {{amount}}
-	<p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
-	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p>
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	<div class="container">
+		<div class="row">
+			  	<div class="col s12  project-title">
+			  		<h3>Bill for Hearing : {{case_title}} on {{date}} </h3>
+			  	</div>
+		</div>
+		<ul class="collection">
+	      <li class="collection-item">Date : {{date}}</li>
+	      <li class="collection-item">Billing details : {{amount}}</li>
+	      <li class="collection-item">Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</li>
+	      <li class="collection-item">Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</li>
+	      <li class="collection-item">Paid : {{ paid }}</li>
+		</ul>
+		<a href="/bills" class="waves-effect waves-light btn">Back</a>
+	</div>
+
 </template>
 
 <template name="billRow">
@@ -57,7 +86,7 @@
 	</tr>
 	<!-- <p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
 	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p> -->
-		
+	
 
 </template>
 

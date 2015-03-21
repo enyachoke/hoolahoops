@@ -8,7 +8,7 @@ Template.bills.helpers({
 	'settings' : function(){
 		// var case_title="";
 		var bills_client_array = [];
-		//debugger;
+		// ;
 		// Bills.find().fetch().forEach(function(b){
 		// 	//console.log(e)
 		// 	var date;
@@ -120,7 +120,7 @@ Template.billRow.events({
 		console.log(event.target.id);
 	},
 	'click .bill_details' : function(event, template){
-		debugger;
+		 ;
 	}
 });
 
@@ -148,7 +148,7 @@ Template.billRow.helpers({
 	},
 	'date' : function(){
 		var date;
-		debugger;
+		 ;
 		if (this.type == 'hearings'){
 			date = Hearings.findOne(this.hearingId).date
 		}
@@ -157,7 +157,7 @@ Template.billRow.helpers({
 	'case_title': function(){
 		var title;
 		if (this.type == 'hearings'){
-			debugger;
+			 ;
 			var projectId = Hearings.findOne(this.hearingId).caseId;
 			title = 'Hearing:'+Projects.findOne(projectId).name;
 		}
@@ -191,7 +191,7 @@ Template.billDetails.helpers({
 	},
 	'date' : function(){
 		var date;
-		debugger;
+		 ;
 		if (this.type == 'hearings'){
 			date = Hearings.findOne(this.hearingId).date
 		}
@@ -199,7 +199,7 @@ Template.billDetails.helpers({
 	},
 	'case_title': function(){
 		
-			debugger;
+			 ;
 		var title;
 		if (this.type == 'hearings'){
 			var projectId = Hearings.findOne(this.hearingId).caseId;

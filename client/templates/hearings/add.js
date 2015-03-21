@@ -14,7 +14,7 @@ Template.hearingAdd.events({
 Template.hearingAdd.helpers({
 
 	'amount_by_type' : function(){
-		debugger;
+		 ;
 		var attended_by = Session.get("attended_by");
 		var amt;
 		if ( attended_by == 'Partner' ) {

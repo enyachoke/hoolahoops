@@ -14,7 +14,6 @@ miguelalarcos:afwrap-xautocomplete
 aldeed:collection2
 reywood:publish-composite
 underscore
-mrt:fullcalendar
 natestrauser:font-awesome
 meteorhacks:npm
 
@@ -25,3 +24,4 @@ aldeed:autoform
 d0minikk:materialize-meteor
 matb33:collection-hooks
 vsivsi:job-collection
+mrt:fullcalendar

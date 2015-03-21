@@ -9,7 +9,7 @@
 // document.getElementsByTagName('head')[0].appendChild(script);
 
 // initPicker= function () {
-// 		debugger;
+// 		 ;
 // 			var picker = new FilePicker({
 // 				apiKey: 'AIzaSyDxVWR6YrF88T0WvMZCdh2FRqVk25iNq2g',
 // 				clientId: '1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com',

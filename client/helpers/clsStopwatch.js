@@ -11,7 +11,7 @@ clsStopwatch =  function() {
 		// Start or resume
 		this.start = function() {
 			startAt	= startAt ? startAt : now();
-			//debugger;
+			// ;
 		};
 
 		// Stop or pause

@@ -1,4 +1,4 @@
-Template.yo.rendered = function(){
+Template.docs.rendered = function(){
 	var script = document.createElement('script');
 	script.setAttribute('type', 'text/javascript');  // optional
 	script.setAttribute('src', 'https://apis.google.com/js/api.js?onload=onApiLoad');
@@ -12,7 +12,7 @@ Template.yo.rendered = function(){
 // 	}
 // })
 
-Template.yo.events({
+Template.docs.events({
 	'click #pick' : function(){
 		 ;
 		//call loadGapi
@@ -20,4 +20,3 @@ Template.yo.events({
 		loadGapi();
 	}
 });
-

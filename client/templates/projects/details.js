@@ -11,7 +11,7 @@
     'clients': function() {
       var post = this;
       console.log("inside client helper", this);
-	  debugger;
+	   ;
       return Clients.find({_id: {$in:this.clientIds}});
     },
     'court': function() {

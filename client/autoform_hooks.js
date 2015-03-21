@@ -1,6 +1,7 @@
 AutoForm.hooks({
-  	insertProjectForm: {
+  insertProjectForm: {
     onSuccess:function(operation, result, template){
+        //debugger;
         Router.go('projectDetails',{'_id':result});
     }},
     insertHearingForm : {
@@ -17,6 +18,10 @@ AutoForm.hooks({
     }}
 
 
+    // ,
+    // // formToDoc: function(doc) {
+    //     debugger;
+    // }
     // ,
     // onError: function(operation, error, template) {
     //     console.log(operation,error)

@@ -109,6 +109,7 @@ Meetings.after.remove(function( meetingId, doc){
 
 //task hooks
 Tasks.after.insert( function(taskId, doc){
+	debugger;
 	console.log('hook',doc);
 	//add task to project
 	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );

@@ -114,15 +114,19 @@
 						<tbody>
 							
 								
-				<tr>
+				
 					
 	 				<!-- <td>  03-FEB-2015 </td>
 					<td>     Listed In Court 1 As Item No 16</td>
 					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td> -->
 
-				</tr>
+				
 				{{ #each feed}}
-					{{ date }}
+					<tr>
+						<td>{{ data.date }}</td>
+						<td>{{ type }}</td>
+						<td><a href="/{{type}}s/{{data._id}}"><i class="small center-align mdi-action-description"></i></a></td>
+					</tr>
 				{{ /each}}
 			
 							

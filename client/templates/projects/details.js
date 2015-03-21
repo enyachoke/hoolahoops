@@ -1,6 +1,5 @@
 // TODO: Really ugly code here. It's late and i'm tired. Copy pasting. Need to remove this asap. haha LOL
-  Template.projectDetails.helpers({
-	  
+  Template.projectDetails.helpers({  
     'lawyers': function() {
       var post = this;
       console.log("inside post", this);
@@ -30,7 +29,7 @@
 		      var o = this[--i];
 		      this[i] = [].concat(f.call(o,o,i),o);
 		    }
-		    this.sort(function(a,b){
+		    this.sort(function(b,a){
 		      for (var i=0,len=a.length;i<len;++i){
 		        if (a[i]!=b[i]) return a[i]<b[i]?-1:1;
 		      }
@@ -45,8 +44,29 @@
 		var hearings = Hearings.find({ 'caseId' : this._id }).fetch();
 		var meetings = Meetings.find({ 'caseId' : this._id }).fetch();
 		var tasks = Tasks.find({ 'caseId' : this._id }).fetch();
-		var feed = hearings.concat( meetings, tasks);
-		return feed.sortBy(function(o){ return o.date });;
+		// var feed = hearings.concat( meetings, tasks);
+		var feed = []
+		hearings.forEach(function(h){
+			feed.push({
+				data : h,
+				type : 'hearing'
+			});
+		});
+		meetings.forEach(function(h){
+			feed.push({
+				data : h,
+				type : 'meeting'
+			});
+		})	
+		tasks.forEach(function(h){
+			feed.push({
+				data : h,
+				type : 'task'
+			});
+		})
+
+		debugger;
+		return feed.sortBy(function(o){ return o.data.date });
 	}
   });
 

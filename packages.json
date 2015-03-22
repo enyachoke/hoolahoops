@@ -1,4 +1,5 @@
 {
     "googleapis": "2.0.2",
-    "shortid" : "2.1.3"
+    "shortid" : "2.1.3",
+    "sugar" : "1.3.9"
 }

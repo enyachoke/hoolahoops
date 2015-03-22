@@ -141,5 +141,3 @@ Timesheets.after.insert(function(id, doc){
 
 
 
-
-

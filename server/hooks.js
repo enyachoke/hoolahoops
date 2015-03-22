@@ -86,7 +86,7 @@ Hearings.after.insert( function(hearingId, doc){
 Hearings.after.remove(function( hearingId, doc){
 
 	//...remove id from project:hearingIds
-	Projects.update({ _id : doc.projectId },{ $pull { hearingIds : doc._id }});
+	Projects.update( { _id : doc.projectId }, { $pull : { hearingIds : doc._id } } );
 
 	//...remove events
   	_.each(doc.eventIds,function(id){

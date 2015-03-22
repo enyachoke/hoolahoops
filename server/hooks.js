@@ -5,9 +5,10 @@ Projects.after.insert(function(projectId, doc){
 	addEmailReminders(doc, 'projects');
 });
 
-// Projects.after.insert(function(projectId, doc){
-// 	Router.go('/projects/' + projectId);
-// })
+Projects.before.insert(function(id, doc){
+	var shortId = Meteor.npmRequire('shortid');
+	doc.uniqueId = Courts.findOne({_id: doc.courtId}).code+"-"+ shortId.generate();
+});
 
 Projects.after.remove(function (userId, doc) {
   // ...remove hearings 
@@ -136,7 +137,14 @@ Tasks.after.remove(function( taskId, doc){
 
 Timesheets.after.insert(function(id, doc){
 	Projects.update( { _id: doc.caseId },{ $push: { timesheetIds: doc._id } });
+	Router.go('/projects');
 });
+
+Timesheets.before.insert(function(id, doc){
+	doc.userId = Meteor.userId();
+});
+
+
 
 
 

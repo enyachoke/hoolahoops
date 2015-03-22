@@ -19,6 +19,7 @@ Template.hearingDetails.helpers({
 		return Lawyers.findOne({_id: this.lawyerId}).name;
 	},
 	'formatted_date' : function(){
+		debugger;
 		return this.date.format('{dd}-{month}-{yy}');
 	}
 });

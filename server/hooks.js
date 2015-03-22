@@ -9,8 +9,8 @@ Projects.after.insert(function(projectId, doc){
 		job.save();
 	})
 
-
-
+	Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
+	debugger;
 });
 
 // Projects.after.insert(function(projectId, doc){

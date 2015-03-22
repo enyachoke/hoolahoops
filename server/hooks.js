@@ -125,7 +125,6 @@ Meetings.after.remove(function( meetingId, doc){
 
 //task hooks
 Tasks.after.insert( function(taskId, doc){
-	debugger;
 	console.log('hook',doc);
 	//add task to project
 	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
@@ -152,7 +151,14 @@ Tasks.after.remove(function( taskId, doc){
 
 Timesheets.after.insert(function(id, doc){
 	Projects.update( { _id: doc.caseId },{ $push: { timesheetIds: doc._id } });
+	Router.go('/projects');
 });
+
+Timesheets.before.insert(function(id, doc){
+	doc.userId = Meteor.userId();
+});
+
+
 
 
 

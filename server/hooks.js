@@ -9,9 +9,25 @@ Projects.after.insert(function(projectId, doc){
 		job.save();
 	})
 
-	Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
-	debugger;
+	// Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
+	
 });
+
+Projects.before.insert(function(id, doc){
+	var shortId = Meteor.npmRequire('shortid');
+// 	function makeid()
+// {
+//     var text = "";
+//     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+//     for( var i=0; i < 5; i++ )
+//         text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+//     return text;
+// }
+	doc.uniqueId = Courts.findOne({_id: doc.courtId}).code+"-"+ shortId.generate();
+});
+
 
 // Projects.after.insert(function(projectId, doc){
 // 	Router.go('/projects/' + projectId);

@@ -31,4 +31,5 @@ zimme:iron-router-auth
 accounts-ui-unstyled
 jeremy:selectize
 comerc:autoform-selectize
-mrt:sugar
+digilord:sugarjs
+meteorhacks:kadira

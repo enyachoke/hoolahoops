@@ -64,6 +64,10 @@ Hearings.after.insert( function(hearingId, doc){
 });
 
 Hearings.after.remove(function( hearingId, doc){
+
+	//...remove id from project:hearingIds
+	Projects.update( { _id : doc.projectId }, { $pull : { hearingIds : doc._id } } );
+
 	//...remove events
   	_.each(doc.eventIds,function(id){
   		Events.remove({_id : id});
@@ -98,6 +102,10 @@ Meetings.after.insert( function(meetingId, doc){
 });
 
 Meetings.after.remove(function( meetingId, doc){
+
+	//...remove ids from project
+	Projects.update( { _id: doc.caseId }, { $pull: { meetingIds: doc._id } } );
+
 	 //...remove events
   	_.each(doc.eventIds,function(id){
   		Events.remove({_id : id});
@@ -128,6 +136,10 @@ Tasks.after.insert( function(taskId, doc){
 });
 
 Tasks.after.remove(function( taskId, doc){
+
+	//...remove ids from project
+	Projects.update( { _id: doc.caseId }, { $pull: { taskIds: doc._id } } );
+
 	 //...remove events
   	_.each(doc.eventIds,function(id){
   		Events.remove({_id : id});
@@ -142,6 +154,10 @@ Timesheets.after.insert(function(id, doc){
 
 Timesheets.before.insert(function(id, doc){
 	doc.userId = Meteor.userId();
+});
+
+Timesheets.after.remove(function(id, doc){
+	Projects.update( { _id: doc.caseId }, { $pull: { timesheetIds: doc._id } } );
 });
 
 

@@ -2,7 +2,6 @@
   "packages": {
     "fullcalendar": {},
     "moment": {},
-    "sugarjs": {},
-    "sugar": {}
+    "sugarjs": {}
   }
 }

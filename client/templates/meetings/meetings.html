@@ -58,7 +58,10 @@
 			<label for="minutes">Minutes</label>
 		</div>
 		
-		
+		<h5>Reminders</h5>
+		<div class="input-field col s12 m6">
+			{{> afQuickField name='reminders' }}
+		</div>
 	<button class="waves-effect waves-light btn" type="submit">Insert</button>
 	<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position: absolute;">Cancel</a>
 	{{/autoForm}}

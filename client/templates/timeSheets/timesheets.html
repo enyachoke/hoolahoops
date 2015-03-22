@@ -44,7 +44,10 @@
 </template>
 
 <template name="timesheets">
-	<div class="container project-list-container">
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	<div class="container ">
         <a href = "/timesheets/add">Add Timesheet </a>
 		<table class="striped centered">
 		<thead>
@@ -101,7 +104,7 @@
 			
 			
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
-		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+		<a class="waves-effect waves-teal btn-flat" href="/timesheets" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
 	</div>
 </template>

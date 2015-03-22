@@ -1,16 +1,8 @@
 // Project hooks
 Projects.after.insert(function(projectId, doc){
-	_.each(doc.reminders, function(reminder){
-		// TODO: Group emails by date
-		var job = myJobs.createJob('addDemo', {'name': 'Send Email', 'template': 'standard', 'merge_vars': toMandrillArray(doc), 'to': reminder.email});
-		var delayMilliSeconds = Math.abs(reminder.date - new Date());
-		job.retry({retries: 4, wait: 2*60*1000});
-		job.delay(delayMilliSeconds);
-		job.save();
-	})
-
 	Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
-	debugger;
+
+	addEmailReminders(doc, 'projects');
 });
 
 // Projects.after.insert(function(projectId, doc){
@@ -64,6 +56,9 @@ Hearings.after.insert( function(hearingId, doc){
 
 	Hearings.update( { _id: doc._id },{ $push: { billIds: bill_res } });
 	Projects.update( { _id: doc.caseId },{ $push: { billIds: bill_res } });
+
+	// Insert reminders into job collection
+	addEmailReminders(doc, 'hearings');
 	
 });
 
@@ -96,6 +91,9 @@ Meetings.after.insert( function(meetingId, doc){
 
 	Meetings.update( { _id: doc._id },{ $push: { eventIds: res } });
 	Projects.update( { _id: doc.caseId },{ $push: { eventIds: res } });
+
+	// Insert reminders
+	addEmailReminders(doc, 'meetings');
 });
 
 Meetings.after.remove(function( meetingId, doc){
@@ -109,7 +107,6 @@ Meetings.after.remove(function( meetingId, doc){
 
 //task hooks
 Tasks.after.insert( function(taskId, doc){
-	debugger;
 	console.log('hook',doc);
 	//add task to project
 	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
@@ -124,6 +121,9 @@ Tasks.after.insert( function(taskId, doc){
 
 	Tasks.update( { _id: doc._id },{ $push: { eventIds: res } });
 	Projects.update( { _id: doc.caseId },{ $push: { eventIds: res } });
+
+	// Insert reminder
+	addEmailReminders(doc, 'tasks');
 });
 
 Tasks.after.remove(function( taskId, doc){

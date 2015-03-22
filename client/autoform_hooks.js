@@ -18,6 +18,8 @@ AutoForm.hooks({
     }},
     insertLawyerForm : {
     onSuccess:function(operation, result, template){
+        
+        debugger;
         Router.go('lawyerDetails',{'_id':result});
     }},
     insertClientForm : {

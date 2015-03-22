@@ -40,6 +40,7 @@ jeremy:selectize@0.12.1
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2
+less@1.0.13
 livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7
@@ -61,6 +62,7 @@ mongo@1.1.0
 mongo-livedata@1.0.8
 mrt:fullcalendar@1.6.1
 mrt:jquery-ui@1.9.2
+multiply:iron-router-progress@1.0.1
 natestrauser:font-awesome@4.3.0
 npm-bcrypt@0.7.8_1
 npm-container@1.0.0
@@ -88,5 +90,7 @@ url@1.0.4
 vsivsi:job-collection@0.0.18
 webapp@1.2.0
 webapp-hashing@1.0.3
+wizonesolutions:underscore-string@1.0.0
 wylio:mandrill@0.2.1
+zimme:iron-router-active@1.0.1
 zimme:iron-router-auth@3.0.0

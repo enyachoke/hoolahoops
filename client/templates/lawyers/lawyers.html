@@ -2,12 +2,13 @@
 	<div class="row">
 		{{> navigation}}
 	</div>
-	<div class="container ">
-		<a class="waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
+	<div class="container">
+		
+		<a class=" col s4 waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
+		
 		<table class="centered striped bordered" >
 				<thead>
-			        <tr >
-			        	
+			        <tr>	
 			            <th data-field="id">Name</th>
 			            <th data-field="name">Phone</th>
 			            <th data-field="price">Email</th>
@@ -19,6 +20,7 @@
 				{{/each}}
 				</tbody>
 		</table>
+
 	</div>
 </template>
 
@@ -56,27 +58,25 @@
 
 <template name="editLawyer">
 	<div class="container">
-	{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method-update" meteormethod="saveLawyerData" schema="lawyerSchema" }}
-		
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="name" type="text" id="name"}}
-			<label for="name">Name</label>
-		</div>
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="phone" type="number" id="ph"}}
-			<label for="ph">Phone Number</label>
-		</div>
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="email" type="email" id="email"}}
-			<label for="email">E-Mail</label>
-		</div>
-		
-		
-		
-	<button class="waves-effect waves-light btn" type="submit">Insert</button>
-	<a class="waves-effect waves-teal btn-flat" href="/lawyers" style="position: absolute;">Cancel</a>
-	{{/autoForm}}
-</div>
+		{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method-update" meteormethod="saveLawyerData" schema="lawyerSchema" }}
+			
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="name" type="text" id="name"}}
+				<label for="name">Name</label>
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="phone" type="number" id="ph"}}
+				<label for="ph">Phone Number</label>
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="email" type="email" id="email"}}
+				<label for="email">E-Mail</label>
+			</div>
+					
+		<button class="waves-effect waves-light btn" type="submit">Insert</button>
+		<a class="waves-effect waves-teal btn-flat" href="/lawyers" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+	</div>
 </template>
 
 <template name="lawyerDetails">
@@ -84,7 +84,7 @@
 		{{ > navigation}}
 	</div>
 	
-	<div class="container">
+	<div class="container ">
 		<div class="row">
 			  	<div class="col s12  project-title">
 			  		<h3> {{name}}</h3>

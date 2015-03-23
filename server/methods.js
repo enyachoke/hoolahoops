@@ -36,6 +36,11 @@ Meteor.methods({
 	  		// Now tokens contains an access_token and an optional refresh_token. Save them.
 				if(!err) {
 			    	OAUTH2_CLIENT.setCredentials(tokens);
+			    	//debugger;
+			    	// UserTokens.insert({
+			    	// 	userId : 'rishabh.robben@gmail.com',
+			    	// 	token : tokens
+			    	// });
 			    	console.log('token fetched',tokens);
 			    	TOKENS = tokens;
 			    	done(err,tokens);
@@ -52,7 +57,6 @@ Meteor.methods({
 		// 	});
   //     	});
 		
-
 		var drive = GOOGLE.drive('v2');
       	
 
@@ -88,7 +92,7 @@ Meteor.methods({
     //   			console.log('files',err, response);
     //   		});
     //   	});
-
+	
 		//FETCH children
 		var response_get_list = Async.runSync(function(done){
 			drive.children.list({

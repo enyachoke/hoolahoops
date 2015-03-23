@@ -2,7 +2,7 @@
 	<div class="row">
 		{{> navigation}}
 	</div>
-	<div class="container">
+	<div class="container ">
 		
 		<a class=" col s4 waves-effect waves-light btn"  href='/courts/add'>Add Court</a>
 		
@@ -29,9 +29,12 @@
 </template>
 
 <template name="addCourt">
-	<div class="container">
+	{{> navigation}}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Add a Court</h4>
+		<div class="row form-container">
 	{{ # autoForm id="insertCourtForm" class="col s12" doc=this type="method" meteormethod="saveCourtData" schema="courtSchema" }}
-		
+		<div class="row s12">
 		<div class="input-field col l4 m6 s12">
 			{{> afFieldInput name="name" type="text" id="name"}}
 			<label for="name">Name</label>
@@ -40,28 +43,33 @@
 			{{> afFieldInput name="code" type="text" id="code"}}
 			<label for="code">Code</label>
 		</div>
-		
+		</div>
 	<button class="waves-effect waves-light btn" type="submit">Insert</button>
 	<a class="waves-effect waves-teal btn-flat" href="/courts" style="position: absolute;">Cancel</a>
 	{{/autoForm}}
 	</div>
+</div>
 </template>
 
 <template name="editCourt">
-	<div class="container">
+	{{> navigation}}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Edit a Court</h4>
+		<div class="row form-container">
 	{{ # autoForm id="insertCourtForm" class="col s12" doc=this type="method" meteormethod="saveCourtData" schema="courtSchema" }}
-		
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="name" type="text" id="name"}}
-			<label for="name">Name</label>
+		<div class="row s12">
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="name" type="text" id="name"}}
+				<label for="name">Name</label>
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="code" type="text" id="code"}}
+				<label for="code">Code</label>
+			</div>
 		</div>
-		<div class="input-field col l4 m6 s12">
-			{{> afFieldInput name="code" type="text" id="code"}}
-			<label for="code">Code</label>
-		</div>
-		
 	<button class="waves-effect waves-light btn" type="submit">Insert</button>
 	<a class="waves-effect waves-teal btn-flat" href="/courts" style="position: absolute;">Cancel</a>
 	{{/autoForm}}
+	</div>
 	</div>
 </template>

@@ -18,7 +18,7 @@ AutoForm.hooks({
     }},
     insertLawyerForm : {
     onSuccess:function(operation, result, template){
-        
+
         debugger;
         Router.go('lawyerDetails',{'_id':result});
     }},
@@ -29,6 +29,10 @@ AutoForm.hooks({
     insertCourtForm : {
     onSuccess:function(operation, result, template){
         Router.go('courts',{'_id':result});
+    }},
+    insertTimesheetForm : {
+    onSuccess:function(operation, result, template){
+        Router.go('timesheets',{'_id':result});
     }}
 
 

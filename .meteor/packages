@@ -32,3 +32,6 @@ accounts-ui-unstyled
 jeremy:selectize
 comerc:autoform-selectize
 digilord:sugarjs
+meteorhacks:kadira
+multiply:iron-router-progress
+zimme:iron-router-active

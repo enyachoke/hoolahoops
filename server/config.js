@@ -34,5 +34,7 @@ expiry_date: 1426787511725 };
 	];
 	DRIVE = GOOGLE.drive('v2');
 
+	Kadira.connect('JuJNAjRAZr7Ag3wnf', 'f5e55ed4-9b38-447d-9812-be859f771c35')
+
 
 });

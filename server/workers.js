@@ -1,4 +1,4 @@
-var workers = Job.processJobs('myJobQueue', 'addDemo',
+var workers = Job.processJobs('myJobQueue', 'addEmail',
   function(job, cb) {
     var status = Meteor.Mandrill.sendTemplate({
         "template_name": job.data.template,

@@ -3,13 +3,13 @@
 		<div class="nav-wrapper teal">
 		  <a href="/projects" class="brand-logo">TCL-India</a>
 		  <ul id="nav-mobile" class="right side-nav">
-		    <li class="active"><a href="/projects">Projects</a></li>
-		    <li ><a href="/calendar">Calendar</a></li>
-		    <li ><a href="/lawyers">Lawyers</a></li>
-			<li ><a href="/bills">Accounts</a></li>
-			<li ><a href="/timesheets">Timesheets</a></li>
-			<li ><a href="/courts">Courts</a></li>
-			<li ><a href="/clients">Clients</a></li>
+		    <li class="{{isActiveRoute regex='projects'}}"><a href="/projects">Projects</a></li>
+		    <li class="{{isActiveRoute regex='calendar'}}"><a href="/calendar">Calendar</a></li>
+		    <li class="{{isActiveRoute regex='lawyers'}}" ><a href="/lawyers">Lawyers</a></li>
+			<li class="{{isActiveRoute regex='bills'}}" ><a href="/bills">Accounts</a></li>
+			<li class="{{isActiveRoute regex='timesheets'}}" ><a href="/timesheets">Timesheets</a></li>
+			<li class="{{isActiveRoute regex='courts'}}" ><a href="/courts">Courts</a></li>
+			<li class="{{isActiveRoute regex='clients'}}" ><a href="/clients">Clients</a></li>
 			<li>{{> loginButtons align="right"}}</li>
 			
 		    <!--li><a href="/hearings">Hearings</a></li-->

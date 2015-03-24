@@ -36,7 +36,7 @@ Meteor.methods({
 	  		// Now tokens contains an access_token and an optional refresh_token. Save them.
 				if(!err) {
 			    	OAUTH2_CLIENT.setCredentials(tokens);
-			    	//debugger;
+			    	debugger;
 			    	// UserTokens.insert({
 			    	// 	userId : 'rishabh.robben@gmail.com',
 			    	// 	token : tokens
@@ -194,6 +194,23 @@ Meteor.methods({
 			},function(err,res){done(err,res)});
 		});
 
+		return response;
+	}
+	,
+	'insertFolderWithinParentFolder' : function(parentId, fileId ) {
+		console.log('insertFolderWithinParentFolder');
+		parentId = '0B8XNqOrM9GYOX1dWdVRleG1GbmM'
+		OAUTH2_CLIENT.setCredentials(TOKENS);
+		var response = Async.runSync(function(done){
+			DRIVE.children.insert({
+				folderId: parentId,
+				fileId : fileId,
+				auth: OAUTH2_CLIENT
+			},function(err,res){
+				done(err,res);
+				console.log(err,res);
+			});
+		});
 		return response;
 	}
 

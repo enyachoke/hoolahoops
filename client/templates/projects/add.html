@@ -25,7 +25,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete'}}
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders'}}
 					<label for="project__clients">Clients</label>
 				</div>
 				<div class="col l4 m6 s12" id='attended_by'>
@@ -40,7 +40,7 @@
 	    	</div>
 	    	<div class="row">
 				<div class="input-field col s12 m6">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders' id="project__lawyer"}}
 
 					<label for="project__laywer">Lawyer</label>
 				</div>

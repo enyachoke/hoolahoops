@@ -1,3 +1,4 @@
+//TODO: Should this be here?
 Template.hearingAdd.helpers({
 	
 	options : [
@@ -10,3 +11,9 @@ Template.hearingAdd.helpers({
 	}
 	
 })
+
+// TODO: Global function. Need to do something about it
+populateReminders =  function(x) {
+	//alert("yoyo");
+	debugger;
+}

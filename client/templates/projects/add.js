@@ -10,3 +10,15 @@ Template.hearingAdd.helpers({
 	}
 	
 })
+
+Template.projectAdd.events({
+	'blur keypress .validate' : function (event, template) {
+		debugger;
+		if (!AutoForm.validateField('insertProjectForm',event.target.name) ){
+			event.target.classList.add("invalid");
+		}
+
+		debugger;
+	}
+});
+

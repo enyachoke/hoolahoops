@@ -39,25 +39,27 @@
 		      </div>
 	    	</div>
 	    	<div class="row">
-				<div class="input-field col s12 m6">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders' id="project__lawyer"}}
+	    		<div class = "row m12">
+					<div class="input-field col s12 m6">
+						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+						<label for="project__laywer">Lawyer</label>
+					</div>
 
-					<label for="project__laywer">Lawyer</label>
+					<div class="input-field col s12 m6">
+						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
+						<label for="project__court">Court</label>
+					</div>
 				</div>
-
-				<div class="input-field col s12 m6">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
-					<label for="project__court">Court</label>
-				</div>
-				
-				<div class="input-field col s12 m6">
-					{{> afFieldInput name="followup"  id="followup_date"}}
-					<label for="followup_date">Followup Date</label>
-				</div>
-				
-				<div class="input-field col s12 m6">
-					{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
-					<label for="statute_of_limitation">Statute of Limitation</label>
+				<div class = "row m12">	
+					<div class="input-field col s12 m6">
+						{{> afFieldInput name="followup"  id="followup_date"}}
+						<label for="followup_date">Followup Date</label>
+					</div>
+					
+					<div class="input-field col s12 m6">
+						{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
+						<label for="statute_of_limitation">Statute of Limitation</label>
+					</div>
 				</div>
 				<div class="row m12">
 					<h5>Billing</h5>

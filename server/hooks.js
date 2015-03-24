@@ -164,7 +164,6 @@ Tasks.after.remove(function( taskId, doc){
 
 Timesheets.after.insert(function(id, doc){
 	Projects.update( { _id: doc.caseId },{ $push: { timesheetIds: doc._id } });
-	Router.go('/projects');
 });
 
 Timesheets.before.insert(function(id, doc){

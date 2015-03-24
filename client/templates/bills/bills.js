@@ -224,5 +224,13 @@ Template.billDetails.helpers({
 			lawyers = Lawyers.find({_id: {$in:lawyerIds}}).fetch();
       	}
       	return lawyers;
+	},
+	'lawyer' : function(){
+		var lawyer = ""
+		if (this.type == 'hearings'){
+			lawyer = Lawyers.findOne(Hearings.findOne(this.hearingId).lawyerId);
+
+      	}
+      	return lawyer;
 	}
 });

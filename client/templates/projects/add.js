@@ -12,8 +12,21 @@ Template.hearingAdd.helpers({
 	
 })
 
+
+Template.projectAdd.events({
+	'blur .check_validation' : function (event, template) {	
+		if (!AutoForm.validateField('insertProjectForm',event.target.name) ){
+			event.target.classList.add("invalid");
+		}else{
+			event.target.classList.remove("invalid");
+		}
+	}
+});
+
+
 // TODO: Global function. Need to do something about it
 populateReminders =  function(x) {
 	//alert("yoyo");
 	debugger;
 }
+

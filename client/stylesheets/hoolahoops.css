@@ -221,3 +221,17 @@ select option:hover {
 .autoform-add-item:before{
 	content: "\e6fb";
 }
+
+div.login{
+	height:100vh;
+	background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+	background-image: url('https://blogpfeifferlab.files.wordpress.com/2012/01/cf_desk_0937.jpg');
+}
+
+div.login .card-panel{
+	opacity: 0.92;
+}

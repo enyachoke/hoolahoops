@@ -222,6 +222,7 @@ select option:hover {
 	content: "\e6fb";
 }
 
+/* CSS VODOO. Really someone please fix this */
 div.login{
 	height:100vh;
 	background-size: auto 100%;
@@ -234,4 +235,26 @@ div.login{
 
 div.login .card-panel{
 	opacity: 0.92;
+}
+
+div#login-dropdown-list{
+	width: 230px;
+	background-color: #009688;
+	padding:5px;
+	position:absolute;
+	right:0px;
+	top:64px;
+}
+
+a.login-close-text:before{
+  font-family: "Material-Design-Icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	content: "\e89c";
 }

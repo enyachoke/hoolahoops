@@ -51,7 +51,8 @@
 				data : h,
 				type : 'Hearing',
 				desc : ":"+Lawyers.findOne({_id : h.lawyerId}).name,
-				date : h.date.format('{dd}-{month}-{yy}')
+				date : h.date.format('{dd}-{month}-{yy}'),
+				hearing : true
 			});
 		});
 		meetings.forEach(function(h){

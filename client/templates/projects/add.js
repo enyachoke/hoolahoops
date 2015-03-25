@@ -1,3 +1,4 @@
+//TODO: Should this be here?
 Template.hearingAdd.helpers({
 	
 	options : [
@@ -11,14 +12,21 @@ Template.hearingAdd.helpers({
 	
 })
 
+
 Template.projectAdd.events({
-	'blur keypress .validate' : function (event, template) {
-		debugger;
+	'blur .check_validation' : function (event, template) {	
 		if (!AutoForm.validateField('insertProjectForm',event.target.name) ){
 			event.target.classList.add("invalid");
+		}else{
+			event.target.classList.remove("invalid");
 		}
-
-		debugger;
 	}
 });
+
+
+// TODO: Global function. Need to do something about it
+populateReminders =  function(x) {
+	//alert("yoyo");
+	debugger;
+}
 

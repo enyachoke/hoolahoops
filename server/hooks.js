@@ -2,7 +2,13 @@
 Projects.after.insert(function(projectId, doc){
 	Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
 
-	addEmailReminders(doc, 'projects');
+	// Reminders
+	doc = Projects._transform(doc);
+	parseReminders(doc, 'projects');
+	// Add statute of limitation reminder for lawyers + clients 1 day before st
+	// Add follow up reminder for lawyers 1 day before
+	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.reminderStatuteDate());
+	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
 });
 
 Projects.before.insert(function(id, doc){
@@ -58,8 +64,11 @@ Hearings.after.insert( function(hearingId, doc){
 	Hearings.update( { _id: doc._id },{ $push: { billIds: bill_res } });
 	Projects.update( { _id: doc.caseId },{ $push: { billIds: bill_res } });
 
-	// Insert reminders into job collection
-	addEmailReminders(doc, 'hearings');
+	// Reminders
+	doc = Hearings._transform(doc);
+	parseReminders(doc, 'hearings');
+	// Add email reminder before hearing date
+	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.lawyer()), doc.reminderHearingDate());
 	
 });
 
@@ -98,7 +107,11 @@ Meetings.after.insert( function(meetingId, doc){
 	Projects.update( { _id: doc.caseId },{ $push: { eventIds: res } });
 
 	// Insert reminders
-	addEmailReminders(doc, 'meetings');
+	parseReminders(doc, 'meetings');
+	// Add reminder 1 day before meeting
+	//doc = Meetings._transform(doc);
+	parseReminders(doc, 'meetings');
+	// Add email reminder before hearing date
 });
 
 Meetings.after.remove(function( meetingId, doc){
@@ -132,7 +145,9 @@ Tasks.after.insert( function(taskId, doc){
 	Projects.update( { _id: doc.caseId },{ $push: { eventIds: res } });
 
 	// Insert reminder
-	addEmailReminders(doc, 'tasks');
+	//doc = Tasks._transform(doc);
+	parseReminders(doc, 'tasks');
+	// Add email reminder before tasl deadline
 });
 
 Tasks.after.remove(function( taskId, doc){

@@ -1,5 +1,11 @@
 var workers = Job.processJobs('myJobQueue', 'addEmail',
   function(job, cb) {
+    var tos = _.map(job.data.to, function(email){
+        if(typeof email == 'string')
+            return {'email': email};
+        else
+            return {'email': email.email};
+    })
     var status = Meteor.Mandrill.sendTemplate({
         "template_name": job.data.template,
         "template_content": [
@@ -27,10 +33,7 @@ var workers = Job.processJobs('myJobQueue', 'addEmail',
             //         ]
             //     }
             // ],
-            "to": [
-            //TODO: Group emails before sending
-                {"email": job.data.to}
-            ]
+            "to": tos
         }
     });
 

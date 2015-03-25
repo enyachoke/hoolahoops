@@ -31,7 +31,8 @@
 			
 			<div class="row">
 		      <div class="input-field col s12">
-		       	{{> afQuickField name='type' options='allowed'}}
+		       	{{> afQuickField name='type' options='allowed' label=false}}
+		       	<label for="type" class="active">Type</label>
 		      </div>
 		    </div>
 			<button class="waves-effect waves-light btn" type="submit">Insert</button>
@@ -111,7 +112,8 @@
 				</div>
 
 				<div class="row input-field col s12">
-			        {{> afQuickField name='type' options='allowed'}}
+			        {{> afQuickField name='type' options='allowed' label=false}}
+			        		       	<label for="type" class="active">Type</label>
 				</div>
 				
 				

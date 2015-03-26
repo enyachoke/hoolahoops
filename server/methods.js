@@ -1,5 +1,5 @@
 Meteor.methods({
-	'getGoogleAuthUrl' : function(){
+	'getGoogleAuthUrl' : function()	{
 		// google = Meteor.npmRequire('googleapis');
 		// OAuth2 = google.auth.OAuth2;
 		// var CLIENT_ID = '1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com';
@@ -20,7 +20,7 @@ Meteor.methods({
 		console.log('url :',url);
 		return url;	
 	},
-	'getGoogleAuthToken' : function(code){
+	'getGoogleAuthToken' : function(code)	{
 		// console.log(code);
 		// var google = Meteor.npmRequire('googleapis');
 		// var OAuth2 = google.auth.OAuth2;
@@ -172,7 +172,7 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
 			},function(err,res){
 				done(err,res);
-				console.log('list',err,res);
+				//console.log('list',err,res);
 			});
 		});
 		if (!response.error){
@@ -181,7 +181,6 @@ Meteor.methods({
 				items.push(item);
 			});
 		}
-	
 		return items;
 	},
 	'getFileById' : function(fileId){
@@ -193,10 +192,8 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
 			},function(err,res){done(err,res)});
 		});
-
 		return response;
-	}
-	,
+	},
 	'insertFolderWithinParentFolder' : function(parentId, fileId ) {
 		console.log('insertFolderWithinParentFolder');
 		parentId = '0B8XNqOrM9GYOX1dWdVRleG1GbmM'
@@ -212,7 +209,48 @@ Meteor.methods({
 			});
 		});
 		return response;
+	},
+	'getRootFolder' : function(){
+		var rootFolderId =  RootFolders.find().fetch()[0].id;
+		return Meteor.call('getFileById', rootFolderId);
 	}
+
+	// ,
+	// 'generateTree' : function(node, tree, depth){
+
+	// 	if ( node != undefined && node.mimeType == "application/vnd.google-apps.folder"){
+	// 		Meteor.call('getFilesByFolderId',node.id,function(err,res){
+	// 			if ( !err && res.length != 0 ){
+
+	// 				_.each(res,function(child){
+	// 					if ( child != undefined ) {
+	// 							if ( depth == 1){
+	// 								docObj = {
+	// 									title : child.result.title,
+	// 									mimeType : child.result.mimeType,
+	// 									id : child.result.id,
+	// 									children : []
+	// 								};
+	// 								tree.push(docObj);
+	// 							} else {
+
+	// 							}
+								
+	// 						depth = depth + 1;
+	// 						console.log( child.result.title, child.result.mimeType );
+	// 						Meteor.call( 'generateTree', child.result, tree, depth );
+	// 					}		
+	// 				})
+	// 			}		
+	// 		})
+	// 	}	
+	// },
+	// 'initiateTreeGen' : function(){
+	// 	var root = Meteor.call('getRootFolder').result;
+	// 	var tree = [];
+	// 	Meteor.call('generateTree', root, tree, 0);
+	// 	return tree;
+	// }
 
 });
 

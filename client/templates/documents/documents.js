@@ -14,9 +14,27 @@ Template.docs.rendered = function(){
 
 Template.docs.events({
 	'click #pick' : function(){
-		 ;
 		//call loadGapi
 		if (Session.get('gapiLoaded') == true )
 		loadGapi();
+	},
+	'click #create' : function(event ,template){
+		debugger;
+	}
+});
+
+Template.docs.helpers({
+	'getRootFolder' : function(){	
+		Meteor.call('getRootFolder',function(err,res){	
+			//rootFolder = res;
+			Session.set('rootFolderId',res.result);
+		});
+		return Session.get('rootFolderId');
+	},
+	'childrenFromRoot' : function() {
+		Meteor.call('getFilesByFolderId',Session.get('rootFolderId').id , function(err,res){
+			Session.set('children',res);
+		});
+		return Session.get('children');
 	}
 });

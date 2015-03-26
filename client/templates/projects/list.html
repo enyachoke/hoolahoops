@@ -1,24 +1,30 @@
 <template name="projects">
 	{{> navigation}}
     <div class="container project-list-container">
-		<table class="bordered hoverable responsive-table projects-table">
-			<thead>
-				<tr>
-					<th>Unique Id</th>
-					<th>Title</th>
-					<th>Client</th>
-					<th>Lawyer</th>
-					<!-- <th>Court</th> -->
-					<!-- <th>Last Hearing</th> -->
-					<th>Next Hearing</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#each projects}}
-					{{> projectRow}}
-				{{/each}}
-			</tbody>
-		</table>
+    	{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="projects"}}
+			{{> spinner}}
+		{{else}}
+			<table class="bordered hoverable responsive-table projects-table">
+				<thead>
+					<tr>
+						<th>Unique Id</th>
+						<th>Title</th>
+						<th>Client</th>
+						<th>Lawyer</th>
+						<!-- <th>Court</th> -->
+						<!-- <th>Last Hearing</th> -->
+						<th>Next Hearing</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#esEach index="projects"}}
+						{{> projectRow}}
+					{{/esEach}}
+				</tbody>
+			</table>
+		{{/ifEsIsSearching}}
+		
 	<a href="/projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
 	</div>
 </template>

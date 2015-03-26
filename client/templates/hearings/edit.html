@@ -23,12 +23,12 @@
 				{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
 					<div class="input-field col l8 m6 s12">
 						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
-						<label for="hearing__title">Title</label>
+						<label for="hearing__title" class="active">Title</label>
 						
 					</div>
 					<div class="input-field col l4 m6 s12">
 						{{> afFieldInput name="date" type="date" id="hearing__date"}}
-						<label for="hearing__date">Date</label>
+						<label for="hearing__date" class="active">Date</label>
 					</div>
 
 					
@@ -41,14 +41,15 @@
 					</div>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='lawyerId' call='lawyers' fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project_lawyer"}}
-						<label for="project_lawyer">Lawyer</label>
+						<label for="project_lawyer" class="active">Lawyer</label>
 					</div>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="judge" type="text" id="judge"}}
 						<label for="judge">Judge</label>
 					</div>
 					<div class="input-field col s12 m6" id="attended_by_type"> 
-					        {{> afQuickField name='attendedBy' options='allowed'}}
+					        {{> afQuickField name='attendedBy' options='allowed' label=false}}
+					        <label for="attendedBy" class="active">Attended By</label>
 					</div>
 					<div class="input-field col s12 m6">
 						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">

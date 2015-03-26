@@ -191,33 +191,33 @@ select option:hover {
 
 /* form validation*/
 	/* label color */
-   .input-field label {
+   /*.input-field label {
      color: #000;
-   }
+   }*/
    /* label focus color */
-   .input-field input[type=text]:focus + label {
+   /*.input-field input[type=text]:focus + label {
      color: #000;
-   }
+   }*/
    /* label underline focus color */
-   .input-field input[type=text]:focus {
+  /* .input-field input[type=text]:focus {
      border-bottom: 1px solid #000;
      box-shadow: 0 1px 0 0 #000;
-   }
+   }*/
    /* valid color */
-   .input-field input[type=text].valid {
+   /*.input-field input[type=text].valid {
      border-bottom: 1px solid #000;
      box-shadow: 0 1px 0 0 #000;
-   }
+   }*/
    /* invalid color */
    .input-field input[type=text].invalid {
      border-bottom: 1px solid #FF5252;
      box-shadow: 0 1px 0 0 #FF5252;
    }
    /* icon prefix focus color */
-   .input-field .prefix.active {
+   /*.input-field .prefix.active {
      color: #000;
    }
-   
+*/   
         
 
 /* TODO: Refactor this to use extend instead of copying items */
@@ -251,4 +251,41 @@ select option:hover {
 
 .autoform-add-item:before{
 	content: "\e6fb";
+}
+
+/* CSS VODOO. Really someone please fix this */
+div.login{
+	height:100vh;
+	background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+	background-image: url('https://blogpfeifferlab.files.wordpress.com/2012/01/cf_desk_0937.jpg');
+}
+
+div.login .card-panel{
+	opacity: 0.92;
+}
+
+div.nav-wrapper div#login-dropdown-list{
+	width: 230px;
+	background-color: #009688;
+	padding:5px;
+	position:absolute;
+	right:0px;
+	top:64px;
+}
+
+div.nav-wrapper a.login-close-text:before{
+  font-family: "Material-Design-Icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	content: "\e89c";
 }

@@ -12,7 +12,7 @@
 					</div>
 					<div class="input-field col l4 m6 s12">
 						{{> afFieldInput name="date" type="date" id="hearing__date"}}
-						<label for="hearing__date">Date</label>
+						<label for="hearing__date" class="active">Date</label>
 					</div>
 
 					
@@ -32,7 +32,8 @@
 						<label for="judge">Judge</label>
 					</div>
 					<div class="input-field col s12 m6" id="attended_by_type"> 
-					        {{> afQuickField name='attendedBy' options='allowed'}}
+					        {{> afQuickField name='attendedBy' options='allowed' label=false}}
+					        <label for="attendedBy" class="active">Attended By</label>
 					</div>
 					<div class="input-field col s12 m6">
 						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
@@ -42,7 +43,7 @@
 
 						<h5>Reminders</h5>
 						<div class="input-field col s12 m6">
-							{{> afQuickField name='reminders' }}
+							{{> afQuickField name='reminders' label=false}}
 						</div>
 
 					</div>

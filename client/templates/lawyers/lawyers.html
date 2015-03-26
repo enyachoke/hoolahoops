@@ -5,7 +5,7 @@
 	<div class="container">
 		
 		<a class=" col s4 waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
-		
+		{{> esInput index="lawyers" placeholder="Search Lawyers" allDocsOnEmpty="true"}}
 		<table class="centered striped bordered" >
 				<thead>
 			        <tr>	
@@ -15,9 +15,9 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-				{{#each lawyers}}
+				{{#esEach index="lawyers"}}
 				{{ > rowLawyer }}
-				{{/each}}
+				{{/esEach}}
 				</tbody>
 		</table>
 

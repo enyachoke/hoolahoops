@@ -6,20 +6,24 @@
 		
 		<a class=" col s4 waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
 		{{> esInput index="lawyers" placeholder="Search Lawyers" allDocsOnEmpty="true"}}
-		<table class="centered striped bordered" >
-				<thead>
-			        <tr>	
-			            <th data-field="id">Name</th>
-			            <th data-field="name">Phone</th>
-			            <th data-field="price">Email</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-				{{#esEach index="lawyers"}}
-				{{ > rowLawyer }}
-				{{/esEach}}
-				</tbody>
-		</table>
+		{{#ifEsIsSearching index="lawyers"}}
+			{{> spinner}}
+		{{else}}
+			<table class="centered striped bordered" >
+					<thead>
+				        <tr>	
+				            <th data-field="id">Name</th>
+				            <th data-field="name">Phone</th>
+				            <th data-field="price">Email</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+					{{#esEach index="lawyers"}}
+					{{ > rowLawyer }}
+					{{/esEach}}
+					</tbody>
+			</table>
+		{{/ifEsIsSearching}}
 
 	</div>
 </template>

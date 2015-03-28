@@ -7,12 +7,22 @@ Meteor.startup(function() {
 
     // Start the job queue
     myJobs.startJobs();
+
+    Accounts.loginServiceConfiguration.remove({
+	  service: "google"
+	});
+
+	Accounts.loginServiceConfiguration.insert({
+	  service: "google",
+	  clientId: "1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com",
+	  secret: "GF3m9QmVZYKkAHbRgx_SASrz"
+	});
     
     GOOGLE = Meteor.npmRequire('googleapis');
 	OAUTH2 = GOOGLE.auth.OAuth2;
 	CLIENT_ID = '1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com';
 	CLIENT_SECRET = 'GF3m9QmVZYKkAHbRgx_SASrz';
-	REDIRECT_URL = 'http://localhost:3000/googleauth';
+	REDIRECT_URL = 'http://localhost:3000/documents';
 	OAUTH2_CLIENT = new OAUTH2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 	SCOPES = [
 		'https://www.googleapis.com/auth/plus.me',

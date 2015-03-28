@@ -36,3 +36,6 @@ zimme:iron-router-active
 dburles:collection-helpers
 d0minikk:materialize-meteor
 okgrow:analytics
+google
+accounts-google
+service-configuration

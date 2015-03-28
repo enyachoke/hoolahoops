@@ -5,7 +5,7 @@
       var clientId = "1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com"
 
       // Scope to use to access user's photos.
-      var scope = ['https://www.googleapis.com/auth/photos'];
+      var scope = ['https://www.googleapis.com/auth/drive'];
 
       var pickerApiLoaded = false;
       var oauthToken= "yolo";

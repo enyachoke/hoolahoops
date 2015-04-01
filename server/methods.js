@@ -252,7 +252,19 @@ Meteor.methods({
 	// userId
 	'getRootFolder' : function(obj){	
 		debugger;
-		var rootFolderId =  RootFolders.find().fetch()[0].id;
+		var rootFolderId =  0;
+		//create root folder
+		if ( RootFolders.find().fetch().length == 0 ){
+			var shortId = Meteor.npmRequire('shortid');
+			var root_folder_title = shortId.generate();
+			_.extend(obj, {title: root_folder_title});
+			Meteor.call('insertFolder',obj,function(err,res){
+				console.log(err, res);
+				rootFolderId = RootFolders.insert({title : root_folder_title, id : res.result.id})
+    		});
+		}
+		else
+			rootFolderId = RootFolders.find().fetch()[0].id;
 		_.extend(obj, { fileId : rootFolderId});
 		return Meteor.call('getFileById', obj);
 	}

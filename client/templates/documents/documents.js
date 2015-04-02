@@ -46,6 +46,8 @@ Template.docs.rendered = function(){
 Template.docs.events({
 	'click #pick' : function(){
 		//call loadGapi
+		if($('#pick').hasClass('disabled'))
+			return false;
 		if (Session.get('gapiLoaded') == true )
 		loadGapi();
 

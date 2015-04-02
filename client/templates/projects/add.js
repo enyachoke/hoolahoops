@@ -30,3 +30,13 @@ populateReminders =  function(x) {
 	debugger;
 }
 
+// Template.projectAdd.rendered = function(){
+// 	$(".selectize-input").selectize({
+// 		render : {
+// 			item: function( item ){
+// 				return item+"asdf";
+// 			}
+// 		}
+// 	});
+// }
+

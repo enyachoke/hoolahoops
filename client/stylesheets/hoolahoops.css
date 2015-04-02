@@ -299,3 +299,9 @@ nav .nav-wrapper{
 .document-icon{
   margin-right: 20px;
 }
+.breadcumbs{
+  color: #bbb;
+}
+.folder{
+  cursor: pointer;
+}

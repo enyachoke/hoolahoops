@@ -132,10 +132,6 @@ Template.docs.helpers({
 		return Session.get('folderStack');
 
 	},
-	'renderStackLinks' : function(){
-		return "<span  class=\"folder\" id=\""+this.id+"\">"+this.title+"</span>";
-
-	},
 	'showLoader' : function(){
 		//console.log(' show loader', ( !Session.get('childrenLoaded') || !Session.get('rootLoaded') ) );
 		return (  !Session.get('childrenLoaded') || !Session.get('rootLoaded')  );

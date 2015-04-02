@@ -21,7 +21,14 @@
 	  	</div>
 	  	{{else}}
 	  		<a href="{{ getRootFolder.alternateLink }}" id="root">Root Folder</a>
-	    	<ul class="collection">
+	    	<ul class="collection with-header">
+	    	<li class="collection-header">
+	    		<h5>
+		    		{{ #each getFolderStack }}
+						<a class="folder" id="{{this.id}}">{{this.title}}</a><span class="breadcumbs"> / </span>
+					{{ /each }}
+				</h5>
+	    	</li>
 		    {{ #each childrenFromRoot }}
 			<a href="{{#unless isFolder}} {{this.result.alternateLink}} {{/unless}}" target="_blank" class="collection-item {{#if isFolder}} folder {{/if}}" id="{{this.result.id}}">
 				<img src="{{this.result.iconLink}}" class="document-icon">
@@ -30,12 +37,6 @@
 			{{ /each }}
 			</ul>
 			<!-- {{ > folderView}} -->
-			<div id="jstree_demo"></div>
-			<br><br>
-			<h5>folder stack</h5>
-			{{ #each getFolderStack }}
-			<p>{{{renderStackLinks}}}</p>
-			{{ /each }}
 	  	{{/if}}
 
 </template>

@@ -296,3 +296,6 @@ div.nav-wrapper a.login-close-text:before{
 nav .nav-wrapper{
   position: static !important;
 }
+.document-icon{
+  margin-right: 20px;
+}

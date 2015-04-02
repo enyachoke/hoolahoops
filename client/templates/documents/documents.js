@@ -125,19 +125,8 @@ Template.docs.helpers({
 	'childrenFromRoot' : function() {
 		return Session.get('children');
 	},
-	'renderChildNode' : function()	{
-
-		if ( this.result.mimeType == "application/vnd.google-apps.folder" ){
-
-			return "<span  class=\"folder\" id=\""+this.result.id+"\">"+this.result.title+"</span>";
-
-		}
-
-		else {
-
-			return "<a href=\""+ this.result.alternateLink+"\">"+this.result.title+"</a>";
-
-		}
+	'isFolder' : function(){
+		return this.result.mimeType == "application/vnd.google-apps.folder"
 	},
 	'getFolderStack' : function(){	
 		return Session.get('folderStack');

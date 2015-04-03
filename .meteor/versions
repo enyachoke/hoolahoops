@@ -44,10 +44,12 @@ jeremy:selectize@0.12.1
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2
+less@1.0.13
 livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7
 matb33:collection-hooks@0.7.11
+matteodem:easy-search@1.4.13
 meteor@1.1.5
 meteor-platform@1.2.2
 meteorhacks:async@1.0.0

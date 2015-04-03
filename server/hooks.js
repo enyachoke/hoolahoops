@@ -41,6 +41,9 @@ Projects.after.remove(function (userId, doc) {
 
 //hearing hooks
 Hearings.after.insert( function(hearingId, doc){
+
+	
+
 	//update project : push _id to project.hearingIds
 	Projects.update( { _id: doc.caseId },{ $push: { hearingIds: doc._id } });
 
@@ -72,7 +75,7 @@ Hearings.after.insert( function(hearingId, doc){
 	
 });
 
-Hearings.after.remove(function( hearingId, doc){
+Hearings.after.remove( function( hearingId, doc){
 
 	//...remove id from project:hearingIds
 	Projects.update( { _id : doc.projectId }, { $pull : { hearingIds : doc._id } } );
@@ -91,7 +94,7 @@ Hearings.after.remove(function( hearingId, doc){
 
 //meeting hooks
 Meetings.after.insert( function(meetingId, doc){
-
+	debugger;
 	// add meeting to project
 	Projects.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
 

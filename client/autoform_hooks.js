@@ -1,7 +1,6 @@
 AutoForm.hooks({
-  insertProjectForm: {
+    insertProjectForm: {
     onSuccess:function(operation, result, template){
-        //debugger;
         Router.go('projectDetails',{'_id':result});
     }},
     insertHearingForm : {
@@ -9,17 +8,21 @@ AutoForm.hooks({
         Router.go('hearingDetails',{'_id':result});
     }},
     insertMeetingForm : {
-    onSuccess:function(operation, result, template){
-        Router.go('meetingDetails',{'_id':result});
-    }},
+        // 'before': {
+        //     method : function(){
+        //         debugger;   
+        //     }
+        // },
+        onSuccess:function(operation, result, template){
+            Router.go('meetingDetails',{'_id':result});
+        }
+    },
     insertTaskForm : {
     onSuccess:function(operation, result, template){
         Router.go('taskDetails',{'_id':result});
     }},
     insertLawyerForm : {
     onSuccess:function(operation, result, template){
-
-        debugger;
         Router.go('lawyerDetails',{'_id':result});
     }},
     insertClientForm : {

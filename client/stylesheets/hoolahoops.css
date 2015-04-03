@@ -1,3 +1,5 @@
+
+
 /* CSS declarations go here */
 
 body {
@@ -288,4 +290,38 @@ div.nav-wrapper a.login-close-text:before{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 	content: "\e89c";
+}
+
+
+/*tiny calendar*/
+/*.calendar_tiny {
+    width: 200px;
+    margin: 0 auto;
+    font-size: 10px;
+}*/
+.calendar_tiny .fc-header-title h2 {
+    font-size: .9em;
+    white-space: normal !important;
+}
+.calendar_tiny .fc-view-month .fc-event, .calendar_tiny .fc-view-agendaWeek .fc-event {
+    font-size: 0;
+    overflow: hidden;
+    height: 2px;
+}
+.calendar_tiny .fc-view-agendaWeek .fc-event-vert {
+    font-size: 0;
+    overflow: hidden;
+    width: 2px !important;
+}
+.calendar_tiny .fc-agenda-axis {
+    width: 20px !important;
+    font-size: .7em;
+}
+
+.calendar_tiny .fc-button-content {
+    padding: 0;
+}
+
+.calendar_tiny .blocked {
+  background-color: #e1e1e1;
 }

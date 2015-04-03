@@ -8,43 +8,52 @@
 			{{ #if bills_unpaid_exist }} 
 			<p><h5>UNPAID BILLS</h5></p>
 			<button id="mark_as_paid" class="waves-effect waves-light btn"> Mark As Paid</button>
-
-			<table class="centered hoverable" >
-			<thead>
-		        <tr >
-		        	<th data-field="id"></th>
-		            <th data-field="id">Title</th>
-		            <th data-field="name">Date</th>
-		            <th data-field="price">Amount</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-			{{#each bills_unpaid}}
-				{{ > billRow }}
-			{{ /each }}	
-			</tbody>
-			</table>
+			{{> esInput index="bills_unpaid" placeholder="Search Unpaid Bills" allDocsOnEmpty="true"}}
+			{{#ifEsIsSearching index="bills_unpaid"}}
+				{{> spinner}}
+			{{else}}
+				<table class="centered hoverable" >
+				<thead>
+			        <tr >
+			        	<th data-field="id"></th>
+			            <th data-field="id">Title</th>
+			            <th data-field="name">Date</th>
+			            <th data-field="price">Amount</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+				{{#esEach index="bills_unpaid"}}
+					{{ > billRow }}
+				{{ /esEach }}
+				</tbody>
+				</table>
+			{{/ifEsIsSearching}}
 			{{/if}}
 		</div>
 		<!-- paid bills put in separate template later-->
 		<div class="row">
 			<p><h5>PAID BILLS</h5></p>
 			<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As unPaid</button>
-			<table class="centered striped" >
-			<thead>
-		        <tr>
-		        	<th data-field="id"></th>
-		            <th data-field="id">Title</th>
-		            <th data-field="name">Date</th>
-		            <th data-field="price">Amount</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-			{{#each bills_paid}}
-				{{ > billRow }}
-			{{ /each }}	
-			</tbody>
-			</table>
+			{{> esInput index="bills_paid" placeholder="Search Paid Bills" allDocsOnEmpty="true"}}
+			{{#ifEsIsSearching index="bills_paid"}}
+				{{> spinner}}
+			{{else}}
+				<table class="centered striped" >
+				<thead>
+			        <tr>
+			        	<th data-field="id"></th>
+			            <th data-field="id">Title</th>
+			            <th data-field="name">Date</th>
+			            <th data-field="price">Amount</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+				{{#esEach index="bills_paid"}}
+					{{ > billRow }}
+				{{ /esEach }}
+				</tbody>
+				</table>
+			{{/ifEsIsSearching}}
 		<!-- 	{{> reactiveTable settings=settings}}
 
 		 -->

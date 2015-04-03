@@ -324,4 +324,12 @@ div.nav-wrapper a.login-close-text:before{
 
 .calendar_tiny .blocked {
   background-color: #e1e1e1;
+
+.centerHV{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
 }

@@ -1,25 +1,68 @@
 <template name="projects">
 	{{> navigation}}
     <div class="container project-list-container">
-		<table class="bordered hoverable responsive-table projects-table">
-			<thead>
-				<tr>
-					<th>Unique Id</th>
-					<th>Title</th>
-					<th>Client</th>
-					<th>Lawyer</th>
-					<!-- <th>Court</th> -->
-					<!-- <th>Last Hearing</th> -->
-					<th>Next Hearing</th>
-					<th>Labels</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#each projects}}
-					{{> projectRow}}
-				{{/each}}
-			</tbody>
-		</table>
+    	{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
+    	<div class="row">
+    		<div class="col s3">
+    			<label>Lawyer Names:</label>
+    			<select id="lawyer-select">
+    				<option value="">All</option>
+    				{{#each lawyers}}
+    					<option value="{{_id}}">{{name}}</option>
+    				{{/each}}
+    			</select>
+    		</div>
+    		<div class="col s3">
+    			<label>Client Names:</label>
+    			<select id="client-select">
+    				<option value="">All</option>
+    				{{#each clients}}
+    					<option value="{{_id}}">{{name}}</option>
+    				{{/each}}
+    			</select>
+    		</div>
+    		<div class="col s3">
+    			<label>Court Name:</label>
+    			<select id="court-select">
+    				<option value="">All</option>
+    				{{#each courts}}
+    					<option value="{{_id}}">{{name}}</option>
+    				{{/each}}
+    			</select>
+    		</div>
+    		<div class="col s3">
+    			<label>Type:</label>
+    			<select id="type-select">
+    				<option value="">All</option>-
+    				{{#each types}}
+    					<option>{{this}}</option>
+    				{{/each}}
+    			</select>
+    		</div>
+    	</div>
+		{{#ifEsIsSearching index="projects"}}
+			{{> spinner}}
+		{{else}}
+			<table class="bordered hoverable responsive-table projects-table">
+				<thead>
+					<tr>
+						<th>Unique Id</th>
+						<th>Title</th>
+						<th>Client</th>
+						<th>Lawyer</th>
+						<!-- <th>Court</th> -->
+						<!-- <th>Last Hearing</th> -->
+						<th>Next Hearing</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#esEach index="projects"}}
+						{{> projectRow}}
+					{{/esEach}}
+				</tbody>
+			</table>
+		{{/ifEsIsSearching}}
+		
 	<a href="/projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
 	</div>
 </template>

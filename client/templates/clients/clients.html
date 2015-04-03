@@ -85,20 +85,25 @@
 	</div>
 	<div class="container ">
 		<a class="waves-effect waves-light btn"  href='/clients/add'>Add contact</a>
-		<table class="centered striped bordered" >
-				<thead>
-			        <tr>
-			            <th data-field="id">Name</th>
-			            <th data-field="name">Phone</th>
-			            <th data-field="price">Email</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-				{{ #each clients}}
-				{{ > clientRow }}
-				{{/each}}
-				</tbody>
-		</table>
+		{{> esInput index="clients" placeholder="Search Clients" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="clients"}}
+			{{> spinner}}
+		{{else}}
+			<table class="centered striped bordered" >
+					<thead>
+				        <tr>
+				            <th data-field="id">Name</th>
+				            <th data-field="name">Phone</th>
+				            <th data-field="price">Email</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+					{{#esEach index="clients"}}
+					{{ > clientRow }}
+					{{/esEach}}
+					</tbody>
+			</table>
+		{{/ifEsIsSearching}}
 	</div>
 
 

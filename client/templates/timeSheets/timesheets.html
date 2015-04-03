@@ -53,20 +53,25 @@
 	</div>
 	<div class="container ">
         <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
-		<table class="striped centered bordered	">
-		<thead>
-			<tr>
-				<th data-field="duration">duration</th>
-				<th data-field="case_title">case title</th>
-				<th data-field="desc">description</th>
-			</tr>
-		</thead>
-		<tbody>
-			{{ #each timesheets }}
-			{{ > timesheetRow }}
-			{{/each}}
-		</tbody>
-	</table>	
+        {{> esInput index="timesheets" placeholder="Search Timesheets" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="timesheets"}}
+			{{> spinner}}
+		{{else}}
+			<table class="striped centered bordered	">
+			<thead>
+				<tr>
+					<th data-field="duration">duration</th>
+					<th data-field="case_title">case title</th>
+					<th data-field="desc">description</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#esEach index="timesheets"}}
+				{{ > timesheetRow }}
+				{{/esEach}}
+			</tbody>
+		</table>	
+		{{/ifEsIsSearching}}
 
     </div>
 	

@@ -5,25 +5,29 @@
 	<div class="container ">
 		
 		<a class=" col s4 waves-effect waves-light btn"  href='/courts/add'>Add Court</a>
-		
-		<table class="centered striped bordered" >
-				<thead>
-			        <tr>	
-			            <th data-field="id">Name</th>
-			            <th data-field="name">Code</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-				{{#each courts}}
-				<tr>
-					<td>{{name}}</td>
-					<td>{{code}}</td>
-					<td><a class="waves-effect waves-light btn col s8" href='/courts/{{_id}}/edit'>Edit</a></td>
-					<td><a class="waves-effect waves-light btn col s8 delete" >Delete</a></td>
-				</tr>
-				{{/each}}
-				</tbody>
-		</table>
+		{{> esInput index="courts" placeholder="Search Courts" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="courts"}}
+			{{> spinner}}
+		{{else}}
+			<table class="centered striped bordered" >
+					<thead>
+				        <tr>	
+				            <th data-field="id">Name</th>
+				            <th data-field="name">Code</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+					{{#esEach index="courts"}}
+					<tr>
+						<td>{{name}}</td>
+						<td>{{code}}</td>
+						<td><a class="waves-effect waves-light btn col s8" href='/courts/{{_id}}/edit'>Edit</a></td>
+						<td><a class="waves-effect waves-light btn col s8 delete" >Delete</a></td>
+					</tr>
+					{{/esEach}}
+					</tbody>
+			</table>
+		{{/ifEsIsSearching}}
 
 	</div>
 </template>

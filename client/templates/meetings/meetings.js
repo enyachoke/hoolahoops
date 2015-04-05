@@ -34,3 +34,4 @@ Template.meetingRow.events({
 		Meetings.remove(this._id);
 	}
 });
+

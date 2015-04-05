@@ -26,5 +26,18 @@ Template.hearingAdd.helpers({
 		}
 		Session.set('amount_by_type',amt);
 		return Session.get('amount_by_type');
-	}
+	},
+	'pickadateOptions' : function(){
+
+		var disable = []
+		_.each(this.user_events.fetch(),function(event){
+			if( event && event.date){
+				disable.push(event.date);
+			}
+			
+		})
+		return {
+			disable : disable
+		}
+	}   
 });

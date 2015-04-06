@@ -5,13 +5,6 @@
 		<h4 class="teal form-header">Add a matter</h4>
 		<div class="row form-container">
 
-			<!-- Form starts>
-			{{#autoForm id="insertClientForm" doc=this type="method" meteormethod='saveClientData' schema='clientSchema'}}
-		<div>{{> afFieldInput name="name"}}</div>
-        <div>{{> afFieldInput  type='xautocomplete' formid="insertClientForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderClients'}}</div>
-        <button class="btn btn-primary" type="submit">Insert</button>
-    {{/autoForm}}-->
-
 			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
 			<div class="row">
 				<div class="input-field col l8 m6 s12">

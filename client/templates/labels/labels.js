@@ -1,2 +1,8 @@
-Template.labels.rendered = function(){
-}
+Template.labels.helpers({
+	'labels': function(){
+		return Labels.find();
+	}
+});
+
+Template.labelAdd.helpers({
+})

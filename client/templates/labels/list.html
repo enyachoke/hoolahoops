@@ -1,0 +1,30 @@
+<template name="labels">
+	{{> navigation}}
+
+	<div class="container">
+		<div class="card-panel">
+			<table>
+				<tr>
+					<th> Name </th>
+					<th> Color </th>
+				</tr>
+				{{# each labels}}
+				{{ > labelRow}}
+				{{/each}}
+			</table>	
+
+			{{> labelAdd}}
+		</div>
+	</div>
+</template>
+
+<template name="labelRow">
+	<tr>
+		<td>{{name}}</td>
+		<td>{{color}}</td>
+		<th><a href="/labels/{{_id}}/edit">Edit </a></th>
+		<th><button id='delete_task'>Delete</button></th>
+	</tr>
+
+	
+</template>

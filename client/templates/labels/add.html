@@ -1,0 +1,17 @@
+<template name="labelAdd">
+	<div class="row form-container">
+		{{#autoForm id="insertlabelForm" class="col s12" doc=this type="method" meteormethod="saveLabelData" schema="labelSchema" }}
+			
+			<div class="input-field col s12 m6" id="attended_by_type"> 
+			        {{> afQuickField name='name'}}
+			</div>
+
+			<div class="input-field col s12 m6" id="attended_by_type"> 
+			        {{> afQuickField name='color'}}
+			</div>
+			
+			<button class="waves-effect waves-light btn" type="submit">Insert</button>
+			<a class="waves-effect waves-teal btn-flat" href="/labels" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+	</div>
+</template>

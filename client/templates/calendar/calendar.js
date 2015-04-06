@@ -4,7 +4,7 @@ Template.calendar.rendered= function(){
 
 	hearings=[], meetings=[], task_deadlines=[];
 	
-	calEvents = Events.find();
+	calEvents = Events.find({userId : Meteor.userId()});
 	calEvents.forEach(function(e){
 		project= Projects.findOne({_id : e.caseId});
 		if (project)

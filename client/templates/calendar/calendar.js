@@ -55,29 +55,29 @@ Template.calendar.rendered= function(){
 		
 		
 	});
-	$('.calendar_tiny').fullCalendar({
-		dayClick: function(date, allDay, jsEvent, view) {
-			Meteor.call('toggle_block_days',date);
-			$(this).toggleClass( 'blocked' )
-    	},
-    	events: function(start, end, callback) {
-    		// var cal_events = Events.find({type : blocked});
-    		// var events = []
-    		// _.each(cal_events, function(e){
-    		// 	events.push({
-    		// 		title : 'x',
-    		// 		date : e.date,
-    		// 		type : e.type
-    		// 	});
-    		// });
-    		// callback(events);
-    	},
-    	dayRender : function( date, cell ) { 
-    		if ( Events.findOne({ date : date , type : 'blocked', userId : Meteor.userId() }) ) {
-    			cell.addClass('blocked')
-    		}
-    	}
-	});
+	// $('.calendar_tiny').fullCalendar({
+	// 	dayClick: function(date, allDay, jsEvent, view) {
+	// 		Meteor.call('toggle_block_days',date);
+	// 		$(this).toggleClass( 'blocked' )
+ //    	},
+ //    	events: function(start, end, callback) {
+ //    		// var cal_events = Events.find({type : blocked});
+ //    		// var events = []
+ //    		// _.each(cal_events, function(e){
+ //    		// 	events.push({
+ //    		// 		title : 'x',
+ //    		// 		date : e.date,
+ //    		// 		type : e.type
+ //    		// 	});
+ //    		// });
+ //    		// callback(events);
+ //    	},
+ //    	dayRender : function( date, cell ) { 
+ //    		if ( Events.findOne({ date : date , type : 'blocked', userId : Meteor.userId() }) ) {
+ //    			cell.addClass('blocked')
+ //    		}
+ //    	}
+	// });
 	$('#calendar').fullCalendar({
 // 		dayClick: function(date, jsEvent, view) {
 // 		        // alert('Clicked on: ' + date);
@@ -90,6 +90,16 @@ Template.calendar.rendered= function(){
 // // 		        $(this).css('background-color', 'red');
 // 							$('#modal1').openModal();
 // 		    }
+		dayClick: function(date, allDay, jsEvent, view) {
+			debugger;
+			Meteor.call('toggle_block_days',date);
+			$(this).toggleClass( 'blocked' )
+    	},
+    	dayRender : function( date, cell ) { 
+    		if ( Events.findOne({ date : date , type : 'blocked', userId : Meteor.userId() }) ) {
+    			cell.addClass('blocked')
+    		}
+    	},
 		header: {
 			left: 'prev,next today',
 			center: 'title',

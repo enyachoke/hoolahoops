@@ -1,6 +1,16 @@
 AutoForm.hooks({
     insertProjectForm: {
     onSuccess:function(operation, result, template){
+
+        //create project root in google drive
+        var project = Projects.findOne({_id : result });
+        if ( project.driveFolderId ==undefined || project.driveFolderId == "" ){
+            Meteor.call('insertFolder',{title: project.name, userId: Meteor.userId()},function(err,res){
+                Projects.update({_id : result},{ $set :{ driveFolderId : res.result.id }});
+            });
+        }
+        
+
         Router.go('projectDetails',{'_id':result});
     }},
     insertHearingForm : {

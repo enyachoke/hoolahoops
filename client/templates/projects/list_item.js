@@ -19,8 +19,7 @@
       return Hearings.find({ date : {$gt : new Date()}}).fetch()[0].date.format('{dd}-{month}-{yy}');
     },
     'labels' : function(){
-      debugger;
-      return Labels.find({_id: {$in:this.labelIds}});
+      return ""//Labels.find({_id: {$in:this.labelIds}});
     }
   });
   

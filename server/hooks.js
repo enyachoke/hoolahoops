@@ -46,6 +46,7 @@ Hearings.after.insert( function(hearingId, doc){
 
 	//update project : push _id to project.hearingIds
 	Projects.update( { _id: doc.caseId },{ $push: { hearingIds: doc._id } });
+
 	//insert event
 	var event_res = Events.insert({
 		'hearingId' : doc._id,

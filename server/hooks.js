@@ -92,7 +92,13 @@ Hearings.after.remove( function( hearingId, doc){
 });
 
 
+
 //meeting hooks
+
+Meetings.before.insert( function( userId, doc){
+	doc.userId = userId;
+});
+
 Meetings.after.insert( function(meetingId, doc){
 	debugger;
 	// add meeting to project

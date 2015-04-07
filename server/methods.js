@@ -222,7 +222,7 @@ Meteor.methods({
 	'getFileById' : function(obj){
 		//fetch file from id
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
-		debugger;
+		//debugger;
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
@@ -230,13 +230,14 @@ Meteor.methods({
 		});
 		var fileId = obj.fileId
 		var response = Async.runSync(function(done){
-			debugger;
+			//debugger;
 			DRIVE.files.get({
 				fileId: obj.fileId,
 				auth: OAUTH2_CLIENT
 			},function(err,res){
-				debugger;
+				//debugger;
 				done(err,res)
+				console.log(err,res);
 			});
 		});
 		debugger;
@@ -267,19 +268,7 @@ Meteor.methods({
 	// userId
 	'getRootFolder' : function(obj){	
 		debugger;
-		var rootFolderId =  0;
-		//create root folder
-		if ( RootFolders.find().fetch().length == 0 ){
-			var shortId = Meteor.npmRequire('shortid');
-			var root_folder_title = shortId.generate();
-			_.extend(obj, {title: root_folder_title});
-			Meteor.call('insertFolder',obj,function(err,res){
-				console.log(err, res);
-				rootFolderId = RootFolders.insert({title : root_folder_title, id : res.result.id})
-    		});
-		}
-		else
-			rootFolderId = RootFolders.find().fetch()[0].id;
+		var rootFolderId =  RootFolders.find().fetch()[0].id;
 		_.extend(obj, { fileId : rootFolderId});
 		return Meteor.call('getFileById', obj);
 	},

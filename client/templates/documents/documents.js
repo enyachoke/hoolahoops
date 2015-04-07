@@ -8,7 +8,7 @@ Template.docs.rendered = function(){
 	Session.set('childrenLoaded',false);
 
 	Meteor.call('getRootFolder',{ userId : Meteor.userId() },function(err,res){	
-		//debugger;
+		debugger;
 		if ( !res.error ){
 			
 			var folderStack = [];

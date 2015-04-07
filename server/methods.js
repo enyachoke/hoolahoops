@@ -153,7 +153,7 @@ Meteor.methods({
 
 		return response_list_req;
 	},
-	// {title: , userId:}
+	// {title: , userId:, parentId}
 	'insertFolder' : function (obj)	{
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
 		var token_obj = Meteor.call('getCredentials',obj.userId);
@@ -162,23 +162,18 @@ Meteor.methods({
   			refresh_token: token_obj.refresh_token
 		});
 		rootFolderId = Meteor.call('getRootFolderId');
-		var resource = {}
-		if ( rootFolderId != null){
-			resource = {
-			    title: obj.title,
-			    "mimeType": "application/vnd.google-apps.folder" ,
-			    "parents": [
-					{
-						"id": rootFolderId
-		    		}   
-				]
-			}
-		}else{
-			resource = {
-				title: obj.title,
-			    "mimeType": "application/vnd.google-apps.folder" 
-			}
+		var resource = {
+			title: obj.title,
+			"mimeType": "application/vnd.google-apps.folder"
 		}
+
+		//resource.parents
+		var parentId = obj.parentId ? obj.parentId : rootFolderId
+		if ( parentId ){
+			resource.parents = [];
+			resource.parents.push({"id" : parentId })
+		}
+
       	var response = Async.runSync(function(done) {
 			DRIVE.files.insert({
 				resource: resource,
@@ -188,6 +183,7 @@ Meteor.methods({
 				done(err, response);
 			});
 		});
+		
 		return response;
 	},
 	// folderId, userId

@@ -28,7 +28,7 @@ Template.colorElement.helpers({
 	}
 })
 
-// Custom global function used for rendering labels
+// Custom global function used for rendering for labels
 renderLabelAutocomplete = function(x) {
   return Blaze.toHTMLWithData(Template.colorElement, x)
 }

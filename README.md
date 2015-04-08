@@ -7,3 +7,6 @@ A starting meteor app
 * Structure
 > server specific code in server
 > client specific code in client
+
+* Code Quality
+Please try to keep the code as clean as possible. Avoid duplicating code whereever possible and keep your code dry.

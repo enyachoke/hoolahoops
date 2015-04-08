@@ -11,6 +11,9 @@ Template.projects.helpers({
     'courts': function(){
     	return Courts.find();
     },
+    'labels': function(){
+      return Labels.find();
+    },
     'types': function(){
     	return projectSchema._schema.type.allowedValues;
     }

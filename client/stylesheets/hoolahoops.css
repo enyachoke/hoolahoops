@@ -298,3 +298,14 @@ div.nav-wrapper a.login-close-text:before{
   left: 0;
   margin: auto;
 }
+
+/* ColorElement Stling for the colored labels */
+div.colorElement{
+  background-image: none !important; 
+  font-weight: bold !important;
+  border-radius: 3px;
+  padding: 5px;
+  display:table-cell;
+  text-align: center;
+  min-width: 100px; 
+}

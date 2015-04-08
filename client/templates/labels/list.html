@@ -3,28 +3,32 @@
 
 	<div class="container">
 		<div class="card-panel">
-			<table>
+			<div class="row">
+				{{> labelAdd}}
+			</div>
+			
+			<table class="row">
 				<tr>
-					<th> Name </th>
-					<th> Color </th>
+					<th> Label </th>
 				</tr>
 				{{# each labels}}
 				{{ > labelRow}}
 				{{/each}}
 			</table>	
-
-			{{> labelAdd}}
 		</div>
 	</div>
 </template>
 
 <template name="labelRow">
 	<tr>
-		<td>{{name}}</td>
-		<td>{{color}}</td>
-		<th><a href="/labels/{{_id}}/edit">Edit </a></th>
-		<th><button id='delete_task'>Delete</button></th>
+		<td>{{>colorElement}}</td>
+		<!--th><a href="/labels/{{_id}}/edit">Edit </a></th-->
+		<td><button class="delete" id='delete_task'>Delete</button></td>
 	</tr>
 
 	
+</template>
+
+<template name="colorElement">
+	<div class="colorElement" style="background-color: {{color}}; color: {{complement color}}">{{name}}</div>
 </template>

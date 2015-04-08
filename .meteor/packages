@@ -21,7 +21,6 @@ meteorhacks:npm
 
 npm-container
 wylio:mandrill
-aldeed:autoform
 matb33:collection-hooks
 vsivsi:job-collection
 accounts-password
@@ -29,7 +28,6 @@ accounts-password
 zimme:iron-router-auth
 accounts-ui-unstyled
 jeremy:selectize
-comerc:autoform-selectize
 digilord:sugarjs
 meteorhacks:kadira
 zimme:iron-router-active
@@ -41,3 +39,7 @@ accounts-google
 service-configuration
 matteodem:easy-search
 thegreatshasha:spectrumcolorpicker
+aldeed:autoform
+aldeed:autoform-select2
+zimme:select2-bootstrap3-css
+thegreatshasha:autoform-selectize

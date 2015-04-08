@@ -10,3 +10,6 @@ A starting meteor app
 
 * Code Quality
 Please try to keep the code as clean as possible. Avoid duplicating code whereever possible and keep your code dry.
+
+* Working on a feature/issue
+Please create a new branch with the name like 20_implement_labels and push that to the repo. After that create a pull request

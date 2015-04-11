@@ -289,3 +289,14 @@ div.nav-wrapper a.login-close-text:before{
   -moz-osx-font-smoothing: grayscale;
 	content: "\e89c";
 }
+.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg, 
+.picker.dcs-cd-dcs-c.picker-dialog{
+  position: absolute;
+}
+.picker.dcs-cd-dcs-c-dcs-k.dcs-cd-dcs-c-dcs-k-dcs-be.picker-dialog-title,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-fb,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-bc,
+.picker.dcs-cd-dcs-c-dcs-eb.picker-dialog-content,
+.picker.dcs-cd-dcs-c-dcs-ic.picker-dialog-buttons{
+  position: static;
+}

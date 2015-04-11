@@ -32,18 +32,6 @@ Meteor.startup(function() {
 	DRIVE = GOOGLE.drive('v2');
 
 	Kadira.connect('JuJNAjRAZr7Ag3wnf', 'f5e55ed4-9b38-447d-9812-be859f771c35')
-
-	//create root folder
-	var shortId = Meteor.npmRequire('shortid');
-	var root_folder_title = shortId.generate();
-	if ( RootFolders.find().fetch().length == 0 ){
-		Meteor.call('insertFolder',root_folder_title,function(err,res){
-			console.log(err, res);
-			RootFolders.insert({title : root_folder_title, id : res.result.id})
-    	});
-	}
-    
-
 });
 
 

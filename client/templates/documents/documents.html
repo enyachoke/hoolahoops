@@ -1,7 +1,9 @@
 <template name="docs">
-	{{ >navigation}}
- <button type="button" id="pick">Pick File</button>
-
+	<div class="row">
+		{{ >navigation}}
+	</div>
+	<div class="container">
+ 		<div class="waves-effect waves-light btn {{#if showLoader}} disabled {{/if}}"  id="pick">Pick File</div><br>
  <!-- <input type="text" class="file_title"> -->
  
  <!-- <button type="button" id="create">Create File</button> -->
@@ -37,6 +39,7 @@
 			</ul>
 			<!-- {{ > folderView}} -->
 	  	{{/if}}
+	</div>
 
 </template>
 

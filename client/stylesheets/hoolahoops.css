@@ -303,3 +303,9 @@ div.nav-wrapper a.login-close-text:before{
 .document-icon{
   margin-right: 20px;
 }
+.breadcumbs{
+  color: #bbb;
+}
+.folder{
+  cursor: pointer;
+}

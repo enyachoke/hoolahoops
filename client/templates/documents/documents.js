@@ -128,12 +128,8 @@ Template.docs.helpers({
 	'isFolder' : function(){
 		return this.result.mimeType == "application/vnd.google-apps.folder"
 	},
-	'getFolderStack' : function(){
+	'getFolderStack' : function(){	
 		return Session.get('folderStack');
-
-	},
-	'renderStackLinks' : function(){
-		return "<span  class=\"folder\" id=\""+this.id+"\">"+this.title+"</span>";
 
 	},
 	'showLoader' : function(){

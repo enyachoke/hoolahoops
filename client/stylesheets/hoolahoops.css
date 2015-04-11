@@ -274,15 +274,11 @@ div.nav-wrapper div#login-dropdown-list{
 	width: 230px;
 	background-color: #009688;
 	padding:5px;
-	position:fixed;
-  z-index: 1000;
+	position:absolute;
 	right:0px;
 	top:64px;
 }
 
-div.nav-wrapper a.login-close-text{
-  padding: 0px;
-}
 div.nav-wrapper a.login-close-text:before{
   font-family: "Material-Design-Icons";
   speak: none;
@@ -295,7 +291,6 @@ div.nav-wrapper a.login-close-text:before{
   -moz-osx-font-smoothing: grayscale;
 	content: "\e89c";
 }
-<<<<<<< HEAD
 
 
 /*tiny calendar*/
@@ -351,5 +346,4 @@ nav .nav-wrapper {
 }
 .folder{
   cursor: pointer;
-
 }

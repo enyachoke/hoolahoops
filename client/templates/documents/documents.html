@@ -1,10 +1,5 @@
 <template name="docs">
 	{{ >navigation}}
-	<style>
-		.picker{
-			position : relative;
-		}
-	</style>
  <button type="button" id="pick">Pick File</button>
  <div id="result"></div>
 
@@ -26,13 +21,12 @@
 	  	</div>
 	  	{{else}}
 	  		<a href="{{ getRootFolder.alternateLink }}" id="root">Root Folder</a>
-	    	<ul>
+	    	<ul class="collection">
 		    {{ #each childrenFromRoot }}
-			<li>
-				<a>
-					{{{renderChildNode}}}
-				</a>
-			</li>
+			<a href="{{#unless isFolder}} {{this.result.alternateLink}} {{/unless}}" target="_blank" class="collection-item {{#if isFolder}} folder {{/if}}" id="{{this.result.id}}">
+				<img src="{{this.result.iconLink}}" class="document-icon">
+					{{this.result.title}}
+			</a>
 			{{ /each }}
 			</ul>
 			<!-- {{ > folderView}} -->

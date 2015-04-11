@@ -300,3 +300,6 @@ div.nav-wrapper a.login-close-text:before{
 .picker.dcs-cd-dcs-c-dcs-ic.picker-dialog-buttons{
   position: static;
 }
+.document-icon{
+  margin-right: 20px;
+}

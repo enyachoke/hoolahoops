@@ -274,15 +274,11 @@ div.nav-wrapper div#login-dropdown-list{
 	width: 230px;
 	background-color: #009688;
 	padding:5px;
-	position:fixed;
-  z-index: 1000;
+	position:absolute;
 	right:0px;
 	top:64px;
 }
 
-div.nav-wrapper a.login-close-text{
-  padding: 0px;
-}
 div.nav-wrapper a.login-close-text:before{
   font-family: "Material-Design-Icons";
   speak: none;
@@ -297,6 +293,9 @@ div.nav-wrapper a.login-close-text:before{
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3004437e099a8ebe2e72d293941667bc15a12aec
 
 
 /*tiny calendar*/
@@ -364,5 +363,17 @@ nav .nav-wrapper {
 }
 .folder{
   cursor: pointer;
+}
+
+.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg, 
+.picker.dcs-cd-dcs-c.picker-dialog{
+  position: absolute;
+}
+.picker.dcs-cd-dcs-c-dcs-k.dcs-cd-dcs-c-dcs-k-dcs-be.picker-dialog-title,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-fb,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-bc,
+.picker.dcs-cd-dcs-c-dcs-eb.picker-dialog-content,
+.picker.dcs-cd-dcs-c-dcs-ic.picker-dialog-buttons{
+  position: static;
 }
 

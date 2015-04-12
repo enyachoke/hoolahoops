@@ -20,7 +20,8 @@ Template.projectAdd.events({
 		}else{
 			event.target.classList.remove("invalid");
 		}
-	}
+	},
+
 });
 
 

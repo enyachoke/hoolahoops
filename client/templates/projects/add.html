@@ -13,20 +13,26 @@
     {{/autoForm}}-->
 
 			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
-			<div class="row">
-				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
-					<label for="project__title">Title</label>
-				</div>
+			 <div class="input-field col l8 m6 s12 ">
+			 	{{> afFieldInput name='name' id="project__title"}}
+    			<label for ="project__title">Name</label>
+    				{{#if afFieldIsInvalid name='name'}}
+    			<span class="help-block">{{{afFieldMessage name='name'}}}</span>
+    				{{/if}}
+ 			 </div>
+				
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="suitno" id="project__suitno"}}
 					<label for="project__suitno">Suit No</label>
+					{{#if afFieldIsInvalid name='suitno'}}
+					<span class="help-block">{{{afFieldMessage name='suitno'}}}</span>
+					{{/if}}
 				</div>
-			</div>
+			
 			<div class="row">
-				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders'}}
+				<div class="input-field col l8 m6 s12">			
 					<label for="project__clients" class="active">Clients</label>
+					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders'}}
 				</div>
 				<div class="col l4 m6 s12" id='attended_by'>
 			        {{> afQuickField name='type' options='allowed'}}
@@ -43,22 +49,34 @@
 					<div class="input-field col s12 m6">
 						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
 						<label for="project__laywer" class="active">Lawyers</label>
+						{{#if afFieldIsInvalid name='lawyerIds'}}
+						<span class="help-block">{{{afFieldMessage name='lawyerIds'}}}</span>
+						{{/if}}
 					</div>
 
 					<div class="input-field col s12 m6">
 						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
 						<label for="project__court" class="active">Court</label>
+						{{#if afFieldIsInvalid name='courtId'}}
+						<span class="help-block">{{{afFieldMessage name='courtId'}}}</span>
+					{{/if}}
 					</div>
 				</div>
 				<div class = "row m12">	
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="followup"  id="followup_date"}}
 						<label for="followup_date" class="active">Followup Date</label>
+						{{#if afFieldIsInvalid name='followup'}}
+						<span class="help-block">{{{afFieldMessage name='followup'}}}</span>
+						{{/if}}
 					</div>
 					
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
 						<label for="statute_of_limitation" class="active">Statute of Limitation</label>
+						{{#if afFieldIsInvalid name='statute_of_limitation'}}
+						<span class="help-block">{{{afFieldMessage name='statute_of_limitation'}}}</span>
+						{{/if}}
 					</div>
 				</div>
 				<div class="row m12">
@@ -95,11 +113,11 @@
 				</div>
 				
 			</div>
-
 			<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
 			<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>
 			{{/autoForm}}
 			<!-- Form ends -->
+
 		</div>	
 	</div>
 </template>

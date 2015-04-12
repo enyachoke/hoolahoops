@@ -41,10 +41,10 @@
     		</div>
             <div class="col s3">
                 <label>Label:</label>
-                <select id="type-select">
+                <select id="label-select">
                     <option value="">All</option>-
                     {{#each labels}}
-                        <option>{{> colorElement}}</option>
+                        <option value="{{_id}}">{{> colorElement}}</option>
                     {{/each}}
                 </select>
             </div>

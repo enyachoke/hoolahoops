@@ -13,14 +13,14 @@
     {{/autoForm}}-->
 
 			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
-			 <div class="input-field col l8 m6 s12 ">
-			 	{{> afFieldInput name='name' id="project__title"}}
-    			<label for ="project__title">Name</label>
-    				{{#if afFieldIsInvalid name='name'}}
-    			<span class="help-block">{{{afFieldMessage name='name'}}}</span>
+			<div class="row">
+-				<div class="input-field col l8 m6 s12">
+-					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
+-					<label for="project__title">Title</label>
+					{{#if afFieldIsInvalid name='name'}}
+    					<span class="help-block">{{{afFieldMessage name='name'}}}</span>
     				{{/if}}
- 			 </div>
-				
+-				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="suitno" id="project__suitno"}}
 					<label for="project__suitno">Suit No</label>
@@ -28,6 +28,7 @@
 					<span class="help-block">{{{afFieldMessage name='suitno'}}}</span>
 					{{/if}}
 				</div>
+			</div>
 			
 			<div class="row">
 				<div class="input-field col l8 m6 s12">			

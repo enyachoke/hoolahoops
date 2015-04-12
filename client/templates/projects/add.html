@@ -18,14 +18,14 @@
 -					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
 -					<label for="project__title">Title</label>
 					{{#if afFieldIsInvalid name='name'}}
-    					<span class="help-block">{{{afFieldMessage name='name'}}}</span>
-    				{{/if}}
+    						<span class="help-block">{{{afFieldMessage name='name'}}}</span>
+    					{{/if}}
 -				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="suitno" id="project__suitno"}}
 					<label for="project__suitno">Suit No</label>
 					{{#if afFieldIsInvalid name='suitno'}}
-					<span class="help-block">{{{afFieldMessage name='suitno'}}}</span>
+						<span class="help-block">{{{afFieldMessage name='suitno'}}}</span>
 					{{/if}}
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
 						<label for="project__laywer" class="active">Lawyers</label>
 						{{#if afFieldIsInvalid name='lawyerIds'}}
-						<span class="help-block">{{{afFieldMessage name='lawyerIds'}}}</span>
+							<span class="help-block">{{{afFieldMessage name='lawyerIds'}}}</span>
 						{{/if}}
 					</div>
 
@@ -59,8 +59,8 @@
 						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
 						<label for="project__court" class="active">Court</label>
 						{{#if afFieldIsInvalid name='courtId'}}
-						<span class="help-block">{{{afFieldMessage name='courtId'}}}</span>
-					{{/if}}
+							<span class="help-block">{{{afFieldMessage name='courtId'}}}</span>
+						{{/if}}
 					</div>
 				</div>
 				<div class = "row m12">	
@@ -68,7 +68,7 @@
 						{{> afFieldInput name="followup"  id="followup_date"}}
 						<label for="followup_date" class="active">Followup Date</label>
 						{{#if afFieldIsInvalid name='followup'}}
-						<span class="help-block">{{{afFieldMessage name='followup'}}}</span>
+							<span class="help-block">{{{afFieldMessage name='followup'}}}</span>
 						{{/if}}
 					</div>
 					
@@ -76,7 +76,7 @@
 						{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
 						<label for="statute_of_limitation" class="active">Statute of Limitation</label>
 						{{#if afFieldIsInvalid name='statute_of_limitation'}}
-						<span class="help-block">{{{afFieldMessage name='statute_of_limitation'}}}</span>
+							<span class="help-block">{{{afFieldMessage name='statute_of_limitation'}}}</span>
 						{{/if}}
 					</div>
 				</div>

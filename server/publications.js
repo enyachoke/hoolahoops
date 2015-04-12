@@ -68,6 +68,10 @@ Meteor.startup(function () {
 		return Labels.find();
 	})
 
+	Meteor.publish('orders', function(){
+		return Orders.find();
+	})
+
 	
 });
 

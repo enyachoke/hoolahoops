@@ -9,6 +9,9 @@ Projects.after.insert(function(projectId, doc){
 	// Add follow up reminder for lawyers 1 day before
 	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.reminderStatuteDate());
 	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
+
+	// Scrape project. Do this via a job collection. Also add a recurring task for this daily
+	//scrapeCourt(project);
 });
 
 Projects.before.insert(function(id, doc){

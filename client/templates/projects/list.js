@@ -2,6 +2,9 @@ Template.projects.helpers({
     'projects': function() {
       return Projects.find();
     },
+    'orders': function() {
+      return Orders.find();
+    },
     'lawyers': function(){
     	return Lawyers.find();
     },

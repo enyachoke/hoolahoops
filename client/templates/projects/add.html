@@ -11,9 +11,17 @@
 					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
 					<label for="project__title">Title</label>
 				</div>
-				<div class="input-field col l4 m6 s12">
-					{{> afFieldInput name="suitno" id="project__suitno"}}
-					<label for="project__suitno">Suit No</label>
+				
+			</div>
+			<div class="row">
+				<div class="input-field col m4 s12">
+					{{> afQuickField name='ctype' label=false}}
+				</div>
+				<div class="input-field col m4 s12">
+					{{> afQuickField name='cno'}}
+				</div>
+				<div class="input-field col m4 s12">
+					{{> afQuickField name='cyear'}}
 				</div>
 			</div>
 			<div class="row">

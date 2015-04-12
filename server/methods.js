@@ -269,24 +269,8 @@ Meteor.methods({
 		return obj;
 	},
 	'scrapeProject': function(){
-		Nightmare = Meteor.npmRequire('nightmare');
-		
-		var nm = new Nightmare();
-
-		var data = {'name': 'you got nothing but deuces and eights kid'};
-		var callback = Meteor.bindEnvironment(function (err, nightmare) {
-		      if (err) return console.log(err);
-		      console.log(data);
-		      console.log(Nightmare);
-		      console.log('Done!');
-		      Demos.insert(data);
-		    });
-
-
-		nm.goto('http://localhost:3000')
-		    .type('input[title="Search"]', 'github nightmare')
-		    .click('.searchsubmit')
-		    .run(callback);
+		var project = Projects.findOne();
+		scrapeCourt(project);
 	}
 
 	// ,

@@ -65,11 +65,15 @@
 				{{> afFieldInput name="date" class="datepickerwa" type="date" id="deadine"}}
 				<label for="deadine" class="active">Deadline</label>
 			</div>
-			<div class="input-field col s12">
+			<div class="input-field col  s12">
 				{{> afFieldInput name="desc" type="textarea" class="materialize-textarea" id="desc"}}
 			<label for="desc">Description</label>
 
 			</div>
+			<div class="input-field col s12 ">
+						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='userIds' call='lawyers' xmultiple=true fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+						<label for="project__laywer" class="active">Lawyers</label>
+					</div>
 			<div class="input-field col s12 m12">
 				<h5>Reminders</h5>
 				<div class="input-field col s12 m6">

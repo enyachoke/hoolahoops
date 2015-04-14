@@ -110,7 +110,7 @@ Meetings.after.insert( function(userId, doc){
 		'caseId' : doc.caseId,
 		'type' : 'meetings',
 		'date' : doc.date,
-		'userId' : userId
+		'userIds' : [userId]
 	});
 
 	Meetings.update( { _id: doc._id },{ $push: { eventIds: res } });
@@ -138,7 +138,8 @@ Meetings.after.remove(function( meetingId, doc){
 
 
 //task hooks
-Tasks.after.insert( function(taskId, doc){
+Tasks.after.insert( function(userId, doc){
+	debugger;
 	console.log('hook',doc);
 	//add task to project
 	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
@@ -148,7 +149,8 @@ Tasks.after.insert( function(taskId, doc){
 		'taskId' : doc._id,
 		'caseId' : doc.caseId,
 		'type' : 'tasks',
-		'date' : doc.date
+		'date' : doc.date,
+		'userIds' : doc.userIds
 	});
 
 	Tasks.update( { _id: doc._id },{ $push: { eventIds: res } });

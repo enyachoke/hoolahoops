@@ -51,7 +51,8 @@ Hearings.after.insert( function(hearingId, doc){
 	var event_res = Events.insert({
 		'hearingId' : doc._id,
 		'caseId' : doc.caseId,
-		'type' : 'hearings'
+		'type' : 'hearings',
+		'userIds' : [doc.lawyerId]
 	});
 	console.log('event_res',event_res);
 	Hearings.update( { _id: doc._id },{ $push: { eventIds: event_res } });

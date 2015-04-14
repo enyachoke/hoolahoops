@@ -50,7 +50,7 @@
 			feed.push({
 				data : h,
 				type : 'Hearing',
-				desc : ":"+Lawyers.findOne({_id : h.lawyerId}).name,
+				desc : ":"+Meteor.users.findOne({_id : h.lawyerId}).name,
 				date : h.date.format('{dd}-{month}-{yy}'),
 				hearing : true
 			});

@@ -31,10 +31,10 @@ AutoForm.hooks({
     onSuccess:function(operation, result, template){
         Router.go('taskDetails',{'_id':result});
     }},
-    insertLawyerForm : {
-    onSuccess:function(operation, result, template){
-        Router.go('lawyerDetails',{'_id':result});
-    }},
+    // insertLawyerForm : {
+    // onSuccess:function(operation, result, template){
+    //     Router.go('lawyerDetails',{'_id':result});
+    // }},
     insertClientForm : {
     onSuccess:function(operation, result, template){
         Router.go('clientDetails',{'_id':result});

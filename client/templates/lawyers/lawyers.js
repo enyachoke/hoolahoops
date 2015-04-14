@@ -1,6 +1,6 @@
 Template.lawyers.helpers({
 	'lawyers' : function(){
-		return Lawyers.find(); 
+		return Meteor.users.find({type : 'lawyer'}); 
 	}
 });
 

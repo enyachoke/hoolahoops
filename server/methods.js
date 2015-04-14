@@ -294,6 +294,28 @@ Meteor.methods({
 		}
 		
 		return obj;
+	},
+	// { email : , name : , type : }
+	'createNewUser' : function(obj){
+		debugger;
+		var password = Random.id()
+		if( obj.email && obj.name ){
+			var options = {
+				username : obj.email ,
+				email : obj.email,
+				profile : {
+					name : obj.name
+				},
+				password : password,
+				type : obj.type || null,
+				contactNumber : obj.phone
+			};
+			var userId = Accounts.createUser(options);
+			Accounts.sendEnrollmentEmail(userId);
+			console.log(userId);
+			return userId;
+		}
+		
 	}
 
 	// ,

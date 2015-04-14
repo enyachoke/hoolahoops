@@ -97,7 +97,7 @@ Template.calendar.rendered= function(){
 			$(this).toggleClass( 'blocked' )
     	},
     	dayRender : function( date, cell ) { 
-    		if ( Events.findOne({ date : date , type : 'blocked', userId : Meteor.userId() }) ) {
+    		if ( Events.findOne({ date : date , type : 'blocked', userIds : Meteor.userId() }) ) {
     			cell.addClass('blocked')
     		}
     	},

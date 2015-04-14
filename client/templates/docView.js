@@ -1,3 +1,0 @@
-Template.docView.helpers({
-	
-});

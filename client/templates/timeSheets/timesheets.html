@@ -26,6 +26,9 @@
 		      <div class="input-field col s12">
 		        {{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
 				<label for="meeting_case">Matter</label>
+				{{#if afFieldIsInvalid name='caseId'}}
+    				<span class="help-block">{{{afFieldMessage name='caseId'}}}</span>
+    			{{/if}}
 		      </div>
 		    </div>		
 			
@@ -43,31 +46,26 @@
 	
 </template>
 
-<template name="timesheetDetail">
-	{{duration}}
-</template>
-
 <template name="timesheets">
 	<div class="row">
 		{{ > navigation}}
 	</div>
 	<div class="container ">
         <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
-        {{> esInput index="timesheets" placeholder="Search Timesheets" allDocsOnEmpty="true"}}
-		{{#ifEsIsSearching index="timesheets"}}
+        {{> esInput index="projects" placeholder="Search Timesheets" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="projects"}}
 			{{> spinner}}
 		{{else}}
 			<table class="striped centered bordered	">
 			<thead>
 				<tr>
-					<th data-field="duration">duration</th>
-					<th data-field="case_title">case title</th>
-					<th data-field="desc">description</th>
+					<th data-field="duration">Case Title</th>
+					<th data-field="desc">Total Time Spent</th>
 				</tr>
 			</thead>
 			<tbody>
-				{{#esEach index="timesheets"}}
-				{{ > timesheetRow }}
+				{{#esEach index="projects"}}
+					{{ > timesheetRow }}
 				{{/esEach}}
 			</tbody>
 		</table>	
@@ -79,10 +77,10 @@
 
 <template name="timesheetRow">
 	<tr>
-		<td>{{duration}}</td>
 		<td>{{case}}</td>
-		<td>{{type}}</td>
-		<td><a href="/timesheets/{{_id}}/edit">edit</a></td>
+		<td>{{totaltime}}</td>
+		<td><a href="/timesheets/{{_id}}">Details</a></td>
+	<!--	<td><a href="/timesheets/{{_id}}/edit">Edit</a></td> -->
 		<td> <button id='delete'>Delete</button></td>
 	</tr>
 </template>
@@ -128,4 +126,61 @@
 			{{/autoForm}}
 		</div>
 	</div>
+</template>
+
+<template name="timesheetDetail">
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	<div class="container ">
+		<div class="row">
+        <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
+			<table class="striped centered bordered	">
+			<thead>
+				<tr>
+					<th data-field="duration">Users</th>
+					<th data-field="desc">Time Spent</th>
+				</tr>
+			</thead>
+			<tbody>
+					{{#each timeloop}}
+						{{> timeDetailRow}}
+					{{/each}}
+			</tbody>
+		</table>
+		</div>
+		<div class="row">
+		<table class="striped centered bordered	">
+			<thead>
+				<tr>
+					<th data-field="duration">Timesheets</th>
+					<th data-field="user">User</th>
+					<th data-field="desc">Duration</th>
+				</tr>
+			</thead>
+			<tbody>
+					{{#each timesheetloop}}
+						{{> timesheetDetailRow}}
+					{{/each}}
+			</tbody>
+		</table>
+		</div>
+    </div>
+	
+</template>
+
+<template name="timeDetailRow">
+	<tr>
+		<td>{{user}}</td>
+		<td>{{duration}}</td>
+	</tr>
+</template>
+
+
+<template name="timesheetDetailRow">
+	<tr>
+		<td>{{type}}</td>
+		<td>{{userId}}</td>
+		<td>{{duration}}</td>
+	</tr>
 </template>

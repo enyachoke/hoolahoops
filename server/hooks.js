@@ -99,7 +99,7 @@ Meetings.before.insert( function( userId, doc){
 	doc.userId = userId;
 });
 
-Meetings.after.insert( function(meetingId, doc){
+Meetings.after.insert( function(userId, doc){
 	debugger;
 	// add meeting to project
 	Projects.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
@@ -109,7 +109,8 @@ Meetings.after.insert( function(meetingId, doc){
 		'meetingId' : doc._id,
 		'caseId' : doc.caseId,
 		'type' : 'meetings',
-		'date' : doc.date
+		'date' : doc.date,
+		'userId' : userId
 	});
 
 	Meetings.update( { _id: doc._id },{ $push: { eventIds: res } });

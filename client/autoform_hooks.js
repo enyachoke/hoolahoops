@@ -18,11 +18,6 @@ AutoForm.hooks({
         Router.go('hearingDetails',{'_id':result});
     }},
     insertMeetingForm : {
-        // 'before': {
-        //     method : function(){
-        //         debugger;   
-        //     }
-        // },
         onSuccess:function(operation, result, template){
             Router.go('meetingDetails',{'_id':result});
         }

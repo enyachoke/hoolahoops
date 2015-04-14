@@ -299,16 +299,16 @@ Meteor.methods({
 	'createNewUser' : function(obj){
 		debugger;
 		var password = Random.id()
-		if( obj.email && obj.name ){
+		if( obj && obj.username && obj.name ){
 			var options = {
-				username : obj.email ,
-				email : obj.email,
+				username : obj.username ,
+				email : obj.username,
 				profile : {
 					name : obj.name
 				},
 				password : password,
 				type : obj.type || null,
-				contactNumber : obj.phone
+				contactNumber : obj.contactNumber || null
 			};
 			var userId = Accounts.createUser(options);
 			Accounts.sendEnrollmentEmail(userId);

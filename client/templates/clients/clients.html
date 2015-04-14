@@ -10,11 +10,11 @@
 						<label for="name">Name</label>
 					</div>
 					<div class="input-field col s8">
-						{{> afFieldInput name="phone" type="number" id="ph"}}
+						{{> afFieldInput name="contactNumber" type="number" id="ph"}}
 						<label for="ph">Phone Number</label>
 					</div>
 					<div class="input-field col s8">
-						{{> afFieldInput name="email" type="email" id="email"}}
+						{{> afFieldInput name="username" type="email" id="email"}}
 						<label for="email">E-Mail</label>
 					</div>
 				</div>
@@ -39,8 +39,8 @@
 		  	</div>
 	</div>
 	<ul class="collection">
-      <li class="collection-item">Email : {{email}}</li>
-      <li class="collection-item">Phone Number : {{phone}}</li>
+      <li class="collection-item">Email : {{username}}</li>
+      <li class="collection-item">Phone Number : {{contactNumber}}</li>
 	</ul>
 	<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
 	<a class="delete waves-effect waves-light btn">Delete</a>
@@ -62,13 +62,13 @@
 						<label for="name">Name</label>
 					</div>
 					<div class="input-field col s8">
-						{{> afFieldInput name="phone" type="number" id="ph"}}
+						{{> afFieldInput name="contactNumber" type="number" id="ph"}}
 						<label for="ph">Phone Number</label>
 					</div>
-					<div class="input-field col s8">
+					<!-- <div class="input-field col s8">
 						{{> afFieldInput name="email" type="email" id="email"}}
 						<label for="email">E-Mail</label>
-					</div>
+					</div> -->
 				</div>
 			
 				
@@ -98,9 +98,11 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-					{{#esEach index="clients"}}
+					<!-- {{#esEach index="clients"}} -->
+					{{ #each clients }}
 					{{ > clientRow }}
-					{{/esEach}}
+					{{ /each }}
+					<!-- {{/esEach}} -->
 					</tbody>
 			</table>
 		{{/ifEsIsSearching}}
@@ -112,8 +114,8 @@
 <template name='clientRow'>
 	<tr>
 	<td>{{name}}</td>
-	<td>{{phone}}</td>
-	<td>{{email}}</td>
+	<td>{{contactNumber}}</td>
+	<td>{{username}}</td>
 	<td><a class="waves-effect waves-light btn col s8" href='/clients/{{_id}}/edit'>Edit</a></td>
 	<td><a class="waves-effect waves-light btn col s8" href="/clients/{{_id}}">Details</a></td>
 	</tr>

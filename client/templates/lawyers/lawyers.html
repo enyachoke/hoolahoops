@@ -18,9 +18,11 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-					{{#esEach index="lawyers"}}
+					<!-- {{#esEach index="lawyers"}} -->
+					{{ #each lawyers}}
 					{{ > rowLawyer }}
-					{{/esEach}}
+					{{ /each }}
+					<!-- {{/esEach}} -->
 					</tbody>
 			</table>
 		{{/ifEsIsSearching}}
@@ -41,14 +43,14 @@
 					<label for="name">Name</label>
 				</div>
 				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput name="phone" type="number" id="ph"}}
+					{{> afFieldInput name="contactNumber" type="number" id="ph"}}
 					<label for="ph">Phone Number</label>
 				</div>
 				<div class="input-field col l8 m6 s12">
 					{{> afFieldInput name="email" type="email" id="email"}}
 					<label for="email">E-Mail</label>
 				</div>	
-			</div>
+			</div>disabled
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/lawyers" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
@@ -60,7 +62,7 @@
 	<tr>
 		<td>{{name}}</td>
 		<td>{{contactNumber}}</td>
-		<td>{{email}}</td>
+		<td>{{username}}</td>
 		<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}/edit'>Edit</a></td>
 		<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}'>Details</a></td>
 	</tr>
@@ -79,13 +81,14 @@
 					<label for="name">Name</label>
 				</div>
 				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput name="phone" type="number" id="ph"}}
+					{{> afFieldInput name="contactNumber" type="number" id="ph"}}
 					<label for="ph">Phone Number</label>
 				</div>
-				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput name="email" type="email" id="email"}}
+				<!-- <div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="username" type="email" id="email"}}
 					<label for="email">E-Mail</label>
-				</div>	
+				</div>	 -->
+				
 			</div>
 		<button class="waves-effect waves-light btn" type="submit">Update</button>
 		<a class="waves-effect waves-teal btn-flat" href="/lawyers" style="position: absolute;">Cancel</a>
@@ -106,8 +109,8 @@
 			  	</div>
 		</div>
 		<ul class="collection">
-	      <li class="collection-item">Email : {{email}}</li>
-	      <li class="collection-item">Phone Number : {{phone}}</li>
+	      <li class="collection-item">Email : {{username}}</li>
+	      <li class="collection-item">Phone Number : {{contactNumber}}</li>
 		</ul>
 		<a class="delete waves-effect waves-light btn">Delete</a>
 		<a class="waves-effect waves-light btn" href="/lawyers/{{_id}}/edit">Edit</a>

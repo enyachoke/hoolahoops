@@ -1,29 +1,40 @@
 Nightmare = Meteor.npmRequire('nightmare')
 
-scrapeCourt = function(project) {
+addScraperJob = function(project) {
 	// Logic to find relevant scrape function based on court and scrape results automatically
-	var emailLawyers = function() {
-		var lawyers = project.lawyers();
+	// TODO: Faulty logic. Remove template from here and move this into helpers
+	// remove the old scraper job here
+	removeScraperJob(project);
 
-		// if new links, notify lawyers or whatever group there is that new orders have been fetched
-		if(checkNewLinks(project, links)){
-			project.insertOrders(links);
-			// Insert links in database here and then notify lawyers via email
-		}
-	}
+	// Create a new scraper job
+	var job = myJobs.createJob('addScraper', {'project': project});
+	job.repeat({
+	  schedule: myJobs.later.parse.text('every 2 mins')   // Rerun this job every 5 minutes
+	});
+	job.retry({retries: 4, wait: 2*60*1000});
+	job.save();
+}
 
-	scrapeDelhiHighCourt(project, emailLawyers);
+removeScraperJob = function(project) {
+	var prevJobEntries = myJobs.find({'data.project._id': project._id, 'type':'addScraper'}).fetch();
+	prevJobEntries.forEach(function(entry){
+		var prevJob = new Job(myJobs, entry);
+		prevJob.pause();
+		prevJob.cancel();
+		prevJob.remove();
+	});
 }
 
 checkNewLinks = function(project, links) {
 	// Take order and return link
+	debugger;
 	var mapFn = function(order) {
 		return order.link;
 	}
 	var projectLinksArray = _.map(project.orders(), mapFn);
 	var linkArray = _.map(links, mapFn)
 	
-	return !(_.isEqual(projectLinksArray, linkArray));
+	return !(_.isEqual(projectLinksArray.sort(), linkArray.sort()));
 }
 
 scrapeDelhiHighCourt = function(project, callback) {

@@ -59,6 +59,7 @@ var addScraperProcessor = function(job, cb) {
         // if new links, notify lawyers or whatever group there is that new orders have been fetched
         if(checkNewLinks(project, links)){
             project.insertOrders(links);
+            project.orders = project.orders();
             // Insert links in database here and then notify lawyers via email
             addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), new Date())
         }

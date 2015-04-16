@@ -29,11 +29,11 @@ Accounts.onCreateUser(function( options, user ){
             }
         }
       }  		
-  	}
-    if (options){
-      user.type = options.type || null ;
-      user.contactNumber = options.contactNumber || null ; 
-      user.name = options.profile && options.profile.name || null;
+  	} 
+    if (options && options.type && options.contactNumber && options.profile && options.profile.name ){
+      user.type = options.type ;
+      user.contactNumber = options.contactNumber ; 
+      user.name = options.profile && options.profile.name ;
     }
     
   	return user;

@@ -1,7 +1,6 @@
 AutoForm.hooks({
     insertProjectForm: {
     onSuccess:function(operation, result, template){
-
         //create project root in google drive
         var project = Projects.findOne({_id : result });
         if ( project.driveFolderId ==undefined || project.driveFolderId == "" ){
@@ -9,8 +8,6 @@ AutoForm.hooks({
                 Projects.update({_id : result},{ $set :{ driveFolderId : res.result.id }});
             });
         }
-        
-
         Router.go('projectDetails',{'_id':result});
     }},
     insertHearingForm : {
@@ -28,7 +25,7 @@ AutoForm.hooks({
     }},
     insertLawyerForm : {
     onSuccess:function(operation, result, template){
-        Router.go('lawyerDetails',{'_id':result});
+        Router.go('lawyers'); 
     }},
     insertClientForm : {
     onSuccess:function(operation, result, template){

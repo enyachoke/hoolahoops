@@ -298,14 +298,24 @@ div.nav-wrapper a.login-close-text:before{
   left: 0;
   margin: auto;
 }
-
+div.colorElement-container{
+  margin: 5px 0px;
+}
 /* ColorElement Stling for the colored labels */
 div.colorElement{
   background-image: none !important; 
   font-weight: bold !important;
-  border-radius: 3px;
-  padding: 5px;
+  padding: 4px;
   display:table-cell;
   text-align: center;
-  min-width: 100px; 
+  width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+div.colorElement-container:first-child{
+  margin-top: 0px;
+}
+div.colorElement-container:last-child{
+  margin-bottom: 0px;
 }

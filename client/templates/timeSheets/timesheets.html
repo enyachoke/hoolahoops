@@ -47,10 +47,8 @@
 </template>
 
 <template name="timesheets">
-	<div class="row">
 		{{ > navigation}}
-	</div>
-	<div class="container ">
+	<div class="container project-list-container">
         <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
         {{> esInput index="projects" placeholder="Search Timesheets" allDocsOnEmpty="true"}}
 		{{#ifEsIsSearching index="projects"}}
@@ -132,7 +130,7 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	<div class="container ">
+	<div class="container project-list-container">
 		<div class="row">
         <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
 			<table class="striped centered bordered	">
@@ -180,7 +178,7 @@
 <template name="timesheetDetailRow">
 	<tr>
 		<td>{{type}}</td>
-		<td>{{userId}}</td>
+		<td>{{user}}</td>
 		<td>{{duration}}</td>
 	</tr>
 </template>

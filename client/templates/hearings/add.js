@@ -28,20 +28,18 @@ Template.hearingAdd.helpers({
 		return Session.get('amount_by_type');
 	},
 	'pickadateOptions' : function(){
-		// var disable = [];
-		// debugger;
-		// var lawyerId = AutoForm.getFieldValue('insertHearingForm','lawyerId');
-		// if(lawyerId){
-		// 	_.each(Events.find({ userIds : lawyerId, type : 'blocked' }).fetch(),function(event){
-		// 		if( event && event.date){
-		// 			disable.push(new Date(event.date))	;
-		// 		}
-		// 	});
-		// 	console.log('returned array', disable);
-			return {
-				//disable : [new Date()],
-				min: Session.get('min')
-			}
-		//}		
+		var disable = [];
+		var lawyerId = AutoForm.getFieldValue('insertHearingForm','lawyerId');
+		if(lawyerId){
+			_.each(Events.find({ userIds : lawyerId, type : 'blocked' }).fetch(),function(event){
+				if( event && event.date){
+					disable.push(new Date(event.date))	;
+				}
+			});
+		}	
+		Session.set('disable',disable);
+		return {
+			disable : Session.get('disable')
+		}	
 	}   
 });

@@ -43,7 +43,7 @@ scrapeDelhiHighCourt = function(project, callback) {
 	var handleResult = Meteor.bindEnvironment(function(p){
 		links = p;
 		console.log(links);
-		if(callback)
+		if(callback && links.length)
 			callback.call(this);
 	})
 

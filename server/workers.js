@@ -61,7 +61,8 @@ var addScraperProcessor = function(job, cb) {
             project.insertOrders(links);
             project.orders = project.orders();
             // Insert links in database here and then notify lawyers via email
-            addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), new Date())
+            if(links.length)
+                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), new Date())
         }
 
         // Mark job as done and trigger callback

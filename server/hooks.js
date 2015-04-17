@@ -1,4 +1,4 @@
-// Project hooks
+// Project hook(er)s?
 Projects.after.insert(function(projectId, doc){
 	Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
 
@@ -9,7 +9,13 @@ Projects.after.insert(function(projectId, doc){
 	// Add follow up reminder for lawyers 1 day before
 	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.reminderStatuteDate());
 	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
+
+	addScraperJob(doc);
 });
+
+Projects.after.update(function(id, doc){
+	addScraperJob(doc);
+})
 
 Projects.before.insert(function(id, doc){
 	var shortId = Meteor.npmRequire('shortid');
@@ -17,25 +23,28 @@ Projects.before.insert(function(id, doc){
 });
 
 Projects.after.remove(function (userId, doc) {
-  // ...remove hearings 
-  _.each(doc.hearingIds,function(id){
-  	Hearings.remove({_id : id});
-  });
+	// TODO: We should have a system like ruby on rails activerecord where user just specifies dependencies and the dependent fields are added removed automatically
+	// ...remove hearings 
+	_.each(doc.hearingIds,function(id){
+		Hearings.remove({_id : id});
+	});
 
-  //...remove meetings
-  _.each(doc.meetingIds,function(id){
-  	Meetings.remove({_id : id});
-  });
+	//...remove meetings
+	_.each(doc.meetingIds,function(id){
+		Meetings.remove({_id : id});
+	});
 
-  //...remove tasks
-  _.each(doc.taskIds,function(id){
-  	Tasks.remove({_id : id});
-  });
+	//...remove tasks
+	_.each(doc.taskIds,function(id){
+		Tasks.remove({_id : id});
+	});
 
-  //...remove timesheets
-  _.each(doc.timesheetIds,function(id){
-  	Timesheets.remove({_id : id});
-  })
+	//...remove timesheets
+	_.each(doc.timesheetIds,function(id){
+		Timesheets.remove({_id : id});
+	})
+
+  removeScraperJob(doc);
 
 });
 

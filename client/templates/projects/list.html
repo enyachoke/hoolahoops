@@ -39,6 +39,15 @@
     				{{/each}}
     			</select>
     		</div>
+            <!--div class="col s3">
+                <label>Label:</label>
+                <select id="type-select">
+                    <option value="">All</option>-
+                    {{#each labels}}
+                        <option>{{> colorElement}}</option>
+                    {{/each}}
+                </select>
+            </div-->
     	</div>
 		{{#ifEsIsSearching index="projects"}}
 			{{> spinner}}
@@ -53,6 +62,7 @@
 						<!-- <th>Court</th> -->
 						<!-- <th>Last Hearing</th> -->
 						<th>Next Hearing</th>
+                        <th>Labels</th>
 					</tr>
 				</thead>
 				<tbody>

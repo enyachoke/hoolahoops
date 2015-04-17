@@ -1,0 +1,20 @@
+.sp-palette-container{
+	padding: 0px;
+	margin-bottom: 0px;
+}
+
+.sp-thumb-el{
+	margin: 0 !important;
+	border: 0 !important;
+	width: 25px !important;
+	height: 25px !important;
+}
+
+.sp-replacer{
+	padding: 2px;
+	background: none;
+}
+
+.sp-preview{
+	width: 49px;
+}

@@ -5,22 +5,23 @@
 		<h4 class="teal form-header">Add a matter</h4>
 		<div class="row form-container">
 
-			<!-- Form starts>
-			{{#autoForm id="insertClientForm" doc=this type="method" meteormethod='saveClientData' schema='clientSchema'}}
-		<div>{{> afFieldInput name="name"}}</div>
-        <div>{{> afFieldInput  type='xautocomplete' formid="insertClientForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Clients' renderfunction='renderClients'}}</div>
-        <button class="btn btn-primary" type="submit">Insert</button>
-    {{/autoForm}}-->
-
 			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
 			<div class="row">
 				<div class="input-field col l8 m6 s12">
 					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
 					<label for="project__title">Title</label>
 				</div>
-				<div class="input-field col l4 m6 s12">
-					{{> afFieldInput name="suitno" id="project__suitno"}}
-					<label for="project__suitno">Suit No</label>
+				
+			</div>
+			<div class="row">
+				<div class="input-field col m4 s12">
+					{{> afQuickField name='ctype' label=false}}
+				</div>
+				<div class="input-field col m4 s12">
+					{{> afQuickField name='cno'}}
+				</div>
+				<div class="input-field col m4 s12">
+					{{> afQuickField name='cyear'}}
 				</div>
 			</div>
 			<div class="row">
@@ -91,7 +92,7 @@
 
 				<div class="row m12">
 					<h5>Labels</h5>
-					{{> afQuickField name='labelIds' multiple='true'}}
+					{{> afQuickField name='labelIds'}}
 				</div>
 				
 			</div>

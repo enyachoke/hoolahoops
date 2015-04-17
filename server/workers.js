@@ -1,5 +1,5 @@
-var workers = Job.processJobs('myJobQueue', 'addEmail',
-  function(job, cb) {
+// Job processing functions are written in the format job, cb
+var addEmailProcessor = function(job, cb) {
     var tos = _.map(job.data.to, function(email){
         if(typeof email == 'string')
             return {'email': email};
@@ -48,5 +48,30 @@ var workers = Job.processJobs('myJobQueue', 'addEmail',
     }
 
     cb();
-  }
-);
+}
+
+var addScraperProcessor = function(job, cb) {
+    // Give the poor little project his helpers back
+    var project = Projects.findOne(job.data.project._id);
+    var emailLawyers = function() {
+        //var lawyers = project.lawyers(); Notify the lawyers
+
+        // if new links, notify lawyers or whatever group there is that new orders have been fetched
+        if(checkNewLinks(project, links)){
+            project.insertOrders(links);
+            project.orders = project.orders();
+            // Insert links in database here and then notify lawyers via email
+            if(links.length)
+                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), new Date())
+        }
+
+        // Mark job as done and trigger callback
+        job.done();
+        cb();
+    }
+
+    scrapeDelhiHighCourt(project, emailLawyers);
+}
+
+var emailWorkers = Job.processJobs('myJobQueue', 'addEmail', addEmailProcessor);
+var scraperWorkers = Job.processJobs('myJobQueue', 'addScraper', addScraperProcessor);

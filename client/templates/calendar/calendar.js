@@ -117,6 +117,7 @@ Template.calendar.rendered= function(){
 				}
 			} else if (event.type == 'hearings' && event.color) {
 				element.children().css('background',event.color);
+				element.find('.fc-event-title').css('color',complement(event.color));
 			}
 	    },
 	    viewRender : function( view, element ){

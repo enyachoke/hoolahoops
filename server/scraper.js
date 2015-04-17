@@ -27,7 +27,7 @@ removeScraperJob = function(project) {
 
 checkNewLinks = function(project, links) {
 	// Take order and return link
-	debugger;
+	//debugger;
 	var mapFn = function(order) {
 		return order.link;
 	}

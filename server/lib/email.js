@@ -12,7 +12,6 @@ addEmailReminder = function(doc, template, message, to, date) {
 	doc.message = message
 	var merge_vars = toMandrillArray(doc);
 	var job = myJobs.createJob('addEmail', {'name': 'Send Email', 'template': template, 'merge_vars': merge_vars, 'to': to});
-	debugger
 	var delayMilliSeconds = Math.max(0, date - new Date());
 	console.log(delayMilliSeconds);
 	job.retry({retries: 4, wait: 2*60*1000});

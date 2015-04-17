@@ -28,7 +28,7 @@
 			  			<h6 class="grey-text" >CLIENT</h6>
 			  			<p>
 			  			{{#each clients}}
-							{{name}}
+							<a href='/clients/{{_id}}'>{{name}}</a>
 						{{/each}}
 						</p>
 
@@ -49,7 +49,7 @@
 			  		<div class="col s6">
 			  			<h6 class="grey-text">LAWYER</h6>
 			  			<p>{{#each lawyers}}
-							{{name}}
+							<a href='/lawyers/{{_id}}'>{{name}}</a>
 						{{/each}}</p>
 			  		</div>
 			  		<div class="col s6">

@@ -295,7 +295,7 @@ Meteor.methods({
 		}
 		
 		return obj;
-
+	},
 	// { email : , name : , type : }
 	'createNewUser' : function(obj){
 		debugger;
@@ -316,7 +316,7 @@ Meteor.methods({
 			console.log(userId);
 			return userId;
 		}
-
+	},
 	'scrapeProject': function(){
 		var project = Projects.findOne();
 		scrapeCourt(project);

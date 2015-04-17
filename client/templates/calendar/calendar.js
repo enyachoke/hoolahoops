@@ -12,14 +12,15 @@ Template.calendar.rendered= function(){
 		switch( e.type ){
 		case 'hearings' : 
 				event_title = project.name;
-				court = Courts.findOne(project.courtId).name;
+				court = Courts.findOne(project.courtId);
 				hearing = Hearings.findOne({_id : e.hearingId });
 				hearings.push({
-					title : 'Hearing:'+event_title+","+court,
+					title : 'Hearing:'+event_title+","+court.name,
 					date : hearing.date,
 					type : e.type,
 					url : '/hearings/'+e.hearingId,
-					className : 'hearing'
+					className : 'hearing',
+					color : court.color || null
 				});
 			
 			break;
@@ -114,9 +115,9 @@ Template.calendar.rendered= function(){
 				}else{
 					element.find('.fc-event-title').prepend('<input class="chk-complete" id='+event.task_id+' type="checkbox">')
 				}
+			} else if (event.type == 'hearings' && event.color) {
+				element.children().css('background',event.color);
 			}
-			
-//	        debugger;
 	    },
 	    viewRender : function( view, element ){
 	    	debugger;

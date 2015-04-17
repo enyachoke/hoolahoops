@@ -202,6 +202,7 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
 			},function(err,res){
 				done(err,res);
+				debugger;
 				//console.log('list',err,res);
 			});
 		});

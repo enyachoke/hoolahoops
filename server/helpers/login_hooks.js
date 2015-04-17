@@ -17,6 +17,8 @@ Accounts.onCreateUser(function( options, user ){
                 oldUser.services[service] = user.services[service];
                   Meteor.users.remove(oldUser._id);
                   user = oldUser
+                  debugger;
+                  if ( !user.profile ) {user.profile = {};}
                   user.profile.name = user.services[service].name
               } 
             }else{
@@ -34,6 +36,8 @@ Accounts.onCreateUser(function( options, user ){
       user.type = options.type ;
       user.contactNumber = options.contactNumber ; 
       user.name = options.profile && options.profile.name ;
+      user.profile = {};
+      user.profile.name = user.name;
     }
     
   	return user;

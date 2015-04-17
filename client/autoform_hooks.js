@@ -29,7 +29,7 @@ AutoForm.hooks({
     }},
     insertClientForm : {
     onSuccess:function(operation, result, template){
-        Router.go('clientDetails',{'_id':result});
+        Router.go('clientsList');
     }},
     insertCourtForm : {
     onSuccess:function(operation, result, template){

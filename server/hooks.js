@@ -183,23 +183,6 @@ Timesheets.after.remove(function(id, doc){
 	Projects.update( { _id: doc.caseId }, { $pull: { timesheetIds: doc._id } } );
 });
 
-InboundMails.after.insert( function(id, doc){
-	var events = JSON.parse(doc.mandrill_events);
-	_.each(events,function(event){
-		var subject = event.msg.subject;
-		var caseId = subject.match(/[^[\]]+(?=])/g)[0];
-		var project = Projects.findOne({ _id : caseId });
-		if ( project ){
-			Communications.insert({
-				caseId : caseId,
-				from_email : event.msg.from_email,
-				subject : subject,
-				text : event.msg.text 	
-			});
-		} 
-	});
-
-});
 
 
 

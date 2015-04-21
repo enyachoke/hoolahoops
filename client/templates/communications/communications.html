@@ -1,0 +1,28 @@
+<template name="communications">
+	{{ #each projects}}
+	<a href="/projects/{{_id}}/communications">{{ name }}</a>
+	{{ /each }}
+</template>
+
+<template name="communicationsCaseWise">
+	<table>
+		<thead>
+			<th>From Email</th>
+			<th>Subject</th>
+		</thead>
+		<tbody>
+			{{ #each this }}
+			<tr>
+				<td>{{from_email}}</td>
+				<td>{{subject}}</td>
+				<td><a href="/projects/{{caseId}}/communications/{{_id}}">link</a></td>
+			</tr>
+			{{ /each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="communicationDetails">
+	{{subject}},{{from_email}},{{text}}
+</template>
+

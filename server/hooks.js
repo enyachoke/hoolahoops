@@ -200,4 +200,3 @@ Timesheets.after.remove(function(id, doc){
 
 
 
-

@@ -72,6 +72,10 @@ Meteor.startup(function () {
 		return Orders.find();
 	})
 
+	Meteor.publish('communications', function(){
+		return Communications.find();
+	})
+
 	
 });
 

@@ -1,77 +1,106 @@
 Meteor.startup(function () {
+	var publishWithRoles = function(namespace, func, roleString){
+		
+		var roleString = roleString || namespace;
+		
+		var role = 'view-' + roleString;
+		
+		var userId = this.userId;
+		
+		Meteor.publish(namespace, function(){
+			//debugger;
+			console.log("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
+			//console.log(roleString, role, userId, Roles.userIsInRole(userId, role));
+			if(this.userId && Roles.userIsInRole(this.userId, role))
+				return func.call(this);
+			else{
+				var error = new Meteor.Error(401, "Access denied: you cannot view assignments unless you are a member of this group.");
+				debugger;
+				this.error(error);
+			}
+		});
+	}
+
     // Publish the collection. TODO: Only publish part of the collection to which the user has permissions. Also how do we limit data size in meteor? Should be handled with pagination.
-  Meteor.publish('clients', function() {
-    return Clients.find();
-  });
+	publishWithRoles('clients', function() {
+		return Clients.find();
+	});
 
-  Meteor.publish('projects', function() {
-    return Projects.find();
-  })
+	publishWithRoles('projects', function() {
+		return Projects.find();
+	});
 
-  Meteor.publish('lawyers', function(){
-    return Lawyers.find();
-  });
+	publishWithRoles('lawyers', function(){
+		return Lawyers.find();
+	});
 
-  Meteor.publish('courts', function(){
-    return Courts.find();
-  })
+	publishWithRoles('courts', function(){
+		return Courts.find();
+	});
 	
-	Meteor.publish('hearings', function(){
+	publishWithRoles('hearings', function(){
 		return Hearings.find();
-	})
-	
-	Meteor.publish('events', function(){
+	});
+
+	publishWithRoles('events', function(){
 		return Events.find();
-	})
-	
-	Meteor.publish('tasks', function(){
+	});
+
+	publishWithRoles('tasks', function(){
 		return Tasks.find();
-	})
-	
-	Meteor.publish('meetings', function(){
+	});
+
+	publishWithRoles('meetings', function(){
 		return Meetings.find();
-	})
+	});
 
-  Meteor.publish('allJobs', function(){
-    return myJobs.find();
-  })
+	publishWithRoles('allJobs', function(){
+		return myJobs.find();
+	});
 	
-	Meteor.publish('timesheets', function(){
+	publishWithRoles('timesheets', function(){
 		return Timesheets.find();
-	})
+	});
 	
-	Meteor.publish('events1', function(){
+	publishWithRoles('events1', function(){
 		return Events1.find();
-	})
+	});
 	
-	Meteor.publish('tasks', function(){
+	publishWithRoles('tasks', function(){
 		return Tasks.find();
-	})
+	});
 
-	Meteor.publish('bills', function(){
+	publishWithRoles('bills', function(){
 		return Bills.find();
-	})
+	});
 
-	Meteor.publish('timesheets', function(){
+	publishWithRoles('timesheets', function(){
 		return Timesheets.find();
-	})
+	});
 	
-	Meteor.publish('events1', function(){
+	publishWithRoles('events1', function(){
 		return Events1.find();
-	})
+	});
 
-	Meteor.publish('bills', function(){
+	publishWithRoles('bills', function(){
 		return Bills.find();
-	})
+	});
 
-	Meteor.publish('labels', function(){
+	publishWithRoles('labels', function(){
 		return Labels.find();
-	})
+	});
 
-	Meteor.publish('orders', function(){
+	publishWithRoles('orders', function(){
 		return Orders.find();
-	})
+	});
 
-	
+	publishWithRoles('groups', function(){
+		return Groups.find();
+	});
+
+	// TODO: Only do this if can access resource
+	publishWithRoles(null, function (){ 
+	  return Meteor.roles.find({})
+	});
 });
 

@@ -183,8 +183,31 @@ Timesheets.after.remove(function(id, doc){
 	Projects.update( { _id: doc.caseId }, { $pull: { timesheetIds: doc._id } } );
 });
 
+// Remove a user from other groups before making it a member of the current group
+Groups.before.insert(function(id, doc){
+	removeUsersFromGroups(doc, false);
+	if(doc.userIds)
+		Roles.removeUsersFromRoles(doc.userIds, getAllRolesTags());
+})
 
+// On deleting a group, it's users permissions should be revoked
+Groups.after.remove(function(id, doc){
+	// Remove frmo all groups including itself
+	removeUsersFromGroups(doc, true);
+	Roles.removeUsersFromRoles(doc.userIds, getAllRolesTags());
+});
 
+// Update his roles to the docs' current role
+Groups.after.insert(function(id, doc){
+	Roles.addUsersToRoles(doc.userIds, doc.roles);
+});
 
+Groups.after.update(function(id, doc){
+	// Reset everything
+	removeUsersFromGroups(this.previous, false);
+	if(this.previous.userIds)
+		Roles.removeUsersFromRoles(this.previous.userIds, getAllRolesTags());
 
-
+	if(doc.userIds)
+		Roles.addUsersToRoles(doc.userIds, doc.roles);
+});

@@ -3,15 +3,37 @@
 		<div class="nav-wrapper teal">
 		  <a href="/projects" class="brand-logo">TCL-India</a>
 		  <ul id="nav-mobile" class="right side-nav">
-		    <li class="{{isActiveRoute regex='projects'}}"><a href="/projects">Projects</a></li>
-		    <li class="{{isActiveRoute regex='calendar'}}"><a href="/calendar">Calendar</a></li>		    
-		    <li class="{{isActiveRoute regex='bills'}}" ><a href="/bills">Accounts</a></li>
-		    <!--li class="{{isActiveRoute regex='docs'}}" ><a href="/documents">Documents</a></li-->
-			<li class="{{isActiveRoute regex='timesheets'}}" ><a href="/timesheets">Timesheets</a></li>
-			<li class="{{isActiveRoute regex='lawyers'}}" ><a href="/lawyers">Lawyers</a></li>
-			<li class="{{isActiveRoute regex='clients'}}" ><a href="/clients">Clients</a></li>
-			<li class="{{isActiveRoute regex='courts'}}" ><a href="/courts">Courts</a></li>
-			<li class="{{isActiveRoute regex='labels'}}" ><a href="/labels">Labels</a></li>
+		    {{#if isInRole 'view-projects'}}
+		    	<li class="{{isActiveRoute regex='projects'}}"><a href="/projects">Projects</a></li>
+		    {{/if}}
+		    {{#if isInRole 'view-calendars'}}
+		    	<li class="{{isActiveRoute regex='calendar'}}"><a href="/calendar">Calendar</a></li>
+		    {{/if}}
+		    {{#if isInRole 'view-bills'}}		    
+		    	<li class="{{isActiveRoute regex='bills'}}" ><a href="/bills">Accounts</a></li>
+		    {{/if}}
+		    {{#if isInRole 'view-documents'}}
+		    	<li class="{{isActiveRoute regex='docs'}}" ><a href="/documents">Documents</a></li>
+		    {{/if}}
+		    {{#if isInRole 'view-timesheets'}}
+				<li class="{{isActiveRoute regex='timesheets'}}" ><a href="/timesheets">Timesheets</a></li>
+			{{/if}}
+			<!-- Leaving these two out coz they'll be merged into users -->
+			{{#if isInRole 'view-lawyers'}}
+				<li class="{{isActiveRoute regex='lawyers'}}" ><a href="/lawyers">Lawyers</a></li>
+			{{/if}}
+			{{#if isInRole 'view-clients'}}
+				<li class="{{isActiveRoute regex='clients'}}" ><a href="/clients">Clients</a></li>
+			{{/if}}
+			{{#if isInRole 'view-courts'}}
+				<li class="{{isActiveRoute regex='courts'}}" ><a href="/courts">Courts</a></li>
+			{{/if}}
+			{{#if isInRole 'view-labels'}}
+				<li class="{{isActiveRoute regex='labels'}}" ><a href="/labels">Labels</a></li>
+			{{/if}}
+			{{#if isInRole 'view-groups'}}
+				<li class="{{isActiveRoute regex='groups'}}" ><a href="/groups">Groups</a></li>
+			{{/if}}
 			<li class="teal">{{> loginButtons align="right"}}</li>
 			
 		    <!--li><a href="/hearings">Hearings</a></li-->

@@ -1,28 +1,57 @@
 <template name="communications">
-	{{ #each projects}}
-	<a href="/projects/{{_id}}/communications">{{ name }}</a>
-	{{ /each }}
+	<div class="row">
+		{{> navigation}}
+	</div>
+	<div class="container">
+		<ul class="collection">
+		{{ #each projects}}
+		<li class="collection-item"><a href="/projects/{{_id}}/communications">Case Title : {{ name }}</a></li>
+		{{ /each }}
+		</ul>
+	</div>
 </template>
 
 <template name="communicationsCaseWise">
-	<table>
-		<thead>
-			<th>From Email</th>
-			<th>Subject</th>
-		</thead>
-		<tbody>
-			{{ #each this }}
-			<tr>
-				<td>{{from_email}}</td>
-				<td>{{subject}}</td>
-				<td><a href="/projects/{{caseId}}/communications/{{_id}}">link</a></td>
-			</tr>
-			{{ /each}}
-		</tbody>
-	</table>
+	<div class="row">
+		{{> navigation}}
+	</div>
+	<div class="container">
+		<table class="striped bordered" >
+			<thead>
+				<th>From Email</th>
+				<th>Subject</th>
+			</thead>
+			<tbody>
+				{{ #each this }}
+				<tr>
+					<td>{{from_email}}</td>
+					<td>{{subject}}</td>
+					<td><a href="/projects/{{caseId}}/communications/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
+				</tr>
+				{{ /each}}
+			</tbody>
+		</table>
+	</div>
 </template>
 
 <template name="communicationDetails">
-	{{subject}},{{from_email}},{{text}}
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container ">
+		<div class="row">
+			  	<div class="col s12  project-title">
+			  		<h3> Subject : {{subject}}</h3>
+			  	</div>
+		</div>
+		<ul class="collection">
+	      <li class="collection-item">Message from {{from_email}}</li>
+	      <li class="collection-item">Message Text : {{text}}</li>
+		</ul>
+		<a href="/communications" class="waves-effect waves-light btn">Back</a>
+	</div>
+
+
 </template>
 

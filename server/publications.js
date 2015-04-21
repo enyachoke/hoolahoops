@@ -68,6 +68,9 @@ Meteor.startup(function () {
 		return Labels.find();
 	})
 
+	Meteor.publish('communications', function(){
+		return Communications.find();
+	})
 	
 });
 

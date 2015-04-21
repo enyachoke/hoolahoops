@@ -1,23 +1,19 @@
 Meteor.startup(function () {
 	var publishWithRoles = function(namespace, func, roleString){
-		
 		var roleString = roleString || namespace;
-		
 		var role = 'view-' + roleString;
-		
-		var userId = this.userId;
 		
 		Meteor.publish(namespace, function(){
 			//debugger;
 			console.log("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
 			//console.log(roleString, role, userId, Roles.userIsInRole(userId, role));
-			if(this.userId && Roles.userIsInRole(this.userId, role))
+			//if(this.userId && Roles.userIsInRole(this.userId, role))
 				return func.call(this);
-			else{
-				var error = new Meteor.Error(401, "Access denied: you cannot view assignments unless you are a member of this group.");
-				debugger;
-				this.error(error);
-			}
+			// else{
+			// 	var error = new Meteor.Error(401, "Access denied: you cannot view assignments unless you are a member of this group.");
+			// 	debugger;
+			// 	this.error(error);
+			// }
 		});
 	}
 

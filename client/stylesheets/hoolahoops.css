@@ -54,6 +54,8 @@ table tr th {
 
 .project-row {
 	position: relative;
+  border-top: 1px solid #d0d0d0;
+  border-bottom: none !important;
 }
 
 .project-type {
@@ -303,9 +305,15 @@ div.nav-wrapper a.login-close-text:before{
 div.colorElement{
   background-image: none !important; 
   font-weight: bold !important;
-  border-radius: 3px;
   padding: 5px;
-  display:table-cell;
+  margin: 0px 2.5px;
   text-align: center;
   min-width: 100px; 
+  display: inline-block;
+}
+div.colorElement:first-child{
+  margin-left: 0px;
+}
+div.colorElement:last-child{
+  margin-right: 0px;
 }

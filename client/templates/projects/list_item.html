@@ -19,14 +19,12 @@
 	{{/with}}
 	</td> -->
 	<!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
-	<td>{{next_hearing}}</td>
-	<td>
-	{{#each labels}}
-		{{> colorElement}}
-	{{/each}}
-	</td>
+	<td>{{next_hearing}}</td>	
 	
 	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
 	<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
 </tr>
+{{#each labels}}
+	{{> colorElement}}
+{{/each}}
 </template>

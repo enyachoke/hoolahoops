@@ -33,3 +33,9 @@ Template.addTask.rendered = function(){
     
  	 }	);
 }
+
+Template.addTask.helpers({
+	'caseId' : function(){
+		return this.project._id;
+	}
+});

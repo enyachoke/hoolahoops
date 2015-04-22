@@ -6,8 +6,8 @@
 			<div class="row form-container">
 				{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
 					<div class="input-field col l8 m6 s12">
-						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
-						<label for="hearing__title">Title</label>
+						{{> afFieldInput  type='xautocomplete' value=caseId formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
+						<label for="hearing__title" class="active">Title</label>
 						
 					</div>
 					<div class="input-field col l4 m6 s12">

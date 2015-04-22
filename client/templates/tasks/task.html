@@ -57,8 +57,8 @@
 		<div class="row form-container">
 		{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
 			<div class="input-field col l8 m6 s12">
-				{{> afFieldInput  type='xautocomplete' formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
-				<label for="task__case">Matter</label>
+				{{> afFieldInput  type='xautocomplete' value=caseId formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
+				<label for="task__case" class="active">Matter</label>
 				
 			</div>
 			<div class="input-field col l4 m6 s12">

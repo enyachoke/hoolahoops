@@ -35,3 +35,10 @@ Template.meetingRow.events({
 	}
 });
 
+Template.addMeeting.helpers({
+	'caseId' : function() {
+		debugger;
+		return this.project._id;
+	}
+});
+

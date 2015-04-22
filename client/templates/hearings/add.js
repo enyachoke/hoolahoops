@@ -41,5 +41,8 @@ Template.hearingAdd.helpers({
 		return {
 			disable : Session.get('disable')
 		}	
+	},
+	'caseId' : function(){
+		return this.project._id;
 	}   
 });

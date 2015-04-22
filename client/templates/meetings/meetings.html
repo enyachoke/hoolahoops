@@ -47,8 +47,8 @@
 		<div class="row form-container">
 			{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
 				<div class="input-field col s12">
-					{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-					<label for="meeting_case">Matter</label>
+					{{> afFieldInput  type='xautocomplete' value=caseId formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
+					<label for="meeting_case" class="active">Matter</label>
 					
 				</div>
 				<div class="input-field col l4 m6 s12">

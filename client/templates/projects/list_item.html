@@ -1,30 +1,30 @@
 <template name="projectRow">
-<tr class="project-row">
-	<!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
+<li class="collection-item">
+	<div class="project-heading">
+		{{uniqueId}} - {{name}}
+		{{#each labels}}
+			{{> colorElement}}
+		{{/each}}
+		<a class="delete"><i class="small center-align mdi-action-delete"></i></a>
+		<a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a>
+	</div>
+	<div class="more-project-detail">
+		{{#each clients}}
+			<a href='/clients/{{_id}}'>{{name}}</a>
+		{{/each}} | 
+		{{#each lawyers}}
+			<a href='/lawyers/{{_id}}'>{{name}}</a>
+		{{/each}} - 
+		{{next_hearing}}
+	</div>
+</li>
+<!-- <tr class="project-row">
 	<td> {{uniqueId}}</td>
-	<td>{{name}}</td>
-	<td>
-	{{#each clients}}
-		<a href='/clients/{{_id}}'>{{name}}</a>
-	{{/each}}
-	</td>
-	<td>
-	{{#each lawyers}}
-		<a href='/lawyers/{{_id}}'>{{name}}</a>
-	{{/each}}
-	</td>
-	<!-- <td>
-	{{#with court}}
-		{{name}}
-	{{/with}}
-	</td> -->
-	<!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
-	<td>{{next_hearing}}</td>	
 	
-	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
-	<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
+	<td></td>
+	<td></td>
 </tr>
 {{#each labels}}
 	{{> colorElement}}
-{{/each}}
+{{/each}} -->
 </template>

@@ -52,25 +52,11 @@
 		{{#ifEsIsSearching index="projects"}}
 			{{> spinner}}
 		{{else}}
-			<table class="bordered hoverable responsive-table projects-table">
-				<thead>
-					<tr>
-						<th>Unique Id</th>
-						<th>Title</th>
-						<th>Client</th>
-						<th>Lawyer</th>
-						<!-- <th>Court</th> -->
-						<!-- <th>Last Hearing</th> -->
-						<th>Next Hearing</th>
-                        <th>Labels</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#esEach index="projects"}}
-						{{> projectRow}}
-					{{/esEach}}
-				</tbody>
-			</table>
+            <ul class="collection" id="projectList">
+                {{#esEach index="projects"}}
+                    {{> projectRow}}
+                {{/esEach}}
+            </ul>
 		{{/ifEsIsSearching}}
 		
 	<a href="/projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>

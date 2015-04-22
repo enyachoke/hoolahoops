@@ -306,14 +306,36 @@ div.colorElement{
   background-image: none !important; 
   font-weight: bold !important;
   padding: 5px;
-  margin: 0px 2.5px;
+  border-radius: 3px;
   text-align: center;
-  min-width: 100px; 
   display: inline-block;
+  min-width: 100px;
+}
+.project-heading .colorElement{
+  font-size: 0.8em;
+  padding: 0px 5px;
+  display: inline;
+  vertical-align: top;
 }
 div.colorElement:first-child{
   margin-left: 0px;
 }
 div.colorElement:last-child{
   margin-right: 0px;
+}
+#projectList .project-heading{
+  font-size: 1.4em;
+}
+#projectList .more-project-detail{
+  color: gray;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+#projectList a{
+  color: gray;
+  text-decoration: underline;
+}
+.project-heading a{
+  float: right;
+  text-decoration: none !important;
 }

@@ -24,7 +24,11 @@
 	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
 	<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
 </tr>
-{{#each labels}}
-	{{> colorElement}}
-{{/each}}
+<tr class="label-row">
+	<td>
+		{{#each labels}}
+			{{> colorElement}}
+		{{/each}}
+	</td>
+</tr>
 </template>

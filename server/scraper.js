@@ -8,6 +8,7 @@ addScraperJob = function(project) {
 
 	// Create a new scraper job
 	var job = myJobs.createJob('addScraper', {'project': project});
+	debugger;
 	job.repeat({
 	  schedule: myJobs.later.parse.text('every 2 mins')   // Rerun this job every 5 minutes
 	});

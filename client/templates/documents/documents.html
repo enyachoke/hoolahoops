@@ -1,13 +1,9 @@
 <template name="docs">
-	{{ >navigation}}
-	<style>
-		.picker{
-			position : relative;
-		}
-	</style>
- <button type="button" id="pick">Pick File</button>
- <div id="result"></div>
-
+	<div class="row">
+		{{ >navigation}}
+	</div>
+	<div class="container">
+ 		<div class="waves-effect waves-light btn {{#if showLoader}} disabled {{/if}}"  id="pick">Pick File</div><br>
  <!-- <input type="text" class="file_title"> -->
  
  <!-- <button type="button" id="create">Create File</button> -->
@@ -25,24 +21,25 @@
 	      <div class="indeterminate"></div>
 	  	</div>
 	  	{{else}}
-	  		<a href="{{ getRootFolder.alternateLink }}" id="root">Root Folder</a>
-	    	<ul>
+	  		<a href="{{ getRootFolder.alternateLink }}" id="root" target="_blank">Open Current Folder in Google Drive</a>
+	    	<ul class="collection with-header">
+	    	<li class="collection-header">
+	    		<h5>
+		    		{{ #each getFolderStack }}
+						<a class="folder" id="{{this.id}}">{{this.title}}</a><span class="breadcumbs"> / </span>
+					{{ /each }}
+				</h5>
+	    	</li>
 		    {{ #each childrenFromRoot }}
-			<li>
-				<a>
-					{{{renderChildNode}}}
-				</a>
-			</li>
+			<a href="{{#unless isFolder}} {{this.result.alternateLink}} {{/unless}}" target="_blank" class="collection-item {{#if isFolder}} folder {{/if}}" id="{{this.result.id}}">
+				<img src="{{this.result.iconLink}}" class="document-icon">
+					{{this.result.title}}
+			</a>
 			{{ /each }}
 			</ul>
 			<!-- {{ > folderView}} -->
-			<div id="jstree_demo"></div>
-			<br><br>
-			<h5>folder stack</h5>
-			{{ #each getFolderStack }}
-			<p>{{{renderStackLinks}}}</p>
-			{{ /each }}
 	  	{{/if}}
+	</div>
 
 </template>
 

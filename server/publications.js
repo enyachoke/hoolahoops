@@ -18,7 +18,7 @@ Meteor.startup(function () {
 
     // Publish the collection. TODO: Only publish part of the collection to which the user has permissions. Also how do we limit data size in meteor? Should be handled with pagination.
 	publishWithRoles('clients', function() {
-		return Clients.find();
+		return Meteor.users.find({type : 'client'});
 	});
 
 	publishWithRoles('projects', function() {
@@ -26,7 +26,7 @@ Meteor.startup(function () {
 	});
 
 	publishWithRoles('lawyers', function(){
-		return Lawyers.find();
+		return Meteor.users.find({type : 'lawyer'});
 	});
 
 	publishWithRoles('courts', function(){
@@ -97,5 +97,11 @@ Meteor.startup(function () {
 	publishWithRoles(null, function (){ 
 	  return Meteor.roles.find({})
 	});
+
+	Meteor.publish('communications', function(){
+		return Communications.find();
+	})
+
+	
 });
 

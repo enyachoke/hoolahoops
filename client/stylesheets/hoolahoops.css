@@ -1,3 +1,5 @@
+
+
 /* CSS declarations go here */
 
 body {
@@ -289,14 +291,91 @@ div.nav-wrapper a.login-close-text:before{
   -moz-osx-font-smoothing: grayscale;
 	content: "\e89c";
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3004437e099a8ebe2e72d293941667bc15a12aec
 
-.centerHV{
+
+/*tiny calendar*/
+/*.calendar_tiny {
+    width: 200px;
+    margin: 0 auto;
+    font-size: 10px;
+}*/
+.calendar_tiny .fc-header-title h2 {
+    font-size: .9em;
+    white-space: normal !important;
+}
+.calendar_tiny .fc-view-month .fc-event, .calendar_tiny .fc-view-agendaWeek .fc-event {
+    font-size: 0;
+    overflow: hidden;
+    height: 2px;
+}
+.calendar_tiny .fc-view-agendaWeek .fc-event-vert {
+    font-size: 0;
+    overflow: hidden;
+    width: 2px !important;
+}
+.calendar_tiny .fc-agenda-axis {
+    width: 20px !important;
+    font-size: .7em;
+}
+
+.calendar_tiny .fc-button-content {
+    padding: 0;
+}
+
+.blocked {
+  background-color: #e1e1e1;
+}
+
+.centerHV {
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   margin: auto;
+}
+
+<<<<<<< HEAD
+nav .nav-wrapper {
+  position: static !important;
+}
+.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg, 
+.picker.dcs-cd-dcs-c.picker-dialog{
+  position: absolute;
+}
+.picker.dcs-cd-dcs-c-dcs-k.dcs-cd-dcs-c-dcs-k-dcs-be.picker-dialog-title,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-fb,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-bc,
+.picker.dcs-cd-dcs-c-dcs-eb.picker-dialog-content,
+.picker.dcs-cd-dcs-c-dcs-ic.picker-dialog-buttons{
+  position: static;
+
+}
+.document-icon{
+  margin-right: 20px;
+}
+.breadcumbs{
+  color: #bbb;
+}
+.folder{
+  cursor: pointer;
+}
+
+.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg, 
+.picker.dcs-cd-dcs-c.picker-dialog{
+  position: absolute;
+}
+.picker.dcs-cd-dcs-c-dcs-k.dcs-cd-dcs-c-dcs-k-dcs-be.picker-dialog-title,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-fb,
+.picker.dcs-cd-dcs-c-dcs-k-dcs-bc,
+.picker.dcs-cd-dcs-c-dcs-eb.picker-dialog-content,
+.picker.dcs-cd-dcs-c-dcs-ic.picker-dialog-buttons{
+  position: static;
 }
 
 /* ColorElement Stling for the colored labels */

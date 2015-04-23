@@ -11,11 +11,11 @@
 							<label for="name">Name</label>
 						</div>
 						<div class="input-field col s8">
-							{{> afFieldInput name="phone" type="number" id="ph"}}
+							{{> afFieldInput name="contactNumber" type="number" id="ph"}}
 							<label for="ph">Phone Number</label>
 						</div>
 						<div class="input-field col s8">
-							{{> afFieldInput name="email" type="email" id="email"}}
+							{{> afFieldInput name="username" type="email" id="email"}}
 							<label for="email">E-Mail</label>
 						</div>
 					</div>
@@ -30,28 +30,29 @@
 </template>
 
 <template name="clientDetails">
-	{{#if isInRole 'view-clients'}}
-		<div class="row">
-			{{ > navigation}}
-		</div>
-		
-		<div class="container">
-		<div class="row">
-			  	<div class="col s12  project-title">
-			  		<h3>Client : {{name}}</h3>
-			  	</div>
-		</div>
-		<ul class="collection">
-	      <li class="collection-item">Email : {{email}}</li>
-	      <li class="collection-item">Phone Number : {{phone}}</li>
-		</ul>
-		{{#if isInRole 'edit-clients'}}
-			<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
-			<a class="delete waves-effect waves-light btn">Delete</a>
-		{{/if}}
-		<a href="/clients" class="waves-effect waves-light btn">Back</a>
-		</div>
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container">
+	<div class="row">
+		  	<div class="col s12  project-title">
+		  		<h3>Client : {{name}}</h3>
+		  	</div>
+	</div>
+	<ul class="collection">
+      <li class="collection-item">Email : {{username}}</li>
+      <li class="collection-item">Phone Number : {{contactNumber}}</li>
+	</ul>
+
+	{{#if isInRole 'edit-clients'}}
+		<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
+		<a class="delete waves-effect waves-light btn">Delete</a>
 	{{/if}}
+	<a href="/clients" class="waves-effect waves-light btn">Back</a>
+	</div>
+	
+	
 </template>
 
 <template name="editClient">
@@ -67,13 +68,13 @@
 							<label for="name">Name</label>
 						</div>
 						<div class="input-field col s8">
-							{{> afFieldInput name="phone" type="number" id="ph"}}
+							{{> afFieldInput name="contactNumber" type="number" id="ph"}}
 							<label for="ph">Phone Number</label>
 						</div>
-						<div class="input-field col s8">
+						<!-- <div class="input-field col s8">
 							{{> afFieldInput name="email" type="email" id="email"}}
 							<label for="email">E-Mail</label>
-						</div>
+						</div> -->
 					</div>
 				
 					
@@ -91,9 +92,7 @@
 			{{> navigation}}
 		</div>
 		<div class="container ">
-			{{#if isInRole 'view-clients'}}
-				<a class="waves-effect waves-light btn"  href='/clients/add'>Add contact</a>
-			{{/if}}
+			<a class="waves-effect waves-light btn"  href='/clients/add'>Add contact</a>
 			{{> esInput index="clients" placeholder="Search Clients" allDocsOnEmpty="true"}}
 			{{#ifEsIsSearching index="clients"}}
 				{{> spinner}}
@@ -107,9 +106,11 @@
 					        </tr>
 					    </thead>
 					    <tbody>
-						{{#esEach index="clients"}}
+						<!-- {{#esEach index="clients"}} -->
+						{{ #each clients }}
 						{{ > clientRow }}
-						{{/esEach}}
+						{{ /each }}
+						<!-- {{/esEach}} -->
 						</tbody>
 				</table>
 			{{/ifEsIsSearching}}
@@ -120,11 +121,11 @@
 <template name='clientRow'>
 	<tr>
 	<td>{{name}}</td>
-	<td>{{phone}}</td>
-	<td>{{email}}</td>
+	<td>{{contactNumber}}</td>
+	<td>{{username}}</td>
 	{{#if isInRole 'edit-clients'}}
 		<td><a class="waves-effect waves-light btn col s8" href='/clients/{{_id}}/edit'>Edit</a></td>
+		<td><a class="waves-effect waves-light btn col s8" href="/clients/{{_id}}">Details</a></td>
 	{{/if}}
-	<td><a class="waves-effect waves-light btn col s8" href="/clients/{{_id}}">Details</a></td>
 	</tr>
 </template>

@@ -21,7 +21,7 @@
 	<div class="container">
 		<div class="row">
 			  	<div class="col s12  project-title">
-			  		<h3>Meeting : {{matter}} on {{formatted_date}} </h3>
+			  		<h3> Meeting : {{matter}} on {{formatted_date}} </h3>
 			  	</div>
 		</div>
 		<ul class="collection">
@@ -39,18 +39,29 @@
 
 <template name="addMeeting">
 	{{> navigation}}
+	<!-- <div class="row m12">
+		{{available }}
+	</div> -->
 	<div class="container  card-panel add-project">
 		<h4 class="teal form-header">Schedule a Meeting</h4>	
 		<div class="row form-container">
 			{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
-				<div class="input-field col l8 m6 s12">
-					{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-					<label for="meeting_case">Matter</label>
+				<div class="input-field col s12">
+					{{> afFieldInput  type='xautocomplete' value=caseId formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
+					<label for="meeting_case" class="active">Matter</label>
 					
 				</div>
 				<div class="input-field col l4 m6 s12">
-					{{> afFieldInput name="date" type="date" id="date"}}
-					<!-- <label for="hearing__date">Date</label> -->
+					{{> afFieldInput name="date" id="date"}}
+					<label for="hearing__date">Date</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					{{> afFieldInput name="startHour" id="startHour" }}
+					<label for="startHour" class="active">Start Hour</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					{{> afFieldInput name="endHour" id="endHour"}}
+					<label for="endHour" class="active">End Hour</label>
 				</div>
 				<div class="input-field col s12">
 					{{> afFieldInput name="agenda" type="textarea"  id="agenda" class="materialize-textarea"}}
@@ -60,14 +71,16 @@
 					{{> afFieldInput name="minutes" type="textarea"  id="minutes" class="materialize-textarea"}}
 					<label for="minutes">Minutes</label>
 				</div>
-				<div class="input-field col s12 m12">
+				<div class="col s12 m12">
 					<h5>Reminders</h5>
 					<div class="input-field col s12 m6">
 						{{> afQuickField name='reminders' }}
 					</div>
 				</div>
-			<button class="waves-effect waves-light btn" type="submit">Insert</button>
-			<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position: absolute;">Cancel</a>
+				<div class="col s12 m12">
+				<button class="waves-effect waves-light btn" type="submit">Insert</button>
+				<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position:absolute">Cancel</a>	
+				</div>
 			{{/autoForm}}
 		</div>
 	</div>
@@ -79,14 +92,22 @@
 		<h4 class="teal form-header">Edit Meeting</h4>	
 		<div class="row form-container">
 			{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
-				<div class="input-field col l8 m6 s12">
+				<div class="input-field col s12">
 					{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
 					<label for="meeting_case">Matter</label>
 					
 				</div>
 				<div class="input-field col l4 m6 s12">
-					{{> afFieldInput name="date" type="date" id="date"}}
-					<!-- <label for="hearing__date">Date</label> -->
+					{{> afFieldInput name="date" id="date"}}
+					<label for="hearing__date">Date</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					{{> afFieldInput name="startHour" id="startHour" }}
+					<label for="startHour" class="active">Start Hour</label>
+				</div>
+				<div class="input-field col l4 m6 s12">
+					{{> afFieldInput name="endHour" id="endHour"}}
+					<label for="endHour" class="active">End Hour</label>
 				</div>
 				<div class="input-field col s12">
 					{{> afFieldInput name="agenda" type="textarea"  id="agenda" class="materialize-textarea"}}
@@ -102,8 +123,10 @@
 						{{> afQuickField name='reminders' }}
 					</div>
 				</div>
-			<button class="waves-effect waves-light btn" type="submit">Insert</button>
-			<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position: absolute;">Cancel</a>
+			<div class="col s12 m12">	
+				<button class="waves-effect waves-light btn" type="submit">Insert</button>
+				<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position: absolute;">Cancel</a>
+			</div>
 			{{/autoForm}}
 		</div>
 	</div>

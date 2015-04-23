@@ -34,3 +34,11 @@ Template.meetingRow.events({
 		Meetings.remove(this._id);
 	}
 });
+
+Template.addMeeting.helpers({
+	'caseId' : function() {
+		debugger;
+		return this.project._id;
+	}
+});
+

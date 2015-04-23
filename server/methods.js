@@ -153,7 +153,7 @@ Meteor.methods({
 
 		return response_list_req;
 	},
-	// title, user id,  
+	// {title: , userId:, parentId}
 	'insertFolder' : function (obj)	{
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
 		var token_obj = Meteor.call('getCredentials',obj.userId);
@@ -161,18 +161,29 @@ Meteor.methods({
 			access_token: token_obj.access_token,
   			refresh_token: token_obj.refresh_token
 		});
+		rootFolderId = Meteor.call('getRootFolderId');
+		var resource = {
+			title: obj.title,
+			"mimeType": "application/vnd.google-apps.folder"
+		}
+
+		//resource.parents
+		var parentId = obj.parentId ? obj.parentId : rootFolderId
+		if ( parentId ){
+			resource.parents = [];
+			resource.parents.push({"id" : parentId })
+		}
+
       	var response = Async.runSync(function(done) {
 			DRIVE.files.insert({
-				resource: {
-				    title: obj.title,
-				    "mimeType": "application/vnd.google-apps.folder"    
-				},
+				resource: resource,
 				auth: OAUTH2_CLIENT
 			}, function(err, response) {
 				console.log('error:', err, 'inserted:', response);
 				done(err, response);
 			});
 		});
+		
 		return response;
 	},
 	// folderId, userId
@@ -191,6 +202,7 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
 			},function(err,res){
 				done(err,res);
+				debugger;
 				//console.log('list',err,res);
 			});
 		});
@@ -207,7 +219,7 @@ Meteor.methods({
 	'getFileById' : function(obj){
 		//fetch file from id
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
-		debugger;
+		//debugger;
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
@@ -215,48 +227,64 @@ Meteor.methods({
 		});
 		var fileId = obj.fileId
 		var response = Async.runSync(function(done){
-			debugger;
+			//debugger;
 			DRIVE.files.get({
 				fileId: obj.fileId,
 				auth: OAUTH2_CLIENT
 			},function(err,res){
-				debugger;
+				//debugger;
 				done(err,res)
+				console.log(err,res);
 			});
 		});
 		debugger;
 		return response;
 	},
-	// parentId, fileId, userId
-	// 'insertFolderWithinParentFolder' : function(obj ) {
-	// 	console.log('insertFolderWithinParentFolder');
-	// 	parentId = '0B8XNqOrM9GYOX1dWdVRleG1GbmM';
-	// 	var token_obj = Meteor.call('getCredentials',obj.userId);
-	// 	OAUTH2_CLIENT.setCredentials({
-	// 		access_token: token_obj.access_token,
- //  			refresh_token: token_obj.refresh_token
-	// 	});
-	// 	//OAUTH2_CLIENT.setCredentials(TOKENS);
-	// 	var response = Async.runSync(function(done){
-	// 		DRIVE.children.insert({
-	// 			folderId: obj.parentId,
-	// 			fileId : obj.fileId,
-	// 			auth: OAUTH2_CLIENT
-	// 		},function(err,res){
-	// 			done(err,res);
-	// 			console.log(err,res);
-	// 		});
-	// 	});
-	// 	return response;
-	// },
+	// {parentId: , fileId: , userId: }
+	'insertFolderWithinParentFolder' : function(obj ) {
+		// console.log('insertFolderWithinParentFolder');
+		// parentId = '0B8XNqOrM9GYOX1dWdVRleG1GbmM';
+		var token_obj = Meteor.call('getCredentials',obj.userId);
+		OAUTH2_CLIENT.setCredentials({
+			access_token: token_obj.access_token,
+  			refresh_token: token_obj.refresh_token
+		});
+		//OAUTH2_CLIENT.setCredentials(TOKENS);
+		var response = Async.runSync(function(done){
+			DRIVE.children.insert({
+				folderId: obj.parentId,
+				fileId : obj.fileId,
+				auth: OAUTH2_CLIENT
+			},function(err,res){
+				done(err,res);
+				console.log(err,res);
+			});
+		});
+		return response;
+	},
 	// userId
 	'getRootFolder' : function(obj){	
 		debugger;
-		var rootFolderId =  RootFolders.find().fetch()[0].id;
+		var rootFolderId =  0;
+		//create root folder
+		if ( RootFolders.find().fetch().length == 0 ){
+			var shortId = Meteor.npmRequire('shortid');
+			var root_folder_title = shortId.generate();
+			_.extend(obj, {title: root_folder_title});
+			Meteor.call('insertFolder',obj,function(err,res){
+				console.log(err, res);
+				rootFolderId = RootFolders.insert({title : root_folder_title, id : res.result.id})
+    		});
+		}
+		else
+			rootFolderId = RootFolders.find().fetch()[0].id;
 		_.extend(obj, { fileId : rootFolderId});
 		return Meteor.call('getFileById', obj);
-	}
-	,
+	},
+	'getRootFolderId' : function(){
+		var id = RootFolders.find().fetch()[0] && RootFolders.find().fetch()[0].id || null
+		return id;
+	},
 	'getCredentials' : function(userId){
 		var user = Meteor.users.findOne(userId);
 		if ( user != undefined) {
@@ -268,9 +296,31 @@ Meteor.methods({
 		
 		return obj;
 	},
+	// { email : , name : , type : }
+	'createNewUser' : function(obj){
+		debugger;
+		var password = Random.id()
+		if( obj && obj.username && obj.name ){
+			var options = {
+				username : obj.username ,
+				email : obj.username,
+				profile : {
+					name : obj.name
+				},
+				password : password,
+				type : obj.type || null,
+				contactNumber : obj.contactNumber || null
+			};
+			var userId = Accounts.createUser(options);
+			Accounts.sendEnrollmentEmail(userId);
+			console.log(userId);
+			return userId;
+		}
+	},
 	'scrapeProject': function(){
 		var project = Projects.findOne();
 		scrapeCourt(project);
+
 	}
 
 	// ,
@@ -311,4 +361,3 @@ Meteor.methods({
 	// }
 
 });
-

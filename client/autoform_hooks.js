@@ -1,7 +1,13 @@
 AutoForm.hooks({
-  insertProjectForm: {
+    insertProjectForm: {
     onSuccess:function(operation, result, template){
-        //debugger;
+        //create project root in google drive
+        var project = Projects.findOne({_id : result });
+        if ( project.driveFolderId ==undefined || project.driveFolderId == "" ){
+            Meteor.call('insertFolder',{title: project.name, userId: Meteor.userId()},function(err,res){
+                Projects.update({_id : result},{ $set :{ driveFolderId : res.result.id }});
+            });
+        }
         Router.go('projectDetails',{'_id':result});
     }},
     insertHearingForm : {
@@ -9,22 +15,21 @@ AutoForm.hooks({
         Router.go('hearingDetails',{'_id':result});
     }},
     insertMeetingForm : {
-    onSuccess:function(operation, result, template){
-        Router.go('meetingDetails',{'_id':result});
-    }},
+        onSuccess:function(operation, result, template){
+            Router.go('meetingDetails',{'_id':result});
+        }
+    },
     insertTaskForm : {
     onSuccess:function(operation, result, template){
         Router.go('taskDetails',{'_id':result});
     }},
     insertLawyerForm : {
     onSuccess:function(operation, result, template){
-
-        debugger;
-        Router.go('lawyerDetails',{'_id':result});
+        Router.go('lawyers'); 
     }},
     insertClientForm : {
     onSuccess:function(operation, result, template){
-        Router.go('clientDetails',{'_id':result});
+        Router.go('clientsList');
     }},
     insertCourtForm : {
     onSuccess:function(operation, result, template){

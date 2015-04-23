@@ -1,12 +1,27 @@
+Deps.autorun(function(){
+	Meteor.subscribe("allusers");
+});
 Template.timesheets.helpers({
 	'timesheets' : function(){
-		return Timesheets.find();
-	}
+		return Projects.find();
+	},
 });
 
 Template.timesheetRow.helpers({
 	'case' : function(){
-		return Projects.findOne({ _id: this.caseId }).name;
+		//console.log(this);
+		return this.name;
+	},
+	'totaltime' : function(){
+		//Timesheets.find({caseId : this._id});
+		var total = 0;
+		Timesheets.find({caseId: this._id}).map(function(doc) {
+			console.log(doc.duration);
+			total += String_to_ms(doc.duration);			
+  			//total += doc.duration;
+		});
+
+		return formatTime(total);
 	}
 });
 
@@ -33,6 +48,41 @@ Template.editTimesheet.helpers({
 
 Template.timesheetRow.events({
 	'click #delete' : function(){
-		Timesheets.remove(this._id);
+		console.log(this._id);
+		Timesheets.find({caseId: this._id}).map(function(doc) {
+			Timesheets.remove(doc._id);		
+  		});
+	}
+});			
+useremail = {};								
+Template.timesheetDetail.helpers({
+	'timeloop' : function(){
+		var time = {};
+		this.map(function(doc){
+				if(!time[doc.userId])
+					time[doc.userId] = 0;
+				time[doc.userId] += String_to_ms(doc.duration);
+		});
+		var Cases = new Mongo.Collection();
+		for(var key in time){
+			var email = Meteor.users.find({_id: key}).fetch();
+			useremail[key] = email[0].emails[0].address;
+  			Cases.insert({
+  				user: email[0].emails[0].address,
+  				duration: formatTime(time[key])
+  			});
+		}
+		return Cases.find();
+	},
+
+	'timesheetloop' : function(){
+		return this;
 	}
 });
+
+Template.timesheetDetailRow.helpers({
+	'user' : function(){
+		return useremail[this.userId];
+	}
+});
+

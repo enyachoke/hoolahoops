@@ -25,6 +25,9 @@
 			{{#if isInRole 'view-clients'}}
 				<li class="{{isActiveRoute regex='clients'}}" ><a href="/clients">Clients</a></li>
 			{{/if}}
+			{{#if isInRole 'view-projects'}}
+				<li class="{{isActiveRoute regex='communications'}}" ><a href="/communications">Communications</a></li>
+			{{/if}}
 			{{#if isInRole 'view-courts'}}
 				<li class="{{isActiveRoute regex='courts'}}" ><a href="/courts">Courts</a></li>
 			{{/if}}

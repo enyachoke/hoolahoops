@@ -1,23 +1,26 @@
 var hearings, meetings, task_deadlines,court;	
 
 Template.calendar.rendered= function(){
+
 	hearings=[], meetings=[], task_deadlines=[];
 	
-	calEvents = Events.find();
+	calEvents = Events.find({userIds : Meteor.userId()});
+	debugger;
 	calEvents.forEach(function(e){
 		project= Projects.findOne({_id : e.caseId});
 		if (project)
 		switch( e.type ){
 		case 'hearings' : 
 				event_title = project.name;
-				court = Courts.findOne(project.courtId).name;
+				court = Courts.findOne(project.courtId);
 				hearing = Hearings.findOne({_id : e.hearingId });
 				hearings.push({
-					title : 'Hearing:'+event_title+","+court,
+					title : 'Hearing:'+event_title+","+court.name,
 					date : hearing.date,
 					type : e.type,
 					url : '/hearings/'+e.hearingId,
-					className : 'hearing'
+					className : 'hearing',
+					color : court.color || null
 				});
 			
 			break;
@@ -54,7 +57,29 @@ Template.calendar.rendered= function(){
 		
 		
 	});
-	
+	// $('.calendar_tiny').fullCalendar({
+	// 	dayClick: function(date, allDay, jsEvent, view) {
+	// 		Meteor.call('toggle_block_days',date);
+	// 		$(this).toggleClass( 'blocked' )
+ //    	},
+ //    	events: function(start, end, callback) {
+ //    		// var cal_events = Events.find({type : blocked});
+ //    		// var events = []
+ //    		// _.each(cal_events, function(e){
+ //    		// 	events.push({
+ //    		// 		title : 'x',
+ //    		// 		date : e.date,
+ //    		// 		type : e.type
+ //    		// 	});
+ //    		// });
+ //    		// callback(events);
+ //    	},
+ //    	dayRender : function( date, cell ) { 
+ //    		if ( Events.findOne({ date : date , type : 'blocked', userId : Meteor.userId() }) ) {
+ //    			cell.addClass('blocked')
+ //    		}
+ //    	}
+	// });
 	$('#calendar').fullCalendar({
 // 		dayClick: function(date, jsEvent, view) {
 // 		        // alert('Clicked on: ' + date);
@@ -67,6 +92,16 @@ Template.calendar.rendered= function(){
 // // 		        $(this).css('background-color', 'red');
 // 							$('#modal1').openModal();
 // 		    }
+		dayClick: function(date, allDay, jsEvent, view) {
+			debugger;
+			Meteor.call('toggle_block_days',date);
+			$(this).toggleClass( 'blocked' )
+    	},
+    	dayRender : function( date, cell ) { 
+    		if ( Events.findOne({ date : date , type : 'blocked', userIds : Meteor.userId() }) ) {
+    			cell.addClass('blocked')
+    		}
+    	},
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -80,9 +115,10 @@ Template.calendar.rendered= function(){
 				}else{
 					element.find('.fc-event-title').prepend('<input class="chk-complete" id='+event.task_id+' type="checkbox">')
 				}
+			} else if (event.type == 'hearings' && event.color) {
+				element.children().css('background',event.color);
+				element.find('.fc-event-title').css('color',complement(event.color));
 			}
-			
-//	        debugger;
 	    },
 	    viewRender : function( view, element ){
 	    	debugger;

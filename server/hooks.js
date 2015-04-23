@@ -50,6 +50,9 @@ Projects.after.remove(function (userId, doc) {
 
 //hearing hooks
 Hearings.after.insert( function(hearingId, doc){
+
+	
+
 	//update project : push _id to project.hearingIds
 	Projects.update( { _id: doc.caseId },{ $push: { hearingIds: doc._id } });
 
@@ -57,7 +60,8 @@ Hearings.after.insert( function(hearingId, doc){
 	var event_res = Events.insert({
 		'hearingId' : doc._id,
 		'caseId' : doc.caseId,
-		'type' : 'hearings'
+		'type' : 'hearings',
+		'userIds' : [doc.lawyerId]
 	});
 	console.log('event_res',event_res);
 	Hearings.update( { _id: doc._id },{ $push: { eventIds: event_res } });
@@ -81,7 +85,7 @@ Hearings.after.insert( function(hearingId, doc){
 	
 });
 
-Hearings.after.remove(function( hearingId, doc){
+Hearings.after.remove( function( hearingId, doc){
 
 	//...remove id from project:hearingIds
 	Projects.update( { _id : doc.projectId }, { $pull : { hearingIds : doc._id } } );
@@ -98,9 +102,15 @@ Hearings.after.remove(function( hearingId, doc){
 });
 
 
-//meeting hooks
-Meetings.after.insert( function(meetingId, doc){
 
+//meeting hooks
+
+Meetings.before.insert( function( userId, doc){
+	doc.userId = userId;
+});
+
+Meetings.after.insert( function(userId, doc){
+	debugger;
 	// add meeting to project
 	Projects.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
 
@@ -109,7 +119,8 @@ Meetings.after.insert( function(meetingId, doc){
 		'meetingId' : doc._id,
 		'caseId' : doc.caseId,
 		'type' : 'meetings',
-		'date' : doc.date
+		'date' : doc.date,
+		'userIds' : [userId]
 	});
 
 	Meetings.update( { _id: doc._id },{ $push: { eventIds: res } });
@@ -137,7 +148,8 @@ Meetings.after.remove(function( meetingId, doc){
 
 
 //task hooks
-Tasks.after.insert( function(taskId, doc){
+Tasks.after.insert( function(userId, doc){
+	debugger;
 	console.log('hook',doc);
 	//add task to project
 	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
@@ -147,7 +159,8 @@ Tasks.after.insert( function(taskId, doc){
 		'taskId' : doc._id,
 		'caseId' : doc.caseId,
 		'type' : 'tasks',
-		'date' : doc.date
+		'date' : doc.date,
+		'userIds' : doc.userIds
 	});
 
 	Tasks.update( { _id: doc._id },{ $push: { eventIds: res } });

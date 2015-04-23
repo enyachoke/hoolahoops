@@ -66,6 +66,4 @@
           var doc = data[google.picker.Response.DOCUMENTS][0];
           url = doc[google.picker.Document.URL];
         }
-        var message = 'You picked: ' + url;
-        document.getElementById('result').innerHTML = message;
       }

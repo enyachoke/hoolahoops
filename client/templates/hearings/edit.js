@@ -32,5 +32,18 @@ Template.hearingEdit.helpers({
 		// Session.set('amount_by_type',amt);
 		// return Session.get('amount_by_type');
 		return this.bill_amt;
-	}
+	},
+	'pickadateOptions' : function(){
+
+		var disable = []
+		_.each(Events.find({userId : Meteor.userId()}).fetch(),function(event){
+			if( event && event.date){
+				disable.push(event.date);
+			}
+			
+		})
+		return {
+			disable : disable
+		}
+	} 
 });

@@ -26,5 +26,23 @@ Template.hearingAdd.helpers({
 		}
 		Session.set('amount_by_type',amt);
 		return Session.get('amount_by_type');
-	}
+	},
+	'pickadateOptions' : function(){
+		var disable = [];
+		var lawyerId = AutoForm.getFieldValue('insertHearingForm','lawyerId');
+		if(lawyerId){
+			_.each(Events.find({ userIds : lawyerId, type : 'blocked' }).fetch(),function(event){
+				if( event && event.date){
+					disable.push(new Date(event.date))	;
+				}
+			});
+		}	
+		Session.set('disable',disable);
+		return {
+			disable : Session.get('disable')
+		}	
+	},
+	'caseId' : function(){
+		return this.project._id;
+	}   
 });

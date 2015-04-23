@@ -317,3 +317,6 @@ div.colorElement:first-child{
 div.colorElement:last-child{
   margin-right: 0px;
 }
+.project-list-container .filter-field{
+  width: 20% !important;
+}

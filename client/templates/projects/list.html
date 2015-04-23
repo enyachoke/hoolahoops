@@ -3,7 +3,7 @@
     <div class="container project-list-container">
     	{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
     	<div class="row">
-    		<div class="col s3">
+    		<div class="col s3 filter-field">
     			<label>Lawyer Names:</label>
     			<select id="lawyer-select">
     				<option value="">All</option>
@@ -12,7 +12,7 @@
     				{{/each}}
     			</select>
     		</div>
-    		<div class="col s3">
+    		<div class="col s3 filter-field">
     			<label>Client Names:</label>
     			<select id="client-select">
     				<option value="">All</option>
@@ -21,7 +21,7 @@
     				{{/each}}
     			</select>
     		</div>
-    		<div class="col s3">
+    		<div class="col s3 filter-field">
     			<label>Court Name:</label>
     			<select id="court-select">
     				<option value="">All</option>
@@ -30,7 +30,7 @@
     				{{/each}}
     			</select>
     		</div>
-    		<div class="col s3">
+    		<div class="col s3 filter-field">
     			<label>Type:</label>
     			<select id="type-select">
     				<option value="">All</option>-
@@ -39,7 +39,7 @@
     				{{/each}}
     			</select>
     		</div>
-            <div class="col s3">
+            <div class="col s3 filter-field">
                 <label>Label:</label>
                 <select id="label-select">
                     <option value="">All</option>-

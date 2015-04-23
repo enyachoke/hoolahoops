@@ -1,0 +1,2 @@
+Template.labels.rendered = function(){
+}

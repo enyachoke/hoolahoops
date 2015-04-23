@@ -1,0 +1,32 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "fullcalendar": {},
+      "moment": {},
+      "sugarjs": {}
+    },
+    "packages": {
+      "fullcalendar": {
+        "git": "https://github.com/TimHeckel/meteor-fullcalendar.git",
+        "tag": "v1.6.1",
+        "commit": "78dba7c564bf7baacf6556c70a3cc179d0e137c4"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.8.1",
+        "commit": "722ea63783d594341023836b7d418ab2567dab8c"
+      },
+      "sugarjs": {
+        "git": "https://github.com/crapthings/meteor-sugarjs.git",
+        "tag": "v1.4.0.1",
+        "commit": "2841738b2c28d2d97c6cf3c41c4558f59f93db0e"
+      },
+      "jquery-ui": {
+        "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
+        "tag": "v1.9.2",
+        "commit": "c437d45edcf1367df8d5ffa8bad2867758030bd2"
+      }
+    }
+  }
+}

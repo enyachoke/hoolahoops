@@ -1,0 +1,117 @@
+<template name="lawyers">
+	<div class="row">
+		{{> navigation}}
+	</div>
+	<div class="container">
+		
+		<a class=" col s4 waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
+		{{> esInput index="lawyers" placeholder="Search Lawyers" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="lawyers"}}
+			{{> spinner}}
+		{{else}}
+			<table class="centered striped bordered" >
+					<thead>
+				        <tr>	
+				            <th data-field="id">Name</th>
+				            <th data-field="name">Phone</th>
+				            <th data-field="price">Email</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+					{{#esEach index="lawyers"}}
+					{{ > rowLawyer }}
+					{{/esEach}}
+					</tbody>
+			</table>
+		{{/ifEsIsSearching}}
+
+	</div>
+</template>
+
+<template name="addLawyer">
+	{{ >navigation }}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Add a Lawyer</h4>
+		<div class="row form-container">
+
+		{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method" meteormethod="saveLawyerData" schema="lawyerSchema" }}
+			<div class="row s12">
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="name" type="text" id="name"}}
+					<label for="name">Name</label>
+				</div>
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="phone" type="number" id="ph"}}
+					<label for="ph">Phone Number</label>
+				</div>
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="email" type="email" id="email"}}
+					<label for="email">E-Mail</label>
+				</div>	
+			</div>
+		<button class="waves-effect waves-light btn" type="submit">Insert</button>
+		<a class="waves-effect waves-teal btn-flat" href="/lawyers" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+		</div>
+	</div>
+</template>
+
+<template name="rowLawyer">
+	<tr>
+		<td>{{name}}</td>
+		<td>{{phone}}</td>
+		<td>{{email}}</td>
+		<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}/edit'>Edit</a></td>
+		<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}'>Details</a></td>
+	</tr>
+</template>
+
+<template name="editLawyer">
+	{{ >navigation }}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Edit a Lawyer</h4>
+		<div class="row form-container">
+
+		{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method" meteormethod="saveLawyerData" schema="lawyerSchema" }}
+			<div class="row s12">
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="name" type="text" id="name"}}
+					<label for="name">Name</label>
+				</div>
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="phone" type="number" id="ph"}}
+					<label for="ph">Phone Number</label>
+				</div>
+				<div class="input-field col l8 m6 s12">
+					{{> afFieldInput name="email" type="email" id="email"}}
+					<label for="email">E-Mail</label>
+				</div>	
+			</div>
+		<button class="waves-effect waves-light btn" type="submit">Update</button>
+		<a class="waves-effect waves-teal btn-flat" href="/lawyers" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+		</div>
+	</div>
+</template>
+
+<template name="lawyerDetails">
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container ">
+		<div class="row">
+			  	<div class="col s12  project-title">
+			  		<h3> {{name}}</h3>
+			  	</div>
+		</div>
+		<ul class="collection">
+	      <li class="collection-item">Email : {{email}}</li>
+	      <li class="collection-item">Phone Number : {{phone}}</li>
+		</ul>
+		<a class="delete waves-effect waves-light btn">Delete</a>
+		<a class="waves-effect waves-light btn" href="/lawyers/{{_id}}/edit">Edit</a>
+		<a href="/lawyers" class="waves-effect waves-light btn">Back</a>
+	</div>
+</template>
+

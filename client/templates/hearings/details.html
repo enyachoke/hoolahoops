@@ -1,0 +1,35 @@
+<template name="hearingDetails">
+	<!-- <tr>
+		<td>{{title}}</td>
+		<td>{{court}}</td>
+		<td>{{date}}</td>
+		<td>
+		<button class="delete">Delete</button>
+		<a href="/hearings/{{_id}}/edit">Edit</a></td>
+	</tr>  -->
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container">
+	<div class="row">
+		  	<div class="col s12  project-title">
+		  		<h3>Hearing : {{title}} on {{formatted_date}} </h3>
+		  	</div>
+	</div>
+	<ul class="collection">
+      <li class="collection-item">Proceedings: {{proceedings}}</li>
+      <li class="collection-item">Lawyer : {{attorney}}</li>
+      <li class="collection-item">Judge : {{judge}}</li>
+      <li class="collection-item">Date : {{formatted_date}}</li>
+      <li class="collection-item">Court : {{court}}</li>
+	</ul>
+
+	<a class="waves-effect waves-light btn">update client</a>
+	<a class="delete waves-effect waves-light btn">Delete</a>
+	<a class="waves-effect waves-light btn" href="/hearings/{{_id}}/edit">Edit</a>
+	<a href="/projects/{{caseId}}" class="waves-effect waves-light btn">Back</a>
+	</div>
+</template>
+
+

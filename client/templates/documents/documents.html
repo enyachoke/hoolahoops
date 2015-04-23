@@ -1,0 +1,60 @@
+<template name="docs">
+	{{ >navigation}}
+	<style>
+		.picker{
+			position : relative;
+		}
+	</style>
+ <button type="button" id="pick">Pick File</button>
+ <div id="result"></div>
+
+ <!-- <input type="text" class="file_title"> -->
+ 
+ <!-- <button type="button" id="create">Create File</button> -->
+ 	
+ 	<!-- <form>
+        <input type="text" name="fileTitle">
+        <input type="submit" value="Add Player">
+    </form> -->
+
+    
+
+	
+		{{ #if showLoader }}
+		<div class="progress">
+	      <div class="indeterminate"></div>
+	  	</div>
+	  	{{else}}
+	  		<a href="{{ getRootFolder.alternateLink }}" id="root">Root Folder</a>
+	    	<ul>
+		    {{ #each childrenFromRoot }}
+			<li>
+				<a>
+					{{{renderChildNode}}}
+				</a>
+			</li>
+			{{ /each }}
+			</ul>
+			<!-- {{ > folderView}} -->
+			<div id="jstree_demo"></div>
+			<br><br>
+			<h5>folder stack</h5>
+			{{ #each getFolderStack }}
+			<p>{{{renderStackLinks}}}</p>
+			{{ /each }}
+	  	{{/if}}
+
+</template>
+
+
+
+<!-- <template name="folderView">
+	<a href="{{ getRootFolder.alternateLink }}">Root Folder</a>
+	<ul>
+	{{ #each childrenFromRoot }}
+		<li>
+			{{ renderChildNode }}
+		</li>
+	{{ /each }}
+	</ul>
+</template> -->

@@ -1,0 +1,79 @@
+<template name="courts" >
+	<div class="row">
+		{{> navigation}}
+	</div>
+	<div class="container ">
+		
+		<a class=" col s4 waves-effect waves-light btn"  href='/courts/add'>Add Court</a>
+		{{> esInput index="courts" placeholder="Search Courts" allDocsOnEmpty="true"}}
+		{{#ifEsIsSearching index="courts"}}
+			{{> spinner}}
+		{{else}}
+			<table class="centered striped bordered" >
+					<thead>
+				        <tr>	
+				            <th data-field="id">Name</th>
+				            <th data-field="name">Code</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+					{{#esEach index="courts"}}
+					<tr>
+						<td>{{name}}</td>
+						<td>{{code}}</td>
+						<td><a class="waves-effect waves-light btn col s8" href='/courts/{{_id}}/edit'>Edit</a></td>
+						<td><a class="waves-effect waves-light btn col s8 delete" >Delete</a></td>
+					</tr>
+					{{/esEach}}
+					</tbody>
+			</table>
+		{{/ifEsIsSearching}}
+
+	</div>
+</template>
+
+<template name="addCourt">
+	{{> navigation}}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Add a Court</h4>
+		<div class="row form-container">
+	{{ # autoForm id="insertCourtForm" class="col s12" doc=this type="method" meteormethod="saveCourtData" schema="courtSchema" }}
+		<div class="row s12">
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="name" type="text" id="name"}}
+			<label for="name">Name</label>
+		</div>
+		<div class="input-field col l4 m6 s12">
+			{{> afFieldInput name="code" type="text" id="code"}}
+			<label for="code">Code</label>
+		</div>
+		</div>
+	<button class="waves-effect waves-light btn" type="submit">Insert</button>
+	<a class="waves-effect waves-teal btn-flat" href="/courts" style="position: absolute;">Cancel</a>
+	{{/autoForm}}
+	</div>
+</div>
+</template>
+
+<template name="editCourt">
+	{{> navigation}}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Edit a Court</h4>
+		<div class="row form-container">
+	{{ # autoForm id="insertCourtForm" class="col s12" doc=this type="method" meteormethod="saveCourtData" schema="courtSchema" }}
+		<div class="row s12">
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="name" type="text" id="name"}}
+				<label for="name">Name</label>
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="code" type="text" id="code"}}
+				<label for="code">Code</label>
+			</div>
+		</div>
+	<button class="waves-effect waves-light btn" type="submit">Insert</button>
+	<a class="waves-effect waves-teal btn-flat" href="/courts" style="position: absolute;">Cancel</a>
+	{{/autoForm}}
+	</div>
+	</div>
+</template>

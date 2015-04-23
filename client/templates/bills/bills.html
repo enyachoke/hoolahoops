@@ -1,0 +1,107 @@
+<template name="bills">
+	<div class="row">
+		{{ > navigation}}
+	</div>	
+	<div class="container">
+		<div class="row">
+
+			{{ #if bills_unpaid_exist }} 
+			<p><h5>UNPAID BILLS</h5></p>
+			<button id="mark_as_paid" class="waves-effect waves-light btn"> Mark As Paid</button>
+			{{> esInput index="bills_unpaid" placeholder="Search Unpaid Bills" allDocsOnEmpty="true"}}
+			{{#ifEsIsSearching index="bills_unpaid"}}
+				{{> spinner}}
+			{{else}}
+				<table class="centered hoverable" >
+				<thead>
+			        <tr >
+			        	<th data-field="id"></th>
+			            <th data-field="id">Title</th>
+			            <th data-field="name">Date</th>
+			            <th data-field="price">Amount</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+				{{#esEach index="bills_unpaid"}}
+					{{ > billRow }}
+				{{ /esEach }}
+				</tbody>
+				</table>
+			{{/ifEsIsSearching}}
+			{{/if}}
+		</div>
+		<!-- paid bills put in separate template later-->
+		<div class="row">
+			<p><h5>PAID BILLS</h5></p>
+			<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As unPaid</button>
+			{{> esInput index="bills_paid" placeholder="Search Paid Bills" allDocsOnEmpty="true"}}
+			{{#ifEsIsSearching index="bills_paid"}}
+				{{> spinner}}
+			{{else}}
+				<table class="centered striped" >
+				<thead>
+			        <tr>
+			        	<th data-field="id"></th>
+			            <th data-field="id">Title</th>
+			            <th data-field="name">Date</th>
+			            <th data-field="price">Amount</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+				{{#esEach index="bills_paid"}}
+					{{ > billRow }}
+				{{ /esEach }}
+				</tbody>
+				</table>
+			{{/ifEsIsSearching}}
+		<!-- 	{{> reactiveTable settings=settings}}
+
+		 -->
+	 	</div>
+	</div>
+	</template>
+
+<template name="billDetails">
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	<div class="container">
+		<div class="row">
+			  	<div class="col s12  project-title">
+			  		<h3>Bill for Hearing : {{case_title}} on {{date}} </h3>
+			  	</div>
+		</div>
+		<ul class="collection">
+	      <li class="collection-item">Date : {{date}}</li>
+	      <li class="collection-item">Billing details : {{amount}}</li>
+	      <li class="collection-item">Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</li>
+	      <!-- <li class="collection-item">Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</li> -->
+	      <li class="collection-item">Hearing attended by : <a href="/lawyers/{{lawyer._id}}">{{ lawyer.name }}</a></li>
+	      <li class="collection-item">Paid : {{ paid }}</li>
+		</ul>
+		<a href="/bills" class="waves-effect waves-light btn">Back</a>
+	</div>
+
+</template>
+
+<template name="billRow">
+	<tr class="bill_row">
+		<td>
+			<input type='checkbox' class="paid" id="{{_id}}" value="paid" style="position: relative;left: 0px;">
+		</td>
+		<td>{{case_title}}</td>
+		<td>{{date}}</td>
+		<td>{{amount}}</td>
+		<td><a href="/bills/{{_id}}"><i class="bill_details small center-align mdi-action-description"></i></a></td>
+	</tr>
+	<!-- <p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
+	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p> -->
+	
+
+</template>
+
+<template name="editBill">
+</template>
+
+<template name="addBill">
+</template>

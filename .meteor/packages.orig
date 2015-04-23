@@ -1,0 +1,33 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+iron:router
+mizzao:autocomplete
+pcel:serialize
+aldeed:simple-schema
+miguelalarcos:afwrap-xautocomplete
+aldeed:collection2
+reywood:publish-composite
+underscore
+natestrauser:font-awesome
+meteorhacks:npm
+
+
+npm-container
+wylio:mandrill
+aldeed:autoform
+d0minikk:materialize-meteor
+matb33:collection-hooks
+vsivsi:job-collection
+<<<<<<< HEAD
+mrt:fullcalendar
+=======
+accounts-password
+insecure
+zimme:iron-router-auth
+accounts-ui-unstyled
+>>>>>>> origin/mandrill_reminders

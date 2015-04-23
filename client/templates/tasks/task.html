@@ -1,0 +1,118 @@
+<template name="taskRow">
+	<tr>
+		<td>{{date}}</td>
+		<td>{{desc}}</td>
+		<th><a href="/tasks/{{_id}}/">Details </a></th>
+		<th><button id='delete_task'>Delete</button></th>
+	</tr>
+</template>
+
+<template name="tasks">
+	<div class="container">
+	<a href='/tasks/add'>add task</a>
+	<table>
+		<tr>
+			<th> Deadline </th>
+			<th> Description </th>
+			
+		</tr>
+	{{# each tasks}}
+	{{ > taskRow}}
+	{{/each}}
+	</table>	
+	</div>
+</template>
+
+<template name="taskDetails">
+	<div class="row">
+		{{ > navigation}}
+	</div>
+	
+	<div class="container">
+	<div class="row">
+		  	<div class="col s12  project-title">
+		  		<h3>Task Deadline : {{formatted_date}} </h3>
+		  	</div>
+	</div>
+	<ul class="collection">
+      <li class="collection-item">Description: {{desc}}</li>
+      <li class="collection-item">Date : {{formatted_date}}</li>
+      <li class="collection-item">Completed : {{completed}}</li>
+	</ul>
+	<div class="row">
+		<a class="Mark_As_Done waves-effect waves-light btn">Mark As Done</a> <a class="Mark_As_Incomplete waves-effect waves-light btn">Mark As Incomplete</a>
+	</div>
+	
+	<a class="delete waves-effect waves-light btn">Delete</a>
+	<a class="waves-effect waves-light btn" href="/tasks/{{_id}}/edit">Edit</a>
+	<a href="/projects/{{caseId}}" class="waves-effect waves-light btn">Back</a>
+	</div>
+	
+</template>
+
+<template name="addTask">
+	{{> navigation}}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Add a Task</h4>
+		<div class="row form-container">
+		{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
+			<div class="input-field col l8 m6 s12">
+				{{> afFieldInput  type='xautocomplete' formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
+				<label for="task__case">Matter</label>
+				
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="date" class="datepickerwa" type="date" id="deadine"}}
+				<label for="deadine" class="active">Deadline</label>
+			</div>
+			<div class="input-field col s12">
+				{{> afFieldInput name="desc" type="textarea" class="materialize-textarea" id="desc"}}
+			<label for="desc">Description</label>
+
+			</div>
+			<div class="input-field col s12 m12">
+				<h5>Reminders</h5>
+				<div class="input-field col s12 m6">
+					{{> afQuickField name='reminders' }}
+				</div>
+			</div>
+			
+		<button class="waves-effect waves-light btn" type="submit">Insert</button>
+		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+		</div>
+	</div>
+</template>
+
+<template name="editTask">
+	{{> navigation}}
+	<div class="container card-panel add-project">
+		<h4 class="teal form-header">Edit a Task</h4>
+		<div class="row form-container">
+		{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
+			<div class="input-field col l8 m6 s12">
+				{{> afFieldInput  type='xautocomplete' formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
+				<label for="task__case">Matter</label>
+				
+			</div>
+			<div class="input-field col l4 m6 s12">
+				{{> afFieldInput name="date" class="datepickerwa" type="date" id="deadine"}}
+				<label for="deadine" class="active">Deadline</label>
+			</div>
+			<div class="input-field col s12">
+				{{> afFieldInput name="desc" type="textarea" class="materialize-textarea" id="desc"}}
+				<label for="desc">Description</label>
+			</div>
+			<div class="input-field col s12 m12">
+				<h5>Reminders</h5>
+				<div class="input-field col s12 m6">
+					{{> afQuickField name='reminders' }}
+				</div>
+			</div>
+			
+		<button class="waves-effect waves-light btn" type="submit">Insert</button>
+		<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+		{{/autoForm}}
+		</div>
+	</div>
+</template>

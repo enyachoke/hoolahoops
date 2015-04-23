@@ -1,13 +1,15 @@
 <template name="hearings">
-	<a href="/hearings/add">Add Hearing</a>
-	<table>
-	<tr>
-		<th>Title</th>
-		<th>Court</th>
-		<th>Date</th>
-	</tr>
-		 {{#each hearings}}
-			{{ > hearingRow}}
-		 {{/each}}
-	</table>	 
+	{{#if isInRole 'view-hearingss'}}
+		<a href="/hearings/add">Add Hearing</a>
+		<table>
+		<tr>
+			<th>Title</th>
+			<th>Court</th>
+			<th>Date</th>
+		</tr>
+			 {{#each hearings}}
+				{{ > hearingRow}}
+			 {{/each}}
+		</table>
+	{{/if}}	 
 </template>

@@ -1,4 +1,5 @@
 <template name="hearingEdit">
+	{{#if isInRole 'edit-hearings'}}
 	<!-- <form>
 		<label> Title:
 			<input name="title" class="title" value="{{title}}"/>
@@ -69,5 +70,5 @@
 				{{/autoForm}}
 			</div>
 		</div>
-		
+	{{/if}}
 </template>

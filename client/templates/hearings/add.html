@@ -1,4 +1,5 @@
 <template name="hearingAdd">
+	{{#if isInRole 'edit-hearings'}}
 		{{> navigation}}
 		
 		<div class="container card-panel add-project">
@@ -53,8 +54,6 @@
 				{{/autoForm}}
 			</div>
 		</div>
-		
-		  
-
+	{{/if}}
 </template>
 

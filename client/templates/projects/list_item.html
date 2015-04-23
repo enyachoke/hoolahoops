@@ -1,5 +1,6 @@
 <template name="projectRow">
-<tr class="project-row">
+
+<tr >
 	<!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
 	<td> {{uniqueId}}</td>
 	<td>{{name}}</td>
@@ -20,13 +21,16 @@
 	</td> -->
 	<!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
 	<td>{{next_hearing}}</td>
-	<td>
-	{{#each labels}}
-		{{> colorElement}}
-	{{/each}}
-	</td>
 	
+
 	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
-	<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
+	{{#if isInRole 'edit-projects'}}
+		<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
+	{{/if}}
 </tr>
+<div class="projectLabels row">
+	{{#each labels}}
+		<span class="color">{{> colorElement}}</span>
+	{{/each}}
+</div>
 </template>

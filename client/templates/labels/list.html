@@ -1,32 +1,36 @@
 <template name="labels">
-	{{> navigation}}
+	{{#if isInRole 'view-labels'}}
+		{{> navigation}}
 
-	<div class="container">
-		<div class="card-panel">
-			<div class="row">
-				{{> labelAdd}}
+		<div class="container">
+			<div class="card-panel">
+				{{#if isInRole 'edit-labels'}}
+					<div class="row">
+						{{> labelAdd}}
+					</div>
+				{{/if}}
+				
+				<table class="row">
+					<tr>
+						<th> Label </th>
+					</tr>
+					{{# each labels}}
+					{{ > labelRow}}
+					{{/each}}
+				</table>	
 			</div>
-			
-			<table class="row">
-				<tr>
-					<th> Label </th>
-				</tr>
-				{{# each labels}}
-				{{ > labelRow}}
-				{{/each}}
-			</table>	
 		</div>
-	</div>
+	{{/if}}
 </template>
 
 <template name="labelRow">
 	<tr>
 		<td>{{>colorElement}}</td>
 		<!--th><a href="/labels/{{_id}}/edit">Edit </a></th-->
-		<td><button class="delete" id='delete_task'>Delete</button></td>
+		{{#if isInRole 'edit-labels'}}
+			<td><button class="delete" id='delete_task'>Delete</button></td>
+		{{/if}}
 	</tr>
-
-	
 </template>
 
 <template name="colorElement">

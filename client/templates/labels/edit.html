@@ -1,4 +1,5 @@
 <template name="labelEdit">
+	{{#if isInRole 'edit-labels'}}
 		{{> navigation}}
 		
 		<div class="container card-panel add-label">
@@ -19,4 +20,5 @@
 				{{/autoForm}}
 			</div>
 		</div>
+	{{/if}}
 </template>

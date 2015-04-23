@@ -1,3 +1,5 @@
 <template name="projectEdit">
-	{{> projectAdd}}
+	{{#if isInRole 'view-projects'}}
+		{{> projectAdd}}
+	{{/if}}
 </template>

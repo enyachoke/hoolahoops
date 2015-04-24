@@ -5,7 +5,7 @@ Meteor.startup(function () {
 		
 		Meteor.publish(namespace, function(){
 			//debugger;
-			console.log("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
+			//console.log("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
 			//console.log(roleString, role, userId, Roles.userIsInRole(userId, role));
 			if(this.userId && Roles.userIsInRole(this.userId, role))
 				return func.call(this);

@@ -156,6 +156,7 @@ Meteor.methods({
 	// {title: , userId:, parentId}
 	'insertFolder' : function (obj)	{
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
+		debugger;
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,

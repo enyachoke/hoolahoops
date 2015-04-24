@@ -77,9 +77,9 @@
 	<tr>
 		<td>{{case}}</td>
 		<td>{{totaltime}}</td>
-		<td><a href="/timesheets/{{_id}}">Details</a></td>
-	<!--	<td><a href="/timesheets/{{_id}}/edit">Edit</a></td> -->
-		<td> <button id='delete'>Delete</button></td>
+		<td><a href="/projects/{{_id}}/timesheets">Details</a></td>
+		<!-- <td><a href="/timesheets/{{_id}}/edit">Edit</a></td> --> 
+		<!-- <td> <button id='delete'>Delete</button></td> -->
 	</tr>
 </template>
 
@@ -132,7 +132,7 @@
 	</div>
 	<div class="container project-list-container">
 		<div class="row">
-        <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
+        <!-- <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a> -->
 			<table class="striped centered bordered	">
 			<thead>
 				<tr>
@@ -180,5 +180,6 @@
 		<td>{{type}}</td>
 		<td>{{user}}</td>
 		<td>{{duration}}</td>
+		<td><a href="/timesheets/{{_id}}/edit">Edit</a></td>
 	</tr>
 </template>

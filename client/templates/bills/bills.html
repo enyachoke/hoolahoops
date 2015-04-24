@@ -25,9 +25,11 @@
 					        </tr>
 					    </thead>
 					    <tbody>
-						{{#esEach index="bills_unpaid"}}
+						<!-- {{#esEach index="bills_unpaid"}} -->
+						{{ #each bills_unpaid }}
 							{{ > billRow }}
-						{{ /esEach }}
+						{{ /each }}
+						<!-- {{ /esEach }} -->
 						</tbody>
 						</table>
 					{{/ifEsIsSearching}}
@@ -53,9 +55,11 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-					{{#esEach index="bills_paid"}}
+					<!-- {{#esEach index="bills_paid"}} -->
+					{{ #each bills_paid }}
 						{{ > billRow }}
-					{{ /esEach }}
+					{{ /each }}
+					<!-- {{ /esEach }} -->
 					</tbody>
 					</table>
 				{{/ifEsIsSearching}}

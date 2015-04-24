@@ -4,7 +4,7 @@ Deps.autorun(function(){
 Template.timesheets.helpers({
 	'timesheets' : function(){
 		return Projects.find();
-	},
+	}
 });
 
 Template.timesheetRow.helpers({
@@ -34,6 +34,11 @@ Template.addTimesheet.helpers({
 		return Session.get('timeTracked');
 	}
 });
+
+Template.addTimesheet.rendered = function() {
+	Session.set('lapTime', 0);
+	Session.set('timeTracked', 0);
+}
 
 Template.editTimesheet.helpers({
 	'fetch_duration' : function(){

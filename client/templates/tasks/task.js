@@ -24,7 +24,7 @@ Template.taskDetails.events({
 
 Template.taskDetails.helpers({
 	'formatted_date' : function (){
-		return this.date.format('{dd}-{mm}-{yy}');
+		return this.date.format('{dd}-{month}-{yy}');
 	}
 });
 

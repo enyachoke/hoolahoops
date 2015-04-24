@@ -5,7 +5,7 @@ Template.meetingDetails.helpers({
 	},
 	'formatted_date' : function (){
 		debugger;
-		return this.date.format('{dd}-{mm}-{yy}');
+		return this.date.format('{dd}-{month}-{yy}');
 	}
 });
 

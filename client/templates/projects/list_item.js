@@ -16,7 +16,8 @@
       return Courts.findOne({_id: this.courtId});
     },
     'next_hearing' : function(){
-      return Hearings.find({ date : {$gt : new Date()}}).fetch()[0].date.format('{dd}-{month}-{yy}');
+      debugger;
+      return Hearings.find({ date : {$gt : new Date()}},{ caseId : this._id}).fetch()[0].date.format('{dd}-{month}-{yy}');
     },
     'labels' : function(){
       debugger;

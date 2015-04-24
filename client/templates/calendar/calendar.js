@@ -37,19 +37,33 @@ Template.calendar.rendered= function(){
 					type : e.type,
 					className : 'task',
 					task_id : e.taskId,
-					completed : completed
+					completed : completed,
+					url : '/tasks/' + e.taskId
 					//url : '/tasks/'+e.taskId
 				});
 			}
 			break;
 		case 'meetings' : 
-			
+			debugger;
+			var meeting = Meetings.findOne({_id : e.meetingId});
+			var allDay= true;
+			var start, end;
+			if ( meeting.startHour && meeting.endHour) {
+				allDay = false;
+				start = e.date; 
+				start.setHours(meeting.startHour);
+				end = e.date;
+				end.setHours(meeting.startHour);
+			}
 			meetings.push({
 				title : 'Meeting :'+project.name,
 				date : e.date,
 				type : e.type,
 				url : '/meetings/'+e.meetingId, 
-				className : 'meeting'
+				className : 'meeting',
+				allDay : allDay,
+				start : start || null,
+				end : end || null
 			});
 			break;
 				
@@ -57,41 +71,8 @@ Template.calendar.rendered= function(){
 		
 		
 	});
-	// $('.calendar_tiny').fullCalendar({
-	// 	dayClick: function(date, allDay, jsEvent, view) {
-	// 		Meteor.call('toggle_block_days',date);
-	// 		$(this).toggleClass( 'blocked' )
- //    	},
- //    	events: function(start, end, callback) {
- //    		// var cal_events = Events.find({type : blocked});
- //    		// var events = []
- //    		// _.each(cal_events, function(e){
- //    		// 	events.push({
- //    		// 		title : 'x',
- //    		// 		date : e.date,
- //    		// 		type : e.type
- //    		// 	});
- //    		// });
- //    		// callback(events);
- //    	},
- //    	dayRender : function( date, cell ) { 
- //    		if ( Events.findOne({ date : date , type : 'blocked', userId : Meteor.userId() }) ) {
- //    			cell.addClass('blocked')
- //    		}
- //    	}
-	// });
+
 	$('#calendar').fullCalendar({
-// 		dayClick: function(date, jsEvent, view) {
-// 		        // alert('Clicked on: ' + date);
-// //
-// // 		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-// //
-// // 		        alert('Current view: ' + view.name);
-// //
-// // 		        // change the day's background color just for fun
-// // 		        $(this).css('background-color', 'red');
-// 							$('#modal1').openModal();
-// 		    }
 		dayClick: function(date, allDay, jsEvent, view) {
 			debugger;
 			Meteor.call('toggle_block_days',date);
@@ -109,11 +90,12 @@ Template.calendar.rendered= function(){
 		}, 
 		eventRender: function(event, element) {
 			if (event.type == 'tasks'){
+				// todo : rerender on switch view
 				if ( event.completed ){
 					element.find('.fc-event-title').css('text-decoration','line-through');
-					element.find('.fc-event-title').prepend('<input class="chk-complete" id='+event.task_id+' type="checkbox" checked>')
+					//element.find('.fc-event-title').prepend('<input class="chk-complete" id='+event.task_id+' type="checkbox" checked>')
 				}else{
-					element.find('.fc-event-title').prepend('<input class="chk-complete" id='+event.task_id+' type="checkbox">')
+					//element.find('.fc-event-title').prepend('<input class="chk-complete" id='+event.task_id+' type="checkbox">')
 				}
 			} else if (event.type == 'hearings' && event.color) {
 				element.children().css('background',event.color);

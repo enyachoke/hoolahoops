@@ -213,7 +213,7 @@ Template.billDetails.helpers({
 		var clients =[];
 		if (this.type == 'hearings'){
 			clientIds  = Projects.findOne(Hearings.findOne(this.hearingId).caseId).clientIds;
-			clients = Clients.find({_id: {$in:clientIds}}).fetch();
+			clients = Meteor.users.find({_id: {$in:clientIds}}).fetch();
       	}
       	return clients;
 	},
@@ -221,14 +221,14 @@ Template.billDetails.helpers({
 		var lawyers = []
 		if (this.type == 'hearings'){
 			lawyerIds  = Projects.findOne(Hearings.findOne(this.hearingId).caseId).lawyerIds;
-			lawyers = Lawyers.find({_id: {$in:lawyerIds}}).fetch();
+			lawyers = Meteor.users.find({_id: {$in:lawyerIds}}).fetch();
       	}
       	return lawyers;
 	},
 	'lawyer' : function(){
 		var lawyer = ""
 		if (this.type == 'hearings'){
-			lawyer = Lawyers.findOne(Hearings.findOne(this.hearingId).lawyerId);
+			lawyer = Meteor.users.findOne(Hearings.findOne(this.hearingId).lawyerId);
 
       	}
       	return lawyer;

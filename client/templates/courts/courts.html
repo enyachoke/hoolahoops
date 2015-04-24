@@ -24,7 +24,7 @@
 						<td>{{name}}</td>
 						<td>{{code}}</td>
 						<td><div style ="height : 15px; width : 100px; background:{{color}}"></div></td>
-						{{#if isInRoles 'edit-courts'}}
+						{{#if isInRole 'edit-courts'}}
 							<td><a class="waves-effect waves-light btn col s8" href='/courts/{{_id}}/edit'>Edit</a></td>
 							<td><a class="waves-effect waves-light btn col s8 delete" >Delete</a></td>
 						{{/if}}

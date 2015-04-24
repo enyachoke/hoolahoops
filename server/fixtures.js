@@ -77,3 +77,22 @@ _.each(courts, function(court){
 	//if(!Clients.findOne(court._id))
 		Courts.upsert(court['_id'], {$set: court});
 });
+
+console.log("\n\n\n\n\n\nAdding admin user outside log: " + Meteor.users.find().count() + "\n\n\n\n\n\n");
+
+/* Create a default user */
+if ( Meteor.users.find().count() === 0 ) {
+	var userId = Accounts.createUser({
+        username: 'adminuser123456789',
+        email: 'shashwat@dinasource.com',
+        password: 'adminuser987654321',
+        profile: {
+            first_name: 'Admin',
+            last_name: 'Admin',
+            company: 'CloudVakil',
+        }
+    });
+
+	Roles.addUsersToRoles(userId, getAllRolesTags());
+    console.log("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
+}

@@ -38,5 +38,9 @@ Template.projects.events({
 	'change #type-select': function(e){
       	EasySearch.changeProperty('projects', 'type', $(e.target).val());
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
-	}
+	},
+  'change #label-select': function(e){
+        EasySearch.changeProperty('projects', 'labels', $(e.target).val());
+        EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
+  }
 })

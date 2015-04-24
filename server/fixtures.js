@@ -92,4 +92,5 @@ if ( Meteor.users.find().count() === 0 ) {
     });
 
     Roles.addUsersToRoles(userId, getAllRolesTags());
+    console.log("Adding admin user");
 }

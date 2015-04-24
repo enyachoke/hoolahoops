@@ -8,8 +8,8 @@
 			{{#if isInRole 'edit-lawyers'}}
 				<a class=" col s4 waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
 			{{/if}}
-			{{> esInput index="lawyers" placeholder="Search Lawyers" allDocsOnEmpty="true"}}
-			{{#ifEsIsSearching index="lawyers"}}
+<!-- 			{{> esInput index="lawyers" placeholder="Search Lawyers" allDocsOnEmpty="true"}}
+ -->			{{#ifEsIsSearching index="lawyers"}}
 				{{> spinner}}
 			{{else}}
 				<table class="centered striped bordered" >
@@ -21,9 +21,11 @@
 					        </tr>
 					    </thead>
 					    <tbody>
-						{{#esEach index="lawyers"}}
+						<!-- {{#esEach index="lawyers"}} -->
+						{{ #each lawyers}}
 						{{ > rowLawyer }}
-						{{/esEach}}
+						{{ /each }}
+						<!-- {{/esEach}} -->
 						</tbody>
 				</table>
 			{{/ifEsIsSearching}}
@@ -65,8 +67,6 @@
 <template name="rowLawyer">
 	<tr>
 		<td>{{name}}</td>
-		<td>{{phone}}</td>
-		<td>{{email}}</td>
 		<td>{{contactNumber}}</td>
 		<td>{{username}}</td>
 		{{#if isInRole 'edit-lawyers'}}

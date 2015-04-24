@@ -299,7 +299,7 @@ Meteor.methods({
 	// { email : , name : , type : }
 	'createNewUser' : function(obj){
 		debugger;
-		var password = Random.id()
+		var password = 'tcl-'+obj.contactNumber; //Random.id()
 		if( obj && obj.username && obj.name ){
 			var options = {
 				username : obj.username ,

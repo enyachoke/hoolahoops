@@ -7,6 +7,8 @@ parseReminders = function(doc, template) {
 }
 
 addEmailReminder = function(doc, template, message, to, date) {
+	debugger;
+	console.log("adding email reminder", message, to, date);
 	// TODO: Faulty logic. Remove template from here and move this into helpers
 	doc.url = Meteor.absoluteUrl() + template + '/' + doc._id;
 	doc.message = message

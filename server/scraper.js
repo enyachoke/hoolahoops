@@ -9,7 +9,7 @@ addScraperJob = function(project) {
 	// Create a new scraper job
 	var job = myJobs.createJob('addScraper', {'project': project});
 	job.repeat({
-	  schedule: myJobs.later.parse.text('every 2 hours')   // Rerun this job every 5 minutes
+	  schedule: myJobs.later.parse.text('every 2 mins')   // Rerun this job every 5 minutes
 	});
 	job.retry({retries: 4, wait: 2*60*1000});
 	job.save();
@@ -38,6 +38,7 @@ checkNewLinks = function(project, links) {
 }
 
 scrapeDelhiHighCourt = function(project, callback) {
+	console.log("running scraper");
 	var nm = new Nightmare();
 	
 	var handleResult = Meteor.bindEnvironment(function(p){

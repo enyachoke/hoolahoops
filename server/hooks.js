@@ -1,6 +1,5 @@
 // Project hook(er)s?
 Projects.after.insert(function(projectId, doc){
-	Projects.update( { _id : projectId }, {$set : { uniqueId : Courts.findOne({_id: doc.courtId}).code+"-"+ projectId } } );
 
 	// Reminders
 	doc = Projects._transform(doc);
@@ -12,16 +11,19 @@ Projects.after.insert(function(projectId, doc){
 	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
 
 	addScraperJob(doc);
+
+
+
 });
 
 Projects.after.update(function(id, doc){
 	addScraperJob(doc);
 })
 
-Projects.before.insert(function(id, doc){
-	var shortId = Meteor.npmRequire('shortid');
-	doc.uniqueId = Courts.findOne({_id: doc.courtId}).code+"-"+ shortId.generate();
-});
+// Projects.before.insert(function(id, doc){
+// 	var shortId = Meteor.npmRequire('shortid');
+// 	doc.uniqueId = Courts.findOne({_id: doc.courtId}).code+"-"+ shortId.generate();
+// });
 
 Projects.after.remove(function (userId, doc) {
 	// TODO: We should have a system like ruby on rails activerecord where user just specifies dependencies and the dependent fields are added removed automatically

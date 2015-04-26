@@ -36,7 +36,7 @@ Meteor.methods({
 	//   		// Now tokens contains an access_token and an optional refresh_token. Save them.
 	// 			if(!err) {
 	// 		    	OAUTH2_CLIENT.setCredentials(tokens);
-	// 		    	debugger;
+	// 		    	//debugger;
 	// 		    	// UserTokens.insert({
 	// 		    	// 	userId : 'rishabh.robben@gmail.com',
 	// 		    	// 	token : tokens
@@ -156,7 +156,7 @@ Meteor.methods({
 	// {title: , userId:, parentId}
 	'insertFolder' : function (obj)	{
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
-		debugger;
+		//debugger;
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
@@ -203,7 +203,7 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
 			},function(err,res){
 				done(err,res);
-				debugger;
+				//debugger;
 				//console.log('list',err,res);
 			});
 		});
@@ -238,7 +238,7 @@ Meteor.methods({
 				console.log(err,res);
 			});
 		});
-		debugger;
+		//debugger;
 		return response;
 	},
 	// {parentId: , fileId: , userId: }
@@ -265,7 +265,7 @@ Meteor.methods({
 	},
 	// userId
 	'getRootFolder' : function(obj){	
-		debugger;
+		//debugger;
 		var rootFolderId =  0;
 		//create root folder
 		if ( RootFolders.find().fetch().length == 0 ){
@@ -299,7 +299,7 @@ Meteor.methods({
 	},
 	// { email : , name : , type : }
 	'createNewUser' : function(obj){
-		debugger;
+		//debugger;
 		var password = 'tcl-'+obj.contactNumber; //Random.id()
 		if( obj && obj.username && obj.name ){
 			var options = {

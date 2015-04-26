@@ -78,7 +78,7 @@ _.each(courts, function(court){
 		Courts.upsert(court['_id'], {$set: court});
 });
 
-console.log("\n\n\n\n\n\nAdding admin user outside log: " + Meteor.users.find().count() + "\n\n\n\n\n\n");
+//console.log("\n\n\n\n\n\nAdding admin user outside log: " + Meteor.users.find().count() + "\n\n\n\n\n\n");
 
 /* Create a default user */
 if ( Meteor.users.find().count() === 0 ) {
@@ -94,5 +94,5 @@ if ( Meteor.users.find().count() === 0 ) {
     });
 
 	Roles.addUsersToRoles(userId, getAllRolesTags());
-    console.log("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
+    //console.log("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
 }

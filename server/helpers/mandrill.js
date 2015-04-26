@@ -9,10 +9,3 @@ toMandrillArray = function(obj) {
 
 	return arr;
 }
-
-transformUserForMandrill = function(user) {
-	return {
-		'name': user.name,
-		'email': user.emails[0].address
-	};
-}

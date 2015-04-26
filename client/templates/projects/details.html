@@ -11,11 +11,11 @@
 	  	<div class="row">
 	  		<div class="col s8 white project-details">
 		  		<div class="row">
-			  		<div class="col l4 m4 s12">
+			  		<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >SUIT NO</h6>
 			  			<p>{{ctype}}{{cno}}/{{cyear}}</p>	
 			  		</div>
-					<div class="col l4 m4 s12">
+					<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >UNIQUE ID</h6>
 			  			<p>{{_id}}</p>	
 			  		</div>
@@ -25,40 +25,40 @@
 			  			<p>{{prac_area}}</p>	
 			  		</div>  -->
 					
-					<div class="col l4 m4 s12">
+					<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >CLIENT</h6>
 			  			<p>
 			  			{{#each clients}}
 							<a href='/clients/{{_id}}'>{{name}}</a>
 						{{/each}}
 						</p>
-
+						
+			  		</div>
+			  		<div class="col l6 m6 s12">
+				  			<h6 class="grey-text">LAWYER</h6>
+				  			<p>{{#each lawyers}}
+								<a href='/lawyers/{{_id}}'>{{name}}</a>
+							{{/each}}</p>
 			  		</div>
 
 			  	</div>
 			  	<div class="row">
-					<div class="col l4 m4 s12">
+					<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >TYPE</h6>
 			  			<p>{{type}}</p>	
-			  		</div>
-			  		<div class="col s12">
-						<h6 class="grey-text">DESCRIPTION</h6>
-			  			<p>{{description}}</p>
-					</div>
-			  	</div>
-			  	<div class="row">
-			  		<div class="col s6">
-			  			<h6 class="grey-text">LAWYER</h6>
-			  			<p>{{#each lawyers}}
-							<a href='/lawyers/{{_id}}'>{{name}}</a>
-						{{/each}}</p>
 			  		</div>
 			  		<div class="col s6">
 			  			<h6 class="grey-text">COURT</h6>
 			  			<p>{{#with court}}
 							{{name}}
 						{{/with}}</p>
-			  		</div>
+			  		</div>	
+			  	</div>
+			  	<div class="row">
+			  		<div class="col s12">
+						<h6 class="grey-text">DESCRIPTION</h6>
+			  			<p>{{description}}</p>
+					</div>			  		
 			  	</div>
 			  	<div class="row">
 				  	<div class="col s12">

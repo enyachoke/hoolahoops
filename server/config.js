@@ -33,6 +33,9 @@ Meteor.startup(function() {
 
 	Kadira.connect('JuJNAjRAZr7Ag3wnf', 'f5e55ed4-9b38-447d-9812-be859f771c35')
 
+	// TODO: Move to separate file once this grows big
+	Houston.add_collection(Meteor.users);
+
 });
 
 

@@ -1,5 +1,6 @@
 Meteor.startup(function () {
 	var publishWithRoles = function(namespace, func, roleString){
+		console.log("publishWithRoles: ","checking", roleString);
 		var roleString = roleString || namespace;
 		var role = 'view-' + roleString;
 		

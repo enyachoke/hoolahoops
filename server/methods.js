@@ -137,7 +137,8 @@ Meteor.methods({
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
-  			refresh_token: token_obj.refresh_token
+  			refresh_token: token_obj.refresh_token,
+  			expiry_date: token_obj.expiresAt
 		});
 		var drive = GOOGLE.drive('v2');
       	var response_list_req = Async.runSync(function(done){
@@ -160,7 +161,8 @@ Meteor.methods({
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
-  			refresh_token: token_obj.refresh_token
+  			refresh_token: token_obj.refresh_token,
+  			expiry_date: token_obj.expiresAt
 		});
 		rootFolderId = Meteor.call('getRootFolderId');
 		var resource = {
@@ -195,7 +197,8 @@ Meteor.methods({
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
-  			refresh_token: token_obj.refresh_token
+  			refresh_token: token_obj.refresh_token,
+  			expiry_date: token_obj.expiresAt
 		});
 		var response = Async.runSync(function(done){
 			DRIVE.children.list({
@@ -224,7 +227,8 @@ Meteor.methods({
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
-  			refresh_token: token_obj.refresh_token
+  			refresh_token: token_obj.refresh_token,
+  			expiry_date: token_obj.expiresAt
 		});
 		var fileId = obj.fileId
 		var response = Async.runSync(function(done){
@@ -248,7 +252,8 @@ Meteor.methods({
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
 			access_token: token_obj.access_token,
-  			refresh_token: token_obj.refresh_token
+  			refresh_token: token_obj.refresh_token,
+  			expiry_date: token_obj.expiresAt
 		});
 		//OAUTH2_CLIENT.setCredentials(TOKENS);
 		var response = Async.runSync(function(done){
@@ -291,7 +296,8 @@ Meteor.methods({
 		if ( user != undefined) {
 			obj = {
 				access_token: user.services.google.accessToken,
-				refresh_token: user.services.google.refreshToken
+				refresh_token: user.services.google.refreshToken,
+				expiresAt : user.services.google.expiresAt || true
 			};
 		}
 		

@@ -9,13 +9,19 @@ addScraperJob = function(project) {
 	// Create a new scraper job
 	var job = myJobs.createJob('addScraper', {'project': project});
 	job.repeat({
-	  schedule: myJobs.later.parse.text('every 5 hours')   // Rerun this job every 5 minutes
+	  repeats: Job.forever,   // Rerun this job 5 times,
+	  wait: 4*60*60*1000   // wait 50 seconds between each re-run.
 	});
+	// job.repeat({
+	//   schedule: myJobs.later.parse.text('every 5 hours')   // Rerun this job every 5 minutes
+	// });
 	job.retry({retries: 4, wait: 2*60*1000});
+	console.log("addScraperJob:", "added scraper job");
 	job.save();
 }
 
 removeScraperJob = function(project) {
+	console.log("removeScraperJob:", "removing jobs from scraper");
 	var prevJobEntries = myJobs.find({'data.project._id': project._id, 'type':'addScraper'}).fetch();
 	prevJobEntries.forEach(function(entry){
 		var prevJob = new Job(myJobs, entry);
@@ -26,6 +32,7 @@ removeScraperJob = function(project) {
 }
 
 checkNewLinks = function(project, links) {
+	console.log("checkNewLinks:", "checking new links");
 	// Take order and return link
 	//debugger;
 	var mapFn = function(order) {
@@ -38,7 +45,7 @@ checkNewLinks = function(project, links) {
 }
 
 scrapeDelhiHighCourt = function(project, callback) {
-	console.log("running scraper");
+	console.log("scrapeDelhiHighCourt:", "running scraper");
 	var nm = new Nightmare();
 	
 	var handleResult = Meteor.bindEnvironment(function(p){

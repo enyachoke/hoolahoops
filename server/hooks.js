@@ -6,7 +6,7 @@ Projects.after.insert(function(projectId, doc){
 	parseReminders(doc, 'projects');
 	// Add statute of limitation reminder for lawyers + clients 1 day before st
 	// Add follow up reminder for lawyers 1 day before
-	debugger;
+	//debugger;
 	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.reminderStatuteDate());
 	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
 
@@ -113,7 +113,7 @@ Meetings.before.insert( function( userId, doc){
 });
 
 Meetings.after.insert( function(userId, doc){
-	debugger;
+	//debugger;
 	// add meeting to project
 	Projects.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
 
@@ -152,7 +152,7 @@ Meetings.after.remove(function( meetingId, doc){
 
 //task hooks
 Tasks.after.insert( function(userId, doc){
-	debugger;
+	//debugger;
 	console.log('hook',doc);
 	//add task to project
 	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );

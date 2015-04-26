@@ -22,7 +22,6 @@ meteorhacks:npm
 npm-container
 wylio:mandrill
 matb33:collection-hooks
-vsivsi:job-collection
 accounts-password
 
 zimme:iron-router-auth
@@ -45,3 +44,5 @@ thegreatshasha:autoform-selectize
 thegreatshasha:spectrumcolorpicker
 matteodem:easy-search@=1.4.13
 alanning:roles
+houston:admin
+vsivsi:job-collection

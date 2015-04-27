@@ -7,6 +7,7 @@ Projects.after.insert(function(projectId, doc){
 	// Add statute of limitation reminder for lawyers + clients 1 day before st
 	// Add follow up reminder for lawyers 1 day before
 	//debugger;
+	addEmailReminder(doc, 'projects', 'Your case has been created.', doc.lawyers().concat(doc.clients()));
 	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.reminderStatuteDate());
 	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
 
@@ -16,8 +17,9 @@ Projects.after.insert(function(projectId, doc){
 
 });
 
-Projects.after.update(function(id, doc){
+Projects.after.update(function(id, doc, fieldNames, modifier){
 	addScraperJob(doc);
+	doc = Projects._transform(doc);
 })
 
 // Projects.before.insert(function(id, doc){
@@ -57,7 +59,7 @@ Hearings.after.insert( function(hearingId, doc){
 	
 
 	//update project : push _id to project.hearingIds
-	Projects.update( { _id: doc.caseId },{ $push: { hearingIds: doc._id } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { hearingIds: doc._id } });
 
 	//insert event
 	var event_res = Events.insert({
@@ -67,8 +69,8 @@ Hearings.after.insert( function(hearingId, doc){
 		'userIds' : [doc.lawyerId]
 	});
 	console.log('event_res',event_res);
-	Hearings.update( { _id: doc._id },{ $push: { eventIds: event_res } });
-	Projects.update( { _id: doc.caseId },{ $push: { eventIds: event_res } });
+	Hearings.direct.update( { _id: doc._id },{ $push: { eventIds: event_res } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { eventIds: event_res } });
 
 	var bill_res = Bills.insert({
 					'hearingId' : doc._id,
@@ -77,8 +79,8 @@ Hearings.after.insert( function(hearingId, doc){
 				});
 	console.log('bill_res',bill_res);
 
-	Hearings.update( { _id: doc._id },{ $push: { billIds: bill_res } });
-	Projects.update( { _id: doc.caseId },{ $push: { billIds: bill_res } });
+	Hearings.direct.update( { _id: doc._id },{ $push: { billIds: bill_res } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { billIds: bill_res } });
 
 	// Reminders
 	doc = Hearings._transform(doc);
@@ -88,10 +90,18 @@ Hearings.after.insert( function(hearingId, doc){
 	
 });
 
+Hearings.after.update(function(id, doc, fieldNames, modifier){
+	doc = Hearings._transform(doc);
+	//debugger;
+	if(doc.proceedings !== this.previous.proceedings)
+		addEmailReminder(doc, 'hearings', 'Proceedings for your case have been updated.', doc.project().lawyers().concat(doc.project().clients()));
+	//console.log("after update: ", doc, fieldNames, modifier);
+})
+
 Hearings.after.remove( function( hearingId, doc){
 
 	//...remove id from project:hearingIds
-	Projects.update( { _id : doc.projectId }, { $pull : { hearingIds : doc._id } } );
+	Projects.direct.update( { _id : doc.projectId }, { $pull : { hearingIds : doc._id } } );
 
 	//...remove events
   	_.each(doc.eventIds,function(id){
@@ -115,7 +125,7 @@ Meetings.before.insert( function( userId, doc){
 Meetings.after.insert( function(userId, doc){
 	//debugger;
 	// add meeting to project
-	Projects.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
 
 	// insert event
 	var res = Events.insert({
@@ -126,8 +136,8 @@ Meetings.after.insert( function(userId, doc){
 		'userIds' : [userId]
 	});
 
-	Meetings.update( { _id: doc._id },{ $push: { eventIds: res } });
-	Projects.update( { _id: doc.caseId },{ $push: { eventIds: res } });
+	Meetings.direct.update( { _id: doc._id },{ $push: { eventIds: res } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { eventIds: res } });
 
 	// Insert reminders
 	parseReminders(doc, 'meetings');
@@ -140,7 +150,7 @@ Meetings.after.insert( function(userId, doc){
 Meetings.after.remove(function( meetingId, doc){
 
 	//...remove ids from project
-	Projects.update( { _id: doc.caseId }, { $pull: { meetingIds: doc._id } } );
+	Projects.direct.update( { _id: doc.caseId }, { $pull: { meetingIds: doc._id } } );
 
 	 //...remove events
   	_.each(doc.eventIds,function(id){
@@ -155,7 +165,7 @@ Tasks.after.insert( function(userId, doc){
 	//debugger;
 	console.log('hook',doc);
 	//add task to project
-	Projects.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
+	Projects.direct.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
 
 	// insert event
 	var res = Events.insert({
@@ -166,8 +176,8 @@ Tasks.after.insert( function(userId, doc){
 		'userIds' : doc.userIds
 	});
 
-	Tasks.update( { _id: doc._id },{ $push: { eventIds: res } });
-	Projects.update( { _id: doc.caseId },{ $push: { eventIds: res } });
+	Tasks.direct.update( { _id: doc._id },{ $push: { eventIds: res } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { eventIds: res } });
 
 	// Insert reminder
 	//doc = Tasks._transform(doc);
@@ -178,17 +188,17 @@ Tasks.after.insert( function(userId, doc){
 Tasks.after.remove(function( taskId, doc){
 
 	//...remove ids from project
-	Projects.update( { _id: doc.caseId }, { $pull: { taskIds: doc._id } } );
+	Projects.direct.update( { _id: doc.caseId }, { $pull: { taskIds: doc._id } } );
 
 	 //...remove events
   	_.each(doc.eventIds,function(id){
-  		Events.remove({_id : id});
+  		Events.direct.remove({_id : id});
   	});
 
 });
 
 Timesheets.after.insert(function(id, doc){
-	Projects.update( { _id: doc.caseId },{ $push: { timesheetIds: doc._id } });
+	Projects.direct.update( { _id: doc.caseId },{ $push: { timesheetIds: doc._id } });
 });
 
 Timesheets.before.insert(function(id, doc){
@@ -196,7 +206,7 @@ Timesheets.before.insert(function(id, doc){
 });
 
 Timesheets.after.remove(function(id, doc){
-	Projects.update( { _id: doc.caseId }, { $pull: { timesheetIds: doc._id } } );
+	Projects.direct.update( { _id: doc.caseId }, { $pull: { timesheetIds: doc._id } } );
 });
 
 // Remove a user from other groups before making it a member of the current group

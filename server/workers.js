@@ -1,5 +1,6 @@
 // Job processing functions are written in the format job, cb
 var addEmailProcessor = function(job, cb) {
+    console.log("addEamilProcessor:", "Processing email tassks");
     var tos = _.map(job.data.to, function(email){
         if(typeof email == 'string')
             return {'email': email};

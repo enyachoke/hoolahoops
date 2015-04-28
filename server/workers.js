@@ -39,9 +39,12 @@ var addEmailProcessor = function(job, cb) {
     });
 
     if (status && status.statusCode == 200) {
+        log.info("Sent email successfully");
+        job.log("Sent successfully");
         job.done();
     }
     else {
+        log.error("Sending email failed");
         job.log("Sending email failed", {
             level: 'warning'
         });
@@ -53,6 +56,7 @@ var addEmailProcessor = function(job, cb) {
 
 var addScraperProcessor = function(job, cb) {
     // Give the poor little project his helpers back
+    log.info("Scraping email");
     var project = Projects.findOne(job.data.project._id);
     var emailLawyers = function() {
         //var lawyers = project.lawyers(); Notify the lawyers
@@ -69,6 +73,8 @@ var addScraperProcessor = function(job, cb) {
         }
 
         // Mark job as done and trigger callback
+        log.info("Done scraping email");
+        job.log("Scraped email");
         job.done();
         cb();
     }

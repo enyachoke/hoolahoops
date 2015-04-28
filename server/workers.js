@@ -1,6 +1,6 @@
 // Job processing functions are written in the format job, cb
 var addEmailProcessor = function(job, cb) {
-    console.log("addEamilProcessor:", "Processing email tassks");
+    log.info("addEamilProcessor:", "Processing email tassks");
     var tos = _.map(job.data.to, function(email){
         if(typeof email == 'string')
             return {'email': email};
@@ -62,7 +62,7 @@ var addScraperProcessor = function(job, cb) {
             project.insertOrders(links);
             project = Projects.findOne(project._id);
             project.orders = project.orders();
-            //console.log("orders:", project.orders, links);
+            //log.info("orders:", project.orders, links);
             // Insert links in database here and then notify lawyers via email
             if(links.length)
                 addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), new Date())

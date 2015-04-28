@@ -1,13 +1,13 @@
 Meteor.startup(function () {
 	var publishWithRoles = function(namespace, func, roleString){
-		console.log("publishWithRoles: ","checking", roleString);
+		log.info("publishWithRoles: ","checking", roleString);
 		var roleString = roleString || namespace;
 		var role = 'view-' + roleString;
 		
 		Meteor.publish(namespace, function(){
 			//debugger;
-			//console.log("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
-			//console.log(roleString, role, userId, Roles.userIsInRole(userId, role));
+			//log.info("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
+			//log.info(roleString, role, userId, Roles.userIsInRole(userId, role));
 			if(this.userId && Roles.userIsInRole(this.userId, role))
 				return func.call(this);
 			else{

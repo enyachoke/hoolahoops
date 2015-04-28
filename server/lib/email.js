@@ -10,15 +10,15 @@ addEmailReminder = function(doc, template, message, to, date) {
 	//debugger;
 	date = date || (new Date());
 	
-	console.log("adding email reminder", message, to, date);
+	log.info("adding email reminder", message, to, date);
 	// TODO: Faulty logic. Remove template from here and move this into helpers
 	doc.linkurl = Meteor.absoluteUrl() + template + '/' + doc._id;
 	doc.message = message
 	var merge_vars = toMandrillArray(doc);
-	console.log("addEmailReminder", merge_vars);
+	log.info("addEmailReminder", merge_vars);
 	var job = myJobs.createJob('addEmail', {'name': 'Send Email', 'template': template, 'merge_vars': merge_vars, 'to': to});
 	var delayMilliSeconds = Math.max(0, date - new Date());
-	console.log(delayMilliSeconds);
+	log.info(delayMilliSeconds);
 	job.retry({retries: 4, wait: 2*60*1000});
 	job.delay(delayMilliSeconds);
 	job.save();

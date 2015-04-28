@@ -68,7 +68,7 @@ Hearings.after.insert( function(hearingId, doc){
 		'type' : 'hearings',
 		'userIds' : [doc.lawyerId]
 	});
-	console.log('event_res',event_res);
+	log.info('event_res',event_res);
 	Hearings.direct.update( { _id: doc._id },{ $push: { eventIds: event_res } });
 	Projects.direct.update( { _id: doc.caseId },{ $push: { eventIds: event_res } });
 
@@ -77,7 +77,7 @@ Hearings.after.insert( function(hearingId, doc){
 					'type' : 'hearings',
 					'paid' : false 
 				});
-	console.log('bill_res',bill_res);
+	log.info('bill_res',bill_res);
 
 	Hearings.direct.update( { _id: doc._id },{ $push: { billIds: bill_res } });
 	Projects.direct.update( { _id: doc.caseId },{ $push: { billIds: bill_res } });
@@ -95,7 +95,7 @@ Hearings.after.update(function(id, doc, fieldNames, modifier){
 	//debugger;
 	if(doc.proceedings !== this.previous.proceedings)
 		addEmailReminder(doc, 'hearings', 'Proceedings for your case have been updated.', doc.project().lawyers().concat(doc.project().clients()));
-	//console.log("after update: ", doc, fieldNames, modifier);
+	//log.info("after update: ", doc, fieldNames, modifier);
 })
 
 Hearings.after.remove( function( hearingId, doc){
@@ -163,7 +163,7 @@ Meetings.after.remove(function( meetingId, doc){
 //task hooks
 Tasks.after.insert( function(userId, doc){
 	//debugger;
-	console.log('hook',doc);
+	log.info('hook',doc);
 	//add task to project
 	Projects.direct.update( { _id: doc.caseId }, { $push: { taskIds: doc._id } } );
 

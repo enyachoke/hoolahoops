@@ -17,11 +17,11 @@ Meteor.methods({
 	// 	  access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
 	// 	  scope: SCOPES // If you only need one scope you can pass it as string
 	// 	});
-	// 	console.log('url :',url);
+	// 	log.info('url :',url);
 	// 	return url;	
 	// },
 	// 'getGoogleAuthToken' : function(code)	{
-	// 	// console.log(code);
+	// 	// log.info(code);
 	// 	// var google = Meteor.npmRequire('googleapis');
 	// 	// var OAuth2 = google.auth.OAuth2;
 	// 	// var CLIENT_ID = '1042526479391-m6n0dmc97e0c84jucj5gsu13qtmf4do9.apps.googleusercontent.com';
@@ -41,7 +41,7 @@ Meteor.methods({
 	// 		    	// 	userId : 'rishabh.robben@gmail.com',
 	// 		    	// 	token : tokens
 	// 		    	// });
-	// 		    	console.log('token fetched',tokens);
+	// 		    	log.info('token fetched',tokens);
 	// 		    	TOKENS = tokens;
 	// 		    	done(err,tokens);
 	// 			}
@@ -51,9 +51,9 @@ Meteor.methods({
 	// 	// var response = Async.runSync(function(done) {
  //  //       	plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, data) {
 	// 	//  	// handle err and response
-	// 	//  		console.log(err, data);
+	// 	//  		log.info(err, data);
 	// 	//  		done(null, data);
-	// 	//  		console.log("asdfasdf",data);
+	// 	//  		log.info("asdfasdf",data);
 	// 	// 	});
  //  //     	});
 		
@@ -76,7 +76,7 @@ Meteor.methods({
 	// 	// 		// },
 	// 	// 		auth: oauth2Client
 	// 	// 	}, function(err, response) {
-	// 	// 		console.log('error:', err, 'inserted:', response.id);
+	// 	// 		log.info('error:', err, 'inserted:', response.id);
 	// 	// 		done(err, response.id);
 	// 	// 	});
 	// 	// });
@@ -89,7 +89,7 @@ Meteor.methods({
 	// 			// auth: oauth2Client
  //    //   		},function(err, response){
  //    //   			done(err, response);
- //    //   			console.log('files',err, response);
+ //    //   			log.info('files',err, response);
  //    //   		});
  //    //   	});
 	
@@ -100,7 +100,7 @@ Meteor.methods({
 	// 			auth: OAUTH2_CLIENT
 	// 		},function(err,res){
 	// 			done(err,res);
-	// 			console.log('list',err,res);
+	// 			log.info('list',err,res);
 	// 		});
 	// 	});
 
@@ -120,7 +120,7 @@ Meteor.methods({
 	// 	// 		auth: OAUTH2_CLIENT
  //  //     		},function(err, response){
  //  //     			done(err, response);
- //  //     			console.log('files',err, response);
+ //  //     			log.info('files',err, response);
  //  //     		});
  //  //     	});
 
@@ -148,7 +148,7 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
       		},function(err, response){
       			done(err, response);
-      			console.log('files',err, response);
+      			log.info('files',err, response);
       		});
       	});
 
@@ -182,7 +182,7 @@ Meteor.methods({
 				resource: resource,
 				auth: OAUTH2_CLIENT
 			}, function(err, response) {
-				console.log('error:', err, 'inserted:', response);
+				log.info('error:', err, 'inserted:', response);
 				done(err, response);
 			});
 		});
@@ -207,7 +207,7 @@ Meteor.methods({
 			},function(err,res){
 				done(err,res);
 				//debugger;
-				//console.log('list',err,res);
+				//log.info('list',err,res);
 			});
 		});
 		if (!response.error){
@@ -239,7 +239,7 @@ Meteor.methods({
 			},function(err,res){
 				//debugger;
 				done(err,res)
-				console.log(err,res);
+				log.info(err,res);
 			});
 		});
 		//debugger;
@@ -247,7 +247,7 @@ Meteor.methods({
 	},
 	// {parentId: , fileId: , userId: }
 	'insertFolderWithinParentFolder' : function(obj ) {
-		// console.log('insertFolderWithinParentFolder');
+		// log.info('insertFolderWithinParentFolder');
 		// parentId = '0B8XNqOrM9GYOX1dWdVRleG1GbmM';
 		var token_obj = Meteor.call('getCredentials',obj.userId);
 		OAUTH2_CLIENT.setCredentials({
@@ -263,7 +263,7 @@ Meteor.methods({
 				auth: OAUTH2_CLIENT
 			},function(err,res){
 				done(err,res);
-				console.log(err,res);
+				log.info(err,res);
 			});
 		});
 		return response;
@@ -278,7 +278,7 @@ Meteor.methods({
 			var root_folder_title = shortId.generate();
 			_.extend(obj, {title: root_folder_title});
 			Meteor.call('insertFolder',obj,function(err,res){
-				console.log(err, res);
+				log.info(err, res);
 				rootFolderId = RootFolders.insert({title : root_folder_title, id : res.result.id})
     		});
 		}
@@ -320,7 +320,7 @@ Meteor.methods({
 			};
 			var userId = Accounts.createUser(options);
 			Accounts.sendEnrollmentEmail(userId);
-			console.log(userId);
+			log.info(userId);
 			return userId;
 		}
 	},
@@ -352,7 +352,7 @@ Meteor.methods({
 	// 							}
 								
 	// 						depth = depth + 1;
-	// 						console.log( child.result.title, child.result.mimeType );
+	// 						log.info( child.result.title, child.result.mimeType );
 	// 						Meteor.call( 'generateTree', child.result, tree, depth );
 	// 					}		
 	// 				})

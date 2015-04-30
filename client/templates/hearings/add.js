@@ -28,7 +28,12 @@ Template.hearingAdd.helpers({
 		return Session.get('amount_by_type');
 	},
 	'pickadateOptions' : function(){
-		var disable = [];
+		var disable = [
+			1
+		];
+		_.each(Events.find({type : 'court_holidays'}).fetch(), function(e){
+			disable.push(e.date);
+		})
 		var lawyerId = AutoForm.getFieldValue('insertHearingForm','lawyerId');
 		if(lawyerId){
 			_.each(Events.find({ userIds : lawyerId, type : 'blocked' }).fetch(),function(event){

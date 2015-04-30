@@ -1,5 +1,4 @@
 // Default data to insert
-
 hearings = [
 	{
 		'title' : 'yo vs oyo',
@@ -59,6 +58,40 @@ courts = [
 	{'name': 'Tripura High Court', '_id': 'abcd66471', 'code' : 'T-HC'},
 	{'name': 'Uttarakhand High Court', '_id': 'abcd23451', 'code' : 'U-HC'}
 ]
+
+a= [
+[2015,1,1],
+[2015,1,4],
+[2015,1,26],
+[2015,2,17],
+[2015,3,6],
+[2015,3,28],
+[2015,4,2],
+[2015,4,3],
+[2015,5,4],
+[2015,7,18],
+[2015,8,15],
+[2015,8,29],
+[2015,9,5],
+[2015,9,25],
+[2015,10,2],
+[2015,10,21],
+[2015,10,22],
+[2015,10,24],
+[2015,10,27],
+[2015,11,11],
+[2015,11,12],
+[2015,11,13],
+[2015,11,25],
+[2015,12,24],
+[2015,12,25]
+];
+
+if ( Events.find({type : 'court_holidays'}).fetch().length ==0  ){
+	_.each(a,function(date){
+		Events.insert({ date : new Date(date), type : 'court_holidays' });
+	})
+}
 
 // DEFAULT DATA
 // TODO: Move all of this into a separate migrations

@@ -319,7 +319,7 @@ Meteor.methods({
 				contactNumber : obj.contactNumber || null
 			};
 			var userId = Accounts.createUser(options);
-			Accounts.sendEnrollmentEmail(userId);
+			//Accounts.sendEnrollmentEmail(userId);
 			log.info(userId);
 			return userId;
 		}

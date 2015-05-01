@@ -34,7 +34,11 @@ var addEmailProcessor = function(job, cb) {
             //         ]
             //     }
             // ],
-            "to": tos
+            "subject": job.data.subject,
+            "to": tos,
+            "headers": {
+                "Reply-To": "mail@inbound.cloudvakil.com"
+            }
         }
     });
 
@@ -66,10 +70,11 @@ var addScraperProcessor = function(job, cb) {
             project.insertOrders(links);
             project = Projects.findOne(project._id);
             project.orders = project.orders();
+            var subject = 'CloudVakil [' + project._id + '] new orders fetched for project: ' + project._id;
             //log.info("orders:", project.orders, links);
             // Insert links in database here and then notify lawyers via email
             if(links.length)
-                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), new Date())
+                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), subject, new Date())
         }
 
         // Mark job as done and trigger callback

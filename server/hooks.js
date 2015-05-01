@@ -7,9 +7,9 @@ Projects.after.insert(function(projectId, doc){
 	// Add statute of limitation reminder for lawyers + clients 1 day before st
 	// Add follow up reminder for lawyers 1 day before
 	//debugger;
-	addEmailReminder(doc, 'projects', 'Your case has been created.', doc.lawyers().concat(doc.clients()));
-	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.reminderStatuteDate());
-	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.reminderFollowUpDate());
+	addEmailReminder(doc, 'projects', 'Your case has been created.', doc.lawyers().concat(doc.clients()), doc.subject());
+	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.subject(), doc.reminderStatuteDate());
+	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.subject(), doc.reminderFollowUpDate());
 
 	addScraperJob(doc);
 
@@ -86,7 +86,7 @@ Hearings.after.insert( function(hearingId, doc){
 	doc = Hearings._transform(doc);
 	parseReminders(doc, 'hearings');
 	// Add email reminder before hearing date
-	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.lawyer()), doc.reminderHearingDate());
+	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.lawyer()), doc.subject(), doc.reminderHearingDate());
 	
 });
 
@@ -94,7 +94,7 @@ Hearings.after.update(function(id, doc, fieldNames, modifier){
 	doc = Hearings._transform(doc);
 	//debugger;
 	if(doc.proceedings !== this.previous.proceedings)
-		addEmailReminder(doc, 'hearings', 'Proceedings for your case have been updated.', doc.project().lawyers().concat(doc.project().clients()));
+		addEmailReminder(doc, 'hearings', 'Proceedings for your case have been updated.', doc.project().lawyers().concat(doc.project().clients()), doc.subject());
 	//log.info("after update: ", doc, fieldNames, modifier);
 })
 

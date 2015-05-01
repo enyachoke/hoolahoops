@@ -6,12 +6,13 @@ Meteor.startup(function () {
 		
 		Meteor.publish(namespace, function(){
 			//debugger;
-			//log.info("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
-			//log.info(roleString, role, userId, Roles.userIsInRole(userId, role));
 			if(this.userId && Roles.userIsInRole(this.userId, role))
 				return func.call(this);
 			else{
-				var error = new Meteor.Error(401, "Access denied: you cannot view assignments unless you are a member of this group.");
+				debugger;
+				log.error("checking", namespace, this.userId, Roles.userIsInRole(this.userId, role));
+				log.error(roleString, role, this.userId, Roles.userIsInRole(this.userId, role));
+				var error = new Meteor.Error(401, "Access denied: you cannot view " + roleString + " unless you are a member of this group.");
 				this.error(error);
 			}
 		});
@@ -94,8 +95,8 @@ Meteor.startup(function () {
 		return Groups.find();
 	});
 
-	// TODO: Only do this if can access resource
-	publishWithRoles(null, function (){ 
+	// TODO: test if this can be moved to publishWithRoles
+	Meteor.publish(null, function (){ 
 	  return Meteor.roles.find({})
 	});
 

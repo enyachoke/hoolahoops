@@ -105,11 +105,12 @@ tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
-vsivsi:job-collection@1.1.0
+vsivsi:job-collection@1.1.1
 webapp@1.2.0
 webapp-hashing@1.0.3
 wizonesolutions:underscore-string@1.0.0
 wylio:mandrill@0.2.1
+wylio:winston-papertrail@0.1.2
 zimme:iron-router-active@1.0.1
 zimme:iron-router-auth@3.0.0
 zimme:select2-bootstrap3-css@1.4.6

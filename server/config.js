@@ -36,6 +36,36 @@ Meteor.startup(function() {
 	// TODO: Move to separate file once this grows big
 	Houston.add_collection(Meteor.users);
 
+	// Winston config. 
+	// TODO: Make a config folder and move these into separate files
+	log = Winston;
+
+	log.add( Winston_Papertrail, {
+		levels: {
+		    debug: 0,
+		    info: 1,
+		    warn: 2,
+		    error: 3,
+		    auth: 4
+		},
+		colors: {
+		    debug: 'blue',
+		    info: 'green',
+		    warn: 'red',
+		    error: 'red',
+		    auth: 'red'
+		},
+
+		host: "logs2.papertrailapp.com",
+		port: 42353, 
+		handleExceptions: true,
+		json: true,
+		colorize: true,
+		logFormat: function(level, message) {
+		    return level + ': ' + message;
+		}
+	});
+
 });
 
 

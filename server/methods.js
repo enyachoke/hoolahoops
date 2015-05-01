@@ -328,6 +328,30 @@ Meteor.methods({
 		var project = Projects.findOne();
 		scrapeCourt(project);
 
+	},
+	// { email : , role : }
+	'shareDriveRootFolder' : function(obj) {
+		var token_obj = Meteor.call('getCredentials',obj.userId);
+		OAUTH2_CLIENT.setCredentials({
+			access_token: token_obj.access_token,
+  			refresh_token: token_obj.refresh_token,
+  			expiry_date: token_obj.expiresAt
+		});
+		var response = Async.runSync(function(done){
+			DRIVE.permissions.insert({
+				fileId : Meteor.call('getRootFolderId'),
+				resource : {
+					value : obj.email,
+					type : 'user',
+					role : obj.role
+				},
+				auth: OAUTH2_CLIENT
+			},function(err,res){
+				done(err,res);
+				console.log(err,res);
+			});
+		});
+		return response;
 	}
 
 	// ,

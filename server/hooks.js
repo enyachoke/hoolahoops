@@ -86,7 +86,7 @@ Hearings.after.insert( function(hearingId, doc){
 	doc = Hearings._transform(doc);
 	parseReminders(doc, 'hearings');
 	// Add email reminder before hearing date
-	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.lawyer()), doc.subject(), doc.reminderHearingDate());
+	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.project().lawyers()), doc.subject(), doc.reminderHearingDate());
 	
 });
 

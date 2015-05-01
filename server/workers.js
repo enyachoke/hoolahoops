@@ -1,6 +1,6 @@
 // Job processing functions are written in the format job, cb
 var addEmailProcessor = function(job, cb) {
-    log.info("addEamilProcessor:", "Processing email tassks");
+    log.info("addEmailProcessor:", "Processing email tasks", job.data.to);
     var tos = _.map(job.data.to, function(email){
         if(typeof email == 'string')
             return {'email': email};
@@ -87,5 +87,12 @@ var addScraperProcessor = function(job, cb) {
     scrapeDelhiHighCourt(project, emailLawyers);
 }
 
-var emailWorkers = Job.processJobs('myJobQueue', 'addEmail', addEmailProcessor);
-var scraperWorkers = Job.processJobs('myJobQueue', 'addScraper', addScraperProcessor);
+var jobOptions = {
+    concurrency: 4,
+    payload: 1,
+    pollInterval: 4000,
+    prefetch: 1
+};
+
+var emailWorkers = myJobs.processJobs('addEmail', jobOptions, addEmailProcessor);
+var scraperWorkers = myJobs.processJobs('addScraper', jobOptions, addScraperProcessor);

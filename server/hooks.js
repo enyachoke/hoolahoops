@@ -8,9 +8,9 @@ Projects.after.insert(function(projectId, doc){
 	// Add follow up reminder for lawyers 1 day before
 	//debugger;
 	addEmailReminder(doc, 'projects', 'Your case has been created.', doc.lawyers().concat(doc.clients()), doc.subject());
-	addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.subject(), doc.reminderStatuteDate());
 	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.subject(), doc.reminderFollowUpDate());
-
+	if(doc.statute_of_limitation)
+		addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.subject(), doc.reminderStatuteDate());
 	addScraperJob(doc);
 
 

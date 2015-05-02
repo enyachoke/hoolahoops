@@ -57,6 +57,7 @@
 			});
 		});
 		meetings.forEach(function(h){
+			debugger;
 			feed.push({
 				data : h,
 				type : 'Meeting',

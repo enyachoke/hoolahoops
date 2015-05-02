@@ -124,6 +124,7 @@ Meetings.before.insert( function( userId, doc){
 
 Meetings.after.insert( function(userId, doc){
 	//debugger;
+	doc = Meetings._transform(doc);
 	// add meeting to project
 	Projects.direct.update( { _id: doc.caseId },{ $push: { meetingIds: doc._id } });
 

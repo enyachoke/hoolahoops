@@ -84,7 +84,15 @@ var addScraperProcessor = function(job, cb) {
         cb();
     }
 
-    scrapeDelhiHighCourt(project, emailLawyers);
+    if(project.ctype && project.cno && project.cyear)
+        scrapeDelhiHighCourt(project, emailLawyers);
+    else{
+        var error = "Missing ctype, cnum or cyear for project "+project._id;
+        job.log(error, {level: 'warning'});
+        log.error(error);
+        job.fail(error);
+        cb();
+    }
 }
 
 var jobOptions = {

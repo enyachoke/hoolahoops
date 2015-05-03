@@ -5,9 +5,12 @@ var addEmailProcessor = function(job, cb) {
         if(typeof email == 'string')
             return {'email': email};
         else
-            return {'email': email.email};
-    })
+            return {'email': email.email, 'name': email.name, 'type': email.type};
+    });
+    var from = job.data.replyTo || 'noreply@cloudvakil.com';
+    //log.info("tos are:", job.data.tos);
     var status = Meteor.Mandrill.sendTemplate({
+        // Since we want the email to come from the person
         "template_name": job.data.template,
         "template_content": [
           {
@@ -15,7 +18,7 @@ var addEmailProcessor = function(job, cb) {
           }
         ],
         "message": {
-            "from_email": "noreply@cloudvakil.com",
+            "from_email": from,
             "from_name": "Cloudvakil Alerts",
             "global_merge_vars": job.data.merge_vars,
             // Not using customer specific merge_vars right now. Need to add support for this.
@@ -34,10 +37,13 @@ var addEmailProcessor = function(job, cb) {
             //         ]
             //     }
             // ],
+            "preserve_recipients": true,
             "subject": job.data.subject,
-            "to": tos,
+            "to": tos.concat({"name": "CloudVakil Tracker", "email": "mail@inbound.cloudvakil.com", "type": "cc"}),
+            //"bcc_address": "",
             "headers": {
-                "Reply-To": "mail@inbound.cloudvakil.com"
+                //"X-MC-PreserveRecipients": true
+                //"Reply-To": "mail@inbound.cloudvakil.com"
             }
         }
     });
@@ -70,12 +76,12 @@ var addScraperProcessor = function(job, cb) {
             project.insertOrders(links);
             project = Projects.findOne(project._id);
             project.orders = project.orders();
-            project.path = sprintf('projects/%s', doc._id);
+            project.path = sprintf('projects/%s', project._id);
             var subject = sprintf('[%s] New orders fetched for matter: %s', project._id, project.name)
             //log.info("orders:", project.orders, links);
             // Insert links in database here and then notify lawyers via email
             if(links.length)
-                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), subject, new Date())
+                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), project.lawyers()[0].email, subject, new Date())
         }
 
         // Mark job as done and trigger callback

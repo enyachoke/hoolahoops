@@ -3,17 +3,23 @@ Projects.after.insert(function(projectId, doc){
 
 	// Reminders
 	doc = Projects._transform(doc);
+	
+	// TODO: Move these into something like a transform function which should prefetch clients and lawyers
+	doc.lawyersData = doc.lawyers();
+	doc.clientsData = doc.clients();
+	doc.path = sprintf('projects/%s', doc._id);
 	parseReminders(doc, 'projects');
+
 	// Add statute of limitation reminder for lawyers + clients 1 day before st
 	// Add follow up reminder for lawyers 1 day before
 	//debugger;
-	addEmailReminder(doc, 'projects', 'Your case has been created.', doc.lawyers().concat(doc.clients()), doc.subject());
-	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), doc.subject(), doc.reminderFollowUpDate());
+	addEmailReminder(doc, 'projects-client', '', doc.clients(), sprintf('[%s] Matter created: %s', doc._id, doc.name));
+	addEmailReminder(doc, 'projects-lawyer', '', doc.lawyers(), sprintf('[%s] Matter assigned: %s', doc._id, doc.name));
+	addEmailReminder(doc, 'projects-bill', '', ACCOUNTS_EMAIL, sprintf('[%s] Matter created: %s', doc._id, doc.name));
+	addEmailReminder(doc, 'projects', 'A follow up date for your matter is approaching.', doc.lawyers(), sprintf('[%s] Followup date for your matter: %s is due soon', doc._id, doc.name), doc.reminderFollowUpDate());
 	if(doc.statute_of_limitation)
-		addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), doc.subject(), doc.reminderStatuteDate());
+		addEmailReminder(doc, 'projects', 'Statute of limitation for your matter is approaching.', doc.lawyers().concat(doc.clients()), sprintf('[%s] Statute of limitation for your matter: %s is due soon', doc._id, doc.name), doc.reminderStatuteDate());
 	addScraperJob(doc);
-
-
 
 });
 
@@ -85,8 +91,9 @@ Hearings.after.insert( function(hearingId, doc){
 	// Reminders
 	doc = Hearings._transform(doc);
 	parseReminders(doc, 'hearings');
-	// Add email reminder before hearing date
-	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.project().lawyers()), doc.subject(), doc.reminderHearingDate());
+	// Add email reminder for hearing 1 week (7 days) before and 2 weeks (14 days) before
+	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.project().lawyers()), sprintf('[%s] Hearing for your matter: %s is due soon', doc.project()._id, doc.project().name), doc.reminderHearingDate(7));
+	addEmailReminder(doc, 'hearings', 'A hearing for your matter is due soon.', doc.project().clients().concat(doc.project().lawyers()), sprintf('[%s] Hearing for your matter: %s is due soon', doc.project()._id, doc.project().name), doc.reminderHearingDate(14));
 	
 });
 
@@ -94,7 +101,7 @@ Hearings.after.update(function(id, doc, fieldNames, modifier){
 	doc = Hearings._transform(doc);
 	//debugger;
 	if(doc.proceedings !== this.previous.proceedings)
-		addEmailReminder(doc, 'hearings', 'Proceedings for your case have been updated.', doc.project().lawyers().concat(doc.project().clients()), doc.subject());
+		addEmailReminder(doc, 'hearings', 'Proceedings for your case have been updated.', doc.project().lawyers().concat(doc.project().clients()), sprintf('[%s] Proceedings for your matter: %s have been updated', doc.project()._id, doc.project().name));
 	//log.info("after update: ", doc, fieldNames, modifier);
 })
 
@@ -184,6 +191,8 @@ Tasks.after.insert( function(userId, doc){
 	//doc = Tasks._transform(doc);
 	parseReminders(doc, 'tasks');
 	// Add email reminder before tasl deadline
+	addEmailReminder(doc, 'tasks', 'A deadline for your task is appruaching soon', doc.lawyers(), sprintf('[%s] A deadline for your task: %s is due soon', doc.project()._id, doc.desc), doc.deadline(2));
+	addEmailReminder(doc, 'tasks', 'A deadline for your task is appruaching soon', doc.lawyers(), sprintf('[%s] A deadline for your task: %s is due soon', doc.project()._id, doc.desc), doc.deadline(7));
 });
 
 Tasks.after.remove(function( taskId, doc){

@@ -66,6 +66,9 @@ Meteor.startup(function() {
 		}
 	});
 
+	// TODO: This should either be moved into the database or removed entirely
+	ACCOUNTS_EMAIL = ['shashwat@dinasource.com'];
+
 });
 
 

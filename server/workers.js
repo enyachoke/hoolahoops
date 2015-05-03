@@ -70,7 +70,8 @@ var addScraperProcessor = function(job, cb) {
             project.insertOrders(links);
             project = Projects.findOne(project._id);
             project.orders = project.orders();
-            var subject = 'CloudVakil [' + project._id + '] new orders fetched for project: ' + project._id;
+            project.path = sprintf('projects/%s', doc._id);
+            var subject = sprintf('[%s] New orders fetched for matter: %s', project._id, project.name)
             //log.info("orders:", project.orders, links);
             // Insert links in database here and then notify lawyers via email
             if(links.length)
@@ -87,7 +88,7 @@ var addScraperProcessor = function(job, cb) {
     if(project.ctype && project.cno && project.cyear)
         scrapeDelhiHighCourt(project, emailLawyers);
     else{
-        var error = "Missing ctype, cnum or cyear for project "+project._id;
+        var error = "Missing ctype, cnum or cyear for project " + project._id;
         job.log(error, {level: 'warning'});
         log.error(error);
         job.fail(error);

@@ -1,8 +1,8 @@
-parseReminders = function(doc, template) {
+parseReminders = function(doc, template, subject) {
 	_.each(doc.reminders, function(reminder){
 		// TODO: Group emails by date to save mandrill bandwidth
 		//TODO: Do this using iron router. Use a transform function here with collection helpers
-		addEmailReminder(doc, template, '', [reminder.email], doc.subject(), reminder.date);
+		addEmailReminder(doc, template, '', [reminder.email], subject || doc.subject(), reminder.date);
 	})
 }
 
@@ -12,7 +12,10 @@ addEmailReminder = function(doc, template, message, to, subject, date) {
 	
 	log.info("adding email reminder", message, to, date);
 	// TODO: Faulty logic. Remove template from here and move this into helpers
-	doc.linkurl = Meteor.absoluteUrl() + template + '/' + doc._id;
+	if(doc.path)
+		doc.linkurl = Meteor.absoluteUrl() + doc.path
+	else
+		doc.linkurl = Meteor.absoluteUrl() + template + '/' + doc._id;
 	doc.message = message
 	var merge_vars = toMandrillArray(doc);
 	log.info("addEmailReminder", merge_vars);

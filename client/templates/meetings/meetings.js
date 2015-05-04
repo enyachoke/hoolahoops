@@ -32,6 +32,7 @@ Template.meetingRow.helpers({
 Template.meetingRow.events({
 	'click .delete' : function(){
 		Meetings.remove(this._id);
+		Router.go( "/projects/"+this.caseId);
 	}
 });
 

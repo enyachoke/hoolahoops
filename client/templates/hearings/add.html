@@ -26,7 +26,7 @@
 					</div>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='lawyerId' call='lawyers' fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project_lawyer"}}
-						<label for="project_lawyer">Lawyer</label>
+						<label for="project_lawyer" class="active">Lawyer</label>
 					</div>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="judge" type="text" id="judge"}}
@@ -38,7 +38,7 @@
 					</div>
 					<div class="input-field col s12 m6">
 						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
-						<label for="amount">Bill Amount</label>
+						<label for="amount" class="active">Bill Amount</label>
 					</div>
 					<div class="input-field col s12 m12">
 

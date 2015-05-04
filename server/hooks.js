@@ -14,7 +14,7 @@ Projects.after.insert(function(projectId, doc){
 	// Add statute of limitation reminder for lawyers + clients 1 day before st
 	// Add follow up reminder for lawyers 1 day before
 	//debugger;
-	// Always add clients with lawyers so that we can reply to all
+	// Always add clients with lawyers so that we can reply to all	
 	addEmailReminder(doc, 'projects-client', '', doc.clients().concat(doc.lawyers()), doc.lawyers()[0].email, sprintf('[%s] Matter created: %s', doc._id, doc.name));
 	addEmailReminder(doc, 'projects-lawyer', '', doc.lawyers(), doc.lawyers()[0].email, sprintf('[%s] Matter assigned: %s', doc._id, doc.name));
 	addEmailReminder(doc, 'projects-bill', '', ACCOUNTS_EMAILS, doc.lawyers()[0].email, sprintf('[%s] Matter created: %s', doc._id, doc.name));
@@ -172,6 +172,7 @@ Meetings.after.remove(function( meetingId, doc){
 
 //task hooks
 Tasks.after.insert( function(userId, doc){
+	doc = Tasks._transform(doc);
 	//debugger;
 	log.info('hook',doc);
 	//add task to project

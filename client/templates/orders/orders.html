@@ -1,0 +1,14 @@
+<template name="projectOrderDetails">
+	{{#if isInRole 'view-orders'}}
+		{{> navigation}}
+		<div class="container card-panel">
+			<div class="row">
+		  		{{#each orders}}
+		  			<div class="col">
+						<a href="{{link}}">Visit Order<br><iframe src="{{link}}" scrolling="no"></iframe></a>
+					</div>
+				{{/each}}
+		  	</div>
+		</div>
+	{{/if}}
+</template>

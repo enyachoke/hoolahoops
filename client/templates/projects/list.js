@@ -6,10 +6,10 @@ Template.projects.helpers({
       return Orders.find();
     },
     'lawyers': function(){
-    	return Lawyers.find();
+    	return Meteor.users.find({type : 'lawyer'});
     },
     'clients': function(){
-    	return Clients.find();
+    	return Meteor.users.find({type : 'client'});
     },
     'courts': function(){
     	return Courts.find();

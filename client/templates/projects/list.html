@@ -4,25 +4,24 @@
         <div class="container project-list-container">
         	{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
         	<div class="row">
-                <!-- Comment these until lawyers and clients issue is fixed -->
-        		<!--div class="col s3 filter-field">
-        			<label>Lawyer Names:</label>
-        			<select id="lawyer-select">
-        				<option value="">All</option>
-        				{{#each lawyers}}
-        					<option value="{{_id}}">{{name}}</option>
-        				{{/each}}
-        			</select>
-        		</div>
-        		<div class="col s3 filter-field">
-        			<label>Client Names:</label>
-        			<select id="client-select">
-        				<option value="">All</option>
-        				{{#each clients}}
-        					<option value="{{_id}}">{{name}}</option>
-        				{{/each}}
-        			</select>
-        		</div-->
+                <div class="col s3 filter-field">
+                    <label>Lawyer Names:</label>
+                    <select id="lawyer-select">
+                        <option value="">All</option>
+                        {{#each lawyers}}
+                            <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col s3 filter-field">
+                    <label>Client Names:</label>
+                    <select id="client-select">
+                        <option value="">All</option>
+                        {{#each clients}}
+                            <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
         		<div class="col s3 filter-field">
         			<label>Court Name:</label>
         			<select id="court-select">

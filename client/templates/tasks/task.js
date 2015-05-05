@@ -17,6 +17,10 @@ Template.taskDetails.events({
 	'click .Mark_As_Incomplete' : function(){
 		debugger;
 		Tasks.update({ _id : this._id},{$set :{ 'completed' : false }});
+	},
+	'click .delete' : function(){
+		Tasks.remove(this._id);
+		Router.go( "/projects/"+this.caseId);
 	}
 	
 

@@ -15,7 +15,7 @@ addScraperJob = function(project) {
 	// job.repeat({
 	//   schedule: myJobs.later.parse.text('every 5 hours')   // Rerun this job every 5 minutes
 	// });
-	job.retry({retries: 4, wait: 2*60*1000});
+	job.retry({retries: 4, wait: 4*60*60*1000});
 	log.info("addScraperJob:", "added scraper job");
 	job.save();
 }

@@ -25,7 +25,6 @@ matb33:collection-hooks
 accounts-password
 
 zimme:iron-router-auth
-accounts-ui-unstyled
 jeremy:selectize
 digilord:sugarjs
 meteorhacks:kadira
@@ -49,3 +48,4 @@ vsivsi:job-collection
 wylio:winston-papertrail
 liyu:sprintfjs
 xolvio:inspectlet
+accounts-ui-unstyled

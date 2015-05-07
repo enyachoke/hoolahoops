@@ -7,9 +7,9 @@
 				<div class="row">
 					{{> groupAdd}}
 				</div>
-				<table class="row">
+				<table class="row" style="margin-left:35px;">
 					<tr>
-						<th> Listing groups </th>
+						<th><p><h5> Listing groups </h5></p></th>
 					</tr>
 					<tr>
 					{{# each groups}}
@@ -21,7 +21,7 @@
 						{{name}}
 					{{/each}}
 					</tr>
-				</table>	
+				</table>
 			</div>
 		</div>
 	{{/if}}
@@ -29,53 +29,53 @@
 
 <template name="groupAdd">
 	{{#if isInRole 'edit-groups'}}
-			
+
 		<div class="row form-container">
 			{{#autoForm id="insertgroupForm" class="col s12" doc=this type="method" meteormethod="saveGroupData" schema="groupSchema" }}
-				
-				<div class="input-field col s12 m6"> 
+
+				<div class="input-field col s12 m4">
 				        {{> afQuickField name='name'}}
 				</div>
 
-				<div class="input-field col s12 m6"> 
+				<div class="input-field col s12 m4">
 				        {{> afQuickField name='roles' multiple=true}}
 				</div>
 
-				<div class="input-field col s12 m6"> 
+				<div class="input-field col s12 m4">
 				        {{> afQuickField name='userIds' multiple=true}}
 				</div>
-				
+
 				<div class="col s12 m6">
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
 				</div>
 			{{/autoForm}}
 		</div>
-	
+
 	{{/if}}
 </template>
 
 <template name="groupEdit">
 	{{#if isInRole 'edit-groups'}}
-			
+
 	{{#autoForm id=formId class="col s12" doc=this type="method" meteormethod="saveGroupData" schema="groupSchema" }}
-			<div class="input-field col s12 m6"> 
+			<div class="input-field col s12 m2">
 			        {{> afQuickField name='name'}}
 			</div>
 
-			<div class="input-field col s12 m6"> 
+			<div class="input-field col s12 m3">
 			        {{> afQuickField name='roles' multiple=true}}
 			</div>
 
-			<div class="input-field col s12 m6"> 
+			<div class="input-field col s12 m3">
 			        {{> afQuickField name='userIds' multiple=true}}
 			</div>
-			
-			<div class="col s12 m6">
+
+			<div class="col s12 m2">
 				<button class="waves-effect waves-light btn" type="submit">Update</button>
 			</div>
 	{{/autoForm}}
 
-	<div><a class="delete"><i class="small center-align mdi-action-delete"></i></a></div>
+	<div class="col s12 m2"><a class="delete"><i class="small center-align mdi-action-delete"></i></a></div>
 
 	{{/if}}
 </template>

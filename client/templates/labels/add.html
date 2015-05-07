@@ -2,16 +2,16 @@
 	{{#if isInRole 'edit-labels'}}
 		<div class="row form-container">
 			{{#autoForm id="insertlabelForm" class="col s12" doc=this type="method" meteormethod="saveLabelData" schema="labelSchema" }}
-				
-				<div class="input-field col s12 m6" id="attended_by_type"> 
+
+				<div class="input-field col s12 m6" id="attended_by_type">
 				        {{> afQuickField name='name'}}
 				</div>
 
-				<div class="input-field col s12 m6" id="attended_by_type"> 
+				<div class="input-field col s12 m3" id="attended_by_type">
 				        {{> afQuickField name='color'}}
 				</div>
-				
-				<div class="col s12 m6">
+
+				<div class="col s12 m3">
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
 				</div>
 			{{/autoForm}}

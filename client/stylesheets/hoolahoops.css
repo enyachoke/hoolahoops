@@ -408,3 +408,6 @@ div.colorElement:last-child{
 .label-row td{
   padding: 0px 0px 5px 0px !important;
 }
+.ms-drop input[type="checkbox"]{
+  position: static;
+}

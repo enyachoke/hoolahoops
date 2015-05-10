@@ -15,58 +15,51 @@
 		<br/>
 		<button class="editHearing">Save Hearing</button>
 	</form> -->
-		
+
 		{{> navigation}}
-		
+
 		<div class="container card-panel add-project">
 			<h4 class="teal form-header">Edit hearing</h4>
 			<div class="row form-container">
 				{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
 					<div class="input-field col l8 m6 s12">
+						<span style="color:#009688">Title</span>
 						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
-						<label for="hearing__title" class="active">Title</label>
-						
-					</div>
+						</div>
 					<div class="input-field col l4 m6 s12">
+						<span style="color:#009688">Date</span>
 						{{> afFieldInput name="date" pickadateOptions=pickadateOptions id="hearing__date"}}
-						<label for="hearing__date" class="active">Date</label>
-					</div>
-
-					
+						</div>
 					<!-- <div class="input-field col l4 m6 s12">
 						{{> afFieldInput name="type" options=options id="event_type"}}
 					</div> -->
 					<div class="input-field col s12">
+						<span style="color:#009688">Proceedings</span>
 						{{> afFieldInput name="proceedings" type="textarea" class="materialize-textarea" id="proceedings"}}
-						<label for="proceedings">Proceedings</label>
-					</div>
-					<div class="input-field col s12 m6">
-						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='lawyerId' call='lawyers' fieldref='name' reference = 'Users' renderfunction='renderDefaultAutocomplete' id="project_lawyer"}}
-						<label for="project_lawyer" class="active">Lawyer</label>
-					</div>
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="judge" type="text" id="judge"}}
-						<label for="judge">Judge</label>
-					</div>
-					<div class="input-field col s12 m6" id="attended_by_type"> 
-					        {{> afQuickField name='attendedBy' options='allowed' label=false}}
-					        <label for="attendedBy" class="active">Attended By</label>
-					</div>
-					<div class="input-field col s12 m6">
-						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
-						<label for="amount" class="active">Bill Amount</label>
-					</div>
-					<div class="input-field col s12 m12">
-
-						<h5>Reminders</h5>
-						<div class="input-field col s12 m6">
-							{{> afQuickField name='reminders' }}
 						</div>
-
+					<div class="input-field col s12 m6">
+						<span style="color:#009688">Lawyer</span>
+						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='lawyerId' call='lawyers' fieldref='name' reference = 'Users' renderfunction='renderDefaultAutocomplete' id="project_lawyer"}}
+						</div>
+					<div class="input-field col s12 m6">
+						<span style="color:#009688">Judge</span>
+						{{> afFieldInput name="judge" type="text" id="judge"}}
 					</div>
-					
+					<div class="input-field col s12 m6" id="attended_by_type">
+						<span style="color:#009688">Attended By</span>
+						{{> afQuickField name='attendedBy' options='allowed' label=false}}
+					</div>
+					<div class="input-field col s12 m6">
+						<span style="color:#009688">Bill Amount</span>
+						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
+					</div>
+					<div class="row m6">
+						<h5>Reminders</h5>
+						{{> afQuickField name='reminders' template='series'}}
+					</div>
+
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
-					<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+					<a class="waves-effect waves-teal btn-flat" href="/hearings/{{_id}}" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
 			</div>
 		</div>

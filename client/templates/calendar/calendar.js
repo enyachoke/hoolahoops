@@ -1,16 +1,16 @@
-var hearings, meetings, task_deadlines,court;	
+var hearings, meetings, task_deadlines,court;
 
 Template.calendar.rendered= function(){
 
 	hearings=[], meetings=[], task_deadlines=[];
-	
+
 	calEvents = Events.find({userIds : Meteor.userId()});
 	debugger;
 	calEvents.forEach(function(e){
 		project= Projects.findOne({_id : e.caseId});
 		if (project)
 		switch( e.type ){
-		case 'hearings' : 
+		case 'hearings' :
 				event_title = project.name;
 				court = Courts.findOne(project.courtId);
 				hearing = Hearings.findOne({_id : e.hearingId });
@@ -22,15 +22,15 @@ Template.calendar.rendered= function(){
 					className : 'hearing',
 					color : court.color || null
 				});
-			
+
 			break;
-			
-		case 'tasks'  : 
+
+		case 'tasks'  :
 			if(e.date instanceof Date){
 				task = Tasks.findOne({_id : e.taskId});
 				desc = task.desc;
 				completed = task.completed;
-				
+
 				task_deadlines.push({
 					title : 'Task:'+project.name+':'+desc,
 					date : e.date,
@@ -43,14 +43,14 @@ Template.calendar.rendered= function(){
 				});
 			}
 			break;
-		case 'meetings' : 
+		case 'meetings' :
 			debugger;
 			var meeting = Meetings.findOne({_id : e.meetingId});
 			var allDay= true;
 			var start, end;
 			if ( meeting.startHour && meeting.endHour) {
 				allDay = false;
-				start = e.date; 
+				start = e.date;
 				start.setHours(meeting.startHour);
 				end = e.date;
 				end.setHours(meeting.startHour);
@@ -59,17 +59,17 @@ Template.calendar.rendered= function(){
 				title : 'Meeting :'+project.name,
 				date : e.date,
 				type : e.type,
-				url : '/meetings/'+e.meetingId, 
+				url : '/meetings/'+e.meetingId,
 				className : 'meeting',
 				allDay : allDay,
 				start : start || null,
 				end : end || null
 			});
 			break;
-				
+
 		}
-		
-		
+
+
 	});
 
 	$('#calendar').fullCalendar({
@@ -78,7 +78,7 @@ Template.calendar.rendered= function(){
 			Meteor.call('toggle_block_days',date);
 			$(this).toggleClass( 'blocked' )
     	},
-    	dayRender : function( date, cell ) { 
+    	dayRender : function( date, cell ) {
     		//todo : optimise this !!!!! ASAPPPPP
     		if ( Events.findOne({ date : date , type : 'blocked', userIds : Meteor.userId() }) ) {
     			cell.addClass('blocked')
@@ -91,7 +91,7 @@ Template.calendar.rendered= function(){
 			left: 'prev,next today',
 			center: 'title',
 			right: 'month,agendaWeek, agendaDay'
-		}, 
+		},
 		eventRender: function(event, element) {
 			if (event.type == 'tasks'){
 				// todo : rerender on switch view
@@ -110,22 +110,22 @@ Template.calendar.rendered= function(){
 	    	debugger;
 	    }
 	});
-	
+
 	$('#calendar').fullCalendar('removeEventSource', hearings);
 	$('#calendar').fullCalendar('removeEventSource', meetings);
 	$('#calendar').fullCalendar('removeEventSource', task_deadlines);
-	
+
 	$('#calendar').fullCalendar( 'addEventSource', hearings);
 	$('#calendar').fullCalendar( 'addEventSource', meetings);
 	$('#calendar').fullCalendar( 'addEventSource', task_deadlines);
 
 	// put in css
 	$('.chk-complete').css('position','static');
-	
-	
+
+
 
 }
-//avoid id 
+//avoid id
 Template.calendar.events({
 	'change #hearings' : function(event){
 		if ( event.target.checked)
@@ -171,14 +171,8 @@ Template.calendar.events({
 			$(event.target.parentElement).css('text-decoration','line-through')	;
 			Tasks.update(event.target.id, {$set: {completed: true}});
 		}else{
-			$(event.target.parentElement).css('text-decoration','none');	
-			Tasks.update(event.target.id, {$set: {completed: false}});		
+			$(event.target.parentElement).css('text-decoration','none');
+			Tasks.update(event.target.id, {$set: {completed: false}});
 		}
 	}
 });
-
-
-
-
-
-

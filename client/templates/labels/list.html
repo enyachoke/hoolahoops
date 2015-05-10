@@ -1,7 +1,6 @@
 <template name="labels">
 	{{#if isInRole 'view-labels'}}
 		{{> navigation}}
-
 		<div class="container">
 			<div class="card-panel">
 				{{#if isInRole 'edit-labels'}}
@@ -9,13 +8,14 @@
 						{{> labelAdd}}
 					</div>
 				{{/if}}
-
 				<table class="row" style="margin-left:35px;">
 					<tr>
-						<th><p><h5> Label </h5></p></th>
+						<th><div style="text-align:center;">
+							<p><h5>LABELS</h5></p>
+						</div></th>
 					</tr>
 					{{# each labels}}
-					{{ > labelRow}}
+						{{ > labelRow}}
 					{{/each}}
 				</table>
 			</div>
@@ -26,9 +26,9 @@
 <template name="labelRow">
 	<tr>
 		<td>{{>colorElement}}</td>
-		<!--th><a href="/labels/{{_id}}/edit">Edit </a></th-->
+		<!-- <th><a href="/labels/{{_id}}/edit">Edit </a></th> -->
 		{{#if isInRole 'edit-labels'}}
-			<td><button class="delete" id='delete_task'>Delete</button></td>
+			<td><button class="waves-effect waves-light btn delete" id='delete_task'>Delete</button></td>
 		{{/if}}
 	</tr>
 </template>

@@ -2,12 +2,14 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	{{#if isInRole 'view-projects'}}	
+	{{#if isInRole 'view-projects'}}
 		<div class="container">
 			<div class="row">
 
-				{{ #if bills_unpaid_exist }} 
-					<p><h5>UNPAID BILLS</h5></p>
+				{{ #if bills_unpaid_exist }}
+				<div class="teal" style="text-align:center; color:#fff;">
+				<p><h5>UNPAID BILLS</h5></p>
+			</div>
 					{{#if isInRole 'edit-bills'}}
 						<button id="mark_as_paid" class="waves-effect waves-light btn"> Mark As Paid</button>
 					{{/if}}
@@ -37,7 +39,9 @@
 			</div>
 			<!-- paid bills put in separate template later-->
 			<div class="row">
+				<div class="teal" style="text-align:center; color:#fff;">
 				<p><h5>PAID BILLS</h5></p>
+			</div>
 				{{#if isInRole 'edit-bills'}}
 					<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As unPaid</button>
 				{{/if}}

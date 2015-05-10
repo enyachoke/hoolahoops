@@ -19,10 +19,8 @@
 							<label for="email">E-Mail</label>
 						</div>
 					</div>
-				
-					
-				<button class="waves-effect waves-light btn" type="submit">Insert</button>
-				<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
+					<button class="waves-effect waves-light btn" type="submit">Insert</button>
+					<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
 			</div>
 		</div>
@@ -33,26 +31,22 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	
 	<div class="container">
-	<div class="row">
-		  	<div class="col s12  project-title">
-		  		<h3>Client : {{name}}</h3>
-		  	</div>
+		<div class="row">
+		 	<div class="col s12 project-title">
+		 		<h3>Client : {{name}}</h3>
+		 	</div>
+		</div>
+		<ul class="collection">
+			<li class="collection-item">Email : {{username}}</li>
+			<li class="collection-item">Phone Number : {{contactNumber}}</li>
+		</ul>
+		{{#if isInRole 'edit-clients'}}
+			<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
+			<a class="delete waves-effect waves-light btn">Delete</a>
+		{{/if}}
+		<a href="/clients" class="waves-effect waves-light btn">Back</a>
 	</div>
-	<ul class="collection">
-      <li class="collection-item">Email : {{username}}</li>
-      <li class="collection-item">Phone Number : {{contactNumber}}</li>
-	</ul>
-
-	{{#if isInRole 'edit-clients'}}
-		<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
-		<a class="delete waves-effect waves-light btn">Delete</a>
-	{{/if}}
-	<a href="/clients" class="waves-effect waves-light btn">Back</a>
-	</div>
-	
-	
 </template>
 
 <template name="editClient">
@@ -64,22 +58,18 @@
 				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
 					<div class = "row s12">
 						<div class="input-field col s8">
+							<span style="color:#009688">Name</span>
 							{{> afFieldInput name="name" type="text" id="name"}}
-							<label for="name">Name</label>
+							<!-- <label for="name">Name</label> -->
 						</div>
 						<div class="input-field col s8">
+							<span style="color:#009688">Contact Number</span>
 							{{> afFieldInput name="contactNumber" type="number" id="ph"}}
-							<label for="ph">Phone Number</label>
+							<!-- <label for="ph">Phone Number</label> -->
 						</div>
-						<!-- <div class="input-field col s8">
-							{{> afFieldInput name="email" type="email" id="email"}}
-							<label for="email">E-Mail</label>
-						</div> -->
 					</div>
-				
-					
-				<button class="waves-effect waves-light btn" type="submit">Update</button>
-				<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
+					<button class="waves-effect waves-light btn" type="submit">Update</button>
+					<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
 			</div>
 		</div>
@@ -87,45 +77,45 @@
 </template>
 
 <template name='clientsList'>
-	{{#if isInRole 'view-clients'}}	
+	{{#if isInRole 'view-clients'}}
 		<div class="row">
 			{{> navigation}}
 		</div>
 		<div class="container ">
-			<a class="waves-effect waves-light btn"  href='/clients/add'>Add contact</a>
-			<!-- {{> esInput index="clients" placeholder="Search Clients" allDocsOnEmpty="true"}} -->
+			<a class="waves-effect waves-light btn"	href='/clients/add'>Add Client</a>
+			<!-- {{> esInput index="clients" placeholder="Search Clients" allDocsOnEmpty="true"}}
 			{{#ifEsIsSearching index="clients"}}
 				{{> spinner}}
-			{{else}}
-				<table class="centered striped bordered" >
-						<thead>
-					        <tr>
-					            <th data-field="id">Name</th>
-					            <th data-field="name">Phone</th>
-					            <th data-field="price">Email</th>
-					        </tr>
-					    </thead>
-					    <tbody>
+			{{else}} -->
+				<table class="centered striped bordered">
+					<thead>
+						<tr>
+							<th data-field="id">Name</th>
+							<th data-field="name">Phone</th>
+							<th data-field="price">Email</th>
+						</tr>
+					</thead>
+					<tbody>
 						<!-- {{#esEach index="clients"}} -->
-						{{ #each clients }}
-						{{ > clientRow }}
-						{{ /each }}
+							{{#each clients }}
+								{{> clientRow }}
+							{{ /each }}
 						<!-- {{/esEach}} -->
-						</tbody>
+					</tbody>
 				</table>
-			{{/ifEsIsSearching}}
+			<!-- {{/ifEsIsSearching}} -->
 		</div>
 	{{/if}}
 </template>
 
 <template name='clientRow'>
 	<tr>
-	<td>{{name}}</td>
-	<td>{{contactNumber}}</td>
-	<td>{{username}}</td>
-	{{#if isInRole 'edit-clients'}}
-		<td><a class="waves-effect waves-light btn col s8" href='/clients/{{_id}}/edit'>Edit</a></td>
-		<td><a class="waves-effect waves-light btn col s8" href="/clients/{{_id}}">Details</a></td>
-	{{/if}}
+		<td>{{name}}</td>
+		<td>{{contactNumber}}</td>
+		<td>{{username}}</td>
+		{{#if isInRole 'edit-clients'}}
+			<td><a class="waves-effect waves-light btn col s8" href="/clients/{{_id}}">Details</a></td>
+			<td><a class="waves-effect waves-light btn col s8" href='/clients/{{_id}}/edit'>Edit</a></td>
+		{{/if}}
 	</tr>
 </template>

@@ -1,5 +1,130 @@
 <template name="projectEdit">
 	{{#if isInRole 'view-projects'}}
-		{{> projectAdd}}
+		{{> navigation}}
+		<div class="container card-panel add-project">
+			<h4 class="teal form-header">Add a matter</h4>
+			<div class="row form-container">
+				{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
+					<div class="row">
+						<div class="input-field col l8 m6 s12">
+							<span style="color:#009688">Title</span>
+							{{> afFieldInput name="name" id="project__title" class="check_validation"}}
+							<!-- <label for="project__title">Title</label> -->
+							{{#if afFieldIsInvalid name='name'}}
+								<span class="help-block">{{{afFieldMessage name='name'}}}</span>
+							{{/if}}
+						</div>
+						<div class="col l4 m6 s12" id='attended_by'>
+							<span style="color:#009688">Type of Case</span>
+							{{> afQuickField name='type' options='allowed' label=false}}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col m4 s12">
+							<span style="color:#009688">Ctype</span>
+							{{> afQuickField name='ctype' label=false}}
+						</div>
+						<div class="input-field col m4 s12">
+							<span style="color:#009688">Cno</span>
+							{{> afQuickField name='cno' label=false}}
+						</div>
+						<div class="input-field col m4 s12">
+							<span style="color:#009688">Cyear</span>
+							{{> afQuickField name='cyear' label=false}}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col l6 m6 s12">
+							<span style="color:#009688">Clients</span>
+							<!-- <label for="project__clients" class="active">Clients</label> -->
+							{{> afFieldInput	type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Users' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders'}}
+						</div>
+						<div class="input-field col l6 s12 m6">
+							<span style="color:#009688">Lawyers</span>
+							{{> afFieldInput	type='xautocomplete' formid="insertProjectForm" name='lawyerIds' call='lawyers' xmultiple=true fieldref='name' reference="Users" renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
+							<!-- <label for="project__laywer" class="active">Lawyers</label> -->
+							{{#if afFieldIsInvalid name='lawyerIds'}}
+								<span class="help-block">{{{afFieldMessage name='lawyerIds'}}}</span>
+							{{/if}}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col s12">
+							<span style="color:#009688">Description</span>
+							{{> afQuickField name='description' rows='6' class='materialize-textarea' label=false}}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class = "row m12">
+							<div class="input-field col s12 m6 l6">
+								<span style="color:#009688">Court</span>
+								{{> afFieldInput	type='xautocomplete' formid="insertProjectForm" name='courtId' call='courts' fieldref='name' reference='Courts' renderfunction='renderDefaultAutocomplete' id="project__court"}}
+								<!-- <label for="project__court" class="active">Court</label> -->
+								{{#if afFieldIsInvalid name='courtId'}}
+									<span class="help-block">{{{afFieldMessage name='courtId'}}}</span>
+								{{/if}}
+							</div>
+							<div class="input-field col s12 m6 l3">
+								<span style="color:#009688">Followup Date</span>
+								{{> afFieldInput name="followup"	id="followup_date"}}
+								<!-- <label for="followup_date" class="active">Followup Date</label> -->
+								{{#if afFieldIsInvalid name='followup'}}
+									<span class="help-block">{{{afFieldMessage name='followup'}}}</span>
+								{{/if}}
+							</div>
+							<div class="input-field col s12 m6 l3">
+								<span style="color:#009688">Statute of Limitation</span>
+								{{> afFieldInput name="statute_of_limitation"	id="statute_of_limitation"}}
+								<!-- <label for="statute_of_limitation" class="active">Statute of Limitation</label> -->
+								{{#if afFieldIsInvalid name='statute_of_limitation'}}
+									<span class="help-block">{{{afFieldMessage name='statute_of_limitation'}}}</span>
+								{{/if}}
+							</div>
+						</div>
+						<div class = "row m12">
+
+						</div>
+						<div class="row m12">
+							<h5>Billing</h5>
+							<div class="input-field col s12 m6 l3">
+								<span style="color:#009688">Label</span>
+								{{> afFieldInput name="bill_retainer"	id="bill_retainer"}}
+								<!-- <label for="bill_retainer">Retainer</label> -->
+							</div>
+							<div class="input-field col s12 m6 l3">
+								<span style="color:#009688">Bill Hearing Partner</span>
+								{{> afFieldInput name="bill_hearing_partner"	id="bill_hearing_partner"}}
+								<!-- <label for="bill_hearing_partner">Bill Hearing Partner</label> -->
+							</div>
+							<div class="input-field col s12 m6 l3">
+								<span style="color:#009688">Bill Hearing Sr. Associate</span>
+								{{> afFieldInput name="bill_hearing_sr_associate"	id="bill_hearing_sr_associate"}}
+								<!-- <label for="bill_hearing_sr_associate">Bill Hearing Sr. Associate</label> -->
+							</div>
+							<div class="input-field col s12 m6 l3">
+								<span style="color:#009688">Bill Hearing Associate</span>
+								{{> afFieldInput name="bill_hearing_associate"	id="bill_hearing_associate"}}
+								<!-- <label for="bill_hearing_associate">Bill Hearing Associate</label> -->
+							</div>
+						</div>
+						<div class="row m6">
+							<h5>Reminders</h5>
+							{{> afQuickField name='reminders' template='series'}}
+						</div>
+						<div class="row m12">
+							<h5>Labels</h5>
+							{{> afQuickField name='labelIds'}}
+						</div>
+					</div>
+					<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
+					<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>
+				{{/autoForm}}
+				<!-- Form ends -->
+			</div>
+		</div>
 	{{/if}}
 </template>

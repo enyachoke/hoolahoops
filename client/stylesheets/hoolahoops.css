@@ -411,3 +411,7 @@ div.colorElement:last-child{
 .ms-drop input[type="checkbox"]{
   position: static;
 }
+.order{
+  display: inline-block;
+  margin: 0.5em;
+}

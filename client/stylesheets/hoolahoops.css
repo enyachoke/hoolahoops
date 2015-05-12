@@ -415,3 +415,13 @@ div.colorElement:last-child{
   display: inline-block;
   margin: 0.5em;
 }
+.selectize-input input[type="text"]{
+  height: 1rem;
+}
+.heading{
+  font-weight: bold;
+  font-size: 15px;
+}
+.no-bottom-margin{
+  margin-bottom: 0px;
+}

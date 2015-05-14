@@ -32,11 +32,11 @@ Template.projects.events({
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
 	'change #court-select': function(e){
-      	EasySearch.changeProperty('projects', 'courtId', $(e.target).val());
+      	EasySearch.changeProperty('projects', 'courtId', $(e.target).val()?$(e.target).val()[0]:false);
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
 	'change #type-select': function(e){
-      	EasySearch.changeProperty('projects', 'type', $(e.target).val());
+      	EasySearch.changeProperty('projects', 'type', $(e.target).val()?$(e.target).val()[0]:false);
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
   'change #label-select': function(e){

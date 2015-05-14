@@ -1,4 +1,16 @@
 <template name="projects">
+    <style type="text/css">
+        .reset-button{
+            margin-top: 0.5em;
+            float: right;
+        }
+        button:focus{
+            background-color: #DDDDDD;
+        }
+        .ms-choice:focus{
+            background-color: #FFFFFF;
+        }
+    </style>
     {{#if isInRole 'view-projects'}}
     	{{> navigation}}
         <div class="container project-list-container">
@@ -27,6 +39,7 @@
         					<option value="{{_id}}">{{name}}</option>
         				{{/each}}
         			</select>
+                    <button class="reset-button" onclick="$('#court-select').multipleSelect('uncheckAll')">Reset</button>
         		</div>
         		<div class="col s3 filter-field">
         			<label>Type:</label>
@@ -35,6 +48,7 @@
         					<option>{{this}}</option>
         				{{/each}}
         			</select>
+                    <button class="reset-button" onclick="$('#type-select').multipleSelect('uncheckAll')">Reset</button>
         		</div>
                 <div class="col s3 filter-field">
                     <label>Label:</label>
@@ -72,9 +86,27 @@
     	</div>
     {{/if}}
     <script type="text/javascript">
-        $('select').multipleSelect({
-            filter: true
-        });
-        $('select').multipleSelect("checkAll");
+        $('#lawyer-select').multipleSelect({
+            filter: true,
+            placeholder: 'Select Lawyers'
+        })
+        $('#client-select').multipleSelect({
+            filter: true,
+            placeholder: 'Select Clients'
+        })
+        $('#type-select').multipleSelect({
+            filter: true,
+            single: true,
+            placeholder: 'Select Type'
+        })
+        $('#court-select').multipleSelect({
+            filter: true,
+            single: true,
+            placeholder: 'Select Court'
+        })
+        $('#label-select').multipleSelect({
+            filter: true,
+            placeholder: 'Select Labels'
+        })
     </script>
 </template>

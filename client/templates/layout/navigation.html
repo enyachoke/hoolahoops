@@ -1,4 +1,46 @@
 <template name="navigation">
+	<style type="text/css">
+		.dropdown-content li a{
+			font-size: 0.8em;
+		}
+		.modal-footer .btn-flat{
+			padding: 0rem 1rem 0rem 0rem;
+		}
+		.modal-footer{
+			margin-top: 1rem;
+		}
+		#error_message{
+			color: red;
+		}
+		#success_message{
+			color: green;
+		}
+	</style>
+	<ul id="account-dropdown" class="dropdown-content">
+	  <li><a href="#changePassword">Change Password</a></li>
+	  <li class="divider"></li>
+	  <li id="logout"><a href="#!">Logout</a></li>
+	</ul>
+	<div id="changePassword" class="modal">
+	    <div class="modal-content">
+	    	<h4>Change Password</h4>
+	    	<div class="input-field">
+          		<input placeholder="Current Password" id="current_password" type="password">
+        	</div>
+        	<div class="input-field">
+          		<input placeholder="New Password" id="new_password" type="password">
+        	</div>
+        	<div class="input-field">
+          		<input placeholder="Confirm New Password" id="confirm_new_password" type="password">
+        	</div>
+	    </div>
+	    <div class="modal-footer">
+	      <div id="error_message"></div>
+	      <div id="success_message"></div>
+	      <a href="#!" id="change_password" class="modal-action waves-effect waves-green btn-flat">Change Password</a>
+	      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+	    </div>
+	</div>
 	<nav>
 		<div class="nav-wrapper teal">
 		  <a href="/projects" class="brand-logo">TCL-India</a>
@@ -39,10 +81,21 @@
 			{{#if isInRole 'view-groups'}}
 				<li class="{{isActiveRoute regex='groups'}}" ><a href="/groups">Groups</a></li>
 			{{/if}}
-			<li class="teal">{{> loginButtons align="right"}}</li>
+			<li><a class="dropdown-button" href="#!" data-activates="account-dropdown">{{currentUser.username}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 			
 		    <!--li><a href="/hearings">Hearings</a></li-->
 		  </ul>
 		</div>
 	</nav>
+	<script type="text/javascript">
+		$("a[data-activates='account-dropdown']").dropdown({
+			hover: false
+		});
+		$('a[href="#changePassword"]').leanModal({
+	      dismissible: true,
+	      opacity: .5,
+	      in_duration: 300,
+	      out_duration: 200
+	    });
+	</script>
 </template>

@@ -82,7 +82,7 @@
 			{{#if isInRole 'view-groups'}}
 				<li class="{{isActiveRoute regex='groups'}}" ><a href="/groups">Groups</a></li>
 			{{/if}}
-			<li><a href="#!" data-activates="account-dropdown" data-belowOrigin="true">{{currentUser.username}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+			<li><a href="#!" id="dropdown-button" data-activates="account-dropdown" data-belowOrigin="true">{{currentUser.username}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 			
 		    <!--li><a href="/hearings">Hearings</a></li-->
 		  </ul>

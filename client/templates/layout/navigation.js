@@ -20,12 +20,34 @@ Template.navigation.events({
 		}
 		else
 			$("#error_message").text("Password must be at least 6 characters long");
+	},
+	'click #dropdown-button': function(e){
+		var activates = $('#account-dropdown');
+		var origin = $("#dropdown-button");
+		if ( origin[0] == e.currentTarget && ($(e.target).closest('.dropdown-content').length === 0) ) {
+          e.preventDefault();
+          if(activates.hasClass('active')){
+          	origin.trigger('close');
+          	$(document).unbind('click.' + activates.attr('id'));
+          }
+		  else
+			origin.trigger('open');
+        }
+		if(activates.hasClass('active')){
+			$(document).bind('click.'+ activates.attr('id'), function (e) {
+	            if (!activates.is(e.target) && !origin.is(e.target) && (!origin.find(e.target).length > 0) ) {
+	              origin.trigger('close');
+	              $(document).unbind('click.' + activates.attr('id'));
+	            }
+	        });
+		}
 	}
 });
 Template.navigation.rendered = function(){
 	$(document).ready(function(){
 		$(".button-collapse").sideNav();
 		$("a[data-activates='account-dropdown']").dropdown();
+		$('#dropdown-button').unbind('click.dropdown-button');
 		$('a[href="#changePassword"]').leanModal();
 	})
 }

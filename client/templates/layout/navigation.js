@@ -1,5 +1,5 @@
 Template.navigation.events({
-	'click #logout': function(){
+	'click .logout': function(){
 		Meteor.logout();
 	},
 	'click #change_password': function(){

@@ -30,7 +30,6 @@ digilord:sugarjs
 meteorhacks:kadira
 zimme:iron-router-active
 dburles:collection-helpers
-d0minikk:materialize-meteor
 okgrow:analytics
 google
 accounts-google
@@ -49,3 +48,6 @@ wylio:winston-papertrail
 liyu:sprintfjs
 xolvio:inspectlet
 accounts-ui-unstyled
+tsega:bootstrap3-datetimepicker@=3.1.3_3
+aldeed:autoform-bs-datetimepicker
+d0minikk:materialize-meteor

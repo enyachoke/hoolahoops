@@ -272,8 +272,8 @@ div.login{
 	background-image: url('https://s3.amazonaws.com/PeakiumSpaces/images/000/000/874/large/6097bc9eb4a1f881cba1f1d138a88327ee032089.jpg?1411673474');
 }
 
-div.login.link.text{
-	background-color: #000;
+div.login-link-text{
+	background-color: #9e9e9e;
 }
 
 div.login .card-panel{
@@ -284,9 +284,31 @@ div.nav-wrapper div#login-dropdown-list{
 	width: 230px;
 	background-color: #009688;
 	padding:5px;
-	position:absolute;
+	position:relative;
 	right:0px;
 	top:64px;
+}
+
+a.login-close-text{
+	color: #fff;
+	background-color: #009688;
+	padding: 5px;
+}
+
+div.login-button-form-submit{
+	background-color: #009688;
+	color: #fff;
+}
+
+span.sign-in-text-google{
+	background-color: #9e9e9e;
+	color: #fff;
+	padding: 10px;
+}
+
+div.additional-link-container{
+	color: #fff;
+	background-color: #009688;
 }
 
 div.nav-wrapper a.login-close-text:before{

@@ -18,7 +18,6 @@ boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
 coffeescript@1.0.6
-d0minikk:materialize-meteor@1.95.1
 dandv:caret-position@2.1.0-3
 dburles:collection-helpers@1.0.3
 dburles:mongo-collection-instances@0.2.6
@@ -54,6 +53,7 @@ liyu:sprintfjs@1.0.0
 localstorage@1.0.3
 logging@1.0.7
 matb33:collection-hooks@0.7.11
+materialize:materialize@0.96.1
 matteodem:easy-search@1.4.13
 meteor@1.1.6
 meteor-platform@1.2.2

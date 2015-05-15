@@ -31,7 +31,6 @@ digilord:sugarjs
 meteorhacks:kadira
 zimme:iron-router-active
 dburles:collection-helpers
-d0minikk:materialize-meteor
 okgrow:analytics
 google
 accounts-google
@@ -49,3 +48,4 @@ vsivsi:job-collection
 wylio:winston-papertrail
 liyu:sprintfjs
 xolvio:inspectlet
+materialize:materialize

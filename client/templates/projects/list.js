@@ -32,10 +32,14 @@ Template.projects.events({
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
 	'change #court-select': function(e){
+        if($(e.target).val()=="")
+          $("#court-select").multipleSelect('uncheckAll');
       	EasySearch.changeProperty('projects', 'courtId', $(e.target).val()?$(e.target).val()[0]:false);
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
 	'change #type-select': function(e){
+        if($(e.target).val()=="")
+          $("#type-select").multipleSelect('uncheckAll');
       	EasySearch.changeProperty('projects', 'type', $(e.target).val()?$(e.target).val()[0]:false);
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},

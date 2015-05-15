@@ -1,12 +1,5 @@
 <template name="projects">
     <style type="text/css">
-        .reset-button{
-            margin-top: 0.5em;
-            float: right;
-        }
-        button:focus{
-            background-color: #DDDDDD;
-        }
         .ms-choice:focus{
             background-color: #FFFFFF;
         }
@@ -35,20 +28,20 @@
         		<div class="col s3 filter-field">
         			<label>Court Name:</label>
         			<select multiple="multiple" id="court-select">
+                        <option value="">Clear Filter</option>
         				{{#each courts}}
         					<option value="{{_id}}">{{name}}</option>
         				{{/each}}
         			</select>
-                    <button class="reset-button" onclick="$('#court-select').multipleSelect('uncheckAll')">Reset</button>
         		</div>
         		<div class="col s3 filter-field">
         			<label>Type:</label>
         			<select multiple="multiple" id="type-select">
+                        <option value="">Clear Filter</option>
         				{{#each types}}
         					<option>{{this}}</option>
         				{{/each}}
         			</select>
-                    <button class="reset-button" onclick="$('#type-select').multipleSelect('uncheckAll')">Reset</button>
         		</div>
                 <div class="col s3 filter-field">
                     <label>Label:</label>

@@ -19,8 +19,8 @@
 							<label for="email">E-Mail</label>
 						</div>
 					</div>
-				
-					
+
+
 				<button class="waves-effect waves-light btn" type="submit">Insert</button>
 				<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
@@ -33,7 +33,7 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	
+
 	<div class="container">
 	<div class="row">
 		  	<div class="col s12  project-title">
@@ -49,10 +49,10 @@
 		<a class="waves-effect waves-light btn" href="/clients/{{_id}}/edit">Edit</a>
 		<a class="delete waves-effect waves-light btn">Delete</a>
 	{{/if}}
-	<a href="/clients" class="waves-effect waves-light btn">Back</a>
+	{{> back}}
 	</div>
-	
-	
+
+
 </template>
 
 <template name="editClient">
@@ -76,8 +76,8 @@
 							<label for="email">E-Mail</label>
 						</div> -->
 					</div>
-				
-					
+
+
 				<button class="waves-effect waves-light btn" type="submit">Update</button>
 				<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
@@ -87,7 +87,7 @@
 </template>
 
 <template name='clientsList'>
-	{{#if isInRole 'view-clients'}}	
+	{{#if isInRole 'view-clients'}}
 		<div class="row">
 			{{> navigation}}
 		</div>

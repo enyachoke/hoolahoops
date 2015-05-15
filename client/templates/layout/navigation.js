@@ -25,5 +25,7 @@ Template.navigation.events({
 Template.navigation.rendered = function(){
 	$(document).ready(function(){
 		$(".button-collapse").sideNav();
+		$("a[data-activates='account-dropdown']").dropdown();
+		$('a[href="#changePassword"]').leanModal();
 	})
 }

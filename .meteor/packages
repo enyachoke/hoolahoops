@@ -22,7 +22,6 @@ meteorhacks:npm
 npm-container
 wylio:mandrill
 matb33:collection-hooks
-accounts-password
 
 zimme:iron-router-auth
 accounts-ui-unstyled
@@ -34,7 +33,6 @@ dburles:collection-helpers
 d0minikk:materialize-meteor
 okgrow:analytics
 google
-accounts-google
 service-configuration
 thewickerman:autoform-pickadate
 aldeed:autoform
@@ -49,3 +47,6 @@ vsivsi:job-collection
 wylio:winston-papertrail
 liyu:sprintfjs
 xolvio:inspectlet
+useraccounts:materialize
+accounts-password
+accounts-google

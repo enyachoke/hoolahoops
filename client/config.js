@@ -14,3 +14,12 @@ Accounts.onLogin(function(){
 });
 
 Users = Meteor.users;
+
+Meteor.startup(function(){
+    	var scopes = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/userinfo.email']
+	    Accounts.ui.config({
+	    	'requestPermissions':{'google':scopes},
+	    	'requestOfflineToken': {google: true},
+	    	'forceApprovalPrompt': {google: true}
+	    });
+});

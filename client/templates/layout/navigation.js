@@ -22,3 +22,8 @@ Template.navigation.events({
 			$("#error_message").text("Password must be at least 6 characters long");
 	}
 });
+Template.navigation.rendered = function(){
+	$(document).ready(function(){
+		$(".button-collapse").sideNav();
+	})
+}

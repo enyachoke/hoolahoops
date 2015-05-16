@@ -12,5 +12,3 @@ Accounts.onLogin(function(){
 		}
 	})	
 });
-
-//Users = Meteor.users;

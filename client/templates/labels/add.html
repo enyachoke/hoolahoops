@@ -1,19 +1,41 @@
 <template name="labelAdd">
+	<style type="text/css">
+		.fill-control, .depending-control{
+			height:4rem;
+		    margin-top: 1rem;
+		}
+		.fill-control {
+		    width:auto;
+		    overflow:hidden;
+		}
+		.depending-control {
+		    float: right;
+		    display: table;
+		}
+		.depending-control > div{
+			display: table-cell;
+			vertical-align: bottom;
+			padding-bottom: 1rem;
+		}
+		.depending-control .form-group{
+			display: inline-block;
+			vertical-align: bottom;
+			margin: 0rem 0.75rem;
+		}
+	</style>
 	{{#if isInRole 'edit-labels'}}
-		<div class="row form-container">
+		<div class="row">
 			{{#autoForm id="insertlabelForm" class="col s12" doc=this type="method" meteormethod="saveLabelData" schema="labelSchema" }}
-				
-				<div class="input-field col s12 m6" id="attended_by_type"> 
-				        {{> afQuickField name='name'}}
+				<div class="heading">Add Labels</div>
+				<div class="depending-control">
+					<div>
+						{{> afQuickField name='color' label=false}}
+					    <button class="waves-effect waves-light btn" type="submit">Insert</button>
+					</div>
 				</div>
-
-				<div class="input-field col s12 m6" id="attended_by_type"> 
-				        {{> afQuickField name='color'}}
-				</div>
-				
-				<div class="col s12 m6">
-					<button class="waves-effect waves-light btn" type="submit">Insert</button>
-				</div>
+    			<div class="fill-control">
+    				{{> afQuickField name='name' label=false placeholder="Name"}}
+    			</div>
 			{{/autoForm}}
 		</div>
 	{{/if}}

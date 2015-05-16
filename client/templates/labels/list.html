@@ -1,36 +1,47 @@
 <template name="labels">
+	<style type="text/css">
+		#labelTable .colorElement{
+			min-width: 70px;
+			font-size: 1rem;
+			padding: 6px;
+		}
+		.label-row{
+			margin-top: 0.75rem;
+		}
+		#label-heading{
+			margin-bottom: 1rem;
+		}
+	</style>
 	{{#if isInRole 'view-labels'}}
 		{{> navigation}}
 
 		<div class="container">
-			<div class="card-panel">
+			<div class="card-panel form-container">
 				{{#if isInRole 'edit-labels'}}
-					<div class="row">
-						{{> labelAdd}}
-					</div>
+					{{> labelAdd}}
 				{{/if}}
 				
-				<table class="row">
-					<tr>
-						<th> Label </th>
-					</tr>
-					{{# each labels}}
-					{{ > labelRow}}
-					{{/each}}
-				</table>	
+				<div class="row">
+					<div class="col s12" id="labelTable">
+						<div class="heading" id="label-heading">Label</div>
+						{{# each labels}}
+							{{ > labelRow}}
+						{{/each}}
+					</div>
+				</div>
 			</div>
 		</div>
 	{{/if}}
 </template>
 
 <template name="labelRow">
-	<tr>
-		<td>{{>colorElement}}</td>
+	<div class="label-row">
+		{{>colorElement}}
 		<!--th><a href="/labels/{{_id}}/edit">Edit </a></th-->
 		{{#if isInRole 'edit-labels'}}
-			<td><button class="delete" id='delete_task'>Delete</button></td>
+			<button class="delete right" id='delete_task'>Delete</button>
 		{{/if}}
-	</tr>
+	</div>
 </template>
 
 <template name="colorElement">

@@ -44,10 +44,17 @@ Template.navigation.events({
 	}
 });
 Template.navigation.rendered = function(){
+	var template = this;
 	$(document).ready(function(){
 		$(".button-collapse").sideNav();
 		$("a[data-activates='account-dropdown']").dropdown();
 		$('#dropdown-button').unbind('click.dropdown-button');
-		$('a[href="#changePassword"]').leanModal();
+		$('a[href="#changePassword"]').leanModal({
+			complete: function(){
+				template.find("#error_message").innerHTML = template.find("#success_message").innerHTML =
+				template.find("#new_password").value = template.find("#confirm_new_password").value =
+				template.find("#current_password").value = "";
+			}
+		});
 	})
 }

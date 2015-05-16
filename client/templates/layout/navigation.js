@@ -52,10 +52,10 @@ Template.navigation.events({
 Template.navigation.rendered = function(){
 	var template = this;
 	$(document).ready(function(){
-		$(".button-collapse").sideNav();
-		$("a[data-activates='account-dropdown']").dropdown();
-		$('#dropdown-button').unbind('click.dropdown-button');
-		$('a[href="#changePassword"]').leanModal({
+		$(template.find(".button-collapse")).sideNav();
+		$(template.find("a[data-activates='account-dropdown']")).dropdown();
+		$(template.find('#dropdown-button')).unbind('click.dropdown-button');
+		$(template.find('a[href="#changePassword"]')).leanModal({
 			complete: function(){
 				template.find("#error_message").innerHTML = template.find("#success_message").innerHTML =
 				template.find("#new_password").value = template.find("#confirm_new_password").value =

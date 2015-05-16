@@ -31,16 +31,18 @@ Template.projects.events({
       	EasySearch.changeProperty('projects', 'clients', $(e.target).val());
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
-	'change #court-select': function(e){
-        if($(e.target).val()=="")
-          $("#court-select").multipleSelect('uncheckAll');
-      	EasySearch.changeProperty('projects', 'courtId', $(e.target).val()?$(e.target).val()[0]:false);
+	'change #court-select': function(e, template){
+        var value = $(e.target).val();
+        if(value=="")
+          $(template.find("#court-select")).multipleSelect('uncheckAll');
+      	EasySearch.changeProperty('projects', 'courtId', value?value[0]:false);
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
-	'change #type-select': function(e){
-        if($(e.target).val()=="")
-          $("#type-select").multipleSelect('uncheckAll');
-      	EasySearch.changeProperty('projects', 'type', $(e.target).val()?$(e.target).val()[0]:false);
+	'change #type-select': function(e, template){
+        var value = $(e.target).val();
+        if(value)
+          $(template.find("#type-select")).multipleSelect('uncheckAll');
+      	EasySearch.changeProperty('projects', 'type', value?value[0]:false);
       	EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
 	},
   'change #label-select': function(e){

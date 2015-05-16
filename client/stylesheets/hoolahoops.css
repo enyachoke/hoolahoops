@@ -140,7 +140,7 @@ table tr th {
 
 	.form-container {
 		margin-bottom: 0;
-		padding: 2.5rem 2.5rem 0;
+		padding: 2.5rem 2.5rem;
 	}
 
 select {
@@ -407,4 +407,21 @@ div.colorElement:last-child{
 }
 .label-row td{
   padding: 0px 0px 5px 0px !important;
+}
+.ms-drop input[type="checkbox"]{
+  position: static;
+}
+.order{
+  display: inline-block;
+  margin: 0.5em;
+}
+.selectize-input input[type="text"]{
+  height: 1rem;
+}
+.heading{
+  font-weight: bold;
+  font-size: 15px;
+}
+.no-bottom-margin{
+  margin-bottom: 0px;
 }

@@ -29,7 +29,6 @@ digilord:sugarjs
 meteorhacks:kadira
 zimme:iron-router-active
 dburles:collection-helpers
-d0minikk:materialize-meteor
 okgrow:analytics
 google
 service-configuration
@@ -49,3 +48,4 @@ xolvio:inspectlet
 useraccounts:materialize
 accounts-password
 accounts-google
+materialize:materialize

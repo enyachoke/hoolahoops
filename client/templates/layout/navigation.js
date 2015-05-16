@@ -2,28 +2,34 @@ Template.navigation.events({
 	'click .logout': function(){
 		Meteor.logout();
 	},
-	'click #change_password': function(){
-		$("#success_message, #error_message").text("");
-		if($("#new_password").val().length>=6){
-			Meteor.loginWithPassword(Meteor.user().username, $("#current_password").val(), function(err){
+	'click #change_password': function(event, template){
+		var success_message_element = template.find("#success_message");
+		var error_message_element = template.find("#error_message");
+		var new_password = template.find('#new_password');
+		success_message_element.innerHTML = error_message_element.innerHTML = "";
+		if(new_password.value.length>=6){
+			var current_password = template.find("#current_password");
+			Meteor.loginWithPassword(Meteor.user().username, current_password.value, function(err){
 				if(err)
-					$("#error_message").text("Incorrect password");
-				else
-					if($("#new_password").val()==$("#confirm_new_password").val()){
-						Accounts.changePassword($("#current_password").val(), $("#new_password").val());
-						$("#success_message").text("Password changed");
-						$("#current_password, #confirm_new_password, #new_password").val("");
+					error_message_element.innerHTML = "Incorrect password";
+				else{
+					var confirm_new_password = template.find("#confirm_new_password");
+					if(new_password.value == confirm_new_password.value){
+						Accounts.changePassword(current_password.value, new_password.value);
+						success_message_element.innerHTML = "Password changed";
+						current_password.value = new_password.value = confirm_new_password.value = ""
 					}
 					else
-						$("#error_message").text("Passwords don't match");
-			})
+						error_message_element.innerHTML = "Passwords don't match";
+				}
+			});
 		}
 		else
-			$("#error_message").text("Password must be at least 6 characters long");
+			error_message_element.innerHTML = "Password must be at least 6 characters long";
 	},
-	'click #dropdown-button': function(e){
-		var activates = $('#account-dropdown');
-		var origin = $("#dropdown-button");
+	'click #dropdown-button': function(e, template){
+		var activates = $(template.find('#account-dropdown'));
+		var origin = $(template.find("#dropdown-button"));
 		if ( origin[0] == e.currentTarget && ($(e.target).closest('.dropdown-content').length === 0) ) {
           e.preventDefault();
           if(activates.hasClass('active')){

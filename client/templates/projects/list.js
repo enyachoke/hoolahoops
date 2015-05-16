@@ -50,3 +50,28 @@ Template.projects.events({
         EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
   }
 })
+
+Template.projects.rendered = function(){
+  $(this.find('#lawyer-select')).multipleSelect({
+      filter: true,
+      placeholder: 'Select Lawyers'
+  });
+  $(this.find('#client-select')).multipleSelect({
+      filter: true,
+      placeholder: 'Select Clients'
+  });
+  $(this.find('#type-select')).multipleSelect({
+      filter: true,
+      single: true,
+      placeholder: 'Select Type'
+  });
+  $(this.find('#court-select')).multipleSelect({
+      filter: true,
+      single: true,
+      placeholder: 'Select Court'
+  });
+  $(this.find('#label-select')).multipleSelect({
+      filter: true,
+      placeholder: 'Select Labels'
+  });
+}

@@ -4,7 +4,7 @@
 		<div class="container card-panel add-project">
 			<h4 class="teal form-header">Add a Client</h4>
 			<div class="row form-container">
-				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
+				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="userSchema" }}
 					<div class = "row s12">
 						<div class="input-field col s8">
 							{{> afFieldInput name="name" type="text" id="name"}}
@@ -61,7 +61,7 @@
 		<div class="container card-panel add-project">
 			<h4 class="teal form-header">Edit a Client</h4>
 			<div class="row form-container">
-				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="clientSchema" }}
+				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="userSchema" }}
 					<div class = "row s12">
 						<div class="input-field col s8">
 							{{> afFieldInput name="name" type="text" id="name"}}

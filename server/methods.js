@@ -305,7 +305,7 @@ Meteor.methods({
 	},
 	// { email : , name : , type : }
 	'createNewUser' : function(obj){
-		//debugger;
+		debugger;
 		var password = 'tcl-'+obj.contactNumber; //Random.id()
 		if( obj && obj.username && obj.name ){
 			var options = {

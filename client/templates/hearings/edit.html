@@ -60,13 +60,13 @@
 
 						<h5>Reminders</h5>
 						<div class="input-field col s12 m6">
-							{{> afQuickField name='reminders' }}
+							{{> afQuickField name='reminders' template='series' label=false}}
 						</div>
 
 					</div>
 
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
-					<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+					<a class="waves-effect waves-teal btn-flat" href="/hearings/{{_id}}" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
 			</div>
 		</div>

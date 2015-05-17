@@ -1,8 +1,51 @@
 <template name="navigation">
+	<style type="text/css">
+		.dropdown-content li a{
+			font-size: 0.8em;
+		}
+		.modal-footer .btn-flat{
+			padding: 0rem 1rem 0rem 0rem;
+		}
+		.modal-footer{
+			margin-top: 1rem;
+		}
+		#error_message{
+			color: red;
+		}
+		#success_message{
+			color: green;
+		}
+	</style>
+	<ul id="account-dropdown" class="dropdown-content">
+	  <li><a href="#changePassword">Change Password</a></li>
+	  <li class="divider"></li>
+	  <li class="logout"><a href="#!">Logout</a></li>
+	</ul>
+	<div id="changePassword" class="modal">
+	    <div class="modal-content">
+	    	<h4>Change Password</h4>
+	    	<div class="input-field">
+          		<input placeholder="Current Password" id="current_password" type="password">
+        	</div>
+        	<div class="input-field">
+          		<input placeholder="New Password" id="new_password" type="password">
+        	</div>
+        	<div class="input-field">
+          		<input placeholder="Confirm New Password" id="confirm_new_password" type="password">
+        	</div>
+	    </div>
+	    <div class="modal-footer">
+	      <div id="error_message"></div>
+	      <div id="success_message"></div>
+	      <a href="#!" id="change_password" class="modal-action waves-effect waves-green btn-flat">Change Password</a>
+	      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+	    </div>
+	</div>
 	<nav>
 		<div class="nav-wrapper teal">
 		  <a href="/projects" class="brand-logo">TCL-India</a>
-		  <ul id="nav-mobile" class="right side-nav">
+		  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+		  <ul id="nav-mobile" class="right hide-on-med-and-down">
 		    {{#if isInRole 'view-projects'}}
 		    	<li class="{{isActiveRoute regex='projects'}}"><a href="/projects">Projects</a></li>
 		    {{/if}}
@@ -39,7 +82,50 @@
 			{{#if isInRole 'view-groups'}}
 				<li class="{{isActiveRoute regex='groups'}}" ><a href="/groups">Groups</a></li>
 			{{/if}}
-			<li class="teal">{{> loginButtons align="right"}}</li>
+			<li><a href="#!" id="dropdown-button" data-activates="account-dropdown" data-belowOrigin="true">{{currentUser.username}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+			
+		    <!--li><a href="/hearings">Hearings</a></li-->
+		  </ul>
+		  <ul class="side-nav" id="mobile-demo">
+		  	<li class="teal">{{currentUser.username}}</li>
+		    {{#if isInRole 'view-projects'}}
+		    	<li class="{{isActiveRoute regex='projects'}}"><a href="/projects">Projects</a></li>
+		    {{/if}}
+		    {{#if isInRole 'view-calendars'}}
+		    	<li class="{{isActiveRoute regex='calendar'}}"><a href="/calendar">Calendar</a></li>
+		    {{/if}}
+		    {{#if isInRole 'view-bills'}}
+		    	<li class="{{isActiveRoute regex='bills'}}" ><a href="/bills">Accounts</a></li>
+		    {{/if}}
+		    <!-- {{#if isInRole 'view-documents'}} -->
+		    	<!-- <li class="{{isActiveRoute regex='docs'}}" ><a href="/documents">Documents</a></li> -->
+		    <!-- {{/if}} -->
+
+		    <!-- {{#if isInRole 'view-timesheets'}} -->
+				<li class="{{isActiveRoute regex='timesheets'}}" ><a href="/timesheets">Timesheets</a></li>
+			<!-- {{/if}} -->
+			
+			<!-- {{#if isInRole 'view-projects'}}
+				<li class="{{isActiveRoute regex='communications'}}" ><a href="/communications">Communications</a></li>
+			{{/if}} -->
+			<!-- Leaving these two out coz they'll be merged into users -->
+			{{#if isInRole 'view-lawyers'}}
+				<li class="{{isActiveRoute regex='lawyers'}}" ><a href="/lawyers">Lawyers</a></li>
+			{{/if}}
+			{{#if isInRole 'view-clients'}}
+				<li class="{{isActiveRoute regex='clients'}}" ><a href="/clients">Clients</a></li>
+			{{/if}}
+			{{#if isInRole 'view-courts'}}
+				<li class="{{isActiveRoute regex='courts'}}" ><a href="/courts">Courts</a></li>
+			{{/if}}
+			{{#if isInRole 'view-labels'}}
+				<li class="{{isActiveRoute regex='labels'}}" ><a href="/labels">Labels</a></li>
+			{{/if}}
+			{{#if isInRole 'view-groups'}}
+				<li class="{{isActiveRoute regex='groups'}}" ><a href="/groups">Groups</a></li>
+			{{/if}}
+			<li><a href="#changePassword">Change Password</a></li>
+			<li class="logout"><a href="#!">Logout</a></li>
 			
 		    <!--li><a href="/hearings">Hearings</a></li-->
 		  </ul>

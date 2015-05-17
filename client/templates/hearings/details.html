@@ -11,7 +11,7 @@
 		<div class="row">
 			{{ > navigation}}
 		</div>
-		
+
 		<div class="container">
 		<div class="row">
 			  	<div class="col s12  project-title">
@@ -29,10 +29,8 @@
 		<a class="delete waves-effect waves-light btn">Delete</a>
 		{{#if isInRole 'edit-hearings'}}
 			<a class="waves-effect waves-light btn" href="/hearings/{{_id}}/edit">Edit</a>
-			<a href="/projects/{{caseId}}" class="waves-effect waves-light btn">Back</a>
+			{{> back}}
 		{{/if}}
 		</div>
 	{{/if}}
 </template>
-
-

@@ -1,7 +1,7 @@
 <template name="hearingAdd">
 	{{#if isInRole 'edit-hearings'}}
 		{{> navigation}}
-		
+
 		<div class="container card-panel add-project">
 			<h4 class="teal form-header">Add a hearing</h4>
 			<div class="row form-container">
@@ -9,20 +9,20 @@
 					<div class="input-field col l8 m6 s12">
 						{{> afFieldInput  type='xautocomplete' value=caseId formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
 						<label for="hearing__title" class="active">Title</label>
-						
+
 					</div>
 					<div class="input-field col l4 m6 s12">
 						{{> afFieldInput name="date" pickadateOptions=pickadateOptions id="hearing__date"}}
 						<label for="hearing__date" class="active">Date</label>
 					</div>
 
-					
+
 					<!-- <div class="input-field col l4 m6 s12">
 						{{> afFieldInput name="type" options=options id="event_type"}}
 					</div> -->
 					<div class="input-field col s12">
 						{{> afFieldInput name="proceedings" type="textarea" class="materialize-textarea" id="proceedings"}}
-						<label for="proceedings">Proceedings</label>
+						<label for="proceedings" class="active">Proceedings</label>
 					</div>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput  type='xautocomplete' formid="insertHearingForm" name='lawyerId' call='lawyers' fieldref='name' reference='Lawyers' renderfunction='renderDefaultAutocomplete' id="project_lawyer"}}
@@ -30,9 +30,9 @@
 					</div>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="judge" type="text" id="judge"}}
-						<label for="judge">Judge</label>
+						<label for="judge" class="active">Judge</label>
 					</div>
-					<div class="input-field col s12 m6" id="attended_by_type"> 
+					<div class="input-field col s12 m6" id="attended_by_type">
 					        {{> afQuickField name='attendedBy' options='allowed' label=false}}
 					        <label for="attendedBy" class="active">Attended By</label>
 					</div>
@@ -40,16 +40,12 @@
 						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
 						<label for="amount" class="active">Bill Amount</label>
 					</div>
-					<div class="input-field col s12 m12">
-
-						<h5>Reminders</h5>
-						<div class="input-field col s12 m6">
-							{{> afQuickField name='reminders' label=false}}
-						</div>
-
+					<div class="row m12">
+					<h5>Reminders</h5>
+					<div style="margin-left:15px">
+						{{> afQuickField name='reminders' template='series' label=false}}
 					</div>
-
-					
+				</div>
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
 					<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>
 				{{/autoForm}}

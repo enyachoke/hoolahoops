@@ -71,10 +71,10 @@
 					{{> afFieldInput name="minutes" type="textarea"  id="minutes" class="materialize-textarea"}}
 					<label for="minutes">Minutes</label>
 				</div>
-				<div class="col s12 m12">
+				<div class="row m12">
 					<h5>Reminders</h5>
-					<div class="input-field col s12 m6">
-						{{> afQuickField name='reminders' }}
+					<div style="margin-left:15px">
+						{{> afQuickField name='reminders' template='series' label=false}}
 					</div>
 				</div>
 				<div class="col s12 m12">
@@ -99,7 +99,7 @@
 				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="date" id="date"}}
-					<label for="hearing__date">Date</label>
+					<label for="hearing__date" class="active">Date</label>
 				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="startHour" id="startHour" }}
@@ -111,16 +111,16 @@
 				</div>
 				<div class="input-field col s12">
 					{{> afFieldInput name="agenda" type="textarea"  id="agenda" class="materialize-textarea"}}
-					<label for="agenda">Agenda</label>
+					<label for="agenda" class="active">Agenda</label>
 				</div>
 				<div class="input-field col s12">
 					{{> afFieldInput name="minutes" type="textarea"  id="minutes" class="materialize-textarea"}}
-					<label for="minutes">Minutes</label>
+					<label for="minutes" class="active">Minutes</label>
 				</div>
-				<div class="input-field col s12 m12">
+				<<div class="row m12">
 					<h5>Reminders</h5>
-					<div class="input-field col s12 m6">
-						{{> afQuickField name='reminders' }}
+					<div style="margin-left:15px">
+						{{> afQuickField name='reminders' template='series' label=false}}
 					</div>
 				</div>
 			<div class="col s12 m12">

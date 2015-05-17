@@ -14,12 +14,12 @@
 		<tr>
 			<th> Deadline </th>
 			<th> Description </th>
-			
+
 		</tr>
 	{{# each tasks}}
 	{{ > taskRow}}
 	{{/each}}
-	</table>	
+	</table>
 	</div>
 </template>
 
@@ -27,7 +27,7 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	
+
 	<div class="container">
 	<div class="row">
 		  	<div class="col s12  project-title">
@@ -42,12 +42,12 @@
 	<div class="row">
 		<a class="Mark_As_Done waves-effect waves-light btn">Mark As Done</a> <a class="Mark_As_Incomplete waves-effect waves-light btn">Mark As Incomplete</a>
 	</div>
-	
+
 	<a class="delete waves-effect waves-light btn">Delete</a>
 	<a class="waves-effect waves-light btn" href="/tasks/{{_id}}/edit">Edit</a>
-	<a href="/projects/{{caseId}}" class="waves-effect waves-light btn">Back</a>
+	{{> back}}
 	</div>
-	
+
 </template>
 
 <template name="addTask">
@@ -59,7 +59,7 @@
 			<div class="input-field col l8 m6 s12">
 				{{> afFieldInput  type='xautocomplete' value=caseId formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
 				<label for="task__case" class="active">Matter</label>
-				
+
 			</div>
 			<div class="input-field col l4 m6 s12">
 				{{> afFieldInput name="date" class="datepickerwa" id="deadine"}}
@@ -80,7 +80,7 @@
 					{{> afQuickField name='reminders' }}
 				</div>
 			</div>
-			
+
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>
 		{{/autoForm}}
@@ -96,8 +96,8 @@
 		{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
 			<div class="input-field col l8 m6 s12">
 				{{> afFieldInput  type='xautocomplete' formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
-				<label for="task__case">Matter</label>
-				
+				<label for="task__case" class="active">Matter</label>
+
 			</div>
 			<div class="input-field col l4 m6 s12">
 				{{> afFieldInput name="date" class="datepickerwa" type="date" id="deadine"}}
@@ -117,7 +117,7 @@
 					{{> afQuickField name='reminders' }}
 				</div>
 			</div>
-			
+
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>
 		{{/autoForm}}

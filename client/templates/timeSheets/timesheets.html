@@ -25,7 +25,7 @@
 			<div class="row">
 		      <div class="input-field col s12">
 		        {{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-				<label for="meeting_case">Matter</label>
+				<label for="meeting_case" class="active">Matter</label>
 				{{#if afFieldIsInvalid name='caseId'}}
     				<span class="help-block">{{{afFieldMessage name='caseId'}}}</span>
     			{{/if}}
@@ -109,7 +109,7 @@
 
 				<div class="row input-field col s12">
 					{{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-					<label for="meeting_case">Matter</label>	
+					<label for="meeting_case" class="active">Matter</label>	
 				</div>
 
 				<div class="row input-field col s12">

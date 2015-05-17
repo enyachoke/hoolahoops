@@ -54,7 +54,7 @@
 					</div>
 					<div class="input-field col s12 m6">
 						<input type="number" name="bill_amt" id="amount" value="{{amount_by_type}}" data-schema-key="bill_amt" class="form-control">
-						<label for="amount">Bill Amount</label>
+						<label for="amount" class="active">Bill Amount</label>
 					</div>
 					<div class="input-field col s12 m12">
 
@@ -66,7 +66,7 @@
 					</div>
 					
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
-					<a class="waves-effect waves-teal btn-flat" href="/hearings" style="position: absolute;">Cancel</a>
+					<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
 			</div>
 		</div>

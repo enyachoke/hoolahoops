@@ -3,25 +3,25 @@
 		{{> navigation}}
 
 		<div class="container">
-			<div class="card-panel">
-				<div class="row">
+			<div class="card-panel" style="padding: 2.5rem 2.5rem">
+				<div>
+					<div class="row no-bottom-margin">
+						<div class="col s12">
+							<div class="heading">Add groups</div>
+						</div>
+					</div>
 					{{> groupAdd}}
 				</div>
-				<table class="row">
-					<tr>
-						<th> Listing groups </th>
-					</tr>
-					<tr>
+				<div>
+					<div class="row no-bottom-margin">
+						<div class="col s12">
+							<div class="heading">Listing groups</div>
+						</div>
+					</div>
 					{{# each groups}}
 						{{> groupEdit}}
 					{{/each}}
-					</tr>
-					<tr>
-					{{# each groups}}
-						{{name}}
-					{{/each}}
-					</tr>
-				</table>	
+				</div>
 			</div>
 		</div>
 	{{/if}}
@@ -29,53 +29,43 @@
 
 <template name="groupAdd">
 	{{#if isInRole 'edit-groups'}}
-			
-		<div class="row form-container">
-			{{#autoForm id="insertgroupForm" class="col s12" doc=this type="method" meteormethod="saveGroupData" schema="groupSchema" }}
-				
-				<div class="input-field col s12 m6"> 
-				        {{> afQuickField name='name'}}
+		<div class="row">
+			{{#autoForm id="insertgroupForm" doc=this type="method" meteormethod="saveGroupData" schema="groupSchema" }}
+				<div class="input-field col s12">
+				    {{> afQuickField name='name'}}
 				</div>
-
-				<div class="input-field col s12 m6"> 
-				        {{> afQuickField name='roles' multiple=true}}
+				<div class="input-field col s12 m6">
+			        {{> afQuickField name='roles' multiple=true placeholder="Select roles"}}
 				</div>
-
-				<div class="input-field col s12 m6"> 
-				        {{> afQuickField name='userIds' multiple=true}}
+				<div class="input-field col s12 m6">
+			        {{> afQuickField name='userIds' multiple=true placeholder="Select users"}}
 				</div>
-				
-				<div class="col s12 m6">
+				<div class="input-field col s12">
 					<button class="waves-effect waves-light btn" type="submit">Insert</button>
 				</div>
 			{{/autoForm}}
 		</div>
-	
 	{{/if}}
 </template>
 
 <template name="groupEdit">
 	{{#if isInRole 'edit-groups'}}
-			
-	{{#autoForm id=formId class="col s12" doc=this type="method" meteormethod="saveGroupData" schema="groupSchema" }}
-			<div class="input-field col s12 m6"> 
+		<div class="row">
+			{{#autoForm id=formId doc=this type="method" meteormethod="saveGroupData" schema="groupSchema" }}
+				<div class="input-field col s12">
 			        {{> afQuickField name='name'}}
-			</div>
-
-			<div class="input-field col s12 m6"> 
-			        {{> afQuickField name='roles' multiple=true}}
-			</div>
-
-			<div class="input-field col s12 m6"> 
-			        {{> afQuickField name='userIds' multiple=true}}
-			</div>
-			
-			<div class="col s12 m6">
-				<button class="waves-effect waves-light btn" type="submit">Update</button>
-			</div>
-	{{/autoForm}}
-
-	<div><a class="delete"><i class="small center-align mdi-action-delete"></i></a></div>
-
+				</div>
+				<div class="input-field col s12 m6">
+			        {{> afQuickField name='roles' multiple=true placeholder="Select roles"}}
+				</div>
+				<div class="input-field col s12 m6">
+			        {{> afQuickField name='userIds' multiple=true placeholder="Select users"}}
+				</div>
+				<div class="input-field col s12">
+					<button class="waves-effect waves-light btn delete" type="button">Delete</button>
+					<button class="waves-effect waves-light btn" type="submit">Update</button>
+				</div>
+			{{/autoForm}}
+		</div>
 	{{/if}}
 </template>

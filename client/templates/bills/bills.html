@@ -2,16 +2,16 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	{{#if isInRole 'view-projects'}}	
+	{{#if isInRole 'view-projects'}}
 		<div class="container">
 			<div class="row">
 
-				{{ #if bills_unpaid_exist }} 
+				{{ #if bills_unpaid_exist }}
 					<p><h5>UNPAID BILLS</h5></p>
 					{{#if isInRole 'edit-bills'}}
 						<button id="mark_as_paid" class="waves-effect waves-light btn"> Mark As Paid</button>
 					{{/if}}
-					{{> esInput index="bills_unpaid" placeholder="Search Unpaid Bills" allDocsOnEmpty="true"}}
+					<!-- {{> esInput index="bills_unpaid" placeholder="Search Unpaid Bills" allDocsOnEmpty="true"}} -->
 					{{#ifEsIsSearching index="bills_unpaid"}}
 						{{> spinner}}
 					{{else}}
@@ -41,7 +41,7 @@
 				{{#if isInRole 'edit-bills'}}
 					<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As unPaid</button>
 				{{/if}}
-				{{> esInput index="bills_paid" placeholder="Search Paid Bills" allDocsOnEmpty="true"}}
+				<!-- {{> esInput index="bills_paid" placeholder="Search Paid Bills" allDocsOnEmpty="true"}} -->
 				{{#ifEsIsSearching index="bills_paid"}}
 					{{> spinner}}
 				{{else}}
@@ -86,11 +86,10 @@
 	      <li class="collection-item">Date : {{date}}</li>
 	      <li class="collection-item">Billing details : {{amount}}</li>
 	      <li class="collection-item">Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</li>
-	      <!-- <li class="collection-item">Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</li> -->
 	      <li class="collection-item">Hearing attended by : <a href="/lawyers/{{lawyer._id}}">{{ lawyer.name }}</a></li>
 	      <li class="collection-item">Paid : {{ paid }}</li>
 		</ul>
-		<a href="/bills" class="waves-effect waves-light btn">Back</a>
+		{{> back}}
 	</div>
 {{/if}}
 </template>
@@ -105,8 +104,6 @@
 		<td>{{amount}}</td>
 		<td><a href="/bills/{{_id}}"><i class="bill_details small center-align mdi-action-description"></i></a></td>
 	</tr>
-	<!-- <p> Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</p>
-	<p> Lawyer : {{ #each lawyers}} <a href="/lawyers/{{_id}}">{{name}}</a> {{/each}}</p> -->
 </template>
 
 <template name="editBill">

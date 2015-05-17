@@ -7,7 +7,7 @@
 
 			{{#autoForm id="insertProjectForm" class="col s12" doc=this type="method" meteormethod='saveProjectData' schema='projectSchema'}}
 			<div class="row">
-				<div class="input-field col l8 m6 s12">
+				<div class="input-field col l12 m12 s12">
 					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
 					<label for="project__title">Title</label>					
 					{{#if afFieldIsInvalid name='name'}}
@@ -18,14 +18,13 @@
 			<div class="row">
 				<div class="input-field col m4 s12">
 					{{> afQuickField name='ctype' label=false}}
+					<label class="active">Suit Number</label>
 				</div>
 				<div class="input-field col m4 s12">
 					{{> afQuickField name='cno'}}
 				</div>
 				<div class="input-field col m4 s12">
-					{{> afQuickField name='cyear'}}
-
-				
+					{{> afQuickField name='cyear'}}				
 				</div>
 			</div>
 			

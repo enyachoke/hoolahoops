@@ -96,15 +96,15 @@ if ( Events.find({type : 'court_holidays'}).fetch().length ==0  ){
 // DEFAULT DATA
 // TODO: Move all of this into a separate migrations
 // Insert into db. TODO: Move this into helper functions and remove repetition
-_.each(clients, function(client){
-	//if(!Clients.findOne(client._id))
-		Clients.upsert(client['_id'], {$set: client});
-});
+// _.each(clients, function(client){
+// 	//if(!Clients.findOne(client._id))
+// 		Clients.upsert(client['_id'], {$set: client});
+// });
 
-_.each(lawyers, function(lawyer){
-	//if(!Lawyers.findOne(lawyer._id))
-		Lawyers.upsert(lawyer['_id'], {$set: lawyer});
-});
+// _.each(lawyers, function(lawyer){
+// 	//if(!Lawyers.findOne(lawyer._id))
+// 		Lawyers.upsert(lawyer['_id'], {$set: lawyer});
+// });
 
 _.each(courts, function(court){
 	//if(!Clients.findOne(court._id))

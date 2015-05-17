@@ -1,32 +1,34 @@
 <template name="projects">
+    <style type="text/css">
+        .ms-choice:focus{
+            background-color: #FFFFFF;
+        }
+    </style>
     {{#if isInRole 'view-projects'}}
     	{{> navigation}}
         <div class="container project-list-container">
         	{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
         	<div class="row">
-                <!-- Comment these until lawyers and clients issue is fixed -->
-        		<!--div class="col s3 filter-field">
-        			<label>Lawyer Names:</label>
-        			<select id="lawyer-select">
-        				<option value="">All</option>
-        				{{#each lawyers}}
-        					<option value="{{_id}}">{{name}}</option>
-        				{{/each}}
-        			</select>
-        		</div>
-        		<div class="col s3 filter-field">
-        			<label>Client Names:</label>
-        			<select id="client-select">
-        				<option value="">All</option>
-        				{{#each clients}}
-        					<option value="{{_id}}">{{name}}</option>
-        				{{/each}}
-        			</select>
-        		</div-->
+                <div class="col s3 filter-field">
+                    <label>Lawyer Names:</label>
+                    <select multiple="multiple" id="lawyer-select">
+                        {{#each lawyers}}
+                            <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col s3 filter-field">
+                    <label>Client Names:</label>
+                    <select multiple="multiple" id="client-select">
+                        {{#each clients}}
+                            <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
         		<div class="col s3 filter-field">
         			<label>Court Name:</label>
-        			<select id="court-select">
-        				<option value="">All</option>
+        			<select multiple="multiple" id="court-select">
+                        <option value="">Clear Filter</option>
         				{{#each courts}}
         					<option value="{{_id}}">{{name}}</option>
         				{{/each}}
@@ -34,8 +36,8 @@
         		</div>
         		<div class="col s3 filter-field">
         			<label>Type:</label>
-        			<select id="type-select">
-        				<option value="">All</option>-
+        			<select multiple="multiple" id="type-select">
+                        <option value="">Clear Filter</option>
         				{{#each types}}
         					<option>{{this}}</option>
         				{{/each}}
@@ -43,8 +45,7 @@
         		</div>
                 <div class="col s3 filter-field">
                     <label>Label:</label>
-                    <select id="label-select">
-                        <option value="">All</option>-
+                    <select multiple="multiple" id="label-select">
                         {{#each labels}}
                             <option value="{{_id}}">{{> colorElement}}</option>
                         {{/each}}

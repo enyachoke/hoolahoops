@@ -12,12 +12,12 @@
 </template>
 
 <template name="meetingDetails">
-	 
+
 
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	
+
 	<div class="container">
 		<div class="row">
 			  	<div class="col s12  project-title">
@@ -29,9 +29,9 @@
 	      <li class="collection-item">Date : {{formatted_date}}</li>
 	      <li class="collection-item">Agenda : {{agenda}}</li>
 		</ul>
-		<a href='/meetings/{{_id}}/edit' class="waves-effect waves-light btn">Edit</a> 
-		<a class="delete waves-effect waves-light btn">Delete</a> 
-		<a href="/projects/{{caseId}}" class="waves-effect waves-light btn">Back</a>
+		<a href='/meetings/{{_id}}/edit' class="waves-effect waves-light btn">Edit</a>
+		<a class="delete waves-effect waves-light btn">Delete</a>
+		{{> back}}
 	</div>
 
 
@@ -43,13 +43,13 @@
 		{{available }}
 	</div> -->
 	<div class="container  card-panel add-project">
-		<h4 class="teal form-header">Schedule a Meeting</h4>	
+		<h4 class="teal form-header">Schedule a Meeting</h4>
 		<div class="row form-container">
 			{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
 				<div class="input-field col s12">
 					{{> afFieldInput  type='xautocomplete' value=caseId formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
 					<label for="meeting_case" class="active">Matter</label>
-					
+
 				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="date" id="date"}}
@@ -79,7 +79,7 @@
 				</div>
 				<div class="col s12 m12">
 				<button class="waves-effect waves-light btn" type="submit">Insert</button>
-				<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position:absolute">Cancel</a>	
+				<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position:absolute">Cancel</a>
 				</div>
 			{{/autoForm}}
 		</div>
@@ -89,13 +89,13 @@
 <template name="editMeeting">
 	{{> navigation}}
 	<div class="container  card-panel add-project">
-		<h4 class="teal form-header">Edit Meeting</h4>	
+		<h4 class="teal form-header">Edit Meeting</h4>
 		<div class="row form-container">
 			{{ # autoForm id="insertMeetingForm" class="col s12" doc=this type="method" meteormethod="saveMeetingData" schema="meetingSchema" }}
 				<div class="input-field col s12">
 					{{> afFieldInput  type='xautocomplete' formid="insertMeetingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-					<label for="meeting_case">Matter</label>
-					
+					<label for="meeting_case" class="active">Matter</label>
+
 				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="date" id="date"}}
@@ -123,7 +123,7 @@
 						{{> afQuickField name='reminders' }}
 					</div>
 				</div>
-			<div class="col s12 m12">	
+			<div class="col s12 m12">
 				<button class="waves-effect waves-light btn" type="submit">Insert</button>
 				<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}"  style="position: absolute;">Cancel</a>
 			</div>

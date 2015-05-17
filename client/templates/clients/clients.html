@@ -19,8 +19,8 @@
 							<label for="email">E-Mail</label>
 						</div>
 					</div>
-				
-					
+
+
 				<button class="waves-effect waves-light btn" type="submit">Insert</button>
 				<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
@@ -33,7 +33,7 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	
+
 	<div class="container">
 	<div class="row">
 		  	<div class="col s12  project-title">
@@ -51,8 +51,8 @@
 	{{/if}}
 	<a href="/clients" class="waves-effect waves-light btn">Back</a>
 	</div>
-	
-	
+
+
 </template>
 
 <template name="editClient">
@@ -65,19 +65,19 @@
 					<div class = "row s12">
 						<div class="input-field col s8">
 							{{> afFieldInput name="name" type="text" id="name"}}
-							<label for="name">Name</label>
+							<label for="name" class="active">Name</label>
 						</div>
 						<div class="input-field col s8">
 							{{> afFieldInput name="contactNumber" type="number" id="ph"}}
-							<label for="ph">Phone Number</label>
+							<label for="ph" class="active">Phone Number</label>
 						</div>
 						<!-- <div class="input-field col s8">
 							{{> afFieldInput name="email" type="email" id="email"}}
 							<label for="email">E-Mail</label>
 						</div> -->
 					</div>
-				
-					
+
+
 				<button class="waves-effect waves-light btn" type="submit">Update</button>
 				<a class="waves-effect waves-teal btn-flat" href="/clients" style="position: absolute;">Cancel</a>
 				{{/autoForm}}
@@ -87,7 +87,7 @@
 </template>
 
 <template name='clientsList'>
-	{{#if isInRole 'view-clients'}}	
+	{{#if isInRole 'view-clients'}}
 		<div class="row">
 			{{> navigation}}
 		</div>

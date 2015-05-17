@@ -4,7 +4,7 @@
 		{{> navigation}}
 	</div>
 	<div class="container ">
-		
+
 		<a class=" col s4 waves-effect waves-light btn"  href='/courts/add'>Add Court</a>
 		{{> esInput index="courts" placeholder="Search Courts" allDocsOnEmpty="true"}}
 		{{#ifEsIsSearching index="courts"}}
@@ -12,7 +12,7 @@
 		{{else}}
 			<table class="centered striped bordered" >
 					<thead>
-				        <tr>	
+				        <tr>
 				            <th data-field="id">Name</th>
 				            <th data-field="name">Code</th>
 				            <th data-field="color">Color</th>
@@ -55,7 +55,7 @@
 				<label for="code">Code</label>
 			</div>
 			<div class="input-field col l4 m6 s12">
-				{{> afQuickField name='color'}}
+				{{> afQuickField name='color' label=false}}
 			</div>
 		</div>
 	<button class="waves-effect waves-light btn" type="submit">Insert</button>
@@ -76,14 +76,14 @@
 			<div class="row s12">
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="name" type="text" id="name"}}
-					<label for="name">Name</label>
+					<label for="name" class="active">Name</label>
 				</div>
 				<div class="input-field col l4 m6 s12">
 					{{> afFieldInput name="code" type="text" id="code"}}
-					<label for="code">Code</label>
+					<label for="code" class="active">Code</label>
 				</div>
 				<div class="input-field col l4 m6 s12">
-					{{> afQuickField name='color'}}
+					{{> afQuickField name='color' label=false}}
 				</div>
 			</div>
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>

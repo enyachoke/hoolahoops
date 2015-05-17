@@ -17,7 +17,7 @@ body {
 
 .mdi-action-description {
 	color: #ccc;
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 .mdi-action-description:hover,
@@ -27,7 +27,7 @@ body {
 
 .mdi-action-delete {
 	color: #ccc;
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 .mdi-action-delete:hover,
@@ -35,7 +35,7 @@ body {
 	color: #f44336;
 }
 
-/* Project List */ 
+/* Project List */
 
 .project-list-container {
 	float: left;
@@ -65,7 +65,7 @@ table tr th {
 }
 
 .project-type {
-	margin-left: 0.75rem; 
+	margin-left: 0.75rem;
 }
 
 .add-project-icon {
@@ -104,7 +104,7 @@ table tr th {
 	background: -ms-linear-gradient(top,  #009688 0%,#14bcab 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #009688 0%,#14bcab 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009688', endColorstr='#14bcab',GradientType=0 ); /* IE6-9 */
-	
+
 	padding: 4rem 2rem !important;
 	color: white;
 }
@@ -129,13 +129,13 @@ table tr th {
 .edit-project {
 	margin: 1rem auto;
 	max-width: 1200px;
-	padding: 0; 
+	padding: 0;
 }
 
 	.form-header {
 		margin: 0;
 		padding: 3.5rem 2.5rem;
-		color: white;	
+		color: white;
 	}
 
 	.form-container {
@@ -225,8 +225,8 @@ select option:hover {
    /*.input-field .prefix.active {
      color: #000;
    }
-*/   
-        
+*/
+
 
 /* TODO: Refactor this to use extend instead of copying items */
 .autoform-remove-item{
@@ -349,7 +349,7 @@ div.nav-wrapper a.login-close-text:before{
 nav .nav-wrapper {
   position: static !important;
 }
-.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg, 
+.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg,
 .picker.dcs-cd-dcs-c.picker-dialog{
   position: absolute;
 }
@@ -371,7 +371,7 @@ nav .nav-wrapper {
   cursor: pointer;
 }
 
-.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg, 
+.picker.dcs-cd-dcs-c-dcs-bd.picker-dialog-bg,
 .picker.dcs-cd-dcs-c.picker-dialog{
   position: absolute;
 }
@@ -385,7 +385,7 @@ nav .nav-wrapper {
 
 /* ColorElement Stling for the colored labels */
 div.colorElement{
-  background-image: none !important; 
+  background-image: none !important;
   padding: 3px 4px;
   font-size: 11px;
   font-weight: bold;
@@ -424,4 +424,9 @@ div.colorElement:last-child{
 }
 .no-bottom-margin{
   margin-bottom: 0px;
+}
+
+div.reminder{
+	display: inline-block;
+	width: auto;
 }

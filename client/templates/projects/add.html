@@ -9,11 +9,11 @@
 			<div class="row">
 				<div class="input-field col l8 m6 s12">
 					{{> afFieldInput name="name" id="project__title" class="check_validation"}}
-					<label for="project__title">Title</label>					
+					<label for="project__title" class="active">Title</label>
 					{{#if afFieldIsInvalid name='name'}}
     					<span class="help-block">{{{afFieldMessage name='name'}}}</span>
     				{{/if}}
-				</div>				
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col m4 s12">
@@ -25,12 +25,12 @@
 				<div class="input-field col m4 s12">
 					{{> afQuickField name='cyear'}}
 
-				
+
 				</div>
 			</div>
-			
+
 			<div class="row">
-				<div class="input-field col l8 m6 s12">			
+				<div class="input-field col l8 m6 s12">
 					<label for="project__clients" class="active">Clients</label>
 					{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='clientIds' call='clients' xmultiple=true fieldref='name' reference='Users' renderfunction='renderDefaultAutocomplete' callbackfunction='populateReminders'}}
 				</div>
@@ -38,7 +38,7 @@
 			        {{> afQuickField name='type' options='allowed'}}
 				</div>
 			</div>
-			
+
 			<div class="row">
 		      <div class="input-field col s12">
 		        {{> afQuickField name='description' rows='6' class='materialize-textarea'}}
@@ -62,7 +62,7 @@
 					{{/if}}
 					</div>
 				</div>
-				<div class = "row m12">	
+				<div class = "row m12">
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="followup"  id="followup_date"}}
 						<label for="followup_date" class="active">Followup Date</label>
@@ -70,7 +70,7 @@
 						<span class="help-block">{{{afFieldMessage name='followup'}}}</span>
 						{{/if}}
 					</div>
-					
+
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
 						<label for="statute_of_limitation" class="active">Statute of Limitation</label>
@@ -83,25 +83,25 @@
 					<h5>Billing</h5>
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="bill_retainer"  id="bill_retainer"}}
-						<label for="bill_retainer">Retainer</label>
+						<label for="bill_retainer" class="active">Retainer</label>
 					</div>
-					
+
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="bill_hearing_partner"  id="bill_hearing_partner"}}
-						<label for="bill_hearing_partner">bill_hearing_partner</label>
+						<label for="bill_hearing_partner" class="active">bill_hearing_partner</label>
 					</div>
-					
+
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="bill_hearing_sr_associate"  id="bill_hearing_sr_associate"}}
-						<label for="bill_hearing_sr_associate">bill_hearing_sr_associate</label>
+						<label for="bill_hearing_sr_associate" class="active">bill_hearing_sr_associate</label>
 					</div>
-					
+
 					<div class="input-field col s12 m6">
 						{{> afFieldInput name="bill_hearing_associate"  id="bill_hearing_associate"}}
-						<label for="bill_hearing_associate">bill_hearing_associate</label>
+						<label for="bill_hearing_associate" class="active">bill_hearing_associate</label>
 					</div>
 				</div>
-				
+
 				<div class="row m12">
 					<h5>Reminders</h5>
 					{{> afQuickField name='reminders' template='series'}}
@@ -111,13 +111,13 @@
 					<h5>Labels</h5>
 					{{> afQuickField name='labelIds'}}
 				</div>
-				
+
 			</div>
 			<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
 			<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>
 			{{/autoForm}}
 			<!-- Form ends -->
 
-		</div>	
+		</div>
 	</div>
 </template>

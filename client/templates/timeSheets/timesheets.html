@@ -5,8 +5,8 @@
 		<div class="row form-container">
 
 			{{ # autoForm id="insertTimesheetForm" class="col s12" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
-			
-			
+
+
 			<div class="row ">
 		      <div class="input-field col s12">
 		        <p>
@@ -21,7 +21,7 @@
 	<!-- 	        <label for="duration">Duration</label>
 	 -->	      </div>
 		    </div>
-			
+
 			<div class="row">
 		      <div class="input-field col s12">
 		        {{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
@@ -30,8 +30,8 @@
     				<span class="help-block">{{{afFieldMessage name='caseId'}}}</span>
     			{{/if}}
 		      </div>
-		    </div>		
-			
+		    </div>
+
 			<div class="row">
 		      <div class="input-field col s12">
 		       	{{> afQuickField name='type' options='allowed' label=false}}
@@ -43,12 +43,13 @@
 			{{/autoForm}}
 	    </div>
 	</div>
-	
+
 </template>
 
 <template name="timesheets">
 		{{ > navigation}}
-	<div class="container project-list-container">
+	<div class="container">
+		<div class="card-panel form-container">
         <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a>
         {{> esInput index="projects" placeholder="Search Timesheets" allDocsOnEmpty="true"}}
 		{{#ifEsIsSearching index="projects"}}
@@ -66,11 +67,11 @@
 					{{ > timesheetRow }}
 				{{/esEach}}
 			</tbody>
-		</table>	
+		</table>
 		{{/ifEsIsSearching}}
-
+	</div>
     </div>
-	
+
 </template>
 
 <template name="timesheetRow">
@@ -78,7 +79,7 @@
 		<td>{{case}}</td>
 		<td>{{totaltime}}</td>
 		<td><a href="/projects/{{_id}}/timesheets">Details</a></td>
-		<!-- <td><a href="/timesheets/{{_id}}/edit">Edit</a></td> --> 
+		<!-- <td><a href="/timesheets/{{_id}}/edit">Edit</a></td> -->
 		<!-- <td> <button id='delete'>Delete</button></td> -->
 	</tr>
 </template>
@@ -93,32 +94,32 @@
 		<div class="row form-container">
 
 			{{ # autoForm id="insertTimesheetForm" class="col s12" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
-				
+
 				<div class="row ">
 			      	<div class="input-field col s12">
-			        
+
 						{{> timetracker}}
 					</div>
 				</div>
 				<div class="row ">
 			      	<div class="input-field col s12">
-			    
+
 					<input type='text' name="duration" class="form-control" value="{{fetch_duration}}"  id="duration" data-schema-key="duration" >
 					</div>
 				</div>
 
 				<div class="row input-field col s12">
 					{{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-					<label for="meeting_case" class="active">Matter</label>	
+					<label for="meeting_case" class="active">Matter</label>
 				</div>
 
 				<div class="row input-field col s12">
 			        {{> afQuickField name='type' options='allowed' label=false}}
 			        		       	<label for="type" class="active">Type</label>
 				</div>
-				
-				
-				
+
+
+
 			<button class="waves-effect waves-light btn" type="submit">Insert</button>
 			<a class="waves-effect waves-teal btn-flat" href="/timesheets" style="position: absolute;">Cancel</a>
 			{{/autoForm}}
@@ -164,7 +165,7 @@
 		</table>
 		</div>
     </div>
-	
+
 </template>
 
 <template name="timeDetailRow">

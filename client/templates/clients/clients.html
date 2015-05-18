@@ -92,6 +92,7 @@
 			{{> navigation}}
 		</div>
 		<div class="container ">
+			<div class="card-panel form-container">
 			<a class="waves-effect waves-light btn"  href='/clients/add'>Add contact</a>
 			<!-- {{> esInput index="clients" placeholder="Search Clients" allDocsOnEmpty="true"}} -->
 			{{#ifEsIsSearching index="clients"}}
@@ -115,6 +116,7 @@
 				</table>
 			{{/ifEsIsSearching}}
 		</div>
+	</div>
 	{{/if}}
 </template>
 

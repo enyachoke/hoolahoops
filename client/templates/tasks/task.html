@@ -74,12 +74,12 @@
 						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='userIds' call='lawyers' xmultiple=true fieldref='name' reference = 'Users' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
 						<label for="project__laywer" class="active">Lawyers</label>
 			</div>
-			<div class="input-field col s12 m12">
-				<h5>Reminders</h5>
-				<div class="input-field col s12 m6">
-					{{> afQuickField name='reminders' }}
+			<div class="row m12">
+					<h5>Reminders</h5>
+					<div style="margin-left:15px">
+						{{> afQuickField name='reminders' template='series' label=false}}
+					</div>
 				</div>
-			</div>
 
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>
@@ -105,18 +105,18 @@
 			</div>
 			<div class="input-field col s12">
 				{{> afFieldInput name="desc" type="textarea" class="materialize-textarea" id="desc"}}
-				<label for="desc">Description</label>
+				<label for="desc" class="active">Description</label>
 			</div>
 			<div class="input-field col s12 ">
 						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='userIds' call='lawyers' xmultiple=true fieldref='name' reference = 'Users' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
 						<label for="project__laywer" class="active">Lawyers</label>
 			</div>
-			<div class="input-field col s12 m12">
-				<h5>Reminders</h5>
-				<div class="input-field col s12 m6">
-					{{> afQuickField name='reminders' }}
+			<div class="row m12">
+					<h5>Reminders</h5>
+					<div style="margin-left:15px">
+						{{> afQuickField name='reminders' template='series' label=false}}
+					</div>
 				</div>
-			</div>
 
 		<button class="waves-effect waves-light btn" type="submit">Insert</button>
 		<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>

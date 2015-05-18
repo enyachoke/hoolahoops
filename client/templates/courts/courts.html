@@ -4,7 +4,7 @@
 		{{> navigation}}
 	</div>
 	<div class="container ">
-		
+		<div class="card-panel form-container">
 		<a class=" col s4 waves-effect waves-light btn"  href='/courts/add'>Add Court</a>
 		{{> esInput index="courts" placeholder="Search Courts" allDocsOnEmpty="true"}}
 		{{#ifEsIsSearching index="courts"}}
@@ -12,7 +12,7 @@
 		{{else}}
 			<table class="centered striped bordered" >
 					<thead>
-				        <tr>	
+				        <tr>
 				            <th data-field="id">Name</th>
 				            <th data-field="name">Code</th>
 				            <th data-field="color">Color</th>
@@ -33,7 +33,7 @@
 					</tbody>
 			</table>
 		{{/ifEsIsSearching}}
-
+	</div>
 	</div>
 	{{/if}}
 </template>

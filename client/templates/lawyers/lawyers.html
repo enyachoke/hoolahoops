@@ -4,7 +4,7 @@
 			{{> navigation}}
 		</div>
 		<div class="container">
-
+			<div class="card-panel form-container">
 			{{#if isInRole 'edit-lawyers'}}
 				<a class=" col s4 waves-effect waves-light btn"  href='/lawyers/add'>Add lawyers</a>
 			{{/if}}
@@ -30,6 +30,7 @@
 				</table>
 			{{/ifEsIsSearching}}
 		</div>
+	</div>
 	{{/if}}
 </template>
 

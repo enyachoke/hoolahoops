@@ -1,81 +1,89 @@
 <template name="projects">
-    <style type="text/css">
-        .ms-choice:focus{
-            background-color: #FFFFFF;
-        }
-    </style>
-    {{#if isInRole 'view-projects'}}
-    	{{> navigation}}
-        <div class="container project-list-container">
-        	{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
-        	<div class="row">
-                <div class="col s3 filter-field">
-                    <label>Lawyer Names:</label>
-                    <select multiple="multiple" id="lawyer-select">
-                        {{#each lawyers}}
-                            <option value="{{_id}}">{{name}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="col s3 filter-field">
-                    <label>Client Names:</label>
-                    <select multiple="multiple" id="client-select">
-                        {{#each clients}}
-                            <option value="{{_id}}">{{name}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-        		<div class="col s3 filter-field">
-        			<label>Court Name:</label>
-        			<select multiple="multiple" id="court-select">
-                        <option value="">Clear Filter</option>
-        				{{#each courts}}
-        					<option value="{{_id}}">{{name}}</option>
-        				{{/each}}
-        			</select>
-        		</div>
-        		<div class="col s3 filter-field">
-        			<label>Type:</label>
-        			<select multiple="multiple" id="type-select">
-                        <option value="">Clear Filter</option>
-        				{{#each types}}
-        					<option>{{this}}</option>
-        				{{/each}}
-        			</select>
-        		</div>
-                <div class="col s3 filter-field">
-                    <label>Label:</label>
-                    <select multiple="multiple" id="label-select">
-                        {{#each labels}}
-                            <option value="{{_id}}">{{> colorElement}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-        	</div>
-    		{{#ifEsIsSearching index="projects"}}
-    			{{> spinner}}
-    		{{else}}
-    			<table class="responsive-table projects-table">
-    				<thead>
-    					<tr>
-    						<th>Unique Id</th>
-    						<th>Title</th>
-    						<th>Client</th>
-    						<th>Lawyer</th>
-    						<!-- <th>Court</th> -->
-    						<!-- <th>Last Hearing</th> -->
-    						<!-- <th>Next Hearing</th> -->
-    					</tr>
-    				</thead>
-    				<tbody>
-    					{{#esEach index="projects"}}
-    						{{> projectRow}}
-    					{{/esEach}}
-    				</tbody>
-    			</table>
-    		{{/ifEsIsSearching}}
-    		
-    	<a href="/projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
-    	</div>
-    {{/if}}
+		<style type="text/css">
+				.ms-choice:focus{
+						background-color: #FFFFFF;
+				}
+				.container .filter-field{
+					width: 20% !important;
+				}
+		</style>
+		{{#if isInRole 'view-projects'}}
+			{{> navigation}}
+				<div class="container">
+					<div class="card-panel form-container">
+					{{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
+					<div class="row">
+								<div class="col s3 filter-field">
+										<label>Lawyer Names:</label>
+										<select multiple="multiple" id="lawyer-select">
+												{{#each lawyers}}
+														<option value="{{_id}}">{{name}}</option>
+												{{/each}}
+										</select>
+								</div>
+								<div class="col s3 filter-field">
+										<label>Client Names:</label>
+										<select multiple="multiple" id="client-select">
+												{{#each clients}}
+														<option value="{{_id}}">{{name}}</option>
+												{{/each}}
+										</select>
+								</div>
+						<div class="col s3 filter-field">
+							<label>Court Name:</label>
+							<select multiple="multiple" id="court-select">
+												<option value="">Clear Filter</option>
+								{{#each courts}}
+									<option value="{{_id}}">{{name}}</option>
+								{{/each}}
+							</select>
+						</div>
+						<div class="col s3 filter-field">
+							<label>Type:</label>
+							<select multiple="multiple" id="type-select">
+												<option value="">Clear Filter</option>
+								{{#each types}}
+									<option>{{this}}</option>
+								{{/each}}
+							</select>
+						</div>
+								<div class="col s3 filter-field">
+										<label>Label:</label>
+										<select multiple="multiple" id="label-select">
+												{{#each labels}}
+														<option value="{{_id}}">{{> colorElement}}</option>
+												{{/each}}
+										</select>
+								</div>
+					</div>
+				{{#ifEsIsSearching index="projects"}}
+					{{> spinner}}
+				{{else}}
+					<table class="responsive-table projects-table">
+						<thead>
+							<tr>
+								<th>Unique Id</th>
+								<th>Title</th>
+								<th>Client</th>
+								<th>Lawyer</th>
+								<!-- <th>Court</th> -->
+								<!-- <th>Last Hearing</th> -->
+								<!-- <th>Next Hearing</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							{{#esEach index="projects"}}
+								{{> projectRow}}
+							{{/esEach}}
+						</tbody>
+					</table>
+				{{/ifEsIsSearching}}
+
+			
+			<div class="fixed-action-btn">
+				<a href="/projects/add" class="add-project-icon btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a>
+			</div>
+			</div>
+		</div>
+		{{/if}}
 </template>

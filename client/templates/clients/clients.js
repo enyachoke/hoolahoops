@@ -7,13 +7,16 @@ Template.clientsList.helpers({
 
 Template.clientsList.events({
 	'click #delete' :function(){
-		Clients.remove(this._id);
+		if(confirm("Confirm Delete?"))
+			Clients.remove(this._id);
 	}
 });
 
 Template.clientDetails.events({
 	'click .delete' :function(){
-		Clients.remove(this._id);
-		Router.go('clientsList');
+		if(confirm("Confirm Delete?")){
+			Clients.remove(this._id);
+			Router.go('clientsList');
+		}
 	}
 });

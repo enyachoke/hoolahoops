@@ -6,6 +6,7 @@ Template.groupEdit.helpers({
 
 Template.groupEdit.events({
 	'click .delete': function (event) {
-		Groups.remove(this._id);
+		if(confirm("Confirm Delete?"))
+			Groups.remove(this._id);
 	}
 })

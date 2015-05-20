@@ -1,6 +1,7 @@
 Template.hearingRow.events({
     'click .delete': function (event) {
-      Hearings.remove(this._id);
+		if(confirm("Confirm Delete?"))
+      		Hearings.remove(this._id);
     }
 });
 

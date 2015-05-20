@@ -27,6 +27,7 @@
   
   Template.projectRow.events({
       'click .delete': function (event) {
-        Projects.remove(this._id);
+        if(confirm("Confirm Delete?"))
+          Projects.remove(this._id);
       }
   })

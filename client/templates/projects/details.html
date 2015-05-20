@@ -1,168 +1,180 @@
 <template name="projectDetails">
-	{{#if isInRole 'view-projects'}}
-	  {{> navigation}}
+    {{#if isInRole 'view-projects'}}
+        {{> navigation}}
+        <div class="container project-container">
+            <div class="row">
+                <div class="col s12  project-title">
+                    <h3>{{name}}</h3>
+                </div>
+            </div>
+            <div class="row white" style="padding: 2.5rem;">
+                <div class="col s8 project-details">
+                    <div class="row">
+                        <div class="col l6 m6 s12">
+                            <h6 class="grey-text">SUIT NO</h6>
 
-	  <div class="container project-container">
-	  	<div class="row">
-		  	<div class="col s12  project-title">
-		  		<h3>{{name}}</h3>
-		  	</div>
-		 </div>
-	  	<div class="row white">
-	  		<div class="col s8 project-details">
-		  		<div class="row">
-			  		<div class="col l6 m6 s12">
-			  			<h6 class="grey-text" >SUIT NO</h6>
-			  			<p>{{ctype}}{{cno}}/{{cyear}}</p>	
-			  		</div>
-					<div class="col l6 m6 s12">
-			  			<h6 class="grey-text" >UNIQUE ID</h6>
-			  			<p>{{_id}}</p>	
-			  		</div>
-					
-			  		<!-- <div class="col l4 m4 s12">
-			  			<h6 class="grey-text" >PRACTICE AREA</h6>
-			  			<p>{{prac_area}}</p>	
-			  		</div>  -->
-					
-					<div class="col l6 m6 s12">
-			  			<h6 class="grey-text" >CLIENT</h6>
-			  			<p>
-			  			{{#each clients}}
-							<a href='/clients/{{_id}}'>{{name}}</a>
-						{{/each}}
-						</p>
-						
-			  		</div>
-			  		<div class="col l6 m6 s12">
-				  			<h6 class="grey-text">LAWYER</h6>
-				  			<p>{{#each lawyers}}
-								<a href='/lawyers/{{_id}}'>{{name}}</a>
-							{{/each}}</p>
-			  		</div>
+                            <p>{{ctype}}{{cno}}/{{cyear}}</p>
+                        </div>
+                        <div class="col l6 m6 s12">
+                            <h6 class="grey-text">UNIQUE ID</h6>
 
-			  	</div>
-			  	<div class="row">
-					<div class="col l6 m6 s12">
-			  			<h6 class="grey-text" >TYPE</h6>
-			  			<p>{{type}}</p>	
-			  		</div>
-			  		<div class="col s6">
-			  			<h6 class="grey-text">COURT</h6>
-			  			<p>{{#with court}}
-							{{name}}
-						{{/with}}</p>
-			  		</div>	
-			  	</div>
-			  	<div class="row">
-			  		<div class="col s12">
-						<h6 class="grey-text">DESCRIPTION</h6>
-			  			<p>{{description}}</p>
-					</div>			  		
-			  	</div>
-			  	<div class="row">
-				  	<div class="col s12">
-				  		<h6 class="grey-text" >LABELS</h6>
-				  		{{#each labels}}
-	                        {{> colorElement}}
-	                    {{/each}}
-				  	</div>
-			  	</div>
-			  	<!-- <div class="row">
-			  		<div class="col s6">
-			  			<h6 class="grey-text">LAST UPDATE</h6>
-			  			<p>20 February, 2015</p>
-			  		</div>
-			  		<div class="col s6">
-			  			<h6 class="grey-text">NEXT HEARING</h6>
-			  			<p>27 February, 2015</p>
-			  		</div>
-			  	</div> -->
+                            <p>{{_id}}</p>
+                        </div>
+                        <!--<div class="col l4 m4 s12">
+                            <h6 class="grey-text">PRACTICE AREA</h6>
 
-		  	</div>
-			<div class="col s4 white project-details">
-				{{#if isInRole 'edit-projects'}}
-					<div class="row">
-						<div class="col s12">
-							<!--a href="/projects/{{_id}}/edit" class="waves-effect waves-light btn">Update Project</a-->
-							<a href="/projects" class="waves-effect waves-teal btn-flat delete">Delete Project</a>
-						</div>
-						<div class="col s12">
-							<!--a href="/projects/{{_id}}/edit" class="waves-effect waves-light btn">Update Project</a-->
-							<a href="/projects/{{_id}}/edit" class="waves-effect waves-teal btn-flat">Edit Project</a>
-						</div>
-					</div>
-				{{/if}}
+                            <p>{{prac_area}}</p>
+                        </div>-->
+                        <div class="col l6 m6 s12">
+                            <h6 class="grey-text">CLIENT</h6>
 
-				<hr class="divider">
+                            <p>
+                                {{#each clients}}
+                                    <a href='/clients/{{_id}}'>{{name}}</a>
+                                {{/each}}
+                            </p>
+                        </div>
+                        <div class="col l6 m6 s12">
+                            <h6 class="grey-text">LAWYER</h6>
 
-				<div class="row">
-					<div class="col s12 project-notes">
-						<!--h6 class="grey-text">TODO</h6>
-						<ul class="collection">
-					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
-					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
-					      <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
-					    </ul-->
-					</div>
-					<!--a class="waves-effect waves-teal btn-flat"> Add ToDo</a-->
-				</div>
+                            <p>{{#each lawyers}}
+                                <a href='/lawyers/{{_id}}'>{{name}}</a>
+                            {{/each}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l6 m6 s12">
+                            <h6 class="grey-text">TYPE</h6>
 
-				{{#if isInRole 'edit-hearings'}}
-					<div class="row">
-						<a href="/projects/{{_id}}/hearings/add" class="col s8 btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i>hearing</a>
-					</div>
-				{{/if}}
-				
-				{{#if isInRole 'edit-tasks'}}
-					<div class="row">
-						<a href="/projects/{{_id}}/tasks/add" class="col s8 btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i>task</a>
-					</div>
-				{{/if}}
+                            <p>{{type}}</p>
+                        </div>
+                        <div class="col s6">
+                            <h6 class="grey-text">COURT</h6>
 
-				{{#if isInRole 'edit-meetings'}}
-					<div class="row">
-						<a href="/projects/{{_id}}/meetings/add" class="col s8 btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i>meeting</a>
-					</div>
-				{{/if}}
-				
-			</div>
-		  </div>
-	  	  
-		  <!-- Activity Feed -->
-			  	<div class="row col s12 white project-details">
-			  		<h3>Case History</h3>
-				  	<table class="bordered hoverable responsive-table projects-table">
-						<thead>
-							<tr>
-								<th>Date</th>
-								<th>Description</th>
-								
-							</tr>
-						</thead>
-						<tbody>
-							
-								
-				
-					
-	 				<!-- <td>  03-FEB-2015 </td>
-					<td>     Listed In Court 1 As Item No 16</td>
-					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td> -->
+                            <p>{{#with court}}
+                                {{name}}
+                            {{/with}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <h6 class="grey-text">DESCRIPTION</h6>
 
-				
-				{{ #each feed}}
-					<tr>
-						<td>{{ date}}</td>
-						<td>{{type}} {{ desc }}</td>
-						<td><a href="/{{type}}s/{{data._id}}"><i class="small center-align mdi-action-description"></i></a></td>
-					</tr>
-				{{ /each}}
-			
-							
-						</tbody>
-					</table>
-			  	</div>
-			  	<!-- Table ends -->
-	  	</div>
-	{{/if}}
+                            <p>{{description}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <h6 class="grey-text">LABELS</h6>
+                            {{#each labels}}
+                                {{> colorElement}}
+                            {{/each}}
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col s6">
+                            <h6 class="grey-text">LAST UPDATE</h6>
+
+                            <p>20 February, 2015</p>
+                        </div>
+                        <div class="col s6">
+                            <h6 class="grey-text">NEXT HEARING</h6>
+
+                            <p>27 February, 2015</p>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="col s4 white project-details">
+                    <div>
+                        {{#if isInRole 'edit-projects'}}
+                            <div class="row">
+                                <a href="/projects"
+                                   class="col s12 btn-large waves-effect waves-light red">
+                                    delete project
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="/projects/{{_id}}/edit"
+                                   class="col s12 btn-large waves-effect waves-light blue">
+                                    edit project
+                                </a>
+                            </div>
+                        {{/if}}
+                    </div>
+                    <div>
+                        <div class="row">
+                            <hr class="divider">
+                        </div>
+                    </div>
+                    <div>
+                        <!--<div class="row">
+                            <div class="col s12 project-notes">
+                                <h6 class="grey-text">TODO</h6>
+                                <ul class="collection">
+                                  <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+                                  <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+                                  <li class="collection-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+                                </ul>
+                            </div>
+                            <a class="waves-effect waves-teal btn-flat"> Add ToDo</a>
+                        </div>-->
+                        {{#if isInRole 'edit-hearings'}}
+                            <div class="row">
+                                <a href="/projects/{{_id}}/hearings/add"
+                                   class="col s12 btn-large waves-effect waves-light light-green">
+                                    <i class="mdi-content-add left"></i>hearing
+                                </a>
+                            </div>
+                        {{/if}}
+                        {{#if isInRole 'edit-tasks'}}
+                            <div class="row">
+                                <a href="/projects/{{_id}}/tasks/add"
+                                   class="col s12 btn-large waves-effect waves-light light-green">
+                                    <i class="mdi-content-add left"></i>task
+                                </a>
+                            </div>
+                        {{/if}}
+                        <div>
+                            {{#if isInRole 'edit-meetings'}}
+                                <div class="row">
+                                    <a href="/projects/{{_id}}/meetings/add"
+                                       class="col s12 btn-large waves-effect waves-light light-green">
+                                        <i class="mdi-content-add left"></i>meeting
+                                    </a>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="row col s12 white project-details">
+                <h3>Case History</h3>
+                <table class="bordered hoverable responsive-table projects-table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<td>  03-FEB-2015 </td>
+                    <td>     Listed In Court 1 As Item No 16</td>
+                    <td><a href="#"><i class="small center-align mdi-action-description"></i></a></td>-->
+                    {{#each feed}}
+                        <tr>
+                            <td>{{ date}}</td>
+                            <td>{{type}} {{ desc }}</td>
+                            <td><a href="/{{type}}s/{{data._id}}"><i
+                                    class="small center-align mdi-action-description"></i></a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Table ends -->
+        </div>
+    {{/if}}
 </template>

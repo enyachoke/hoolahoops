@@ -83,10 +83,6 @@ table tr th {
 	margin: 2rem auto;
 }
 
-.project-container .row:first-child {
-	margin-bottom: 0;
-}
-
 .project-details {
 	padding: 2rem !important;
 }
@@ -424,4 +420,7 @@ div.colorElement:last-child{
 }
 .no-bottom-margin{
   margin-bottom: 0px;
+}
+.divider{
+    margin: 0px;
 }

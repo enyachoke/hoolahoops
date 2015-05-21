@@ -17,6 +17,9 @@ Template.projectDetails.helpers({
     'court': function () {
         return Courts.findOne({_id: this.courtId});
     },
+    'orders': function() {
+        return Orders.find({caseId: this._id});
+    },
     'feed': function () {
 
         (function () {
@@ -89,5 +92,63 @@ Template.projectDetails.events({
         Projects.remove(this._id, function () {
             Router.go('projects');
         });
+    },
+    'click #order-trigger': function(){
+        openModal();
     }
 });
+
+Template.projectDetails.rendered = function(){
+    $(document).ready(function(){
+        $("#order-slide").owlCarousel({
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: false,
+            itemsTablet: [768, 2],
+            itemsTabletSmall: false,
+            itemsMobile: [479, 1],
+            navigation : true
+        });
+        $(".owl-wrapper").click(function(e){
+            if(e.target!=this)
+                return;
+            else
+                closeModal();
+        })
+    });
+}
+var openModal = function(){
+    var modal = $('#order-modal');
+    var overlay = $('<div id="lean-overlay"></div>');
+    $("body").append(overlay);
+    $("#lean-overlay").click(function(e) {
+        closeModal();
+    });
+    $(document).on('keyup.leanModal', function(e) {
+        if (e.keyCode === 27) {   // ESC key
+            closeModal();
+        }
+    });
+    $(modal).css({
+        display : "block",
+        opacity: 0
+    });
+    $("#lean-overlay").css({ display : "block", opacity : 0 });
+    $("#lean-overlay").velocity({opacity: 0.9}, {duration: 300, queue: false, ease: "easeOutCubic"});
+    $(modal).css({ top: "1%" });
+    $(modal).velocity({top: "5%", opacity: 1}, {
+        duration: 300,
+        queue: false,
+        ease: "easeOutCubic"
+    });
+}
+var closeModal = function(){
+    var modal = $('#order-modal');
+    $(document).off('keyup.leanModal');
+    $("#lean-overlay").velocity( { opacity: 0}, {duration: 250, queue: false, ease: "easeOutQuart"});
+    $(modal).fadeOut(250, function() {
+        $(modal).css({ top: 0});
+        $("#lean-overlay").css({display:"none"});
+        $('#lean-overlay').remove();
+    });
+}

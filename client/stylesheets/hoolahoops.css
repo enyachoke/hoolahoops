@@ -196,7 +196,101 @@ select option:hover {
   text-align: left;
   vertical-align: middle;
 }
-
+.ui.label:first-child{
+    margin-left: 0em;
+}
+.ui.label{
+    font-size: 0.8571rem;
+    display: inline-block;
+    vertical-align: baseline;
+    line-height: 1;
+    margin: 0em 0.125em;
+    background-color: #e8e8e8;
+    border-color: #e8e8e8;
+    background-image: none;
+    padding: 0.6em 0.8em;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: none;
+    font-weight: bold;
+    border-radius: 0.2857rem;
+    box-sizing: border-box;
+    -webkit-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.ui.label:first-child {
+    margin-left: 0em;
+}
+.ui.label:last-child {
+    margin-right: 0em;
+}
+a.ui.label {
+    cursor: pointer;
+}
+.ui.label a {
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.8;
+    -webkit-transition: 0.2s opacity ease;
+    transition: 0.2s opacity ease;
+}
+.ui.label a:hover {
+    opacity: 1;
+}
+.ui.label .icon {
+    width: auto;
+    margin: 0em 0.75em 0em 0em;
+}
+.ui.label .delete.icon {
+    cursor: pointer;
+    margin-right: 0em;
+    margin-left: 0.5em;
+    opacity: 0.8;
+    -webkit-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.ui.label .delete.icon:hover {
+    opacity: 1;
+}
+.ui.label i.icon{
+    font-size: 1em;
+}
+i.icon {
+    display: inline-block;
+    opacity: 1;
+    margin: 0em 0.25rem 0em 0em;
+    width: 1.23em;
+    height: 0.9em;
+    font-family: 'Material-Design-Icons';
+    font-style: normal;
+    line-height: 1;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+i.icon:before {
+    background: none !important;
+}
+.delete.icon{
+    cursor: pointer;
+    margin-right: 0em;
+    margin-left: 0.5em;
+    opacity: 0.8;
+    -webkit-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.ui.label .icon{
+    width: auto;
+    margin: 0em 0.75em 0em 0em;
+}
+i.icon.delete:before{
+    content:"\e89c";
+    /*font-weight: bold;*/
+}
 /* form validation*/
 	/* label color */
    /*.input-field label {

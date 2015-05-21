@@ -17,7 +17,7 @@ Template.projectDetails.helpers({
     'court': function () {
         return Courts.findOne({_id: this.courtId});
     },
-    'orders': function() {
+    'orders': function () {
         return Orders.find({caseId: this._id});
     },
     'feed': function () {
@@ -93,13 +93,36 @@ Template.projectDetails.events({
             Router.go('projects');
         });
     },
-    'click #order-trigger': function(){
-        openModal();
+    'click #order-trigger': function (event, template) {
+        var modal = $(template.find('#order-modal'));
+        var lean_overlay = $(template.find('#lean-overlay'));
+        $(document).on('keyup.leanOrder', function (e) {
+            if (e.keyCode === 27) {   // ESC key
+                closeModal(template);
+            }
+        });
+        $([modal[0], lean_overlay[0]]).css({
+            display: "block",
+            opacity: 0
+        });
+        modal.css({top: "1%"});
+        velocity_settings = {
+            duration: 300,
+            queue: false,
+            ease: "easeOutCubic"
+        };
+        lean_overlay.velocity({opacity: 0.9}, velocity_settings);
+        modal.velocity({top: "5%", opacity: 1}, velocity_settings);
+    },
+    'click #lean-overlay,.owl-wrapper': function (event, template) {
+        console.log(event.currentTarget, event.target);
+        if (event.currentTarget == event.target)
+            closeModal(template);
     }
 });
 
-Template.projectDetails.rendered = function(){
-    $(document).ready(function(){
+Template.projectDetails.rendered = function () {
+    $(document).ready(function () {
         $("#order-slide").owlCarousel({
             items: 4,
             itemsDesktop: [1199, 3],
@@ -107,48 +130,21 @@ Template.projectDetails.rendered = function(){
             itemsTablet: [768, 2],
             itemsTabletSmall: false,
             itemsMobile: [479, 1],
-            navigation : true
+            navigation: true
         });
-        $(".owl-wrapper").click(function(e){
-            if(e.target!=this)
-                return;
-            else
-                closeModal();
-        })
     });
 }
-var openModal = function(){
-    var modal = $('#order-modal');
-    var overlay = $('<div id="lean-overlay"></div>');
-    $("body").append(overlay);
-    $("#lean-overlay").click(function(e) {
-        closeModal();
-    });
-    $(document).on('keyup.leanModal', function(e) {
-        if (e.keyCode === 27) {   // ESC key
-            closeModal();
-        }
-    });
-    $(modal).css({
-        display : "block",
-        opacity: 0
-    });
-    $("#lean-overlay").css({ display : "block", opacity : 0 });
-    $("#lean-overlay").velocity({opacity: 0.9}, {duration: 300, queue: false, ease: "easeOutCubic"});
-    $(modal).css({ top: "1%" });
-    $(modal).velocity({top: "5%", opacity: 1}, {
-        duration: 300,
+var closeModal = function (template) {
+    var modal = $(template.find('#order-modal'));
+    var lean_overlay = $(template.find('#lean-overlay'));
+    $(document).off('keyup.leanOrder');
+    lean_overlay.velocity({opacity: 0}, {
+        duration: 250,
         queue: false,
-        ease: "easeOutCubic"
+        ease: "easeOutQuart"
     });
-}
-var closeModal = function(){
-    var modal = $('#order-modal');
-    $(document).off('keyup.leanModal');
-    $("#lean-overlay").velocity( { opacity: 0}, {duration: 250, queue: false, ease: "easeOutQuart"});
-    $(modal).fadeOut(250, function() {
-        $(modal).css({ top: 0});
-        $("#lean-overlay").css({display:"none"});
-        $('#lean-overlay').remove();
+    modal.fadeOut(250, function () {
+        modal.css({top: 0});
+        lean_overlay.css({display: "none"});
     });
 }

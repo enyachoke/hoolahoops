@@ -12,6 +12,9 @@
         .card{
             overflow: inherit;
         }
+        #lean-overlay{
+            opacity: 0;
+        }
     </style>
     {{#if isInRole 'view-projects'}}
         {{> navigation}}
@@ -215,6 +218,7 @@
                 {{/each}}
             </div>
         </div>
+        <div id="lean-overlay"></div>
     {{/if}}
 </template>
 

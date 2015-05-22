@@ -217,49 +217,18 @@ select option:hover {
     -webkit-transition: background 0.2s ease;
     transition: background 0.2s ease;
 }
-.ui.label:first-child {
-    margin-left: 0em;
-}
 .ui.label:last-child {
     margin-right: 0em;
-}
-a.ui.label {
-    cursor: pointer;
-}
-.ui.label a {
-    cursor: pointer;
-    color: inherit;
-    opacity: 0.8;
-    -webkit-transition: 0.2s opacity ease;
-    transition: 0.2s opacity ease;
-}
-.ui.label a:hover {
-    opacity: 1;
-}
-.ui.label .icon {
-    width: auto;
-    margin: 0em 0.75em 0em 0em;
 }
 .ui.label .delete.icon {
     cursor: pointer;
     margin-right: 0em;
     margin-left: 0.5em;
     opacity: 0.8;
-    -webkit-transition: background 0.2s ease;
-    transition: background 0.2s ease;
-}
-.ui.label .delete.icon:hover {
-    opacity: 1;
-}
-.ui.label i.icon{
+    width: auto;
     font-size: 1em;
-}
-i.icon {
     display: inline-block;
-    opacity: 1;
-    margin: 0em 0.25rem 0em 0em;
-    width: 1.23em;
-    height: 0.9em;
+    vertical-align: middle;
     font-family: 'Material-Design-Icons';
     font-style: normal;
     line-height: 1;
@@ -271,25 +240,15 @@ i.icon {
     -moz-osx-font-smoothing: grayscale;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-}
-i.icon:before {
-    background: none !important;
-}
-.delete.icon{
-    cursor: pointer;
-    margin-right: 0em;
-    margin-left: 0.5em;
-    opacity: 0.8;
     -webkit-transition: background 0.2s ease;
     transition: background 0.2s ease;
 }
-.ui.label .icon{
-    width: auto;
-    margin: 0em 0.75em 0em 0em;
+.ui.label .delete.icon:hover {
+    opacity: 1;
 }
-i.icon.delete:before{
+.ui.label .delete.icon:before {
     content:"\e89c";
-    /*font-weight: bold;*/
+    background: none !important;
 }
 /* form validation*/
 	/* label color */

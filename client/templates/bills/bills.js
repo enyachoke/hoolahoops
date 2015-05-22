@@ -65,7 +65,7 @@ Template.billRow.helpers({
 		var clients =[];
 		if (this.type == 'hearings'){
 			clientIds  = Projects.findOne(Hearings.findOne(this.hearingId).caseId).clientIds;
-			clients = Clients.find({_id: {$in:clientIds}}).fetch();
+			clients = Users.find({_id: {$in:clientIds}}).fetch();
       	}
       	return clients;
 	},
@@ -73,7 +73,7 @@ Template.billRow.helpers({
 		var lawyers = []
 		if (this.type == 'hearings'){
 			lawyerIds  = Projects.findOne(Hearings.findOne(this.hearingId).caseId).lawyerIds;
-			lawyers = Lawyers.find({_id: {$in:lawyerIds}}).fetch();
+			lawyers = Users.find({_id: {$in:lawyerIds}}).fetch();
       	}
       	return lawyers;
 	}
@@ -111,7 +111,7 @@ Template.billDetails.helpers({
 		var clients =[];
 		if (this.type == 'hearings'){
 			clientIds  = Projects.findOne(Hearings.findOne(this.hearingId).caseId).clientIds;
-			clients = Meteor.users.find({_id: {$in:clientIds}}).fetch();
+			clients = Users.find({_id: {$in:clientIds}}).fetch();
       	}
       	return clients;
 	},
@@ -119,7 +119,7 @@ Template.billDetails.helpers({
 		var lawyers = []
 		if (this.type == 'hearings'){
 			lawyerIds  = Projects.findOne(Hearings.findOne(this.hearingId).caseId).lawyerIds;
-			lawyers = Meteor.users.find({_id: {$in:lawyerIds}}).fetch();
+			lawyers = Users.find({_id: {$in:lawyerIds}}).fetch();
       	}
       	return lawyers;
 	},

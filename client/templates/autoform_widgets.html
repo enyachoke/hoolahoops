@@ -13,6 +13,7 @@
 						<div class="media-body col">
 							<div class="reminder">
 								{{> afQuickField name=this.name label=false options="auto"}}
+								{{> afQuickField name='date-time'}}
 							</div>
 						</div>
 						{{#if afArrayFieldHasMoreThanMinimum name=../atts.name minCount=../atts.minCount maxCount=../atts.maxCount}}

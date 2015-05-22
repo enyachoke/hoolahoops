@@ -22,6 +22,7 @@ dandv:caret-position@2.1.0-3
 dburles:collection-helpers@1.0.3
 dburles:mongo-collection-instances@0.2.6
 ddp@1.1.0
+deepank411:romedatetime@0.0.2
 deps@1.0.7
 digilord:sugarjs@1.4.1
 ejson@1.0.6

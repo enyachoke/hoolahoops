@@ -11,7 +11,8 @@ Template.meetingDetails.helpers({
 
 Template.meetingDetails.events({
 	'click .delete' : function(e){
-		Meetings.remove(this._id);
+		if(confirm("Confirm Delete?"))
+			Meetings.remove(this._id);
 	}
 });
 
@@ -31,8 +32,10 @@ Template.meetingRow.helpers({
 
 Template.meetingRow.events({
 	'click .delete' : function(){
-		Meetings.remove(this._id);
-		Router.go( "/projects/"+this.caseId);
+		if(confirm("Confirm Delete?")) {
+			Meetings.remove(this._id);
+			Router.go("/projects/" + this.caseId);
+		}
 	}
 });
 

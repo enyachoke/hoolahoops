@@ -6,7 +6,8 @@ Template.tasks.helpers({
 
 Template.taskRow.events({
 	'click #delete_task' : function(){
-		Tasks.remove(this._id);
+		if(confirm("Confirm Delete?"))
+			Tasks.remove(this._id);
 	}
 });
 
@@ -19,8 +20,10 @@ Template.taskDetails.events({
 		Tasks.update({ _id : this._id},{$set :{ 'completed' : false }});
 	},
 	'click .delete' : function(){
-		Tasks.remove(this._id);
-		Router.go( "/projects/"+this.caseId);
+		if(confirm("Confirm Delete?")) {
+			Tasks.remove(this._id);
+			Router.go("/projects/" + this.caseId);
+		}
 	}
 	
 

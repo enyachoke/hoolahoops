@@ -83,10 +83,6 @@ table tr th {
 	margin: 2rem auto;
 }
 
-.project-container .row:first-child {
-	margin-bottom: 0;
-}
-
 .project-details {
 	padding: 2rem !important;
 }
@@ -196,7 +192,60 @@ select option:hover {
   text-align: left;
   vertical-align: middle;
 }
-
+.ui.label:first-child{
+    margin-left: 0em;
+}
+.ui.label{
+    font-size: 0.8571rem;
+    display: inline-block;
+    vertical-align: baseline;
+    line-height: 1;
+    margin: 0em 0.125em;
+    background-color: #e8e8e8;
+    border-color: #e8e8e8;
+    background-image: none;
+    padding: 0.6em 0.8em;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: none;
+    font-weight: bold;
+    border-radius: 0.2857rem;
+    box-sizing: border-box;
+    -webkit-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.ui.label:last-child {
+    margin-right: 0em;
+}
+.ui.label .delete.icon {
+    cursor: pointer;
+    margin-right: 0em;
+    margin-left: 0.5em;
+    opacity: 0.8;
+    width: auto;
+    font-size: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'Material-Design-Icons';
+    font-style: normal;
+    line-height: 1;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.ui.label .delete.icon:hover {
+    opacity: 1;
+}
+.ui.label .delete.icon:before {
+    content:"\e89c";
+    background: none !important;
+}
 /* form validation*/
 	/* label color */
    /*.input-field label {
@@ -297,11 +346,6 @@ div.nav-wrapper a.login-close-text:before{
   -moz-osx-font-smoothing: grayscale;
 	content: "\e89c";
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3004437e099a8ebe2e72d293941667bc15a12aec
 
 
 /*tiny calendar*/
@@ -425,6 +469,7 @@ div.colorElement:last-child{
 .no-bottom-margin{
   margin-bottom: 0px;
 }
+<<<<<<< HEAD
 
 div.reminder .form-group{
 	display: inline-block;
@@ -443,3 +488,14 @@ div.panel-heading{
 input.form-control{
 	height:45px;
 }
+
+/* Doorbell */
+#doorbell-attach-screenshot{
+  position: absolute;
+  left: 0px;
+}
+
+.divider{
+    margin: 0px;
+}
+

@@ -6,7 +6,8 @@ Template.labels.helpers({
 
 Template.labelRow.events({
     'click .delete': function (event) {
-      Labels.remove(this._id);
+		if(confirm("Confirm Delete?"))
+      		Labels.remove(this._id);
     }
 });
 

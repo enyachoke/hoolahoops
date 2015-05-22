@@ -7,7 +7,9 @@ Template.lawyers.helpers({
 
 Template.lawyerDetails.events({
 	'click .delete' : function(e){
-		Lawyers.remove(this._id);
-		Router.go('lawyers');
+		if(confirm("Confirm Delete?")) {
+			Lawyers.remove(this._id);
+			Router.go('lawyers');
+		}
 	}
 });

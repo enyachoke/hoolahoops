@@ -8,23 +8,24 @@
 		  		<h3>{{name}}</h3>
 		  	</div>
 		 </div>
+		<div class="card-panel form-container">
 	  	<div class="row white">
 	  		<div class="col s8 project-details">
 		  		<div class="row">
 			  		<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >SUIT NO</h6>
-			  			<p>{{ctype}}{{cno}}/{{cyear}}</p>	
+			  			<p>{{ctype}}{{cno}}/{{cyear}}</p>
 			  		</div>
 					<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >UNIQUE ID</h6>
-			  			<p>{{_id}}</p>	
+			  			<p>{{_id}}</p>
 			  		</div>
-					
+
 			  		<!-- <div class="col l4 m4 s12">
 			  			<h6 class="grey-text" >PRACTICE AREA</h6>
-			  			<p>{{prac_area}}</p>	
+			  			<p>{{prac_area}}</p>
 			  		</div>  -->
-					
+
 					<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >CLIENT</h6>
 			  			<p>
@@ -32,7 +33,7 @@
 							<a href='/clients/{{_id}}'>{{name}}</a>
 						{{/each}}
 						</p>
-						
+
 			  		</div>
 			  		<div class="col l6 m6 s12">
 				  			<h6 class="grey-text">LAWYER</h6>
@@ -45,20 +46,20 @@
 			  	<div class="row">
 					<div class="col l6 m6 s12">
 			  			<h6 class="grey-text" >TYPE</h6>
-			  			<p>{{type}}</p>	
+			  			<p>{{type}}</p>
 			  		</div>
 			  		<div class="col s6">
 			  			<h6 class="grey-text">COURT</h6>
 			  			<p>{{#with court}}
 							{{name}}
 						{{/with}}</p>
-			  		</div>	
+			  		</div>
 			  	</div>
 			  	<div class="row">
 			  		<div class="col s12">
 						<h6 class="grey-text">DESCRIPTION</h6>
 			  			<p>{{description}}</p>
-					</div>			  		
+					</div>
 			  	</div>
 			  	<div class="row">
 				  	<div class="col s12">
@@ -113,7 +114,7 @@
 						<a href="/projects/{{_id}}/hearings/add" class="col s8 btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i>hearing</a>
 					</div>
 				{{/if}}
-				
+
 				{{#if isInRole 'edit-tasks'}}
 					<div class="row">
 						<a href="/projects/{{_id}}/tasks/add" class="col s8 btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i>task</a>
@@ -125,10 +126,11 @@
 						<a href="/projects/{{_id}}/meetings/add" class="col s8 btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i>meeting</a>
 					</div>
 				{{/if}}
-				
+
 			</div>
 		  </div>
-	  	  
+		</div>
+		<div class="card-panel form-container">
 		  <!-- Activity Feed -->
 			  	<div class="row col s12 white project-details">
 			  		<h3>Case History</h3>
@@ -137,19 +139,19 @@
 							<tr>
 								<th>Date</th>
 								<th>Description</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
-							
-								
-				
-					
+
+
+
+
 	 				<!-- <td>  03-FEB-2015 </td>
 					<td>     Listed In Court 1 As Item No 16</td>
 					<td><a href="#"><i class="small center-align mdi-action-description"></i></a></td> -->
 
-				
+
 				{{ #each feed}}
 					<tr>
 						<td>{{ date}}</td>
@@ -157,12 +159,13 @@
 						<td><a href="/{{type}}s/{{data._id}}"><i class="small center-align mdi-action-description"></i></a></td>
 					</tr>
 				{{ /each}}
-			
-							
+
+
 						</tbody>
 					</table>
 			  	</div>
 			  	<!-- Table ends -->
 	  	</div>
+		</div>
 	{{/if}}
 </template>

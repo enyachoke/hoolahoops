@@ -30,8 +30,10 @@ Template.hearingDetails.rendered = function() {
 Template.hearingDetails.events({
 	'click .delete' : function(e){
 		e.preventDefault();
-		var caseId = this.caseId;
-		Hearings.remove(this._id);
-		Router.go( "/projects/"+caseId);
+		if(confirm("Confirm Delete?")){
+			var caseId = this.caseId;
+			Hearings.remove(this._id);
+			Router.go( "/projects/"+caseId);
+		}
 	}
 });

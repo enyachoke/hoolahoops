@@ -90,7 +90,8 @@ Template.projectDetails.helpers({
 Template.projectDetails.events({
     'click .delete': function (event) {
         Projects.remove(this._id, function () {
-            Router.go('projects');
+            if (confirm("Confirm Delete?"))
+                Router.go('projects');
         });
     },
     'click #order-trigger': function (event, template) {

@@ -54,9 +54,11 @@ Template.editTimesheet.helpers({
 Template.timesheetRow.events({
 	'click #delete' : function(){
 		console.log(this._id);
-		Timesheets.find({caseId: this._id}).map(function(doc) {
-			Timesheets.remove(doc._id);		
-  		});
+		if(confirm("Confirm Delete?")) {
+			Timesheets.find({caseId: this._id}).map(function (doc) {
+				Timesheets.remove(doc._id);
+			});
+		}
 	}
 });			
 useremail = {};								

@@ -6,6 +6,7 @@ Template.courts.helpers({
 
 Template.courts.events({
 	'click .delete' : function(){
-		Courts.remove(this._id);
+		if(confirm("Confirm Delete?"))
+			Courts.remove(this._id);
 	}
 })

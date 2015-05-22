@@ -36,7 +36,7 @@ lawyers = [
 
 // Possibly a type variable here
 courts = [
-	{'name': 'Superme Court of India', '_id': 'abcd1', 'code' : 'SC'},
+	{'name': 'Supreme Court of India', '_id': 'abcd1', 'code' : 'SC'},
 	{'name': 'Bombay High Court', '_id': 'abcd11', 'code' : 'BHC'},
 	{'name': 'Delhi High Court', '_id': 'abcd12', 'code' : 'DHC'},
 	{'name': 'Patna High Court', '_id': 'abcd13', 'code' : 'PHC'},

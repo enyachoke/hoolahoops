@@ -20,7 +20,8 @@
 						<thead>
 					        <tr >
 					        	<th data-field="id"></th>
-					            <th data-field="id">Title</th>
+                      <th data-field="type">Type</th>
+					            <th data-field="project">Title</th>
 					            <th data-field="name">Date</th>
 					            <th data-field="price">Amount</th>
 					        </tr>
@@ -50,6 +51,7 @@
 					<thead>
 				        <tr>
 				        	<th data-field="id"></th>
+                    <th data-field="type">Type</th>
 				            <th data-field="id">Title</th>
 				            <th data-field="name">Date</th>
 				            <th data-field="price">Amount</th>
@@ -81,10 +83,12 @@
 	<div class="container">
 		<div class="row">
 			  	<div class="col s12  project-title">
-			  		<h3>Bill for Hearing : {{case_title}} on {{date}} </h3>
+			  		<h3>Bill for Hearing : {{this.project.name}} on {{date}} </h3>
 			  	</div>
 		</div>
 		<ul class="collection">
+		    <li class="collection-item"><a href="/hearings/{{this.hearingId}}">Link to Hearing</a></li>
+		    <li class="collection-item">Project : <a href="/projects/{{this.hearing.caseId}}">{{this.project.name}}</a></li>  
 	      <li class="collection-item">Date : {{date}}</li>
 	      <li class="collection-item">Billing details : {{amount}}</li>
 	      <li class="collection-item">Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</li>
@@ -101,7 +105,8 @@
 		<td>
 			<input type='checkbox' class="paid" id="{{_id}}" value="paid" style="position: relative;left: 0px;">
 		</td>
-		<td>{{case_title}}</td>
+    <td><a href="/hearings/{{this.hearingId}}">{{this.type}}</a></td>
+		<td><a href="/projects/{{this.hearing.caseId}}">{{this.project.name}}</a></td>
 		<td>{{date}}</td>
 		<td>{{amount}}</td>
 		<td><a href="/bills/{{_id}}"><i class="bill_details small center-align mdi-action-description"></i></a></td>

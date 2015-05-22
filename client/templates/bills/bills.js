@@ -50,7 +50,7 @@ Template.billRow.helpers({
 		if (this.type == 'hearings'){
 			date = Hearings.findOne(this.hearingId).date
 		}
-		return date;
+		return date.format('{dd}-{month}-{yy}');
 	},
 	'case_title': function(){
 		var title;
@@ -95,7 +95,7 @@ Template.billDetails.helpers({
 		if (this.type == 'hearings'){
 			date = Hearings.findOne(this.hearingId).date
 		}
-		return date;
+		return date.format('{dd}-{month}-{yy}');
 	},
 	'case_title': function(){
 		
@@ -130,5 +130,8 @@ Template.billDetails.helpers({
 
       	}
       	return lawyer;
+	},
+	'project' : function(){
+		debugger;
 	}
 });

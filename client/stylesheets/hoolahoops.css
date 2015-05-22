@@ -350,11 +350,6 @@ div.nav-wrapper a.login-close-text:before{
   -moz-osx-font-smoothing: grayscale;
 	content: "\e89c";
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3004437e099a8ebe2e72d293941667bc15a12aec
 
 
 /*tiny calendar*/
@@ -495,4 +490,10 @@ div.panel-heading{
 
 input.form-control{
 	height:45px;
+}
+
+/* Doorbell */
+#doorbell-attach-screenshot{
+  position: absolute;
+  left: 0px;
 }

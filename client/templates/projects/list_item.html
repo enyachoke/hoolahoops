@@ -1,36 +1,44 @@
 <template name="projectRow">
-
-<tr >
-	<!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
-	<td> {{_id}}</td>
-	<td>{{name}}</td>
-	<td>
-	{{#each clients}}
-		<a href='/clients/{{_id}}'>{{name}}</a>
-	{{/each}}
-	</td>
-	<td>
-	{{#each lawyers}}
-		<a href='/lawyers/{{_id}}'>{{name}}</a>
-	{{/each}}
-	</td>
-	<!-- <td>
-	{{#with court}}
-		{{name}}
-	{{/with}}
-	</td> -->
-	<!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
-	<!-- <td>{{next_hearing}}</td> -->
-	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
-	{{#if isInRole 'edit-projects'}}
-		<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
-	{{/if}}
-</tr>
-<tr class="label-row">
-	<td>
-		{{#each labels}}
-			{{> colorElement}}
-		{{/each}}
-	</td>
-</tr>
+	<style>
+		.row-clickable:hover{
+			cursor: pointer;
+		}
+	</style>
+	<tr onclick="window.document.location='/projects/{{_id}}';event.stopPropagation();" class="row-clickable">
+		<!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
+		<!-- <td styly="width:25%"> {{_id}}</td> -->
+		<td style="width:25%">{{name}}</td>
+		<td style="width:20%">
+			{{#each clients}}
+				<a href='/clients/{{_id}}'>{{name}}</a>
+			{{/each}}
+		</td>
+		<td style="width:20%">
+			{{#each lawyers}}
+				<a href='/lawyers/{{_id}}'>{{name}}</a>
+			{{/each}}
+		</td>
+		<!-- <td>
+		{{#with court}}
+			{{name}}
+		{{/with}}
+		</td> -->
+		<!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
+		<!-- <td>{{next_hearing}}</td> -->
+		<td style="width:5%">
+			<a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a>
+		</td>
+		<td style="width:5%">
+			{{#if isInRole 'edit-projects'}}
+				<a class="delete"><i class="small center-align mdi-action-delete"></i></a>
+			{{/if}}
+		</td>
+	</tr>
+	<tr class="label-row">
+		<td>
+			{{#each labels}}
+				{{> colorElement}}
+			{{/each}}
+		</td>
+	</tr>
 </template>

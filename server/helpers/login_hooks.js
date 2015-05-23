@@ -39,6 +39,11 @@ Accounts.onCreateUser(function( options, user ){
       user.profile = {};
       user.profile.name = user.name;
     }
-    
+    if ( options.profile.firm_name ){
+      var tenant_id = Firms.insert({ 'name' : options.profile.firm_name });
+      user.firm = {}
+      user.firm.name = options.profile.firm_name;
+      user.firm.tenant_id = tenant_id     
+    }
   	return user;
 });

@@ -67,9 +67,9 @@ Meteor.startup(function() {
 	});
 
 	// TODO: This should either be moved into the database or removed entirely
-	//ACCOUNTS_EMAILS = ['accounts@tcl-india.net'];
+	ACCOUNTS_EMAILS = ['accounts@tcl-india.net'];
 	DEFAULT_EMAIL = 'shashwat@dinasource.com';
-	ACCOUNTS_EMAILS = ['shashwat@dinasource.com'];
+	//ACCOUNTS_EMAILS = ['shashwat@dinasource.com'];
 
 });
 

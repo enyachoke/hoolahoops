@@ -6,8 +6,10 @@ Template.tasks.helpers({
 
 Template.taskRow.events({
 	'click #delete_task' : function(){
-		if(confirm("Confirm Delete?"))
+		if(confirm("Confirm Delete?")) {
+			Materialize.toast('Task Deleted!', 1500);
 			Tasks.remove(this._id);
+		}
 	}
 });
 
@@ -21,6 +23,7 @@ Template.taskDetails.events({
 	},
 	'click .delete' : function(){
 		if(confirm("Confirm Delete?")) {
+			Materialize.toast('Task Deleted!', 1500);
 			Tasks.remove(this._id);
 			Router.go("/projects/" + this.caseId);
 		}

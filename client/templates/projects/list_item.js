@@ -27,7 +27,9 @@
   
   Template.projectRow.events({
       'click .delete': function (event) {
-        if(confirm("Confirm Delete?"))
+        if(confirm("Confirm Delete?")) {
+          Materialize.toast('Project Deleted!', 1500);
           Projects.remove(this._id);
+        }
       }
   })

@@ -89,9 +89,12 @@ Template.projectDetails.helpers({
 
 Template.projectDetails.events({
     'click .delete': function (event) {
-        Projects.remove(this._id, function () {
-            Router.go('projects');
-        });
+        if (confirm("Confirm Delete?")) {
+            Materialize.toast('Project Deleted!', 1500);
+            Projects.remove(this._id, function(){
+                Router.go('projects');
+            });
+        }
     },
     'click #order-trigger': function (event, template) {
         var modal = $(template.find('#order-modal'));

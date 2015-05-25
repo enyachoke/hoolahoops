@@ -11,8 +11,10 @@ Template.meetingDetails.helpers({
 
 Template.meetingDetails.events({
 	'click .delete' : function(e){
-		if(confirm("Confirm Delete?"))
+		if(confirm("Meeting Delete?")) {
+			Materialize.toast('Client Deleted!', 1500);
 			Meetings.remove(this._id);
+		}
 	}
 });
 
@@ -33,6 +35,7 @@ Template.meetingRow.helpers({
 Template.meetingRow.events({
 	'click .delete' : function(){
 		if(confirm("Confirm Delete?")) {
+			Materialize.toast('Meeting Deleted!', 1500);
 			Meetings.remove(this._id);
 			Router.go("/projects/" + this.caseId);
 		}

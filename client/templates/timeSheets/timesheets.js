@@ -55,6 +55,7 @@ Template.timesheetRow.events({
 	'click #delete' : function(){
 		console.log(this._id);
 		if(confirm("Confirm Delete?")) {
+			Materialize.toast('Timesheet Deleted!', 1500);
 			Timesheets.find({caseId: this._id}).map(function (doc) {
 				Timesheets.remove(doc._id);
 			});

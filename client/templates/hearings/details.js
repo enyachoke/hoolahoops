@@ -31,10 +31,11 @@ Template.hearingDetails.events({
 	'click .delete' : function(e){
 		e.preventDefault();
 		if(confirm("Confirm Delete?")){
-			Materialize.toast('Hearing Deleted!', 1500);
 			var caseId = this.caseId;
-			Hearings.remove(this._id);
-			Router.go( "/projects/"+caseId);
+			Meteor.call('removeHearing', this._id, function(err, result){
+				if(result)
+					Router.go( "/projects/"+caseId);
+			})
 		}
 	}
 });

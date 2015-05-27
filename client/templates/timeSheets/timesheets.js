@@ -53,13 +53,13 @@ Template.editTimesheet.helpers({
 
 Template.timesheetRow.events({
 	'click #delete' : function(){
-		console.log(this._id);
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Timesheet Deleted!', 1500);
+		if(confirm("Confirm Delete?"))
 			Timesheets.find({caseId: this._id}).map(function (doc) {
-				Timesheets.remove(doc._id);
+				Meteor.call('removeTimesheet', doc._id, function(err, result){
+					if(result)
+						Materialize.toast('Timesheet Deleted!', 1500);
+				})
 			});
-		}
 	}
 });			
 useremail = {};								

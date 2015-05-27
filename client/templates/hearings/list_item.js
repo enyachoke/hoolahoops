@@ -1,9 +1,10 @@
 Template.hearingRow.events({
     'click .delete': function (event) {
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Hearing Deleted!', 1500);
-			Hearings.remove(this._id);
-		}
+		if(confirm("Confirm Delete?"))
+			Meteor.call('removeHearing', this._id, function(err, result){
+				if(result)
+					Materialize.toast('Hearing Deleted!', 1500);
+			})
     }
 });
 

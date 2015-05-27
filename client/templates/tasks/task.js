@@ -6,10 +6,11 @@ Template.tasks.helpers({
 
 Template.taskRow.events({
 	'click #delete_task' : function(){
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Task Deleted!', 1500);
-			Tasks.remove(this._id);
-		}
+		if(confirm("Confirm Delete?"))
+			Meteor.call('removeTask', this._id, function(err, result){
+				if(result)
+					Materialize.toast('Task Deleted!', 1500);
+			})
 	}
 });
 
@@ -22,10 +23,12 @@ Template.taskDetails.events({
 		Tasks.update({ _id : this._id},{$set :{ 'completed' : false }});
 	},
 	'click .delete' : function(){
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Task Deleted!', 1500);
-			Tasks.remove(this._id);
-			Router.go("/projects/" + this.caseId);
+		if(confirm("Confirm Delete?")){
+			var caseId = this.caseId;
+			Meteor.call('removeTask', this._id, function(err, result){
+				if(result)
+					Router.go("/projects/" + caseId);
+			})
 		}
 	}
 	

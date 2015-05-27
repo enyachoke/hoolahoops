@@ -6,10 +6,11 @@ Template.labels.helpers({
 
 Template.labelRow.events({
     'click .delete': function (event) {
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Label Deleted!', 1500);
-			Labels.remove(this._id);
-		}
+		if(confirm("Confirm Delete?"))
+            Meteor.call('removeLabel', this._id, function(err, result){
+                if(result)
+                    Materialize.toast('Label Deleted!', 1500);
+            })
     }
 });
 

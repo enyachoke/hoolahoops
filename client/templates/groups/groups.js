@@ -6,9 +6,10 @@ Template.groupEdit.helpers({
 
 Template.groupEdit.events({
 	'click .delete': function (event) {
-		if (confirm("Confirm Delete?")){
-			Materialize.toast('Group Deleted!', 1500);
-			Groups.remove(this._id);
-		}
+		if (confirm("Confirm Delete?"))
+			Meteor.call('removeGroup', this._id, function(err, result){
+				if(result)
+					Materialize.toast('Group Deleted!', 1500);
+			})
 	}
 })

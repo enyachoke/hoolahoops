@@ -27,9 +27,10 @@
   
   Template.projectRow.events({
       'click .delete': function (event) {
-        if(confirm("Confirm Delete?")) {
-          Materialize.toast('Project Deleted!', 1500);
-          Projects.remove(this._id);
-        }
+        if(confirm("Confirm Delete?"))
+          Meteor.call('removeProject', this._id, function(err, result){
+            if(result)
+              Materialize.toast('Project Deleted!', 1500);
+          })
       }
   })

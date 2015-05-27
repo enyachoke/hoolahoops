@@ -11,10 +11,11 @@ Template.meetingDetails.helpers({
 
 Template.meetingDetails.events({
 	'click .delete' : function(e){
-		if(confirm("Meeting Delete?")) {
-			Materialize.toast('Client Deleted!', 1500);
-			Meetings.remove(this._id);
-		}
+		if(confirm("Meeting Delete?"))
+			Meteor.call('removeMeeting', this._id, function(err, result){
+				if(result)
+					Materialize.toast('Client Deleted!', 1500);
+			})
 	}
 });
 
@@ -35,9 +36,11 @@ Template.meetingRow.helpers({
 Template.meetingRow.events({
 	'click .delete' : function(){
 		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Meeting Deleted!', 1500);
-			Meetings.remove(this._id);
-			Router.go("/projects/" + this.caseId);
+			var caseId = this.caseId;
+			Meteor.call('removeMeeting', this._id, function(err, result){
+				if(result)
+					Router.go("/projects/" + caseId);
+			})
 		}
 	}
 });

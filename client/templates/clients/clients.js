@@ -7,18 +7,20 @@ Template.clientsList.helpers({
 
 Template.clientsList.events({
 	'click #delete' :function(){
-		Materialize.toast('Client Deleted!', 1500);
 		if(confirm("Confirm Delete?"))
-			Users.remove(this._id);
+			Meteor.call('removeClient', this._id, function(err, result){
+				if(result)
+					Materialize.toast('Client Deleted!', 1500);
+			})
 	}
 });
 
 Template.clientDetails.events({
 	'click .delete' :function(){
-		Materialize.toast('Client Deleted!', 1500);
-		if(confirm("Confirm Delete?")){
-			Users.remove(this._id);
-			Router.go('clientsList');
-		}
+		if(confirm("Confirm Delete?"))
+			Meteor.call('removeClient', this._id, function(err, result){
+				if(result)
+					Router.go('clientsList');
+			})
 	}
 });

@@ -6,9 +6,10 @@ Template.courts.helpers({
 
 Template.courts.events({
 	'click .delete' : function(){
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Court Deleted!', 1500);
-			Courts.remove(this._id);
-		}
+		if(confirm("Confirm Delete?"))
+			Meteor.call('removeCourt', this._id, function(err, result){
+				if(result)
+					Materialize.toast('Court Deleted!', 1500);
+			})
 	}
 })

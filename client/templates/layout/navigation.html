@@ -52,7 +52,7 @@
 		    {{#if isInRole 'view-calendars'}}
 		    	<li class="{{isActiveRoute regex='calendar'}}"><a href="/calendar">Calendar</a></li>
 		    {{/if}}
-		    {{#if isInRole 'view-bills'}}		    
+		    {{#if isInRole 'view-bills'}}
 		    	<li class="{{isActiveRoute regex='bills'}}" ><a href="/bills">Accounts</a></li>
 		    {{/if}}
 		    <!-- {{#if isInRole 'view-documents'}} -->
@@ -62,7 +62,7 @@
 		    <!-- {{#if isInRole 'view-timesheets'}} -->
 				<li class="{{isActiveRoute regex='timesheets'}}" ><a href="/timesheets">Timesheets</a></li>
 			<!-- {{/if}} -->
-			
+
 			<!-- {{#if isInRole 'view-projects'}}
 				<li class="{{isActiveRoute regex='communications'}}" ><a href="/communications">Communications</a></li>
 			{{/if}} -->
@@ -82,8 +82,9 @@
 			{{#if isInRole 'view-groups'}}
 				<li class="{{isActiveRoute regex='groups'}}" ><a href="/groups">Groups</a></li>
 			{{/if}}
+			{{> notificationsDropdown}}
 			<li><a href="#!" id="dropdown-button" data-activates="account-dropdown" data-belowOrigin="true">{{currentUser.username}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-			
+
 		    <!--li><a href="/hearings">Hearings</a></li-->
 		  </ul>
 		  <ul class="side-nav" id="mobile-demo">
@@ -104,7 +105,7 @@
 		    <!-- {{#if isInRole 'view-timesheets'}} -->
 				<li class="{{isActiveRoute regex='timesheets'}}" ><a href="/timesheets">Timesheets</a></li>
 			<!-- {{/if}} -->
-			
+
 			<!-- {{#if isInRole 'view-projects'}}
 				<li class="{{isActiveRoute regex='communications'}}" ><a href="/communications">Communications</a></li>
 			{{/if}} -->
@@ -126,7 +127,7 @@
 			{{/if}}
 			<li><a href="#changePassword">Change Password</a></li>
 			<li class="logout"><a href="#!">Logout</a></li>
-			
+
 		    <!--li><a href="/hearings">Hearings</a></li-->
 		  </ul>
 		</div>

@@ -74,6 +74,7 @@ mquandalle:jade@0.4.1
 mrt:fullcalendar@1.6.1
 mrt:jquery-ui@1.9.2
 mrt:later@1.6.1
+mrt:moment@2.8.1
 natestrauser:font-awesome@4.3.0
 npm-bcrypt@0.7.8_2
 npm-container@1.0.0
@@ -116,5 +117,6 @@ wizonesolutions:underscore-string@1.0.0
 wylio:mandrill@0.2.1
 wylio:winston-papertrail@0.1.2
 xolvio:inspectlet@1.0.1
+yogiben:notifications@0.0.6
 zimme:iron-router-active@1.0.1
 zimme:select2-bootstrap3-css@1.4.6

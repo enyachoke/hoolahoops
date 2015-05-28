@@ -14,7 +14,7 @@ var addEmailProcessor = function(job, cb) {
         "template_name": job.data.template,
         "template_content": [
           {
-            'summary': 'An event has happened' 
+            'summary': 'An event has happened'
           }
         ],
         "message": {
@@ -80,8 +80,12 @@ var addScraperProcessor = function(job, cb) {
             var subject = sprintf('[%s] New orders fetched for matter: %s', project._id, project.name)
             //log.info("orders:", project.orders, links);
             // Insert links in database here and then notify lawyers via email
-            if(links.length)
-                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), project.lawyers()[0].email, subject, new Date())
+            if(links.length){
+                addEmailReminder(project, 'orders', 'New orders have fetched for your project:', project.lawyers().concat(project.clients()), project.lawyers()[0].email, subject, new Date());
+                Notifications.new({
+                  title:'New Order Created', link:'/groups'
+                });
+            }
         }
 
         // Mark job as done and trigger callback

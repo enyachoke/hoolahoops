@@ -42,8 +42,10 @@
                 </div>
             </div>
 
+            <div class="card-panel form-container" style="margin-bottom:15px;">
             <div class="row white" style="padding: 2.5rem;">
-                <div class="col s8 project-details">
+
+                <div class="col s8">
                     <div class="row">
                         <div class="col l6 m6 s12">
                             <h6 class="grey-text">SUIT NO</h6>
@@ -123,7 +125,7 @@
                     <div>
                         {{#if isInRole 'edit-projects'}}
                             <div class="row">
-                                <a 
+                                <a
                                    class="col s12 delete btn-large waves-effect waves-light red">
                                     delete project
                                 </a>
@@ -198,10 +200,12 @@
                         </div>
                     {{/if}}
                 </div>
+              </div>
             </div>
 
             <!-- Activity Feed -->
-            <div class="row col s12 white project-details">
+            <div class="row col s12 white">
+              <div class="card-panel form-container">
                 <h3>Case History</h3>
                 <table class="bordered hoverable responsive-table projects-table">
                     <thead>
@@ -227,13 +231,16 @@
                 </table>
             </div>
             <!-- Table ends -->
+          </div>
         </div>
         <div id="order-modal" class="modal">
+          <div class="card-panel form-container">
             <div id="order-slide">
                 {{#each orders}}
                     {{> order}}
                 {{/each}}
             </div>
+          </div>
         </div>
         <div id="lean-overlay"></div>
     {{/if}}
@@ -254,4 +261,3 @@
     </div>
 
 </template>
-

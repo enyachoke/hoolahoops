@@ -127,10 +127,10 @@ Template.projectDetails.events({
 Template.projectDetails.rendered = function () {
     $(document).ready(function () {
         $("#order-slide").owlCarousel({
-            items: 4,
-            itemsDesktop: [1199, 3],
+            items: 2,
+            itemsDesktop: [1199, 2],
             itemsDesktopSmall: false,
-            itemsTablet: [768, 2],
+            itemsTablet: [768, 1],
             itemsTabletSmall: false,
             itemsMobile: [479, 1],
             navigation: true

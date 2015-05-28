@@ -1,24 +1,5 @@
 <template name="projectDetails">
 
-
-    <style>
-        .cards-base{
-            max-height: 90%;
-            width: 85%;
-            top: 10%;
-            background: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-            -moz-box-shadow: none;
-        }
-        .card{
-            overflow: inherit;
-        }
-        #lean-overlay{
-            opacity: 0;
-        }
-    </style>
-
     {{#if isInRole 'view-projects'}}
         {{> navigation}}
         <div class="container project-container">
@@ -174,13 +155,12 @@
                         </div>
                         <div>
                             {{#if isInRole 'view-orders'}}
-                                <!-- <div class="row">
-                                    <a href="#ordersModel"
-                                       id="order-trigger"
+                                <div class="row">
+                                    <a id="order-trigger"
                                        class="col s12 btn-large waves-effect waves-light orange">
                                         View Orders
                                     </a>
-                                </div> -->
+                                </div>
                             {{/if}}
                         </div>
                     {{/if}}
@@ -215,8 +195,7 @@
             </div>
             <!-- Table ends -->
         </div>
-
-        <div id="order-modal" class="modal cards-base">
+        <div id="order-modal" class="modal">
             <div id="order-slide">
                 {{#each orders}}
                     {{> order}}
@@ -233,16 +212,8 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://materializecss.com/images/office.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                        <p><a href="{{link}}">This is a link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        <iframe src="{{link}}" scrolling="no" style="width: 100%;"></iframe>
+                        <span class="card-title"><a href="{{link}}">View Order</a></span>
                     </div>
                 </div>
             </div>

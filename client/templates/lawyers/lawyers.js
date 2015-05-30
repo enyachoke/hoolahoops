@@ -8,7 +8,8 @@ Template.lawyers.helpers({
 Template.lawyerDetails.events({
 	'click .delete' : function(e){
 		if(confirm("Confirm Delete?")) {
-			Lawyers.remove(this._id);
+			Materialize.toast('Lawyer Deleted!', 1500);
+			Users.remove(this._id);
 			Router.go('lawyers');
 		}
 	}

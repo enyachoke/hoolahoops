@@ -6,8 +6,10 @@ Template.labels.helpers({
 
 Template.labelRow.events({
     'click .delete': function (event) {
-		if(confirm("Confirm Delete?"))
-      		Labels.remove(this._id);
+		if(confirm("Confirm Delete?")) {
+			Materialize.toast('Label Deleted!', 1500);
+			Labels.remove(this._id);
+		}
     }
 });
 

@@ -89,9 +89,12 @@ Template.projectDetails.helpers({
 
 Template.projectDetails.events({
     'click .delete': function (event) {
-        Projects.remove(this._id, function () {
-            Router.go('projects');
-        });
+        if (confirm("Confirm Delete?")) {
+            Materialize.toast('Project Deleted!', 1500);
+            Projects.remove(this._id, function(){
+                Router.go('projects');
+            });
+        }
     },
     'click #order-trigger': function (event, template) {
         var modal = $(template.find('#order-modal'));
@@ -124,10 +127,10 @@ Template.projectDetails.events({
 Template.projectDetails.rendered = function () {
     $(document).ready(function () {
         $("#order-slide").owlCarousel({
-            items: 4,
-            itemsDesktop: [1199, 3],
+            items: 2,
+            itemsDesktop: [1199, 2],
             itemsDesktopSmall: false,
-            itemsTablet: [768, 2],
+            itemsTablet: [768, 1],
             itemsTabletSmall: false,
             itemsMobile: [479, 1],
             navigation: true

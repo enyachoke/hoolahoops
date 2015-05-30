@@ -497,3 +497,46 @@ input.form-control{
 .divider{
     margin: 0px;
 }
+@media only screen and (min-width : 601px) and (max-width : 992px) {
+    #toast-container {
+        left: auto;
+        right: 5%;
+    }
+}
+@media only screen and (min-width : 993px) {
+    #toast-container{
+        top: auto;
+        bottom: 10%;
+    }
+}
+
+/* Orders styling  */
+#order-modal {
+    max-height: 90%;
+    width: 85%;
+    top: 10%;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+}
+#order-slide .card{
+    overflow: inherit;
+}
+#lean-overlay{
+    opacity: 0;
+}
+#order-slide .owl-wrapper-outer{
+    height: 85%;
+}
+#order-slide .owl-controls{
+    float: left;
+    width: 100%;
+}
+#order-slide iframe{
+    width: 100%;
+    height: 100%;
+}
+#order-modal, #order-slide, #order-slide .row, .s12, .card, .card-image, .owl-item, .owl-wrapper{
+    height: 100%;
+}

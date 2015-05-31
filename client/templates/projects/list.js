@@ -53,8 +53,13 @@ Template.projects.events({
         $(template.findAll('select')).multipleSelect('uncheckAll');
     }
 })
-
 Template.projects.rendered = function () {
+    EasySearch.changeProperty('projects', 'lawyers', false);
+    EasySearch.changeProperty('projects', 'clients', false);
+    EasySearch.changeProperty('projects', 'courtId', false);
+    EasySearch.changeProperty('projects', 'type', false);
+    EasySearch.changeProperty('projects', 'labels', false);
+    EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
     $(this.find('#lawyer-select')).multipleSelect({
         filter: true,
         placeholder: 'Select Lawyers'

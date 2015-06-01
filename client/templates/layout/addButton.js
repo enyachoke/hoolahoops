@@ -12,6 +12,7 @@ Template.addButton.rendered = function () {
                 {duration: 0});
 
             var time = 0;
+            elements.css("display", "block");
             elements.reverse().each(function () {
                 $(this).velocity(
                     {opacity: "1", scaleX: "1", scaleY: "1", translateY: "0"},
@@ -27,7 +28,9 @@ Template.addButton.rendered = function () {
                 .switchClass("mdi-navigation-close", "mdi-content-add");
             elements.velocity(
                 {opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px"},
-                {duration: 80});
+                {duration: 80}, function(){
+                    elements.css("display", "none");
+                });
             opened = false;
         }
     });

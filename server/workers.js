@@ -14,7 +14,7 @@ var addEmailProcessor = function(job, cb) {
         "template_name": job.data.template,
         "template_content": [
           {
-            'summary': 'An event has happened' 
+            'summary': 'An event has happened'
           }
         ],
         "message": {
@@ -70,8 +70,17 @@ var addScraperProcessor = function(job, cb) {
     var project = Projects.findOne(job.data.project._id);
     var emailLawyers = function() {
         //var lawyers = project.lawyers(); Notify the lawyers
-
         // if new links, notify lawyers or whatever group there is that new orders have been fetched
+
+        // createNotification();
+        Notifications.insert({
+          // userId: this.userId,
+          projectId: project._id,
+          read: false
+        });
+        log.info(this.userId);
+        log.info(project._id);
+
         if(checkNewLinks(project, links)){
             project.insertOrders(links);
             project = Projects.findOne(project._id);

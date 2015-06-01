@@ -1,0 +1,31 @@
+<template name="notifications">
+  <a href="#!" class="dropdown-button" data-activates="dropdown1" data-belowOrigin="true">
+    Notifications
+    <span class="badge">{{notificationCount}}</span>
+    <!-- {{#if notificationCount}}
+      <i class="mdi-social-notifications left"></i>
+      <span class="badge">{{notificationCount}}</span>
+    {{else}}
+    <i class="mdi-social-notifications-none left"></i>
+    {{/if}} -->
+    <i class="mdi-navigation-arrow-drop-down right"></i>
+  </a>
+
+  <ul class="notification dropdown-content" id="dropdown1">
+    {{#if notificationCount}}
+      {{#each notifications}}
+        {{> notification}}
+      {{/each}}
+    {{else}}
+      <li><span>No Notifications</span></li><li class="divider"></li>
+    {{/if}}
+  </ul>
+</template>
+
+<template name="notification">
+  <li>
+    <a href="/groups">
+      New Order Created for your case
+    </a>
+  </li><li class="divider"></li>
+</template>

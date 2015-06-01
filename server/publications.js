@@ -3,7 +3,7 @@ Meteor.startup(function () {
 		log.info("publishWithRoles: ","checking", roleString);
 		var roleString = roleString || namespace;
 		var role = 'view-' + roleString;
-		
+
 		Meteor.publish(namespace, function(){
 			//debugger;
 			if(this.userId && Roles.userIsInRole(this.userId, role))
@@ -34,7 +34,7 @@ Meteor.startup(function () {
 	publishWithRoles('courts', function(){
 		return Courts.find();
 	});
-	
+
 	publishWithRoles('hearings', function(){
 		return Hearings.find();
 	});
@@ -54,15 +54,15 @@ Meteor.startup(function () {
 	publishWithRoles('allJobs', function(){
 		return myJobs.find();
 	});
-	
+
 	publishWithRoles('timesheets', function(){
 		return Timesheets.find();
 	});
-	
+
 	publishWithRoles('events1', function(){
 		return Events1.find();
 	});
-	
+
 	publishWithRoles('tasks', function(){
 		return Tasks.find();
 	});
@@ -74,7 +74,7 @@ Meteor.startup(function () {
 	publishWithRoles('timesheets', function(){
 		return Timesheets.find();
 	});
-	
+
 	publishWithRoles('events1', function(){
 		return Events1.find();
 	});
@@ -96,14 +96,16 @@ Meteor.startup(function () {
 	});
 
 	// TODO: test if this can be moved to publishWithRoles
-	Meteor.publish(null, function (){ 
+	Meteor.publish(null, function (){
 	  return Meteor.roles.find({})
 	});
 
 	Meteor.publish('communications', function(){
 		return Communications.find();
-	})
+	});
 
-	
+	Meteor.publish('notifications', function() {
+		return Notifications.find();
+	});
+
 });
-

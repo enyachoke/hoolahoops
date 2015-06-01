@@ -152,6 +152,14 @@ select option:hover {
 	background: #eee;
 }
 
+li span{
+	font-size: 12px !important;
+}
+
+li span:hover{
+	background: #000;
+}
+
 .event-completed{
 	text-decoration : line-through;
 }

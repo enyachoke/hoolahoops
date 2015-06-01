@@ -24,7 +24,7 @@
       return Labels.find({_id: {$in:this.labelIds}});
     }
   });
-  
+
   Template.projectRow.events({
       'click .delete': function (event) {
         if(confirm("Confirm Delete?")) {
@@ -32,4 +32,4 @@
           Projects.remove(this._id);
         }
       }
-  })
+  });

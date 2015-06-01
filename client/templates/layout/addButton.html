@@ -35,40 +35,48 @@
             <i class="large mdi-content-add"></i>
         </a>
         <ul>
-            <li class="container">
-                <a href="/projects/add">
+            {{#if isInRole 'edit-projects'}}
+                <li class="container">
+                    <a href="/projects/add">
+                        <div class="row">
+                            <div class="col s8 btn-label"><div>Case</div></div>
+                            <div class="col s4">
+                                <div class="btn-floating red"><i class="large mdi-file-folder"></i></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {{/if}}
+            {{#if isInRole 'edit-meetings'}}
+                <li class="container">
                     <div class="row">
-                        <div class="col s8 btn-label"><div>Case</div></div>
+                        <div class="col s8 btn-label"><div>Meeting</div></div>
                         <div class="col s4">
-                            <div class="btn-floating red"><i class="large mdi-file-folder"></i></div>
+                            <a class="btn-floating yellow darken-1"><i class="large mdi-social-people"></i></a>
                         </div>
                     </div>
-                </a>
-            </li>
-            <li class="container">
-                <div class="row">
-                    <div class="col s8 btn-label"><div>Meeting</div></div>
-                    <div class="col s4">
-                        <a class="btn-floating yellow darken-1"><i class="large mdi-social-people"></i></a>
+                </li>
+            {{/if}}
+            {{#if isInRole 'edit-tasks'}}
+                <li class="container">
+                    <div class="row">
+                        <div class="col s8 btn-label"><div>Task</div></div>
+                        <div class="col s4">
+                            <a class="btn-floating green"><i class="large mdi-toggle-check-box"></i></a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="container">
-                <div class="row">
-                    <div class="col s8 btn-label"><div>Task</div></div>
-                    <div class="col s4">
-                        <a class="btn-floating green"><i class="large mdi-toggle-check-box"></i></a>
+                </li>
+            {{/if}}
+            {{#if isInRole 'edit-hearings'}}
+                <li class="container">
+                    <div class="row">
+                        <div class="col s8 btn-label"><div>Hearing</div></div>
+                        <div class="col s4">
+                            <a class="btn-floating orange"><i class="large mdi-action-account-balance"></i></a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="container">
-                <div class="row">
-                    <div class="col s8 btn-label"><div>Hearing</div></div>
-                    <div class="col s4">
-                        <a class="btn-floating orange"><i class="large mdi-action-account-balance"></i></a>
-                    </div>
-                </div>
-            </li>
+                </li>
+            {{/if}}
             <li class="container">
                 <div class="row">
                     <div class="col s8 btn-label"><div>Compose</div></div>

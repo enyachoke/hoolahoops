@@ -31,19 +31,12 @@ Accounts.onCreateUser(function( options, user ){
             }
         }
       }  		
-  	} 
-    if (options && options.type && options.contactNumber && options.profile && options.profile.name ){
-      user.type = options.type ;
-      user.contactNumber = options.contactNumber ; 
-      user.name = options.profile && options.profile.name ;
-      user.profile = {};
-      user.profile.name = user.name;
+  	}
+
+    for (var key in options) {
+      console.log(key, options[key]);
+      user[key] = options[key];
     }
-    if ( options.profile.firm_name ){
-      var tenant_id = Firms.insert({ 'name' : options.profile.firm_name });
-      user.firm = {}
-      user.firm.name = options.profile.firm_name;
-      user.firm.tenant_id = tenant_id     
-    }
-  	return user;
+
+    return user;
 });

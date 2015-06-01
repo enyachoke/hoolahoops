@@ -89,9 +89,19 @@ a= [
 
 if ( Events.find({type : 'court_holidays'}).fetch().length ==0  ){
 	_.each(a,function(date){
-		Events.insert({ date : new Date(date), type : 'court_holidays' });
+		var event = _.extend({ date : new Date(date), type : 'court_holidays' }, team);
+		Events.insert(event);
 	})
 }
+
+/* Fixture for team */
+if(!Teams.find().count()){
+	var team = { 'teamId' : Teams.insert({ 'name' : 'CloudVakil' }) };	
+}
+else{
+	var team = { 'teamId' : Teams.findOne()._id };
+}
+
 
 // DEFAULT DATA
 // TODO: Move all of this into a separate migrations
@@ -108,14 +118,14 @@ if ( Events.find({type : 'court_holidays'}).fetch().length ==0  ){
 
 _.each(courts, function(court){
 	//if(!Clients.findOne(court._id))
-		Courts.upsert(court['_id'], {$set: court});
+		Courts.upsert(court['_id'], {$set: _.extend(court, team)});
 });
 
 //log.info("\n\n\n\n\n\nAdding admin user outside log: " + Meteor.users.find().count() + "\n\n\n\n\n\n");
 
 /* Create a default user */
 if ( Meteor.users.find().count() === 0 ) {
-	var userId = Accounts.createUser({
+	var user = _.extend({
         username: 'adminuser123456789',
         email: 'shashwat@dinasource.com',
         password: 'adminuser987654321',
@@ -124,8 +134,11 @@ if ( Meteor.users.find().count() === 0 ) {
             last_name: 'Admin',
             company: 'CloudVakil',
         }
-    });
+    }, team);
+	
+	//debugger;
+	var userId = Accounts.createUser(user);
 
 	Roles.addUsersToRoles(userId, getAllRolesTags());
-    //log.info("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
+    log.info("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
 }

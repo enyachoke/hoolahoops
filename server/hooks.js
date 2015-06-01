@@ -1,3 +1,8 @@
+// Project before hooks to set teamId
+Projects.before.insert(function(){
+	debugger;
+});
+
 // Project hook(er)s?
 Projects.after.insert(function(projectId, doc){
 

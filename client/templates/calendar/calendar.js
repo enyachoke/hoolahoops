@@ -74,9 +74,9 @@ Template.calendar.rendered= function(){
 
 	$('#calendar').fullCalendar({
 		dayClick: function(date, allDay, jsEvent, view) {
-			debugger;
-			Meteor.call('toggle_block_days',date);
-			$(this).toggleClass( 'blocked' )
+			// debugger;
+			// Meteor.call('toggle_block_days',date);
+			// $(this).toggleClass( 'blocked' )
     	},
     	dayRender : function( date, cell ) { 
     		//todo : optimise this !!!!! ASAPPPPP

@@ -66,13 +66,12 @@
 </template>
 
 <template name="rowLawyer">
-	<tr>
+	<tr class="row-clickable">
 		<td>{{name}}</td>
 		<td>{{contactNumber}}</td>
 		<td>{{username}}</td>
 		{{#if isInRole 'edit-lawyers'}}
 			<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}/edit'>Edit</a></td>
-			<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}'>Details</a></td>
 		{{/if}}
 	</tr>
 </template>

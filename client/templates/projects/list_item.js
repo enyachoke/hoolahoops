@@ -40,7 +40,11 @@ Template.projectRow.events({
         },
         'click .labels': function (event) {
             select(event, "label");
-        }
+        },
+        'click .row-clickable': function(event) {
+        // Router.go('/projects/' + this._id);
+        event.stopPropagation();
+      }
     }
 )
 

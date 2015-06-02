@@ -540,3 +540,18 @@ input.form-control{
 #order-modal, #order-slide, #order-slide .row, .s12, .card, .card-image, .owl-item, .owl-wrapper{
     height: 100%;
 }
+
+.row-clickable {
+	vertical-align: middle;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.row-clickable:hover{
+	cursor: pointer;
+	background-color:#f0f0f0 !important;
+}
+
+.bill_row{
+	line-height: 50px;
+}

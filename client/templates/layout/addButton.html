@@ -1,0 +1,118 @@
+<template name="addButton">
+    <style>
+        .fixed-action-btn ul a.btn-floating {
+            opacity: 1;
+        }
+
+        .fixed-action-btn li {
+            width: 200px;
+            opacity: 0;
+            display: none;
+        }
+
+        .btn-label {
+            text-align: right;
+        }
+
+        .btn-label div {
+            display: inline-block;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            -webkit-box-shadow: 0 3px 1px 0px #aaa;
+            -moz-box-shadow: 0 3px 1px 0px #aaa;
+            box-shadow: 0 3px 1px 0px #aaa;
+            color: black;
+        }
+
+        .fixed-action-btn ul {
+            left: -133px;
+        }
+
+        .fixed-action-btn {
+            bottom: 45px;
+            right: 24px;
+            z-index: 1000;
+        }
+    </style>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large mdi-content-add"></i>
+        </a>
+        <ul>
+            {{#if isInRole 'edit-projects'}}
+                <li class="container">
+                    <div class="row">
+                        <div class="col s8 btn-label"><a href="/projects/add">
+                            <div>Case</div>
+                        </a></div>
+                        <div class="col s4">
+                            <a href="/projects/add" class="btn-floating red"><i class="large mdi-file-folder"></i></a>
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{#if isInRole 'edit-meetings'}}
+                <li class="container">
+                    <div class="row">
+                        <div class="col s8 btn-label"><a href="/meetings/add">
+                            <div>Meeting</div>
+                        </a></div>
+                        <div class="col s4">
+                            <a href="/meetings/add" class="btn-floating yellow darken-1"><i
+                                    class="large mdi-social-people"></i></a>
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{#if isInRole 'edit-tasks'}}
+                <li class="container">
+                    <div class="row">
+                        <div class="col s8 btn-label"><a href="/tasks/add">
+                            <div>Task</div>
+                        </a></div>
+                        <div class="col s4">
+                            <a href="/tasks/add" class="btn-floating green"><i
+                                    class="large mdi-toggle-check-box"></i></a>
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{#if isInRole 'edit-hearings'}}
+                <li class="container">
+                    <div class="row">
+                        <div class="col s8 btn-label"><a href="/hearings/add">
+                            <div>Hearing</div>
+                        </a></div>
+                        <div class="col s4">
+                            <a href="/hearings/add" class="btn-floating orange"><i
+                                    class="large mdi-action-account-balance"></i></a>
+                        </div>
+                    </div>
+                </li>
+            {{/if}}
+            <li class="container">
+                <div class="row">
+                    <div class="col s8 btn-label">
+                        <div>Compose</div>
+                    </div>
+                    <div class="col s4">
+                        <a class="btn-floating blue"><i class="large mdi-maps-local-post-office"></i></a>
+                    </div>
+                </div>
+            </li>
+            <li class="container">
+                <div class="row">
+                    <div class="col s8 btn-label">
+                        <div>Document</div>
+                    </div>
+                    <div class="col s4">
+                        <a class="btn-floating cyan-green darken-4"><i class="large mdi-file-attachment"></i></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="lean-overlay"></div>
+</template>

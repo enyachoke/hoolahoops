@@ -3,11 +3,9 @@
         .ms-choice:focus {
             background-color: #FFFFFF;
         }
-
         .container .filter-field {
             width: 20% !important;
         }
-
         .icon-container {
             background: #777;
             color: white;
@@ -32,6 +30,7 @@
         .clear-all-filter:hover .icon-container{
             background: #4183c4;
         }
+
     </style>
     {{#if isInRole 'view-projects'}}
         {{> navigation}}
@@ -85,6 +84,7 @@
                 {{#ifEsIsSearching index="projects"}}
                     {{> spinner}}
                 {{else}}
+
                     <div class="clear-all-filter"><div class="icon-container"><i class="mdi-navigation-close"></i></div> <span>Clear all filters</span></div>
                     <br/>
 			<div class="header" style="font-weight:bold; text-align:center; font-size: 17px;">
@@ -111,4 +111,6 @@
             </div>
         </div>
     {{/if}}
+
+{{> addButton}}
 </template>

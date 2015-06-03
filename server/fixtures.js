@@ -1,3 +1,38 @@
+/* Fixture for team */
+if(!Teams.find().count()){
+	var team = { 'teamId' : Teams.insert({ 'name' : 'CloudVakil', 'userIds': []}) };	
+}
+else{
+	var team = { 'teamId' : Teams.findOne()._id };
+}
+
+// Initial setup for meteor user
+	Meteor.user = function(){
+		return Meteor.users.findOne();
+	}
+
+/* Create a default user */
+if ( Meteor.users.find().count() === 0 ) {
+	var user = _.extend({
+        username: 'adminuser123456789',
+        email: 'shashwat@dinasource.com',
+        password: 'adminuser987654321',
+        profile: {
+            first_name: 'Admin',
+            last_name: 'Admin',
+            company: 'CloudVakil',
+        }
+    }, team);
+	
+	//debugger;
+	var userId = Accounts.createUser(user);
+
+	Roles.addUsersToRoles(userId, getAllRolesTags());
+    log.info("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
+}
+
+debugger;
+
 // Default data to insert
 hearings = [
 	{
@@ -94,14 +129,6 @@ if ( Events.find({type : 'court_holidays'}).fetch().length ==0  ){
 	})
 }
 
-/* Fixture for team */
-if(!Teams.find().count()){
-	var team = { 'teamId' : Teams.insert({ 'name' : 'CloudVakil' }) };	
-}
-else{
-	var team = { 'teamId' : Teams.findOne()._id };
-}
-
 
 // DEFAULT DATA
 // TODO: Move all of this into a separate migrations
@@ -118,27 +145,9 @@ else{
 
 _.each(courts, function(court){
 	//if(!Clients.findOne(court._id))
-		Courts.upsert(court['_id'], {$set: _.extend(court, team)});
+	Courts.upsert(court['_id'], {$set: _.extend(court, team)});
 });
 
 //log.info("\n\n\n\n\n\nAdding admin user outside log: " + Meteor.users.find().count() + "\n\n\n\n\n\n");
 
-/* Create a default user */
-if ( Meteor.users.find().count() === 0 ) {
-	var user = _.extend({
-        username: 'adminuser123456789',
-        email: 'shashwat@dinasource.com',
-        password: 'adminuser987654321',
-        profile: {
-            first_name: 'Admin',
-            last_name: 'Admin',
-            company: 'CloudVakil',
-        }
-    }, team);
-	
-	//debugger;
-	var userId = Accounts.createUser(user);
-
-	Roles.addUsersToRoles(userId, getAllRolesTags());
-    log.info("\n\n\n\n\n\nAdding admin user\n\n\n\n\n\n");
-}
+delete Meteor.user

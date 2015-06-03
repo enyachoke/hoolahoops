@@ -255,3 +255,23 @@ Groups.after.update(function(id, doc){
 	if(doc.userIds)
 		Roles.addUsersToRoles(doc.userIds, doc.roles);
 });
+
+// Hooks for handling permissions of new users
+Meteor.users.after.insert(function(id, doc){
+	console.log("In new user hook");
+	var team = Teams.findOne(doc.teamId);
+	
+	// If current user not in his team's userIds, add him to the team
+	if(!(_.contains(team.userIds, doc._id))){
+		console.log("pushing");
+		team.userIds.push(doc._id);
+		Teams.update({_id: doc.teamId}, { $set: {userIds: team.userIds} });
+		console.log(team.userIds);
+	}
+
+	// If user is the first user for his team, make him admin by default
+	if(team.userIds.length == 1){
+		console.log("adding user to roles", team.userIds, getAllRolesTags());
+		Roles.addUsersToRoles(team.userIds, getAllRolesTags());
+	}
+});

@@ -33,6 +33,13 @@ Accounts.onCreateUser(function( options, user ){
       }  		
   	}
 
+    // When the user is signing up and creating a new firm as well
+    if ( options.profile.team_name ){
+      var teamId = Teams.insert({ 'name' : options.profile.team_name, 'userIds': []});
+      user.teamId = teamId;
+      delete options.profile.team_name;
+    }
+
     for (var key in options) {
       console.log(key, options[key]);
       user[key] = options[key];

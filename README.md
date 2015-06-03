@@ -1,5 +1,16 @@
 ##CloudVakil: Practice Management For Lawyers
 
+##Using Meteor shell
+Some of our hooks cause conflict with default meteor shell. For eg: we have a hook which inserts the current user's teamid into a project while inserting a project
+
+This can break trying to insert projects using meteor shell
+
+To fix this, please define a Meteor.user method while using the meteor shell so that it does not break. For eg you can copy paste this code into the meteor shell
+
+```Meteor.user = function(){
+	return Meteor.users.findOne();
+}```
+
 ##Leaving todo comments
   If you are unable to do something, leave todo comments in the format //TODO: Something to do here.
   These comments will be picked up by our parser to generate todos

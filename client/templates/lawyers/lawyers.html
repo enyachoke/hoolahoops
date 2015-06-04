@@ -41,14 +41,14 @@
 			<h4 class="teal form-header">Add a Lawyer</h4>
 			<div class="row form-container">
 
-			{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method" meteormethod="saveLawyerData" schema="userSchema" }}
+			{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method" meteormethod="saveLawyerData" schema="lawyerSchema" }}
 				<div class="row s12">
 					<div class="input-field col l8 m6 s12">
-						{{> afFieldInput name="name" type="text" id="name"}}
+						{{> afFieldInput name="profile.name" type="text" id="name"}}
 						<label for="name">Name</label>
 					</div>
 					<div class="input-field col l8 m6 s12">
-						{{> afFieldInput name="contactNumber" type="number" id="ph"}}
+						{{> afFieldInput name="profile.contactNumber" type="number" id="ph"}}
 						<label for="ph">Phone Number</label>
 					</div>
 					<div class="input-field col l8 m6 s12">
@@ -67,8 +67,8 @@
 
 <template name="rowLawyer">
 	<tr>
-		<td>{{name}}</td>
-		<td>{{contactNumber}}</td>
+		<td>{{profile.name}}</td>
+		<td>{{profile.contactNumber}}</td>
 		<td>{{username}}</td>
 		{{#if isInRole 'edit-lawyers'}}
 			<td><a class="waves-effect waves-light btn col s8" href='/lawyers/{{_id}}/edit'>Edit</a></td>
@@ -87,11 +87,11 @@
 			{{ # autoForm id="insertLawyerForm" class="col s12" doc=this type="method" meteormethod="saveLawyerData" schema="userSchema" }}
 				<div class="row s12">
 					<div class="input-field col l8 m6 s12">
-						{{> afFieldInput name="name" type="text" id="name"}}
+						{{> afFieldInput name="profile.name" type="text" id="name"}}
 						<label for="name" class="active">Name</label>
 					</div>
 					<div class="input-field col l8 m6 s12">
-						{{> afFieldInput name="contactNumber" type="number" id="ph"}}
+						{{> afFieldInput name="profile.contactNumber" type="number" id="ph"}}
 						<label for="ph" class="active">Phone Number</label>
 					</div>
 				</div>
@@ -117,7 +117,7 @@
 			</div>
 			<ul class="collection">
 		      <li class="collection-item">Email : {{username}}</li>
-		      <li class="collection-item">Phone Number : {{contactNumber}}</li>
+		      <li class="collection-item">Phone Number : {{profile.contactNumber}}</li>
 			</ul>
 			{{#if isInRole 'edit-lawyers'}}
 				<a class="delete waves-effect waves-light btn">Delete</a>

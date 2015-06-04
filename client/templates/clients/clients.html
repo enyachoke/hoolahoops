@@ -7,11 +7,11 @@
 				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="userSchema" }}
 					<div class = "row s12">
 						<div class="input-field col s8">
-							{{> afFieldInput name="name" type="text" id="name"}}
+							{{> afFieldInput name="profile.name" type="text" id="name"}}
 							<label for="name">Name</label>
 						</div>
 						<div class="input-field col s8">
-							{{> afFieldInput name="contactNumber" type="number" id="ph"}}
+							{{> afFieldInput name="profile.contactNumber" type="number" id="ph"}}
 							<label for="ph">Phone Number</label>
 						</div>
 						<div class="input-field col s8">
@@ -64,11 +64,11 @@
 				{{ # autoForm id="insertClientForm" class="col s12" doc=this type="method" meteormethod="saveClientData" schema="userSchema" }}
 					<div class = "row s12">
 						<div class="input-field col s8">
-							{{> afFieldInput name="name" type="text" id="name"}}
+							{{> afFieldInput name="profile.name" type="text" id="name"}}
 							<label for="name" class="active">Name</label>
 						</div>
 						<div class="input-field col s8">
-							{{> afFieldInput name="contactNumber" type="number" id="ph"}}
+							{{> afFieldInput name="profile.contactNumber" type="number" id="ph"}}
 							<label for="ph" class="active">Phone Number</label>
 						</div>
 						<!-- <div class="input-field col s8">
@@ -123,7 +123,7 @@
 <template name='clientRow'>
 	<tr>
 	<td>{{profile.name}}</td>
-	<td>{{contactNumber}}</td>
+	<td>{{profile.contactNumber}}</td>
 	<td>{{username}}</td>
 	{{#if isInRole 'edit-clients'}}
 		<td><a class="waves-effect waves-light btn col s8" href='/clients/{{_id}}/edit'>Edit</a></td>

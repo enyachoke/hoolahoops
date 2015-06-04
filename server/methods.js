@@ -303,20 +303,21 @@ Meteor.methods({
 		
 		return obj;
 	},
+	// You can set whatever fields here as long as it comes from the schema
 	// { email : , name : , type : }
 	'createNewUser' : function(obj){
 		debugger;
-		var password = 'tcl-'+obj.contactNumber; //Random.id()
-		if( obj && obj.username && obj.name ){
+		check(obj, Object);
+		check(obj.username, String);
+		check(obj.profile, Object);
+		var password = 'cloudvakil'+obj.contactNumber; //Random.id()
+		
+		if( obj && obj.username ){
 			var options = {
 				username : obj.username ,
-				email : obj.username,
-				profile : {
-					name : obj.name
-				},
+				profile : obj.profile,
 				password : password,
-				type : obj.type || null,
-				contactNumber : obj.contactNumber || null
+				type : obj.type || null
 			};
 			var userId = Accounts.createUser(options);
 			//Accounts.sendEnrollmentEmail(userId);

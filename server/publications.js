@@ -1,8 +1,10 @@
 Meteor.startup(function () {
+	// Gives access to user object and handles error
 	var publishWithRoles = function(namespace, func, roleString){
 		log.info("publishWithRoles: ","checking", roleString);
 		var roleString = roleString || namespace;
 		var role = 'view-' + roleString;
+		var user = Meteor.users.findOne(this.userId);
 		
 		Meteor.publish(namespace, function(){
 			//debugger;
@@ -20,79 +22,60 @@ Meteor.startup(function () {
 
     // Publish the collection. TODO: Only publish part of the collection to which the user has permissions. Also how do we limit data size in meteor? Should be handled with pagination.
 	publishWithRoles('clients', function() {
-		return Meteor.users.find({type : 'client'});
+		return Meteor.users.find({type : 'client', teamId: user.teamId});
 	});
 
 	publishWithRoles('projects', function() {
-		return Projects.find();
+		return Projects.find({teamId: user.teamId});
 	});
 
 	publishWithRoles('lawyers', function(){
-		return Meteor.users.find({type : 'lawyer'});
+		return Meteor.users.find({type : 'lawyer', teamId: user.teamId});
 	});
 
 	publishWithRoles('courts', function(){
-		return Courts.find();
+		return Courts.find({teamId: user.teamId});
 	});
 	
 	publishWithRoles('hearings', function(){
-		return Hearings.find();
+		return Hearings.find({teamId: user.teamId}});
 	});
 
 	publishWithRoles('events', function(){
-		return Events.find();
+		return Events.find({teamId: user.teamId});
 	});
 
 	publishWithRoles('tasks', function(){
-		return Tasks.find();
+		return Tasks.find({teamId: user.teamId});
 	});
 
 	publishWithRoles('meetings', function(){
-		return Meetings.find();
+		return Meetings.find({teamId: user.teamId});
 	});
 
-	publishWithRoles('allJobs', function(){
-		return myJobs.find();
-	});
+	// TODO: Is this needed? Or should it be removed?
+	// publishWithRoles('allJobs', function(){
+	// 	return myJobs.find({teamId: user.teamId});
+	// });
 	
 	publishWithRoles('timesheets', function(){
-		return Timesheets.find();
+		return Timesheets.find({teamId: user.teamId});
 	});
 	
-	publishWithRoles('events1', function(){
-		return Events1.find();
-	});
-	
-	publishWithRoles('tasks', function(){
-		return Tasks.find();
-	});
-
 	publishWithRoles('bills', function(){
-		return Bills.find();
-	});
-
-	publishWithRoles('timesheets', function(){
-		return Timesheets.find();
-	});
-	
-	publishWithRoles('events1', function(){
-		return Events1.find();
-	});
-
-	publishWithRoles('bills', function(){
-		return Bills.find();
+		return Bills.find({teamId: user.teamId});
 	});
 
 	publishWithRoles('labels', function(){
-		return Labels.find();
+		return Labels.find({teamId: user.teamId});
 	});
 
 	publishWithRoles('orders', function(){
-		return Orders.find();
+		return Orders.find({teamId: user.teamId});
 	});
 
 	publishWithRoles('groups', function(){
-		return Groups.find();
+		return Groups.find({teamId: user.teamId});
 	});
 
 	// TODO: test if this can be moved to publishWithRoles
@@ -100,8 +83,10 @@ Meteor.startup(function () {
 	  return Meteor.roles.find({})
 	});
 
+	// TODO: Move this to publish with roles
 	Meteor.publish('communications', function(){
-		return Communications.find();
+		var user = Meteor.users.findOne(this.userId);
+		return Communications.find({teamId: user.teamId}});
 	})
 
 	

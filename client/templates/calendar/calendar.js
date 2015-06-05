@@ -1,9 +1,13 @@
 var hearings, meetings, task_deadlines,court;	
 
 Template.calendar.rendered= function(){
-
+    var template = this;
+    var calendar = $(template.find("#calendar"));
+    window.onpopstate = function(event){
+        if(["agendaWeek", "agendaDay"].indexOf(calendar.fullCalendar('getView').name)>=0)
+            history.forward();
+    }
 	hearings=[], meetings=[], task_deadlines=[];
-	
 	calEvents = Events.find({userIds : Meteor.userId()});
 	debugger;
 	calEvents.forEach(function(e){
@@ -24,7 +28,6 @@ Template.calendar.rendered= function(){
 				});
 			
 			break;
-			
 		case 'tasks'  : 
 			if(e.date instanceof Date){
 				task = Tasks.findOne({_id : e.taskId});
@@ -66,17 +69,21 @@ Template.calendar.rendered= function(){
 				end : end || null
 			});
 			break;
-				
 		}
-		
-		
 	});
 
-	$('#calendar').fullCalendar({
+    var blockModeCheckbox = $(template.find("#blockMode"));
+
+	calendar.fullCalendar({
 		dayClick: function(date, allDay, jsEvent, view) {
-			debugger;
-			Meteor.call('toggle_block_days',date);
-			$(this).toggleClass( 'blocked' )
+            if(blockModeCheckbox.is(":checked")){
+                Meteor.call('toggle_block_days', date);
+                $(this).toggleClass('blocked');
+            }
+            else{
+                calendar.fullCalendar('changeView', 'agendaDay');
+                calendar.fullCalendar('gotoDate', date);
+            }
     	},
     	dayRender : function( date, cell ) { 
     		//todo : optimise this !!!!! ASAPPPPP
@@ -111,19 +118,16 @@ Template.calendar.rendered= function(){
 	    }
 	});
 	
-	$('#calendar').fullCalendar('removeEventSource', hearings);
-	$('#calendar').fullCalendar('removeEventSource', meetings);
-	$('#calendar').fullCalendar('removeEventSource', task_deadlines);
-	
-	$('#calendar').fullCalendar( 'addEventSource', hearings);
-	$('#calendar').fullCalendar( 'addEventSource', meetings);
-	$('#calendar').fullCalendar( 'addEventSource', task_deadlines);
+	calendar.fullCalendar('removeEventSource', hearings);
+	calendar.fullCalendar('removeEventSource', meetings);
+	calendar.fullCalendar('removeEventSource', task_deadlines);
+
+	calendar.fullCalendar( 'addEventSource', hearings);
+	calendar.fullCalendar( 'addEventSource', meetings);
+	calendar.fullCalendar( 'addEventSource', task_deadlines);
 
 	// put in css
 	$('.chk-complete').css('position','static');
-	
-	
-
 }
 //avoid id 
 Template.calendar.events({
@@ -145,39 +149,52 @@ Template.calendar.events({
 		else
 		{$('#calendar').fullCalendar( 'removeEventSource', task_deadlines);}
 	},
+    'change #blockMode' : function(event, template){
+        var calendar = $(template.find("#calendar"));
+        var taskCheckBox = $(template.find("#tasks"));
+        var hearingCheckBox = $(template.find("#hearings"));
+        var meetingCheckBox = $(template.find("#meetings"));
+        if(event.target.checked){
+            calendar.fullCalendar('removeEventSource', task_deadlines);
+            calendar.fullCalendar('removeEventSource', meetings);
+            calendar.fullCalendar('removeEventSource', hearings);
+            $([taskCheckBox[0], hearingCheckBox[0], meetingCheckBox[0]]).prop('disabled', true);
+        }
+        else{
+            if(taskCheckBox.is(":checked"))
+                calendar.fullCalendar('addEventSource', task_deadlines);
+            if(hearingCheckBox.is(":checked"))
+                calendar.fullCalendar('addEventSource', hearings);
+            if(meetingCheckBox.is(":checked"))
+                calendar.fullCalendar('addEventSource', meetings);
+            $([taskCheckBox[0], hearingCheckBox[0], meetingCheckBox[0]]).prop('disabled', false);
+        }
+    },
 	'click #modal_hearing' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();
-		// ;
 		Router.go('addHearing');
 	},
 	'click #modal_meeting' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();
-		// ;
 		Router.go('addMeeting');
 	},
 	'click #modal_task' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();
-		 ;
 		Router.go('addTask');
-	}
-})
-
-Template.calendar.events({
-	'change .chk-complete' : function(e){
-		if ( event.target.checked ) {
-			$(event.target.parentElement).css('text-decoration','line-through')	;
-			Tasks.update(event.target.id, {$set: {completed: true}});
-		}else{
-			$(event.target.parentElement).css('text-decoration','none');	
-			Tasks.update(event.target.id, {$set: {completed: false}});		
-		}
-	}
+	},
+    'change .chk-complete' : function(e){
+        if ( event.target.checked ) {
+            $(event.target.parentElement).css('text-decoration','line-through')	;
+            Tasks.update(event.target.id, {$set: {completed: true}});
+        }else{
+            $(event.target.parentElement).css('text-decoration','none');
+            Tasks.update(event.target.id, {$set: {completed: false}});
+        }
+    }
 });
-
-
 
 
 

@@ -19,15 +19,21 @@ Template.projects.helpers({
     },
     'types': function () {
         return projectSchema._schema.type.allowedValues;
+    },
+    'clearFilterVisible': function (event, template) {
+        return Session.get("lawyerVal") || Session.get("clientVal") || Session.get("labelVal") ||
+                Session.get("courtVal") || Session.get("typeVal");
     }
 });
 
 Template.projects.events({
     'change #lawyer-select': function (e) {
+        Session.set("lawyerVal", $(e.target).val()?true:false);
         EasySearch.changeProperty('projects', 'lawyers', $(e.target).val());
         EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
     },
     'change #client-select': function (e) {
+        Session.set("clientVal", $(e.target).val()?true:false);
         EasySearch.changeProperty('projects', 'clients', $(e.target).val());
         EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
     },
@@ -35,17 +41,20 @@ Template.projects.events({
         var value = $(e.target).val();
         if (value == "")
             $(template.find("#court-select")).multipleSelect('uncheckAll');
+        Session.set("courtVal", $(e.target).val()?true:false);
         EasySearch.changeProperty('projects', 'courtId', value ? value[0] : false);
         EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
     },
     'change #type-select': function (e, template) {
         var value = $(e.target).val();
-        if (value)
+        if (value == "")
             $(template.find("#type-select")).multipleSelect('uncheckAll');
+        Session.set("typeVal", $(e.target).val()?true:false);
         EasySearch.changeProperty('projects', 'type', value ? value[0] : false);
-        EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
+        EasySearch.getComponentInstance({index: 'projects'}).triggerSearch  ();
     },
     'change #label-select': function (e) {
+        Session.set("labelVal", $(e.target).val()?true:false);
         EasySearch.changeProperty('projects', 'labels', $(e.target).val());
         EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();
     },

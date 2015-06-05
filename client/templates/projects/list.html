@@ -23,6 +23,7 @@
         }
         .clear-all-filter{
             cursor: pointer;
+            display: inline-block;
         }
         .clear-all-filter:hover span{
             color: #4183c4;
@@ -85,22 +86,33 @@
                     {{> spinner}}
                 {{else}}
 
-                    <div class="clear-all-filter"><div class="icon-container"><i class="mdi-navigation-close"></i></div> <span>Clear all filters</span></div>
-                    <br/>
-			<div class="header" style="font-weight:bold; text-align:center; font-size: 17px;">
-				<div class="row">
-					<div class="col s12 m4">
-						Title
-					</div>
-					<div class="col s12 m3">
-						Client
-					</div>
-					<div class="col s12 m3">
-						Lawyer
-					</div>
-				</div>
-				<hr>
-			</div>
+                    {{#if clearFilterVisible}}
+                        <div class="clear-all-filter">
+                            <div class="icon-container">
+                                <i class="mdi-navigation-close"></i>
+                            </div>
+                            <span>Clear all filters</span>
+                        </div>
+                    {{/if}}
+                    <table class="responsive-table projects-table">
+                        <thead>
+                        <tr>
+                            <th>Unique Id</th>
+                            <th>Title</th>
+                            <th>Client</th>
+                            <th>Lawyer</th>
+                            <!-- <th>Court</th> -->
+                            <!-- <th>Last Hearing</th> -->
+                            <!-- <th>Next Hearing</th> -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {{#esEach index="projects"}}
+                                {{> projectRow}}
+                            {{/esEach}}
+                        </tbody>
+                    </table>
+                {{/ifEsIsSearching}}
 
 			{{#esEach index="projects"}}
 					{{> projectRow}}

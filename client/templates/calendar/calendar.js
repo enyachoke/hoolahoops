@@ -1,6 +1,7 @@
 var hearings, meetings, task_deadlines,court;	
 
 Template.calendar.rendered= function(){
+    var template = this;
 	hearings=[], meetings=[], task_deadlines=[];
 	calEvents = Events.find({userIds : Meteor.userId()});
 	debugger;
@@ -66,11 +67,12 @@ Template.calendar.rendered= function(){
 		}
 	});
 
-	$('#calendar').fullCalendar({
+    var calendar = $(template.find("#calendar"));
+
+	calendar.fullCalendar({
 		dayClick: function(date, allDay, jsEvent, view) {
-			debugger;
-			Meteor.call('toggle_block_days',date);
-			$(this).toggleClass( 'blocked' )
+			calendar.fullCalendar('changeView', 'agendaDay');
+            calendar.fullCalendar('gotoDate', date);
     	},
     	dayRender : function( date, cell ) { 
     		//todo : optimise this !!!!! ASAPPPPP
@@ -105,13 +107,13 @@ Template.calendar.rendered= function(){
 	    }
 	});
 	
-	$('#calendar').fullCalendar('removeEventSource', hearings);
-	$('#calendar').fullCalendar('removeEventSource', meetings);
-	$('#calendar').fullCalendar('removeEventSource', task_deadlines);
+	calendar.fullCalendar('removeEventSource', hearings);
+	calendar.fullCalendar('removeEventSource', meetings);
+	calendar.fullCalendar('removeEventSource', task_deadlines);
 	
-	$('#calendar').fullCalendar( 'addEventSource', hearings);
-	$('#calendar').fullCalendar( 'addEventSource', meetings);
-	$('#calendar').fullCalendar( 'addEventSource', task_deadlines);
+	calendar.fullCalendar( 'addEventSource', hearings);
+	calendar.fullCalendar( 'addEventSource', meetings);
+	calendar.fullCalendar( 'addEventSource', task_deadlines);
 
 	// put in css
 	$('.chk-complete').css('position','static');

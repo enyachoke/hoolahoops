@@ -40,7 +40,7 @@ Template.projects.events({
     },
     'change #type-select': function (e, template) {
         var value = $(e.target).val();
-        if (value)
+        if (value == "")
             $(template.find("#type-select")).multipleSelect('uncheckAll');
         EasySearch.changeProperty('projects', 'type', value ? value[0] : false);
         EasySearch.getComponentInstance({index: 'projects'}).triggerSearch();

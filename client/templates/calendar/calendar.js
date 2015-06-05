@@ -68,11 +68,18 @@ Template.calendar.rendered= function(){
 	});
 
     var calendar = $(template.find("#calendar"));
+    var blockModeCheckbox = $(template.find("#blockMode"));
 
 	calendar.fullCalendar({
 		dayClick: function(date, allDay, jsEvent, view) {
-			calendar.fullCalendar('changeView', 'agendaDay');
-            calendar.fullCalendar('gotoDate', date);
+            if(blockModeCheckbox.is(":checked")){
+                Meteor.call('toggle_block_days', date);
+                $(this).toggleClass('blocked');
+            }
+            else{
+                calendar.fullCalendar('changeView', 'agendaDay');
+                calendar.fullCalendar('gotoDate', date);
+            }
     	},
     	dayRender : function( date, cell ) { 
     		//todo : optimise this !!!!! ASAPPPPP
@@ -110,7 +117,7 @@ Template.calendar.rendered= function(){
 	calendar.fullCalendar('removeEventSource', hearings);
 	calendar.fullCalendar('removeEventSource', meetings);
 	calendar.fullCalendar('removeEventSource', task_deadlines);
-	
+
 	calendar.fullCalendar( 'addEventSource', hearings);
 	calendar.fullCalendar( 'addEventSource', meetings);
 	calendar.fullCalendar( 'addEventSource', task_deadlines);
@@ -138,6 +145,27 @@ Template.calendar.events({
 		else
 		{$('#calendar').fullCalendar( 'removeEventSource', task_deadlines);}
 	},
+    'change #blockMode' : function(event, template){
+        var calendar = $(template.find("#calendar"));
+        var taskCheckBox = $(template.find("#tasks"));
+        var hearingCheckBox = $(template.find("#hearings"));
+        var meetingCheckBox = $(template.find("#meetings"));
+        if(event.target.checked){
+            calendar.fullCalendar('removeEventSource', task_deadlines);
+            calendar.fullCalendar('removeEventSource', meetings);
+            calendar.fullCalendar('removeEventSource', hearings);
+            $([taskCheckBox[0], hearingCheckBox[0], meetingCheckBox[0]]).prop('disabled', true);
+        }
+        else{
+            if(taskCheckBox.is(":checked"))
+                calendar.fullCalendar('addEventSource', task_deadlines);
+            if(hearingCheckBox.is(":checked"))
+                calendar.fullCalendar('addEventSource', hearings);
+            if(meetingCheckBox.is(":checked"))
+                calendar.fullCalendar('addEventSource', meetings);
+            $([taskCheckBox[0], hearingCheckBox[0], meetingCheckBox[0]]).prop('disabled', false);
+        }
+    },
 	'click #modal_hearing' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();

@@ -2,6 +2,11 @@ var hearings, meetings, task_deadlines,court;
 
 Template.calendar.rendered= function(){
     var template = this;
+    var calendar = $(template.find("#calendar"));
+    window.onpopstate = function(event){
+        if(["agendaWeek", "agendaDay"].indexOf(calendar.fullCalendar('getView').name)>=0)
+            history.forward();
+    }
 	hearings=[], meetings=[], task_deadlines=[];
 	calEvents = Events.find({userIds : Meteor.userId()});
 	debugger;
@@ -67,7 +72,6 @@ Template.calendar.rendered= function(){
 		}
 	});
 
-    var calendar = $(template.find("#calendar"));
     var blockModeCheckbox = $(template.find("#blockMode"));
 
 	calendar.fullCalendar({
@@ -190,8 +194,7 @@ Template.calendar.events({
             Tasks.update(event.target.id, {$set: {completed: false}});
         }
     }
-})
-
+});
 
 
 

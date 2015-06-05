@@ -25,6 +25,7 @@
         }
         .clear-all-filter{
             cursor: pointer;
+            display: inline-block;
         }
         .clear-all-filter:hover span{
             color: #4183c4;
@@ -86,7 +87,12 @@
                     {{> spinner}}
                 {{else}}
                     {{#if clearFilterVisible}}
-                        <div class="clear-all-filter"><div class="icon-container"><i class="mdi-navigation-close"></i></div> <span>Clear all filters</span></div>
+                        <div class="clear-all-filter">
+                            <div class="icon-container">
+                                <i class="mdi-navigation-close"></i>
+                            </div>
+                            <span>Clear all filters</span>
+                        </div>
                     {{/if}}
                     <table class="responsive-table projects-table">
                         <thead>

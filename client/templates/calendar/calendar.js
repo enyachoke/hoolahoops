@@ -1,9 +1,7 @@
 var hearings, meetings, task_deadlines,court;	
 
 Template.calendar.rendered= function(){
-
 	hearings=[], meetings=[], task_deadlines=[];
-	
 	calEvents = Events.find({userIds : Meteor.userId()});
 	debugger;
 	calEvents.forEach(function(e){
@@ -24,7 +22,6 @@ Template.calendar.rendered= function(){
 				});
 			
 			break;
-			
 		case 'tasks'  : 
 			if(e.date instanceof Date){
 				task = Tasks.findOne({_id : e.taskId});
@@ -66,10 +63,7 @@ Template.calendar.rendered= function(){
 				end : end || null
 			});
 			break;
-				
 		}
-		
-		
 	});
 
 	$('#calendar').fullCalendar({
@@ -121,9 +115,6 @@ Template.calendar.rendered= function(){
 
 	// put in css
 	$('.chk-complete').css('position','static');
-	
-	
-
 }
 //avoid id 
 Template.calendar.events({
@@ -148,35 +139,28 @@ Template.calendar.events({
 	'click #modal_hearing' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();
-		// ;
 		Router.go('addHearing');
 	},
 	'click #modal_meeting' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();
-		// ;
 		Router.go('addMeeting');
 	},
 	'click #modal_task' : function(e){
 		e.preventDefault();
 		$('#modal1').closeModal();
-		 ;
 		Router.go('addTask');
-	}
+	},
+    'change .chk-complete' : function(e){
+        if ( event.target.checked ) {
+            $(event.target.parentElement).css('text-decoration','line-through')	;
+            Tasks.update(event.target.id, {$set: {completed: true}});
+        }else{
+            $(event.target.parentElement).css('text-decoration','none');
+            Tasks.update(event.target.id, {$set: {completed: false}});
+        }
+    }
 })
-
-Template.calendar.events({
-	'change .chk-complete' : function(e){
-		if ( event.target.checked ) {
-			$(event.target.parentElement).css('text-decoration','line-through')	;
-			Tasks.update(event.target.id, {$set: {completed: true}});
-		}else{
-			$(event.target.parentElement).css('text-decoration','none');	
-			Tasks.update(event.target.id, {$set: {completed: false}});		
-		}
-	}
-});
-
 
 
 

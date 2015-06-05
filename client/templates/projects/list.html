@@ -85,7 +85,9 @@
                 {{#ifEsIsSearching index="projects"}}
                     {{> spinner}}
                 {{else}}
-                    <div class="clear-all-filter"><div class="icon-container"><i class="mdi-navigation-close"></i></div> <span>Clear all filters</span></div>
+                    {{#if clearFilterVisible}}
+                        <div class="clear-all-filter"><div class="icon-container"><i class="mdi-navigation-close"></i></div> <span>Clear all filters</span></div>
+                    {{/if}}
                     <table class="responsive-table projects-table">
                         <thead>
                         <tr>

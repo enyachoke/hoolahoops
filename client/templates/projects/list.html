@@ -94,25 +94,21 @@
                             <span>Clear all filters</span>
                         </div>
                     {{/if}}
-                    <table class="responsive-table projects-table">
-                        <thead>
-                        <tr>
-                            <th>Unique Id</th>
-                            <th>Title</th>
-                            <th>Client</th>
-                            <th>Lawyer</th>
-                            <!-- <th>Court</th> -->
-                            <!-- <th>Last Hearing</th> -->
-                            <!-- <th>Next Hearing</th> -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {{#esEach index="projects"}}
-                                {{> projectRow}}
-                            {{/esEach}}
-                        </tbody>
-                    </table>
-                {{/ifEsIsSearching}}
+                    <br/>
+			<div class="header" style="font-weight:bold; text-align:center; font-size: 17px;">
+				<div class="row">
+					<div class="col s12 m4">
+						Title
+					</div>
+					<div class="col s12 m3">
+						Client
+					</div>
+					<div class="col s12 m3">
+						Lawyer
+					</div>
+				</div>
+				<hr>
+			</div>
 
 			{{#esEach index="projects"}}
 					{{> projectRow}}

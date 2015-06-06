@@ -1,3 +1,5 @@
+var infiScrollLock = false;
+
 Template.projects.helpers({
     'projects': function() {
       return Projects.find();
@@ -17,7 +19,7 @@ Template.projects.helpers({
 });
 
 Template.projects.rendered = function() {
-    Session.setDefault('limit', 10);
+    Session.setDefault('limit', testLimit);
     var instance = EasySearch.getComponentInstance(
        { id : 'search', index : 'projects' }
       );
@@ -57,5 +59,22 @@ Template.projects.events({
       EasySearch.changeLimit('projects', Session.get('limit'));
       instance.paginate(1);
       instance.triggerSearch();
+  }
+})
+
+$(document).on("scroll", function (e) {
+  if ($(document).height() - $(document).scrollTop() - $(window).height() < 50 && !infiScrollLock){
+    infiScrollLock = true;
+    var instance = EasySearch.getComponentInstance(
+       { id : 'search', index : 'projects' }
+      );
+    incrementLimit();
+      //instance.currentLimit(20);
+    //  EasySearch.changeProperty('projects', 'filteredCategory', $(e.target).val());
+      console.log(Session.get('limit'));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+      EasySearch.changeLimit('projects', Session.get('limit'));
+      instance.paginate(1);
+      instance.triggerSearch();
+      infiScrollLock = false;
   }
 })

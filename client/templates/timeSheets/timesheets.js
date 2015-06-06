@@ -1,7 +1,8 @@
+var testLimit = 4;
 EasySearch.createSearchIndex('projects', {
   'collection': Projects, // instanceof Meteor.Collection
   'field': ['name'], // array of fields to be searchable
-  'limit': 10,
+  'limit': testLimit,
   'use' : 'mongo-db',
   'props': {
     'filteredCategory': 'All',
@@ -30,13 +31,13 @@ EasySearch.createSearchIndex('projects', {
 });
 
 Template.timesheets.created = function() {
-	Session.setDefault('limit', 10);
+	Session.setDefault('limit', testLimit);
  	Deps.autorun(function(){
 		Meteor.subscribe("allusers");
 	});
 };
 Template.projects.rendered = function() {
-    Session.setDefault('limit', 10);     
+    Session.setDefault('limit', testLimit);     
     var instance = EasySearch.getComponentInstance(
        { id : 'search', index : 'projects' }
       );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
@@ -46,7 +47,7 @@ Template.projects.rendered = function() {
 };
 
 incrementLimit = function() {
-  newLimit = Session.get('limit') + 10;
+  newLimit = Session.get('limit') + testLimit;
   Session.set('limit', newLimit);
 }
 

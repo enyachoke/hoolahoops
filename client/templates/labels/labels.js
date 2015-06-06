@@ -1,2 +1,2 @@
-Template.labels.rendered = function(){
-}
+// Template.labels.rendered = function(){
+// }

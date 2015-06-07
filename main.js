@@ -2,9 +2,9 @@
 
 // TODO: Try moving this into meteor
 renderDefaultAutocomplete = function(x) {
-  return Blaze.toHTMLWithData(Template.autocomplete, x)
+  return Blaze.toHTMLWithData(Template.autocomplete, x);
 }
 
 renderUserAutocomplete = function(x) {
-  return Blaze.toHTMLWithData(Template.usersAutocomplete, x)
+  return Blaze.toHTMLWithData(Template.usersAutocomplete, x);
 }

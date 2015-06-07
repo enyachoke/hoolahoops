@@ -1,36 +1,41 @@
 <template name="projectRow">
-
-<tr >
-	<!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
-	<td> {{_id}}</td>
-	<td>{{name}}</td>
-	<td>
-	{{#each clients}}
-		<a href='/clients/{{_id}}'>{{name}}</a>
-	{{/each}}
-	</td>
-	<td>
-	{{#each lawyers}}
-		<a href='/lawyers/{{_id}}'>{{name}}</a>
-	{{/each}}
-	</td>
-	<!-- <td>
-	{{#with court}}
-		{{name}}
-	{{/with}}
-	</td> -->
-	<!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
-	<!-- <td>{{next_hearing}}</td> -->
-	<td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
-	{{#if isInRole 'edit-projects'}}
-		<td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
-	{{/if}}
-</tr>
-<tr class="label-row">
-	<td>
-		{{#each labels}}
-			{{> colorElement}}
-		{{/each}}
-	</td>
-</tr>
+    <style>
+        .clients, .labels, .lawyers {
+            cursor: pointer;
+            color: #039be5;
+        }
+    </style>
+    <tr>
+        <!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
+        <td>{{_id}}</td>
+        <td>{{name}}</td>
+        <td>
+            {{#each clients}}
+                <span class="clients" id="{{_id}}">{{name}}</span>
+            {{/each}}
+        </td>
+        <td>
+            {{#each lawyers}}
+                <span class="lawyers" id="{{_id}}">{{name}}</span>
+            {{/each}}
+        </td>
+        <!-- <td>
+	    {{#with court}}
+            {{name}}
+        {{/with}}
+	    </td> -->
+        <!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
+        <!-- <td>{{next_hearing}}</td> -->
+        <td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
+        {{#if isInRole 'edit-projects'}}
+            <td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
+        {{/if}}
+    </tr>
+    <tr class="label-row">
+        {{#each labels}}
+            <span class="labels ancd" id="{{_id}}">
+                {{>colorElement}}
+            </span>
+        {{/each}}
+    </tr>
 </template>

@@ -4,3 +4,7 @@
 renderDefaultAutocomplete = function(x) {
   return Blaze.toHTMLWithData(Template.autocomplete, x)
 }
+
+renderUserAutocomplete = function(x) {
+  return Blaze.toHTMLWithData(Template.usersAutocomplete, x)
+}

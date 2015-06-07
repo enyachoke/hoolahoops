@@ -1,0 +1,20 @@
+{
+  "mongodb" : {
+    "host" : "localhost",
+    "port" : 27017,
+    "username" : false,
+    "password" : false,
+    "db" : "cloudvakil"
+  },
+  "s3": {
+    "key" : "AKIAIOICZL7XWGKR2RKA",
+    "secret"  : "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",
+    "bucket"  : "cloudvakiltesting",
+    "destination" : "/",
+    "encrypt" : true,
+    "region"  : "us-standard"
+  },
+  "cron"  : {
+    "crontab": "0 0 * * *"
+  }
+}

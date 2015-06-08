@@ -43,7 +43,7 @@
                         <label>Lawyer Names:</label>
                         <select multiple="multiple" id="lawyer-select">
                             {{#each lawyers}}
-                                <option value="{{_id}}">{{name}}</option>
+                                <option value="{{_id}}">{{profile.name}}</option>
                             {{/each}}
                         </select>
                     </div>
@@ -51,7 +51,7 @@
                         <label>Client Names:</label>
                         <select multiple="multiple" id="client-select">
                             {{#each clients}}
-                                <option value="{{_id}}">{{name}}</option>
+                                <option value="{{_id}}">{{profile.name}}</option>
                             {{/each}}
                         </select>
                     </div>

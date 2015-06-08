@@ -35,7 +35,7 @@
 
                             <p>
                                 {{#each clients}}
-                                    <a href='/clients/{{_id}}'>{{name}}</a>
+                                    <a href='/clients/{{_id}}'>{{profile.name}}</a>
                                 {{/each}}
                             </p>
                         </div>
@@ -43,7 +43,7 @@
                             <h6 class="grey-text">LAWYER</h6>
 
                             <p>{{#each lawyers}}
-                                <a href='/lawyers/{{_id}}'>{{name}}</a>
+                                <a href='/lawyers/{{_id}}'>{{profile.name}}</a>
                             {{/each}}</p>
                         </div>
                     </div>

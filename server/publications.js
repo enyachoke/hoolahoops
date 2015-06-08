@@ -78,6 +78,14 @@ Meteor.startup(function () {
 		return Groups.find({teamId: user.teamId});
 	});
 
+	// TODO: Move this into publishWithRoles
+	Meteor.publish('allusers', function() {
+		var user = Meteor.users.findOne(this.userId);
+		return Meteor.users.find({teamId: user.teamId}, {fields: {
+			_id: 1, username: 1, profile: 1, type: 1, emails: 1, teamId: 1
+		}});
+	});
+
 	// TODO: test if this can be moved to publishWithRoles
 	Meteor.publish(null, function (){ 
 	  return Meteor.roles.find({})

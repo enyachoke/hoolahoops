@@ -1,7 +1,10 @@
+debugger;
+
 Template.projects.helpers({
-    'projects': function () {
-        return Projects.find();
-    },
+    // 'projects': function () {
+    //     debugger;
+    //     return Projects.find();
+    // },
     'orders': function () {
         return Orders.find();
     },

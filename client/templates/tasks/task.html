@@ -58,7 +58,7 @@
 		<div class="row form-container">
 		{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
 			<div class="input-field col l8 m6 s12">
-				{{> afFieldInput  type='xautocomplete' value=caseId formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
+				{{> afQuickField name='caseId'}}
 				<label for="task__case" class="active">Matter</label>
 
 			</div>
@@ -90,38 +90,5 @@
 </template>
 
 <template name="editTask">
-	{{> navigation}}
-	<div class="container card-panel add-project">
-		<h4 class="teal form-header">Edit a Task</h4>
-		<div class="row form-container">
-		{{ # autoForm id="insertTaskForm" class="col s12" doc=this type="method" meteormethod="saveTaskData" schema="taskSchema" }}
-			<div class="input-field col l8 m6 s12">
-				{{> afFieldInput  type='xautocomplete' formid="insertTaskForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="task_case"}}
-				<label for="task__case" class="active">Matter</label>
-
-			</div>
-			<div class="input-field col l4 m6 s12">
-				{{> afFieldInput name="date" class="datepickerwa" type="date" id="deadine"}}
-				<label for="deadine" class="active">Deadline</label>
-			</div>
-			<div class="input-field col s12">
-				{{> afFieldInput name="desc" type="textarea" class="materialize-textarea" id="desc"}}
-				<label for="desc" class="active">Description</label>
-			</div>
-			<div class="input-field col s12 ">
-						{{> afFieldInput  type='xautocomplete' formid="insertProjectForm" name='userIds' call='lawyers' xmultiple=true fieldref='name' reference = 'Users' renderfunction='renderDefaultAutocomplete' id="project__lawyer"}}
-						<label for="project__laywer" class="active">Lawyers</label>
-			</div>
-			<div class="row m12" style="margin-left:12px;">
-					<h5>Reminders</h5>
-					<div>
-						{{> afQuickField name='reminders' template='series' label=false}}
-					</div>
-				</div>
-
-		<button class="waves-effect waves-light btn" type="submit">Insert</button>
-		<a class="waves-effect waves-teal btn-flat" href="/projects/{{project._id}}" style="position: absolute;">Cancel</a>
-		{{/autoForm}}
-		</div>
-	</div>
+	{{> addTask}}
 </template>

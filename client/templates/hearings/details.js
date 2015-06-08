@@ -16,7 +16,7 @@ Template.hearingDetails.helpers({
 	},
 	'attorney' : function(){
 		 ;
-		return Meteor.users.findOne({_id: this.lawyerId}).name;
+		return Meteor.users.findOne({_id: this.lawyerId});
 	},
 	'formatted_date' : function(){
 		debugger;

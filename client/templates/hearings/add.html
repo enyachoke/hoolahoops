@@ -7,7 +7,7 @@
 			<div class="row form-container">
 				{{ # autoForm id="insertHearingForm" class="col s12" doc=this type="method" meteormethod="saveHearingData" schema="hearingSchema" }}
 					<div class="input-field col l8 m6 s12">
-						{{> afFieldInput  type='xautocomplete' value=caseId formid="insertHearingForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="hearing_case"}}
+						{{> afQuickField name='caseId'}}
 						<label for="hearing__title" class="active">Title</label>
 
 					</div>

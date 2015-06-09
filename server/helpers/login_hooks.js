@@ -34,6 +34,8 @@ Accounts.onCreateUser(function( options, user ){
       }  		
   	}
 
+    debugger;
+
     // Set username as email address
     if(user.emails)
       user.username = user.emails[0].address;

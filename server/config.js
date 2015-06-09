@@ -8,6 +8,8 @@ Meteor.startup(function() {
     // Start the job queue
     myJobs.startJobs();
 
+    Accounts.config({sendVerificationEmail: true});
+
     Accounts.loginServiceConfiguration.remove({
 	  service: "google"
 	});

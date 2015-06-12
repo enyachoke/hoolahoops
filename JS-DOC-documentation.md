@@ -1,3 +1,9 @@
+What it does:
+parses jsdoc comments and creates a meteor app for documentation.
+the config. file for this is 'jsdoc.json'
+it will create the meteor app in ../doc-app  (doc-app folder on level up the project directory)
+
+
 Setup  :
 
 	npm install -g meteor-jsdoc
@@ -37,7 +43,7 @@ Adding documentation :
 
 		  Markdown supported in @summary, @example & description in @param.
 
-	simpler example : 
+	simple example : 
 
 	/**
 	 * @summary Solves equations of the form a * x = b
@@ -93,16 +99,14 @@ Adding documentation :
 	}
 
 
-	when building the package will parse the comments to generate the app.
+	note:when building the package will parse the comments to generate the app.
 
 	run meteor-jsdoc build 
 
 
 
 *************************************
-check this for more package info: https://www.npmjs.com/package/meteor-jsdoc
-
-more info on using jsdoc : http://usejsdoc.org/
+more package info: https://www.npmjs.com/package/meteor-jsdoc
 
 
 

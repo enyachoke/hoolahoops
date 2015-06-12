@@ -315,6 +315,20 @@ Meteor.methods({
     *@param {Number} options.contactNumber contact number.
 	*@param {String} options.type type.
 	*@returns {String} userId id of created user
+	*@example
+	* var userDetails= {
+	*	name 		: 'snape',
+	*	username	: 'meh23',
+	*	contactNumber: 9868230312,
+	* 	type 		:  'some type'
+	*};
+	*
+	*Meteor.call('createNewUser',userDetails},function(err,userId){
+	*	if(!err)
+	* 		console.log(userId);
+	*})
+	*
+	*
 	*/
 	'createNewUser' : function(obj){
 		debugger;

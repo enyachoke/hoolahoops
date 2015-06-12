@@ -128,3 +128,4 @@ more package info: https://www.npmjs.com/package/meteor-jsdoc
 
 
 
+FIXME : examples not indented  :/

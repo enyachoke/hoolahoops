@@ -6,8 +6,3 @@ myJobs = JobCollection('myJobQueue');
 //     return (userId ? true : false);
 //   }
 // });
-DatabaseBackup.now({async: true});
-
-setTimeout(function(){
-	DatabaseBackup.scheduledProcess();
-},10000);

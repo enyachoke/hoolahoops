@@ -14,7 +14,7 @@
   "setupMongo": false,
 
   // Application name (no spaces).
-  "appName": "cloudvakiltesting2",
+  "appName": "cloudvakiltesting",
 
   // Location of app (local directory). This can reference '~' as the users home directory.
   // i.e., "app": "~/Meteor/my-app",
@@ -24,7 +24,7 @@
   // Configure environment
   // ROOT_URL must be set to your correct domain (https or http)
   "env": {
-    "PORT": 9009,
+    "PORT": 9010,
     "ROOT_URL": "http://lel.tk",
     "MONGO_URL": "mongodb://cloudvakil:devnull@c760.lamppost.3.mongolayer.com:10760,lamppost.10.mongolayer.com:10103/testdb",
     "MONGO_OPLOG_URL": "mongodb://cloudvakil:devnull@c760.lamppost.3.mongolayer.com:10760,lamppost.10.mongolayer.com:10103/local?authSource=testdb"

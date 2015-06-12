@@ -1,5 +1,17 @@
 Nightmare = Meteor.npmRequire('nightmare')
 
+/**
+ * @summary adds job for scraper
+ * @locus Server
+ * @param {Object} project object. 
+ * @param {Object} [options]
+ * @param {Object} options.connection The server connection that will manage this collection. Uses the default connection if not specified.  Pass the return value of calling [`DDP.connect`](#ddp_connect) to specify a different server. Pass `null` to specify no connection. Unmanaged (`name` is null) collections cannot specify a connection.
+ * @param {String} options.idGeneration The method of generating the `_id` fields of new documents in this collection.  Possible values:
+ - **`'STRING'`**: random strings
+ - **`'MONGO'`**:  random [`Mongo.ObjectID`](#mongo_object_id) values
+The default id generation technique is `'STRING'`.
+ * @param {Function} options.transform An optional transformation function. Documents will be passed through this function before being returned from `fetch` or `findOne`, and before being passed to callbacks of `observe`, `map`, `forEach`, `allow`, and `deny`. Transforms are *not* applied for the callbacks of `observeChanges` or to cursors returned from publish functions.
+ */
 addScraperJob = function(project) {
 	// Logic to find relevant scrape function based on court and scrape results automatically
 	// TODO: Faulty logic. Remove template from here and move this into helpers

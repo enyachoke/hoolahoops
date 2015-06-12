@@ -1,0 +1,17 @@
+{
+  // node.js install path, default to: "/usr/bin/node" 
+  "nodePath": "/usr/bin/node",
+
+  // Meteor project path 
+  "projectPath": ".",
+
+  // Project docs path | Warning do not set this in same directory as meteor app or they
+  // will clash
+  "docsPath": "../doc-app",
+
+  // Project docs Meteor server port, default to: 3333 
+  "meteorPort": 3333,
+ 
+  // without seeing your changes overridden the next time you build the docs. 
+  "initMeteor": true
+}

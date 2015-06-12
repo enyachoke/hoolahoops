@@ -1,3 +1,6 @@
+/**
+*@summary Server side methods
+*/
 Meteor.methods({
 	// 'getGoogleAuthUrl' : function()	{
 	// 	// google = Meteor.npmRequire('googleapis');
@@ -304,6 +307,15 @@ Meteor.methods({
 		return obj;
 	},
 	// { email : , name : , type : }
+	/**
+	*@summary creates a new user using object containing name, username, contact number,type
+	*@param {Object} options userDetails object
+	*@param {String} options.name name of the user.
+	*@param {String} options.username username.
+    *@param {Number} options.contactNumber contact number.
+	*@param {String} options.type type.
+	*@returns {String} userId id of created user
+	*/
 	'createNewUser' : function(obj){
 		debugger;
 		var password = 'tcl-'+obj.contactNumber; //Random.id()

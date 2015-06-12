@@ -43,7 +43,12 @@ Adding documentation :
 
 		  Markdown supported in @summary, @example & description in @param.
 
-	simple example : 
+
+	quick js-doc overview : 
+		http://www.2ality.com/2011/08/jsdoc-intro.html  | only look at the examples, no setup needed.
+		https://code.google.com/p/jsdoc-toolkit/wiki/DocExamples
+
+	simple example: 
 
 	/**
 	 * @summary Solves equations of the form a * x = b
@@ -54,6 +59,13 @@ Adding documentation :
 	globalNS.method1 = function (a, b) {
 	    return b / a;
 	};
+
+
+	Meteor.method example
+		open file 'methods.js' 
+		search function 'createNewUser'
+
+
 		  
 	example 1:
 
@@ -102,6 +114,11 @@ Adding documentation :
 	note:when building the package will parse the comments to generate the app.
 
 	run meteor-jsdoc build 
+
+	tip: create an alias for stopping->building->starting doc-app
+	add the following line at end of .bashrc
+
+	alias docsReload='meteor-jsdoc stop; meteor-jsdoc build; meteor-jsdoc start;'
 
 
 

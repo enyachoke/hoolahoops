@@ -1,4 +1,4 @@
-Meteor.startuo(function(){
+Meteor.startup(function(){
 	gcmKey = new Mongo.Collection('keys');  //will return null on client
 
 	if(!gcmKey.findOne()){

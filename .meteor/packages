@@ -50,3 +50,4 @@ accounts-password
 accounts-google
 materialize:materialize
 akshay:mongo-s3-backup
+richsilv:cordova-notifications

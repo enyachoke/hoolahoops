@@ -149,7 +149,7 @@ Template.calendar.events({
 		e.preventDefault();
 		$('#modal1').closeModal();
 		// ;
-		Router.go('hearingAdd');
+		Router.go('addHearing');
 	},
 	'click #modal_meeting' : function(e){
 		e.preventDefault();

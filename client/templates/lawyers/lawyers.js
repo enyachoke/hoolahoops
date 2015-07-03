@@ -1,7 +1,7 @@
 Template.lawyers.helpers({
 	'lawyers' : function(){
 		debugger;
-		return Meteor.users.find({type : 'lawyer'}); 
+		return Meteor.users.find({type : 'lawyer'});
 	}
 });
 
@@ -12,5 +12,12 @@ Template.lawyerDetails.events({
 			Users.remove(this._id);
 			Router.go('lawyers');
 		}
+	}
+});
+
+Template.rowLawyer.events({
+	'click .row-clickable': function(event) {
+		window.location.assign('/lawyers/' + this._id);
+		event.stopPropagation();
 	}
 });

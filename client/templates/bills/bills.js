@@ -40,7 +40,7 @@ Template.billRow.helpers({
 	'amount' : function(){
 		var amt=0;
 		if (this.type == 'hearings'){
-			amt = Hearings.findOne(this.hearingId).bill_amt;	
+			amt = Hearings.findOne(this.hearingId).bill_amt;
 		}
 		return amt;
 	},
@@ -79,12 +79,18 @@ Template.billRow.helpers({
 	}
 });
 
+Template.billRow.events({
+	'click .row-clickable': function(event) {
+		event.stopPropagation();
+	}
+});
+
 Template.billDetails.helpers({
 	'amount' : function(){
 		var amt=0;
 
 		if (this.type == 'hearings'){
-			amt = Hearings.findOne(this.hearingId).bill_amt;	
+			amt = Hearings.findOne(this.hearingId).bill_amt;
 		}
 		debugger;
 		return amt;
@@ -98,7 +104,7 @@ Template.billDetails.helpers({
 		return date.format('{dd}-{month}-{yy}');
 	},
 	'case_title': function(){
-		
+
 			 ;
 		var title;
 		if (this.type == 'hearings'){

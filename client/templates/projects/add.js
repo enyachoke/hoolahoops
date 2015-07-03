@@ -1,6 +1,6 @@
 //TODO: Should this be here?
 Template.hearingAdd.helpers({
-	
+
 	options : [
 		{label: "Hearing", value: 0},
         {label: "Meeting", value: 1},
@@ -9,12 +9,12 @@ Template.hearingAdd.helpers({
 	s2Opts: function() {
 		return {placeholder: 'foo', tags: true};
 	}
-	
+
 })
 
 
 Template.projectAdd.events({
-	'blur .check_validation' : function (event, template) {	
+	'blur .check_validation' : function (event, template) {
 		if (!AutoForm.validateField('insertProjectForm',event.target.name) ){
 			event.target.classList.add("invalid");
 		}else{
@@ -39,4 +39,3 @@ populateReminders =  function(x) {
 // 		}
 // 	});
 // }
-

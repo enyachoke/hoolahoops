@@ -17,7 +17,7 @@ Template.timesheetRow.helpers({
 		var total = 0;
 		Timesheets.find({caseId: this._id}).map(function(doc) {
 			console.log(doc.duration);
-			total += String_to_ms(doc.duration);			
+			total += String_to_ms(doc.duration);
   			//total += doc.duration;
 		});
 
@@ -26,7 +26,7 @@ Template.timesheetRow.helpers({
 });
 
 Template.editTimesheet.rendered = function(){
-	
+
 }
 
 Template.addTimesheet.helpers({
@@ -61,8 +61,17 @@ Template.timesheetRow.events({
 			});
 		}
 	}
-});			
-useremail = {};								
+});
+
+Template.timesheetRow.events({
+	'click .row-clickable': function(event) {
+		window.location.assign('/projects/' + this._id + '/timesheets');
+		event.stopPropagation();
+	}
+});
+
+
+useremail = {};
 Template.timesheetDetail.helpers({
 	'timeloop' : function(){
 		var time = {};
@@ -93,4 +102,3 @@ Template.timesheetDetailRow.helpers({
 		return useremail[this.userId];
 	}
 });
-

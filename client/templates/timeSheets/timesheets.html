@@ -43,7 +43,6 @@
 			{{/autoForm}}
 	    </div>
 	</div>
-
 </template>
 
 <template name="timesheets">
@@ -71,14 +70,14 @@
 		{{/ifEsIsSearching}}
 	</div>
     </div>
-
+    {{> addButton}}
 </template>
 
 <template name="timesheetRow">
-	<tr>
+	<tr class="row-clickable">
 		<td>{{case}}</td>
 		<td>{{totaltime}}</td>
-		<td><a href="/projects/{{_id}}/timesheets">Details</a></td>
+		<!-- <td><a href="/projects/{{_id}}/timesheets">Details</a></td> -->
 		<!-- <td><a href="/timesheets/{{_id}}/edit">Edit</a></td> -->
 		<!-- <td> <button id='delete'>Delete</button></td> -->
 	</tr>
@@ -131,7 +130,8 @@
 	<div class="row">
 		{{ > navigation}}
 	</div>
-	<div class="container project-list-container">
+	<div class="container">
+		<div class="card-panel form-container">
 		<div class="row">
         <!-- <a class="waves-effect waves-light btn" href = "/timesheets/add">Add Timesheet </a> -->
 			<table class=" centered bordered	">
@@ -165,7 +165,7 @@
 		</table>
 		</div>
     </div>
-
+	</div>
 </template>
 
 <template name="timeDetailRow">

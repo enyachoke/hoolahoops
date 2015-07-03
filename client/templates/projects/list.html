@@ -4,10 +4,6 @@
             background-color: #FFFFFF;
         }
 
-        .container .filter-field {
-            width: 20% !important;
-        }
-
         .icon-container {
             background: #777;
             color: white;
@@ -32,6 +28,7 @@
         .clear-all-filter:hover .icon-container{
             background: #4183c4;
         }
+
     </style>
     {{#if isInRole 'view-projects'}}
         {{> navigation}}
@@ -39,24 +36,24 @@
             <div class="card-panel form-container">
                 {{> esInput index="projects" placeholder="Search projects" allDocsOnEmpty="true"}}
                 <div class="row">
-                    <div class="col s3 filter-field">
-                        <label>Lawyer Names:</label>
+                    <div class="col s6 filter-field">
+                        <label>Lawyers:</label>
                         <select multiple="multiple" id="lawyer-select">
                             {{#each lawyers}}
                                 <option value="{{_id}}">{{profile.name}}</option>
                             {{/each}}
                         </select>
                     </div>
-                    <div class="col s3 filter-field">
-                        <label>Client Names:</label>
+                    <div class="col s6 filter-field">
+                        <label>Clients:</label>
                         <select multiple="multiple" id="client-select">
                             {{#each clients}}
                                 <option value="{{_id}}">{{profile.name}}</option>
                             {{/each}}
                         </select>
                     </div>
-                    <div class="col s3 filter-field">
-                        <label>Court Name:</label>
+                    <div class="col s6 filter-field">
+                        <label>Courts:</label>
                         <select multiple="multiple" id="court-select">
                             <option value="">Clear Filter</option>
                             {{#each courts}}
@@ -64,7 +61,7 @@
                             {{/each}}
                         </select>
                     </div>
-                    <div class="col s3 filter-field">
+                    <div class="col s6 filter-field">
                         <label>Type:</label>
                         <select multiple="multiple" id="type-select">
                             <option value="">Clear Filter</option>
@@ -73,7 +70,7 @@
                             {{/each}}
                         </select>
                     </div>
-                    <div class="col s3 filter-field">
+                    <div class="col s12 filter-field">
                         <label>Label:</label>
                         <select multiple="multiple" id="label-select">
                             {{#each labels}}
@@ -85,31 +82,33 @@
                 {{#ifEsIsSearching index="projects"}}
                     {{> spinner}}
                 {{else}}
+
                     <div class="clear-all-filter"><div class="icon-container"><i class="mdi-navigation-close"></i></div> <span>Clear all filters</span></div>
-                    <table class="responsive-table projects-table">
-                        <thead>
-                        <tr>
-                            <th>Unique Id</th>
-                            <th>Title</th>
-                            <th>Client</th>
-                            <th>Lawyer</th>
-                            <!-- <th>Court</th> -->
-                            <!-- <th>Last Hearing</th> -->
-                            <!-- <th>Next Hearing</th> -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {{#esEach index="projects"}}
-                                {{> projectRow}}
-                            {{/esEach}}
-                        </tbody>
-                    </table>
-                {{/ifEsIsSearching}}
+                    <br/>
+			<div class="header" style="font-weight:bold; text-align:center; font-size: 17px;">
+				<div class="row">
+					<div class="col s4">
+						Title
+					</div>
+					<div class="col s3">
+						Client
+					</div>
+					<div class="col s3">
+						Lawyer
+					</div>
+				</div>
+				<hr>
+			</div>
 
-                <a style="float:right; margin-right:2rem; margin-top:-2rem" href="/projects/add"
-                   class="btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a><br/>
+			{{#esEach index="projects"}}
+					{{> projectRow}}
+			{{/esEach}}
+				{{/ifEsIsSearching}}
 
+				<!-- <a style="float:right; margin-right:2rem; margin-top:-0.5rem; margin-bottom:1.6rem" href="/projects/add" class="btn-floating btn-large waves-effect waves-light teal"><i class="mdi-content-add"></i></a><br/> -->
             </div>
         </div>
     {{/if}}
+
+{{> addButton}}
 </template>

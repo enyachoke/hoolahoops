@@ -16,95 +16,89 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col m4 s12">
+				<div class="input-field col s12 m6">
+					{{> afQuickField name='courtId'}}
+						<label for="project__court" class="active">Court</label>
+				</div>
+				<div class="input-field col m6 s12">
 					{{> afQuickField name='ctype' label=false}}
 					<label class="active">Suit Number</label>
-				</div>
-				<div class="input-field col m4 s12">
-					{{> afQuickField name='cno'}}
-				</div>
-				<div class="input-field col m4 s12">
-					{{> afQuickField name='cyear'}}
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="input-field col l8 m6 s12">
-					<label for="project__clients" class="active">Clients</label>
-					{{> afQuickField name='clientIds'}}
+				<div class="input-field col m3 s12">
+					{{> afQuickField name='cno'}}
 				</div>
-				<div class="col l4 m6 s12" id='attended_by'>
+				<div class="col m3 s12">
+					{{> afQuickField name='cyear' options='allowed'}}
+				</div>
+				<div class="col m6 s12" id='attended_by'>
 			        {{> afQuickField name='type' options='allowed'}}
 				</div>
 			</div>
 
 			<div class="row">
-		      <div class="input-field col s12">
-		        {{> afQuickField name='description' rows='6' class='materialize-textarea'}}
-		      </div>
-	    	</div>
-	    	<div class="row">
-	    		<div class = "row m12">
-					<div class="input-field col s12 m6">
-						{{> afQuickField name='lawyerIds'}}
-					</div>
-
-					<div class="input-field col s12 m6">
-						{{> afQuickField name='courtId'}}
-						<label for="project__court" class="active">Court</label>
-					</div>
+				<div class="input-field col s12">
+		    	{{> afQuickField name='description' rows='6' class='materialize-textarea'}}
+		    </div>
+	    </div>
+	    <div class="row">
+				<div class="input-field col s12 m6">
+					<label for="project__lawyers" class="active">Lawyers</label>
+					{{> afQuickField name='lawyerIds'}}
 				</div>
-				<div class = "row m12">
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="followup"  id="followup_date"}}
-						<label for="followup_date" class="active">Followup Date</label>
-						{{#if afFieldIsInvalid name='followup'}}
+				<div class="input-field col m6 s12">
+					<label for="project__clients" class="active">Clients</label>
+					{{> afQuickField name='clientIds'}}
+				</div>
+			</div>
+			<div class = "row">
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="followup"  id="followup_date"}}
+					<label for="followup_date" class="active">Followup Date</label>
+					{{#if afFieldIsInvalid name='followup'}}
 						<span class="help-block">{{{afFieldMessage name='followup'}}}</span>
-						{{/if}}
-					</div>
-
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
-						<label for="statute_of_limitation" class="active">Statute of Limitation</label>
-						{{#if afFieldIsInvalid name='statute_of_limitation'}}
+					{{/if}}
+				</div>
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="statute_of_limitation"  id="statute_of_limitation"}}
+					<label for="statute_of_limitation" class="active">Statute of Limitation</label>
+					{{#if afFieldIsInvalid name='statute_of_limitation'}}
 						<span class="help-block">{{{afFieldMessage name='statute_of_limitation'}}}</span>
-						{{/if}}
-					</div>
+					{{/if}}
 				</div>
-				<div class="row m12">
-					<h5>Billing</h5>
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="bill_retainer"  id="bill_retainer"}}
-						<label for="bill_retainer">Retainer</label>
-					</div>
-
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="bill_hearing_partner"  id="bill_hearing_partner"}}
-						<label for="bill_hearing_partner">bill_hearing_partner</label>
-					</div>
-
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="bill_hearing_sr_associate"  id="bill_hearing_sr_associate"}}
-						<label for="bill_hearing_sr_associate">bill_hearing_sr_associate</label>
-					</div>
-
-					<div class="input-field col s12 m6">
-						{{> afFieldInput name="bill_hearing_associate"  id="bill_hearing_associate"}}
-						<label for="bill_hearing_associate">bill_hearing_associate</label>
-					</div>
+			</div>
+			<div class="row">
+				<h5>Billing</h5>
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_retainer"  id="bill_retainer"}}
+					<label for="bill_retainer">Retainer</label>
 				</div>
-
-				<div class="row m12">
-					<h5>Reminders</h5>
-					<div style="margin-left:15px">
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_hearing_partner"  id="bill_hearing_partner"}}
+					<label for="bill_hearing_partner">bill_hearing_partner</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_hearing_sr_associate"  id="bill_hearing_sr_associate"}}
+					<label for="bill_hearing_sr_associate">bill_hearing_sr_associate</label>
+				</div>
+				<div class="input-field col s12 m6">
+					{{> afFieldInput name="bill_hearing_associate"  id="bill_hearing_associate"}}
+					<label for="bill_hearing_associate">bill_hearing_associate</label>
+				</div>
+			</div>
+			<div class="row">
+				<h5>Reminders</h5>
+				<div style="margin-left:15px">
 						{{> afQuickField name='reminders' template='series' label=false}}
-					</div>
 				</div>
-				<div class="row m12">
-					<h5>Labels</h5>
-					{{> afQuickField name='labelIds'}}
-				</div>
-
+			</div>
+			<div class="row">
+				<h5>Labels</h5>
+				{{> afQuickField name='labelIds'}}
 			</div>
 			<button class="addProj waves-effect waves-light btn" type="submit">Insert</button>
 			<a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">CANCEL</a>

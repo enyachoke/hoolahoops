@@ -5,74 +5,67 @@
 	{{#if isInRole 'view-projects'}}
 		<div class="container">
 			<div class="card-panel form-container">
-			<div class="row">
-
-				{{ #if bills_unpaid_exist }}
-					<p><h5>UNPAID BILLS</h5></p>
-					{{#if isInRole 'edit-bills'}}
-						<button id="mark_as_paid" class="waves-effect waves-light btn"> Mark As Paid</button>
+				<div class="row">
+					{{ #if bills_unpaid_exist }}
+						<p><h5>UNPAID BILLS</h5></p>
+						{{#if isInRole 'edit-bills'}}
+							<button id="mark_as_paid" class="waves-effect waves-light btn">Mark As Paid</button>
+						{{/if}}
+						<!-- {{> esInput index="bills_unpaid" placeholder="Search Unpaid Bills" allDocsOnEmpty="true"}} -->
+						{{#ifEsIsSearching index="bills_unpaid"}}
+							{{> spinner}}
+						{{else}}
+							<div class="header" style="font-weight:bold; text-align:center; font-size: 17px; padding-top: 12px;">
+								<div class="row">
+									<div class="col s12 m1" data-field="id">&nbsp;</div>
+									<div class="col s12 m3" data-field="type">Type</div>
+									<div class="col s12 m3">Title</div>
+									<div class="col s12 m3">Date</div>
+									<div class="col s12 m2">Amount</div>
+								</div>
+								<hr>
+							</div>
+							<!-- {{#esEach index="bills_unpaid"}} -->
+							{{ #each bills_unpaid }}
+								{{ > billRow }}
+							{{ /each }}
+							<!-- {{ /esEach }} -->
+						{{/ifEsIsSearching}}
 					{{/if}}
-					<!-- {{> esInput index="bills_unpaid" placeholder="Search Unpaid Bills" allDocsOnEmpty="true"}} -->
-					{{#ifEsIsSearching index="bills_unpaid"}}
+				</div>
+				<!-- paid bills put in separate template later-->
+				<div class="row">
+					<p><h5>PAID BILLS</h5></p>
+					{{#if isInRole 'edit-bills'}}
+						<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As 	unPaid</button>
+					{{/if}}
+					<!-- {{> esInput index="bills_paid" placeholder="Search Paid Bills" allDocsOnEmpty="true"}} -->
+					{{#ifEsIsSearching index="bills_paid"}}
 						{{> spinner}}
 					{{else}}
-						<table class="centered hoverable" >
-						<thead>
-					        <tr >
-					        	<th data-field="id"></th>
-                      <th data-field="type">Type</th>
-					            <th data-field="project">Title</th>
-					            <th data-field="name">Date</th>
-					            <th data-field="price">Amount</th>
-					        </tr>
-					    </thead>
-					    <tbody>
-						<!-- {{#esEach index="bills_unpaid"}} -->
-						{{ #each bills_unpaid }}
+						<div class="header" style="font-weight:bold; text-align:center; font-size: 17px; padding-top: 12px;">
+							<div class="row">
+								<div class="col s12 m1" data-field="id">&nbsp;</div>
+								<div class="col s12 m3" data-field="type">Type</div>
+								<div class="col s12 m3">Title</div>
+								<div class="col s12 m3">Date</div>
+								<div class="col s12 m2">Amount</div>
+							</div>
+							<hr>
+						</div>
+						<!-- {{#esEach index="bills_paid"}} -->
+						{{ #each bills_paid }}
 							{{ > billRow }}
 						{{ /each }}
 						<!-- {{ /esEach }} -->
-						</tbody>
-						</table>
 					{{/ifEsIsSearching}}
-				{{/if}}
+					<!-- 	{{> reactiveTable settings=settings}} -->
+		 		</div>
 			</div>
-			<!-- paid bills put in separate template later-->
-			<div class="row">
-				<p><h5>PAID BILLS</h5></p>
-				{{#if isInRole 'edit-bills'}}
-					<button id="mark_as_unpaid" class="waves-effect waves-light btn"> Mark As unPaid</button>
-				{{/if}}
-				<!-- {{> esInput index="bills_paid" placeholder="Search Paid Bills" allDocsOnEmpty="true"}} -->
-				{{#ifEsIsSearching index="bills_paid"}}
-					{{> spinner}}
-				{{else}}
-					<table class="centered " >
-					<thead>
-				        <tr>
-				        	<th data-field="id"></th>
-                    <th data-field="type">Type</th>
-				            <th data-field="id">Title</th>
-				            <th data-field="name">Date</th>
-				            <th data-field="price">Amount</th>
-				        </tr>
-				    </thead>
-				    <tbody>
-					<!-- {{#esEach index="bills_paid"}} -->
-					{{ #each bills_paid }}
-						{{ > billRow }}
-					{{ /each }}
-					<!-- {{ /esEach }} -->
-					</tbody>
-					</table>
-				{{/ifEsIsSearching}}
-			<!-- 	{{> reactiveTable settings=settings}}
-
-			 -->
-		 	</div>
-		</div>
 		</div>
 	{{/if}}
+
+  {{> addButton}}
 	</template>
 
 <template name="billDetails">
@@ -88,7 +81,7 @@
 		</div>
 		<ul class="collection">
 		    <li class="collection-item"><a href="/hearings/{{this.hearingId}}">Link to Hearing</a></li>
-		    <li class="collection-item">Project : <a href="/projects/{{this.hearing.caseId}}">{{this.project.name}}</a></li>  
+		    <li class="collection-item">Project : <a href="/projects/{{this.hearing.caseId}}">{{this.project.name}}</a></li>
 	      <li class="collection-item">Date : {{date}}</li>
 	      <li class="collection-item">Billing details : {{amount}}</li>
 	      <li class="collection-item">Client : {{ #each clients}} <a href="/clients/{{_id}}">{{name}}</a> {{/each}}</li>
@@ -101,16 +94,34 @@
 </template>
 
 <template name="billRow">
-	<tr class="bill_row">
-		<td>
-			<input type='checkbox' class="paid" id="{{_id}}" value="paid" style="position: relative;left: 0px;">
-		</td>
-    <td><a href="/hearings/{{this.hearingId}}">{{this.type}}</a></td>
-		<td><a href="/projects/{{this.hearing.caseId}}">{{this.project.name}}</a></td>
-		<td>{{date}}</td>
-		<td>{{amount}}</td>
-		<td><a href="/bills/{{_id}}"><i class="bill_details small center-align mdi-action-description"></i></a></td>
-	</tr>
+	<div class="bill_row row-clickable">
+		<a href='/bills/{{_id}}'>
+			<div class="row">
+				<div class="col s12 m1">
+					<a href="#">
+						<input type='checkbox' class="paid" id="{{_id}}" value="paid" style="position: relative;left: 0px;">
+					</a>
+				</div>
+				<div class="col s12 m3">
+					<a href="/hearings/{{this.hearingId}}">
+						{{this.type}}
+					</a>
+				</div>
+				<div class="col s12 m3">
+					<a href="/projects/{{this.hearing.caseId}}">
+						{{this.project.name}}
+					</a>
+				</div>
+				<div class="col s12 m3">
+					{{date}}
+				</div>
+				<div class="col s12 m2">
+					{{amount}}
+				</div>
+				<!-- <td><a href="/bills/{{_id}}"><i class="bill_details small center-align mdi-action-description"></i></a></td> -->
+			</div>
+		</a>
+	</div>
 </template>
 
 <template name="editBill">

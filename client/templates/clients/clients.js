@@ -22,3 +22,10 @@ Template.clientDetails.events({
 		}
 	}
 });
+
+Template.clientRow.events({
+	'click .row-clickable': function(event) {
+		window.location.assign('/clients/' + this._id);
+		event.stopPropagation();
+	}
+});

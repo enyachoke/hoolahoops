@@ -5,37 +5,39 @@
             color: #039be5;
         }
     </style>
-    <tr>
-        <!-- <td> <i class="small mdi-action-query-builder grey-text project-type"></i> </td> -->
-        <td>{{_id}}</td>
-        <td>{{name}}</td>
-        <td>
-            {{#each clients}}
-                <span class="clients" id="{{_id}}">{{profile.name}}</span>
-            {{/each}}
-        </td>
-        <td>
-            {{#each lawyers}}
-                <span class="lawyers" id="{{_id}}">{{profile.name}}</span>
-            {{/each}}
-        </td>
-        <!-- <td>
-	    {{#with court}}
-            {{name}}
-        {{/with}}
-	    </td> -->
-        <!-- <td>Feb 20, 2015 <br><small class="grey-text">Prev: Feb 19, 2015 </small></td> -->
-        <!-- <td>{{next_hearing}}</td> -->
-        <td><a href="/projects/{{_id}}"><i class="small center-align mdi-action-description"></i></a></td>
-        {{#if isInRole 'edit-projects'}}
-            <td><a class="delete"><i class="small center-align mdi-action-delete"></i></a></td>
-        {{/if}}
-    </tr>
-    <tr class="label-row">
-        {{#each labels}}
-            <span class="labels ancd" id="{{_id}}">
-                {{>colorElement}}
-            </span>
-        {{/each}}
-    </tr>
+    <div class="row-clickable"><a href='/projects/{{_id}}'>
+		<div class="row">
+			<div class="col s4" style="padding-top: 10px;">
+				{{name}}
+			</div>
+         <div class="col s3 clients" style="padding-top: 10px;">
+				{{#each clients}}
+        <a href="#">
+        <span class="clients" id="{{_id}}">{{profile.name}}</span>
+      </a>
+				{{/each}}
+			</div>
+			<div class="col s3 lawyers" style="padding-top: 10px;">
+				{{#each lawyers}}
+        <a href="#">
+        <span class="lawyers" id="{{_id}}">{{profile.name}}</span>
+      </a>
+				{{/each}}
+			</div>
+			<div class="col s2">
+				{{#if isInRole 'edit-projects'}}
+					<a class="delete" href="#"><i class="small center-align mdi-action-delete"></i></a>
+				{{/if}}
+			</div>
+			<div class="col s12 labels" style="text-align:left; padding: 0px 0px 10px 25px;">
+				{{#each labels}}
+        <a href="#">
+        <span class="labels ancd" id="{{_id}}">
+              {{>colorElement}}
+          </span>
+        </a>
+				{{/each}}
+			</div>
+		</div></a>
+	</div>
 </template>

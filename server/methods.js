@@ -315,6 +315,7 @@ Meteor.methods({
 		if( obj && obj.username ){
 			var options = {
 				username : obj.username ,
+				email: obj.username, // We use the same email as the username everywhere.
 				profile : obj.profile,
 				password : password,
 				type : obj.type || null

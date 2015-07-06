@@ -45,22 +45,17 @@ Template.addTimesheet.helpers({
 		return !Tasks.find({caseId: Template.instance().caseId.get()}).count();
 	},
 	'runningTimers': function () {
-		return Template.instance().runningTimers.get();
+		return runningTimers.get();
 	}
 });
 
 Template.addTimesheet.created = function () {
 	this.caseId = new ReactiveVar(null);
-	this.runningTimers = new ReactiveVar([]);
 };
 
 Template.addTimesheet.rendered = function() {
 	Session.set('lapTime', 0);
 	Session.set('timeTracked', 0);
-};
-
-Template.runningTimer.created = function () {
-	this.data.start();
 };
 
 Template.runningTimer.helpers({
@@ -107,8 +102,8 @@ Template.addTimesheet.events({
 	},
 	'submit #insertTimesheetForm': function (event, template) {
 		event.preventDefault();
-		template.runningTimers.get().push(new timer());
-		template.runningTimers.set(template.runningTimers.get());
+		runningTimers.get().push(new timer({running: true}));
+		runningTimers.set(runningTimers.get());
 	}
 });
 

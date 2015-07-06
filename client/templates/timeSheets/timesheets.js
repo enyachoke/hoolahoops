@@ -65,19 +65,16 @@ Template.runningTimer.created = function () {
 
 Template.runningTimer.helpers({
 	'time': function(){
-		return Template.instance().data.time.get();
+		return Template.instance().data.getTime();
 	},
 	'isRunning': function(){
-		return Template.instance().data.running.get();
+		return Template.instance().data.isRunning();
 	}
 });
 
 Template.runningTimer.events({
 	'click .state-change': function(event, template){
-		if(template.data.running.get())
-			template.data.stop();
-		else
-			template.data.start();
+		template.data.isRunning() ? template.data.stop() : template.data.start();
 	}
 });
 
@@ -154,23 +151,3 @@ Template.timesheetDetailRow.helpers({
 		return useremail[this.userId];
 	}
 });
-
-var timer = function(){
-	this.time = new ReactiveVar(0);
-	this.interval = null;
-	this.running = new ReactiveVar(false);
-	this.start = function(){
-		var self = this;
-		this.interval = Meteor.setInterval(function(){
-			self.time.set(self.time.get()+1);
-		}, 1);
-		this.running.set(true);
-	};
-	this.stop = function(){
-		Meteor.clearInterval(this.interval);
-		this.running.set(false);
-	};
-	this.reset = function(){
-		this.time.set(0);
-	}
-};

@@ -8,8 +8,13 @@
             margin: 0;
             padding: 0.5rem 0.9rem;
         }
-        #timer-lists .card-panel{
-            min-height: 250px;
+        #timer-lists .collection{
+            height: 250px;
+            overflow: auto;
+        }
+        .state-change{
+            padding: 0 10px;
+            margin-right: 10px;
         }
     </style>
     {{> navigation }}
@@ -17,7 +22,7 @@
         <div class="row">
             <div class="col s8">
                 <h4 class="teal form-header">Add a Timesheet</h4>
-                {{# autoForm id="insertTimesheetForm" class="card-panel" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
+                {{# autoForm id="insertTimesheetForm" class="card-panel" doc=this type="normal" resetOnSuccess="true" schema="timesheetSchema" }}
                     <div class="row">
                         <div class="input-field col s12">
                             {{> afQuickField name='caseId' id="timesheet_case" label=false}}
@@ -48,7 +53,7 @@
 
                     <div class="row">
                         <div class="col s12">
-                            <button class="waves-effect waves-light btn" type="submit">Create</button>
+                            <button class="waves-effect waves-light btn" type="submit" id="create-timer">Create</button>
                             <a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
                         </div>
                     </div>
@@ -56,16 +61,31 @@
             </div>
             <div class="col s4" id="timer-lists">
                 <h5 class="teal white-text">Running Timers</h5>
-                <div class="card-panel">
-
-                </div>
+                <ul class="white collection">
+                    {{#each runningTimers}}
+                        <li class="collection-item">{{> runningTimer}}</li>
+                    {{/each}}
+                </ul>
                 <h5 class="teal white-text">Archived Timers</h5>
-                <div class="card-panel">
-
-                </div>
+                <ul class="white collection">
+                     {{#each archivedTimers}}
+                         <li class="collection-item"></li>
+                     {{/each}}
+                </ul>
             </div>
         </div>
     </div>
+</template>
+
+<template name="runningTimer">
+    <a class="btn-flat waves-effect state-change">
+        {{#if isRunning}}
+            <i class="mdi-av-pause"></i>
+        {{else}}
+            <i class="mdi-av-play-arrow"></i>
+        {{/if}}
+    </a>
+    {{time}}
 </template>
 
 <template name="timesheets">

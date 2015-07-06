@@ -1,6 +1,7 @@
 Deps.autorun(function(){
 	Meteor.subscribe("allusers");
 });
+
 Template.timesheets.helpers({
 	'timesheets' : function(){
 		return Projects.find();
@@ -40,19 +41,45 @@ Template.addTimesheet.helpers({
 		});
 		return options;
 	},
-	isTaskDisabled: function(){
+	'isTaskDisabled': function(){
 		return !Tasks.find({caseId: Template.instance().caseId.get()}).count();
+	},
+	'runningTimers': function () {
+		return Template.instance().runningTimers.get();
 	}
 });
 
 Template.addTimesheet.created = function () {
 	this.caseId = new ReactiveVar(null);
+	this.runningTimers = new ReactiveVar([]);
 };
 
 Template.addTimesheet.rendered = function() {
 	Session.set('lapTime', 0);
 	Session.set('timeTracked', 0);
-}
+};
+
+Template.runningTimer.created = function () {
+	this.data.start();
+};
+
+Template.runningTimer.helpers({
+	'time': function(){
+		return Template.instance().data.time.get();
+	},
+	'isRunning': function(){
+		return Template.instance().data.running.get();
+	}
+});
+
+Template.runningTimer.events({
+	'click .state-change': function(event, template){
+		if(template.data.running.get())
+			template.data.stop();
+		else
+			template.data.start();
+	}
+});
 
 Template.editTimesheet.helpers({
 	'fetch_duration' : function(){
@@ -80,6 +107,11 @@ Template.timesheetRow.events({
 Template.addTimesheet.events({
 	'change #timesheet_case': function (event, template) {
 		template.caseId.set(template.find("#timesheet_case").value);
+	},
+	'submit #insertTimesheetForm': function (event, template) {
+		event.preventDefault();
+		template.runningTimers.get().push(new timer());
+		template.runningTimers.set(template.runningTimers.get());
 	}
 });
 
@@ -124,16 +156,19 @@ Template.timesheetDetailRow.helpers({
 });
 
 var timer = function(){
-	this.time = ReactiveVar(0);
+	this.time = new ReactiveVar(0);
 	this.interval = null;
+	this.running = new ReactiveVar(false);
 	this.start = function(){
-		self = this;
+		var self = this;
 		this.interval = Meteor.setInterval(function(){
 			self.time.set(self.time.get()+1);
 		}, 1);
+		this.running.set(true);
 	};
 	this.stop = function(){
 		Meteor.clearInterval(this.interval);
+		this.running.set(false);
 	};
 	this.reset = function(){
 		this.time.set(0);

@@ -1,48 +1,69 @@
 <template name="addTimesheet">
+    <style>
+        #timesheets_description{
+            height: 6rem;
+            resize: none;
+        }
+        #timer-lists h5{
+            margin: 0;
+            padding: 0.5rem 0.9rem;
+        }
+        #timer-lists .card-panel{
+            min-height: 250px;
+        }
+    </style>
     {{> navigation }}
-    <div class="container card-panel add-project">
-        <h4 class="teal form-header">Add a Timesheet</h4>
-
-        <div class="row form-container">
-
-            {{# autoForm id="insertTimesheetForm" class="col s12" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
-
-
-                <div class="row ">
-                    <div class="input-field col s12">
-                        <p>
-                            {{> timetracker}}
-                        </p>
+    <div class="container-fluid add-project">
+        <div class="row">
+            <div class="col s8">
+                <h4 class="teal form-header">Add a Timesheet</h4>
+                {{# autoForm id="insertTimesheetForm" class="card-panel" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{> afQuickField name='caseId' id="timesheet_case" label=false}}
+                            <label for="caseId" class="active">Matter</label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type='text' name="duration" class="form-control" value="{{session_time}}" id="duration"
-                               data-schema-key="duration" readonly>
-                        <!-- 	        <label for="duration">Duration</label>
-                         -->          </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-                        <label for="meeting_case" class="active">Matter</label>
-                        {{#if afFieldIsInvalid name='caseId'}}
-                            <span class="help-block">{{{afFieldMessage name='caseId'}}}</span>
-                        {{/if}}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{> afFieldInput type="selectize" isReactiveOptions="true" formid="insertTimesheetForm" name='taskId' options=tasks id="timesheets_task" placeholder="Select a task"}}
+                            <label for="taskId" class="active">Task</label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{> afQuickField name='type' options='allowed' label=false}}
-                        <label for="type" class="active">Type</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{> afQuickField name='description' label=false id="timesheets_description"}}
+                            <label class="active">Description</label>
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{> afQuickField name='type' options='allowed' label=false}}
+                            <label for="type" class="active">Type</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="waves-effect waves-light btn" type="submit">Create</button>
+                            <a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
+                        </div>
+                    </div>
+                {{/autoForm}}
+            </div>
+            <div class="col s4" id="timer-lists">
+                <h5 class="teal white-text">Running Timers</h5>
+                <div class="card-panel">
+
                 </div>
-                <button class="waves-effect waves-light btn" type="submit">Insert</button>
-                <a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
-            {{/autoForm}}
+                <h5 class="teal white-text">Archived Timers</h5>
+                <div class="card-panel">
+
+                </div>
+            </div>
         </div>
     </div>
 </template>

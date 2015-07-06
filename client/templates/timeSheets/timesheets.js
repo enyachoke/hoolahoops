@@ -32,8 +32,22 @@ Template.editTimesheet.rendered = function(){
 Template.addTimesheet.helpers({
 	'session_time' : function(){
 		return Session.get('timeTracked');
+	},
+	'tasks': function () {
+		var options = [];
+		_.each(Tasks.find({caseId: Template.instance().caseId.get()}).fetch(), function(element){
+			options.push({label: element._id, value: element._id})
+		});
+		return options;
+	},
+	isTaskDisabled: function(){
+		return !Tasks.find({caseId: Template.instance().caseId.get()}).count();
 	}
 });
+
+Template.addTimesheet.created = function () {
+	this.caseId = new ReactiveVar(null);
+};
 
 Template.addTimesheet.rendered = function() {
 	Session.set('lapTime', 0);
@@ -60,6 +74,12 @@ Template.timesheetRow.events({
 				Timesheets.remove(doc._id);
 			});
 		}
+	}
+});
+
+Template.addTimesheet.events({
+	'change #timesheet_case': function (event, template) {
+		template.caseId.set(template.find("#timesheet_case").value);
 	}
 });
 

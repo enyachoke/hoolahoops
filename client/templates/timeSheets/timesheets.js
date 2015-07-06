@@ -102,3 +102,20 @@ Template.timesheetDetailRow.helpers({
 		return useremail[this.userId];
 	}
 });
+
+var timer = function(){
+	this.time = ReactiveVar(0);
+	this.interval = null;
+	this.start = function(){
+		self = this;
+		this.interval = Meteor.setInterval(function(){
+			self.time.set(self.time.get()+1);
+		}, 1);
+	};
+	this.stop = function(){
+		Meteor.clearInterval(this.interval);
+	};
+	this.reset = function(){
+		this.time.set(0);
+	}
+};

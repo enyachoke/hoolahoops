@@ -8,9 +8,13 @@
             margin: 0;
             padding: 0.5rem 0.9rem;
         }
-        #timer-lists .collection{
+        #timer-lists .card-panel{
             height: 250px;
             overflow: auto;
+            padding: 0;
+        }
+        #timer-lists .collection{
+            margin: 0;
         }
         .state-change{
             padding: 0 10px;
@@ -61,17 +65,21 @@
             </div>
             <div class="col s4" id="timer-lists">
                 <h5 class="teal white-text">Running Timers</h5>
-                <ul class="white collection">
-                    {{#each runningTimers}}
-                        <li class="collection-item">{{> runningTimer}}</li>
-                    {{/each}}
-                </ul>
+                <div class="card-panel">
+                    <ul class="collection">
+                        {{#each runningTimers}}
+                            <li class="collection-item">{{> runningTimer}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
                 <h5 class="teal white-text">Archived Timers</h5>
-                <ul class="white collection">
-                     {{#each archivedTimers}}
-                         <li class="collection-item"></li>
-                     {{/each}}
-                </ul>
+                <div class="card-panel">
+                    <ul class="collection">
+                         {{#each archivedTimers}}
+                             <li class="collection-item"></li>
+                         {{/each}}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -44,6 +44,8 @@ var timer = function(state){
 
 	// Start or resume
 	this.start = function(){
+		if(interval)
+			return;
 		startAt = startAt ? startAt : now();
 		interval = Meteor.setInterval(function(){
 			time.set(lapTime + (startAt ? now() - startAt : 0));
@@ -53,11 +55,14 @@ var timer = function(state){
 
 	//Stop or pause
 	this.stop = function(){
+		if(interval == null)
+			return;
 		Meteor.clearInterval(interval);
 		//If running, update elapsed time otherwise keep it
 		lapTime = startAt ? lapTime + now() - startAt : lapTime;
 		startAt = 0;	// Paused
 		running.set(false);
+		interval = null;
 	};
 
 	//Reset

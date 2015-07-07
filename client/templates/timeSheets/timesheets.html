@@ -182,8 +182,10 @@
         <p><b>Type:</b> {{getType}}</p>
         <p><b>Task:</b></p>
         <p>{{task}}</p>
-        <p><b>Description:</b></p>
-        <p>{{getDescription}}</p>
+        {{#if getDescription}}
+            <p><b>Description:</b></p>
+            <p>{{getDescription}}</p>
+        {{/if}}
         <a class="btn-flat waves-effect" id="playPause">
             {{#if isRunning}}
                 <i class="mdi-av-pause"></i>

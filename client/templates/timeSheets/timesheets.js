@@ -144,6 +144,14 @@ var timesheet = function(timesheetData){
 };
 
 var timesheets = ReactiveVar([]);
+
+Accounts.onLogin(function(){
+	timesheets = ReactiveVar([]);
+	if(window.localStorage.hasOwnProperty('timesheets')){
+		delete window.localStorage['timesheets']
+	}
+})
+
 if(savedTimesheets = JSON.parse(window.localStorage.getItem('timesheets'))){
 	var toSave = timesheets.get();
 	for(var i= 0, length=savedTimesheets.length;i<length;i++) {

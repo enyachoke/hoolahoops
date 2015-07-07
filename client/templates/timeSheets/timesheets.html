@@ -4,22 +4,6 @@
             height: 6rem;
             resize: none;
         }
-        #timer-lists h5{
-            margin: 0;
-            padding: 0.5rem 0.9rem;
-        }
-        #timer-lists .card-panel{
-            height: 250px;
-            overflow: auto;
-            padding: 0;
-        }
-        #timer-lists .collection{
-            margin: 0;
-        }
-        .state-change{
-            padding: 0 10px;
-            margin-right: 10px;
-        }
     </style>
     {{> navigation }}
     <div class="container add-project">
@@ -216,20 +200,7 @@
     </div>
 </template>
 
-<template name="timesheetRow">
-    <tr class="row-clickable">
-        <td>{{case}}</td>
-        <td>{{totaltime}}</td>
-        <!-- <td><a href="/projects/{{_id}}/timesheets">Details</a></td> -->
-        <!-- <td><a href="/timesheets/{{_id}}/edit">Edit</a></td> -->
-        <!-- <td> <button id='delete'>Delete</button></td> -->
-    </tr>
-</template>
-
 <template name="editTimesheet">
-    <!-- <h1>
-		time from session : {{session_time}}
-	</h1> -->
     {{> navigation }}
     <div class="container card-panel add-project">
         <h4 class="teal form-header">Edit a Timesheet</h4>

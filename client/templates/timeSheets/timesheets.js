@@ -172,7 +172,18 @@ Deps.autorun(function(){
 
 Template.timesheets.created = function(){
 	this.selectedTimesheet = new ReactiveVar(null);
-}
+};
+
+Template.timesheets.rendered = function(){
+	var self = this;
+	$(document).ready(function(){
+    	$('.modal-trigger').leanModal({
+    		complete: function() {
+    			self.selectedTimesheet.set(null);
+    		}
+    	});
+  	});
+};
 
 Template.timesheets.helpers({
 	'runningTimsheets': function () {
@@ -186,45 +197,17 @@ Template.timesheets.helpers({
 	}
 });
 
-Template.timesheets.rendered = function(){
-	var self = this;
-	$(document).ready(function(){
-    	$('.modal-trigger').leanModal({
-    		complete: function() {
-    			self.selectedTimesheet.set(null);
-    		}
-    	});
-  	});
-}
-
 Template.timesheets.events({
 	'click #runningTimesheetList .collection-item': function (event, template) {
 		template.selectedTimesheet.set(this);
 	}
-})
-
-Template.timesheetRow.helpers({
-	'totaltime' : function(){
-		//Timesheets.find({caseId : this._id});
-		var total = 0;
-		Timesheets.find({caseId: this._id}).map(function(doc) {
-			console.log(doc.duration);
-			total += String_to_ms(doc.duration);
-  			//total += doc.duration;
-		});
-
-		return formatTime(total);
-	}
 });
 
-Template.editTimesheet.rendered = function(){
-
-}
+Template.addTimesheet.created = function () {
+	this.caseId = new ReactiveVar(null);
+};
 
 Template.addTimesheet.helpers({
-	'session_time' : function(){
-		return Session.get('timeTracked');
-	},
 	'tasks': function () {
 		var options = [];
 		_.each(Tasks.find({caseId: Template.instance().caseId.get()}).fetch(), function(element){
@@ -237,14 +220,24 @@ Template.addTimesheet.helpers({
 	}
 });
 
-Template.addTimesheet.created = function () {
-	this.caseId = new ReactiveVar(null);
-};
-
-Template.addTimesheet.rendered = function() {
-	Session.set('lapTime', 0);
-	Session.set('timeTracked', 0);
-};
+Template.addTimesheet.events({
+	'change #timesheet_case': function (event, template) {
+		template.caseId.set(template.find("#timesheet_case").value);
+	},
+	'submit #insertTimesheetForm': function (event, template) {
+		event.preventDefault();
+		timesheets.get().push(new timesheet(
+			{
+				caseId: template.find("#timesheet_case").value,
+				taskId: template.find("#timesheet_task").value,
+				type: template.find("#timesheet_type").value,
+				description: template.find("#timesheet_description").value
+			}
+		));
+		timesheets.set(timesheets.get());
+		Router.go('timesheets');
+	}
+});
 
 Template.runningTimesheetRow.helpers({
 	'case' : function(){
@@ -269,97 +262,6 @@ Template.runningTimesheetRow.events({
 	}
 });
 
-Template.savedTimesheetRow.helpers({
-	'case': function(){
-		return Projects.findOne({_id: this.caseId}).name;
-	},
-	'task': function(){
-		return Tasks.findOne({_id: this.taskId}).desc;
-	}
-});
-
-Template.editTimesheet.helpers({
-	'fetch_duration' : function(){
-		var ms = String_to_ms(this.duration);
-		Session.set('lapTime', ms);
-		return Session.get('timeTracked');
-	},
-	'session_time' : function(){
-		return Session.get('timeTracked');
-	}
-});
-
-Template.timesheetRow.events({
-	'click #delete' : function(){
-		console.log(this._id);
-		if(confirm("Confirm Delete?")) {
-			Materialize.toast('Timesheet Deleted!', 1500);
-			Timesheets.find({caseId: this._id}).map(function (doc) {
-				Timesheets.remove(doc._id);
-			});
-		}
-	}
-});
-
-Template.addTimesheet.events({
-	'change #timesheet_case': function (event, template) {
-		template.caseId.set(template.find("#timesheet_case").value);
-	},
-	'submit #insertTimesheetForm': function (event, template) {
-		event.preventDefault();
-		timesheets.get().push(new timesheet(
-			{
-				caseId: template.find("#timesheet_case").value,
-				taskId: template.find("#timesheet_task").value,
-				type: template.find("#timesheet_type").value,
-				description: template.find("#timesheet_description").value
-			}
-		));
-		timesheets.set(timesheets.get());
-		Router.go('timesheets');
-	}
-});
-
-Template.timesheetRow.events({
-	'click .row-clickable': function(event) {
-		window.location.assign('/projects/' + this._id + '/timesheets');
-		event.stopPropagation();
-	}
-});
-
-
-useremail = {};
-Template.timesheetDetail.helpers({
-	'timeloop' : function(){
-		var time = {};
-		this.map(function(doc){
-				if(!time[doc.userId])
-					time[doc.userId] = 0;
-				time[doc.userId] += String_to_ms(doc.duration);
-		});
-		var Cases = new Mongo.Collection();
-		for(var key in time){
-			var email = Meteor.users.find({_id: key}).fetch();
-			useremail[key] = email[0].emails[0].address;
-  			Cases.insert({
-  				user: email[0].emails[0].address,
-  				duration: formatTime(time[key])
-  			});
-		}
-		return Cases.find();
-	},
-
-	'timesheetloop' : function(){
-		return this;
-	}
-});
-
-Template.timesheetDetailRow.helpers({
-	'user' : function(){
-		return useremail[this.userId];
-	}
-});
-
 Template.runningTimesheetModalBody.helpers({
 	'case': function(){
 		return this instanceof timesheet ? Projects.findOne({_id: this.getCase()}).name : null;
@@ -373,7 +275,7 @@ Template.runningTimesheetModalBody.helpers({
 	'duration': function(){
 		return this instanceof timesheet ? this.getDial().getTime() : null;
 	}
-})
+});
 
 Template.runningTimesheetModalBody.events({
 	'click #playPause': function(event, template){
@@ -408,4 +310,56 @@ Template.runningTimesheetModalBody.events({
 			}
 		}
 	}
-})
+});
+
+Template.savedTimesheetRow.helpers({
+	'case': function(){
+		return Projects.findOne({_id: this.caseId}).name;
+	},
+	'task': function(){
+		return Tasks.findOne({_id: this.taskId}).desc;
+	}
+});
+
+Template.editTimesheet.helpers({
+	'fetch_duration' : function(){
+		var ms = String_to_ms(this.duration);
+		Session.set('lapTime', ms);
+		return Session.get('timeTracked');
+	},
+	'session_time' : function(){
+		return Session.get('timeTracked');
+	}
+});
+
+useremail = {};
+Template.timesheetDetail.helpers({
+	'timeloop' : function(){
+		var time = {};
+		this.map(function(doc){
+				if(!time[doc.userId])
+					time[doc.userId] = 0;
+				time[doc.userId] += String_to_ms(doc.duration);
+		});
+		var Cases = new Mongo.Collection();
+		for(var key in time){
+			var email = Meteor.users.find({_id: key}).fetch();
+			useremail[key] = email[0].emails[0].address;
+  			Cases.insert({
+  				user: email[0].emails[0].address,
+  				duration: formatTime(time[key])
+  			});
+		}
+		return Cases.find();
+	},
+
+	'timesheetloop' : function(){
+		return this;
+	}
+});
+
+Template.timesheetDetailRow.helpers({
+	'user' : function(){
+		return useremail[this.userId];
+	}
+});

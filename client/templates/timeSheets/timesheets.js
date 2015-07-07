@@ -67,8 +67,12 @@ var timer = function(state){
 
 	//Reset
 	this.reset = function(){
+		var currentState = running.get();
+		this.stop();
 		time.set(0);
 		startAt = lapTime = 0;
+		if(currentState)
+			this.start();
 	};
 
 	this.getState = function () {
@@ -162,17 +166,36 @@ Deps.autorun(function(){
 	Meteor.subscribe("allusers");
 });
 
+Template.timesheets.created = function(){
+	this.selectedTimesheet = new ReactiveVar(null);
+}
+
 Template.timesheets.helpers({
 	'runningTimsheets': function () {
 		return timesheets.get();
 	},
 	'savedTimesheets': function () {
 		return Timesheets.find();
+	},
+	'selectedTimesheet': function(){
+		return Template.instance().selectedTimesheet.get();
 	}
 });
 
+Template.timesheets.rendered = function(){
+	var self = this;
+	$(document).ready(function(){
+    	$('.modal-trigger').leanModal({
+    		complete: function() {
+    			self.selectedTimesheet.set(null);
+    		}
+    	});
+  	});
+}
+
 Template.timesheets.events({
-	'click .collection-item': function (event, template) {
+	'click #runningTimesheetList .collection-item': function (event, template) {
+		template.selectedTimesheet.set(this);
 	}
 })
 
@@ -238,6 +261,7 @@ Template.runningTimesheetRow.events({
 	'click .state-change': function(event, template){
 		var currentDial = template.data.getDial();
 		currentDial.isRunning()?currentDial.stop():currentDial.start();
+		event.stopPropagation();
 	}
 });
 
@@ -331,3 +355,39 @@ Template.timesheetDetailRow.helpers({
 		return useremail[this.userId];
 	}
 });
+
+Template.runningTimesheetModalBody.helpers({
+	'case': function(){
+		return this instanceof timesheet ? Projects.findOne({_id: this.getCase()}).name : null;
+	},
+	'task': function(){
+		return this instanceof timesheet ? Tasks.findOne({_id: this.getTask()}).desc : null;
+	},
+	'isRunning': function(){
+		return this instanceof timesheet ? this.getDial().isRunning() : null;
+	},
+	'duration': function(){
+		return this instanceof timesheet ? this.getDial().getTime() : null;
+	}
+})
+
+Template.runningTimesheetModalBody.events({
+	'click #playPause': function(event, template){
+		if(currentDial = this instanceof timesheet ? this.getDial() : null){
+			if(currentDial.isRunning()){
+				currentDial.stop();
+			}
+			else{
+				currentDial.start();
+			}
+		}
+	},
+	'click #reset': function(event, template){
+		if(this instanceof timesheet){
+			this.getDial().reset();
+		}
+	},
+	'click #save': function(event, template){
+
+	}
+})

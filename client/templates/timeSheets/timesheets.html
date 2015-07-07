@@ -119,7 +119,7 @@
             <div class="col s12 m12 l6">
                 <h5 class="teal white-text">Running Timers</h5>
                 <div class="card-panel">
-                    <ul class="collection">
+                    <ul class="collection" id="runningTimesheetList">
                         <li class="collection-item row">
                             <div class="col s2">
                                 <b>State</b>
@@ -135,7 +135,7 @@
                             </div>
                         </li>
                         {{#each runningTimsheets}}
-                            <a href="#!" class="black-text collection-item row">{{> runningTimesheetRow}}</a>
+                            <a href="#runningTimesheetDetailModal" class="black-text modal-trigger collection-item row">{{> runningTimesheetRow}}</a>
                         {{/each}}
                     </ul>
                 </div>
@@ -166,9 +166,35 @@
             </div>
         </div>
     </div>
+    <div id="runningTimesheetDetailModal" class="modal">
+        {{#with selectedTimesheet}}
+            {{> runningTimesheetModalBody}}
+        {{/with}}
+    </div>
     <a class="btn-floating btn-large teal" id="add-timesheets" href="/timesheets/add">
         <i class="large mdi-content-add"></i>
     </a>
+</template>
+
+<template name="runningTimesheetModalBody">
+    <div class="modal-content">
+        <h4>Case: {{case}}</h4>
+        <p><b>Type:</b> {{getType}}</p>
+        <p><b>Task:</b></p>
+        <p>{{task}}</p>
+        <p><b>Description:</b></p>
+        <p>{{getDescription}}</p>
+        <a class="btn-flat waves-effect" id="playPause">
+            {{#if isRunning}}
+                <i class="mdi-av-pause"></i>
+            {{else}}
+                <i class="mdi-av-play-arrow"></i>
+            {{/if}}
+        </a>
+        {{duration}}
+        <a class="btn-flat waves-effect" id="reset"><i class="mdi-av-repeat"></i></a>
+        <a class="btn-flat waves-effect" id="save"><i class="mdi-content-save"></i></a>
+    </div>
 </template>
 
 <template name="savedTimesheetRow">

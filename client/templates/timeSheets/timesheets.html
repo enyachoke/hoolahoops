@@ -67,24 +67,26 @@
     </div>
 </template>
 
-<template name="runningTimer">
-    <div class="col s2">
-        <a class="btn-flat waves-effect state-change">
-            {{#if isRunning}}
-                <i class="mdi-av-pause"></i>
-            {{else}}
-                <i class="mdi-av-play-arrow"></i>
-            {{/if}}
-        </a>
-    </div>
-    <div class="col s2 truncate">
-        {{case}}
-    </div>
-    <div class="col s6 truncate">
-        {{task}}
-    </div>
-    <div class="col s2">
-        {{duration}}
+<template name="runningTimesheetRow">
+    <div class="valign-wrapper">
+        <div class="col s2">
+            <a class="btn-flat waves-effect state-change">
+                {{#if isRunning}}
+                    <i class="mdi-av-pause"></i>
+                {{else}}
+                    <i class="mdi-av-play-arrow"></i>
+                {{/if}}
+            </a>
+        </div>
+        <div class="col s2 truncate">
+            {{case}}
+        </div>
+        <div class="col s6 truncate">
+            {{task}}
+        </div>
+        <div class="col s2">
+            {{duration}}
+        </div>
     </div>
 </template>
 
@@ -133,7 +135,7 @@
                             </div>
                         </li>
                         {{#each runningTimsheets}}
-                            <li class="collection-item row valign-wrapper">{{> runningTimer}}</li>
+                            <a href="#!" class="black-text collection-item row">{{> runningTimesheetRow}}</a>
                         {{/each}}
                     </ul>
                 </div>

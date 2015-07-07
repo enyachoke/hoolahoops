@@ -113,7 +113,7 @@ var timesheet = function(timesheetData){
 	this.setTimesheet(timesheetData);
 };
 
-timesheets = ReactiveVar([]);
+var timesheets = ReactiveVar([]);
 if(savedTimesheets = JSON.parse(window.localStorage.getItem('timesheets'))){
 	var toSave = timesheets.get();
 	for(var i= 0, length=savedTimesheets.length;i<length;i++) {
@@ -191,22 +191,22 @@ Template.addTimesheet.rendered = function() {
 	Session.set('timeTracked', 0);
 };
 
-Template.runningTimer.helpers({
+Template.runningTimesheetRow.helpers({
 	'case' : function(){
-		return Projects.findOne({_id: Template.instance().data.getCase()}).name;
+		return Projects.findOne({_id: this.getCase()}).name;
 	},
 	'task' : function () {
-		return Tasks.findOne({_id: Template.instance().data.getTask()}).desc;
+		return Tasks.findOne({_id: this.getTask()}).desc;
 	},
 	'duration': function(){
-		return Template.instance().data.getDial().getTime();
+		return this.getDial().getTime();
 	},
 	'isRunning': function(){
-		return Template.instance().data.getDial().isRunning();
+		return this.getDial().isRunning();
 	}
 });
 
-Template.runningTimer.events({
+Template.runningTimesheetRow.events({
 	'click .state-change': function(event, template){
 		var currentDial = template.data.getDial();
 		currentDial.isRunning()?currentDial.stop():currentDial.start();

@@ -118,7 +118,7 @@ var timesheet = function(timesheetData){
 			taskId: this.getTask(),
 			description: this.getDescription(),
 			type: this.getType(),
-			timerData: this.getDial().getState()
+			timerState: this.getDial().getState()
 		};
 	};
 

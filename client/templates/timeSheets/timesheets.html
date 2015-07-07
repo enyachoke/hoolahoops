@@ -1,6 +1,6 @@
 <template name="addTimesheet">
     <style>
-        #timesheets_description{
+        #timesheet_description{
             height: 6rem;
             resize: none;
         }
@@ -22,9 +22,9 @@
         }
     </style>
     {{> navigation }}
-    <div class="container-fluid add-project">
+    <div class="container add-project">
         <div class="row">
-            <div class="col s8">
+            <div class="col s12">
                 <h4 class="teal form-header">Add a Timesheet</h4>
                 {{# autoForm id="insertTimesheetForm" class="card-panel" doc=this type="normal" resetOnSuccess="true" schema="timesheetSchema" }}
                     <div class="row">
@@ -36,14 +36,14 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            {{> afFieldInput type="selectize" isReactiveOptions="true" formid="insertTimesheetForm" name='taskId' options=tasks id="timesheets_task" placeholder="Select a task"}}
+                            {{> afFieldInput type="selectize" isReactiveOptions="true" formid="insertTimesheetForm" name='taskId' options=tasks id="timesheet_task" placeholder="Select a task"}}
                             <label for="taskId" class="active">Task</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            {{> afQuickField name='description' label=false id="timesheets_description"}}
+                            {{> afQuickField name='description' label=false id="timesheet_description"}}
                             <label class="active">Description</label>
                         </div>
                     </div>
@@ -63,65 +63,94 @@
                     </div>
                 {{/autoForm}}
             </div>
-            <div class="col s4" id="timer-lists">
-                <h5 class="teal white-text">Running Timers</h5>
-                <div class="card-panel">
-                    <ul class="collection">
-                        {{#each runningTimers}}
-                            <li class="collection-item">{{> runningTimer}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <h5 class="teal white-text">Archived Timers</h5>
-                <div class="card-panel">
-                    <ul class="collection">
-                         {{#each archivedTimers}}
-                             <li class="collection-item"></li>
-                         {{/each}}
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 
 <template name="runningTimer">
-    <a class="btn-flat waves-effect state-change">
-        {{#if isRunning}}
-            <i class="mdi-av-pause"></i>
-        {{else}}
-            <i class="mdi-av-play-arrow"></i>
-        {{/if}}
-    </a>
-    {{time}}
+    <div class="col s2">
+        <a class="btn-flat waves-effect state-change">
+            {{#if isRunning}}
+                <i class="mdi-av-pause"></i>
+            {{else}}
+                <i class="mdi-av-play-arrow"></i>
+            {{/if}}
+        </a>
+    </div>
+    <div class="col s2 truncate">
+        {{case}}
+    </div>
+    <div class="col s6 truncate">
+        {{task}}
+    </div>
+    <div class="col s2">
+        {{duration}}
+    </div>
 </template>
 
 <template name="timesheets">
+    <style>
+        #add-timesheets{
+            right: 24px;
+            bottom: 45px;
+            position: fixed;
+        }
+        #timer-lists h5{
+            padding: 0.5rem 0.9rem;
+        }
+        #timer-lists .card-panel{
+            min-height: 410px;
+            padding: 0;
+        }
+        #timer-lists .collection{
+            margin: 0;
+        }
+        .state-change{
+            padding: 0 10px;
+            margin-right: 10px;
+        }
+
+    </style>
     {{> navigation}}
-    <div class="container">
-        <div class="card-panel form-container">
-            <a class="waves-effect waves-light btn" href="/timesheets/add">Add Timesheet </a>
-            {{> esInput index="projects" placeholder="Search Timesheets" allDocsOnEmpty="true"}}
-            {{#ifEsIsSearching index="projects"}}
-                {{> spinner}}
-            {{else}}
-                <table class=" centered bordered	">
-                    <thead>
-                    <tr>
-                        <th data-field="duration">Case Title</th>
-                        <th data-field="desc">Total Time Spent</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{#esEach index="projects"}}
-                        {{> timesheetRow }}
-                    {{/esEach}}
-                    </tbody>
-                </table>
-            {{/ifEsIsSearching}}
+    <div class="container-fluid">
+        <div class="row" id="timer-lists">
+            <div class="col s12 m12 l6">
+                <h5 class="teal white-text">Running Timers</h5>
+                <div class="card-panel">
+                    <ul class="collection">
+                        <li class="collection-item row">
+                            <div class="col s2">
+                                <b>State</b>
+                            </div>
+                            <div class="col s2">
+                                <b>Case</b>
+                            </div>
+                            <div class="col s6">
+                                <b>Task</b>
+                            </div>
+                            <div class="col 2">
+                                <b>Time</b>
+                            </div>
+                        </li>
+                        {{#each runningTimsheets}}
+                            <li class="collection-item row valign-wrapper">{{> runningTimer}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m12 l6">
+                <h5 class="teal white-text">Archived Timers</h5>
+                <div class="card-panel">
+                    <ul class="collection">
+
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    {{> addButton}}
+    <a class="btn-floating btn-large teal" id="add-timesheets" href="/timesheets/add">
+        <i class="large mdi-content-add"></i>
+    </a>
 </template>
 
 <template name="timesheetRow">

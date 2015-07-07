@@ -145,8 +145,16 @@ Deps.autorun(function(){
 Template.timesheets.helpers({
 	'runningTimsheets': function () {
 		return timesheets.get();
+	},
+	'savedTimesheets': function () {
+		return Timesheets.find();
 	}
 });
+
+Template.timesheets.events({
+	'click .collection-item': function (event, template) {
+	}
+})
 
 Template.timesheetRow.helpers({
 	'totaltime' : function(){
@@ -210,6 +218,15 @@ Template.runningTimesheetRow.events({
 	'click .state-change': function(event, template){
 		var currentDial = template.data.getDial();
 		currentDial.isRunning()?currentDial.stop():currentDial.start();
+	}
+});
+
+Template.savedTimesheetRow.helpers({
+	'case': function(){
+		return Projects.findOne({_id: this.caseId}).name;
+	},
+	'task': function(){
+		return Tasks.findOne({_id: this.taskId}).desc;
 	}
 });
 

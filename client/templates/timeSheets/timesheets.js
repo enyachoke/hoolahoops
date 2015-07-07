@@ -112,18 +112,14 @@ var timesheet = function(timesheetData){
 		return description;
 	};
 
-	this.getTimesheet = function (getTimer) {
-		var currentTimesheet = {};
-		if(getTimer)
-			currentTimesheet.timer = this.getDial();
-		else if(this.getDial())
-			currentTimesheet.timerState = this.getDial().getState();
-		return $.extend({}, currentTimesheet, {
+	this.getTimesheet = function () {
+		return {
 			caseId: this.getCase(),
 			taskId: this.getTask(),
 			description: this.getDescription(),
-			type: this.getType()
-		});
+			type: this.getType(),
+			timerData: this.getDial().getState()
+		};
 	};
 
 	this.setTimesheet = function (data) {
@@ -164,7 +160,7 @@ window.onunload = window.onbeforeunload = function () {
 	if(currentTimesheets = timesheets.get()){
 		var saveTimesheets = [];
 		for(var i= 0, length=currentTimesheets.length;i<length;i++){
-			saveTimesheets.push(currentTimesheets[i].getTimesheet(false));
+			saveTimesheets.push(currentTimesheets[i].getTimesheet());
 		}
 		window.localStorage.setItem('timesheets', JSON.stringify(saveTimesheets));
 	}
@@ -396,6 +392,20 @@ Template.runningTimesheetModalBody.events({
 		}
 	},
 	'click #save': function(event, template){
-
+		if(this instanceof timesheet){
+			var index = timesheets.get().indexOf(this);
+			if(index>-1){
+				var doc = this.getTimesheet();
+				this.getDial().stop();
+				doc.duration = this.getDial().getTime();
+				delete doc.timerState;
+				doc.userId = Meteor.userId();
+				Meteor.call('saveTimesheetData', doc, function(){
+					timesheets.get().splice(index, 1);
+					timesheets.set(timesheets.get());
+					$('#runningTimesheetDetailModal').closeModal();
+				});
+			}
+		}
 	}
 })

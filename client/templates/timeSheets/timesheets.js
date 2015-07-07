@@ -37,7 +37,7 @@ Template.addTimesheet.helpers({
 	'tasks': function () {
 		var options = [];
 		_.each(Tasks.find({caseId: Template.instance().caseId.get()}).fetch(), function(element){
-			options.push({label: element._id, value: element._id})
+			options.push({label: element.desc, value: element._id})
 		});
 		return options;
 	},

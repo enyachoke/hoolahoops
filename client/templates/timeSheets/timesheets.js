@@ -34,7 +34,7 @@ var timer = function(state){
 	//Public methods
 	//Gets the current time elapsed by the timer
 	this.getTime = function () {
-		return time.get();
+		return formatTime(time.get());
 	};
 
 	//Returns the current timer state (Paused or Running)

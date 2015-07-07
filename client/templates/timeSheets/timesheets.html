@@ -150,7 +150,7 @@
             </div>
         </div>
     </div>
-    <div id="runningTimesheetDetailModal" class="modal">
+    <div id="runningTimesheetDetailModal" class="modal modal-fixed-footer">
         {{#with selectedTimesheet}}
             {{> runningTimesheetModalBody}}
         {{/with}}
@@ -161,6 +161,17 @@
 </template>
 
 <template name="runningTimesheetModalBody">
+    <style type="text/css">
+        #timer-module .btn-flat{
+            float: none;
+        }
+        #timer-module{
+            float: left;
+        }
+        .modal .btn-flat{
+            padding: 0rem 1rem;
+        }
+    </style>
     <div class="modal-content">
         <h4>Case: {{case}}</h4>
         <p><b>Type:</b> {{getType}}</p>
@@ -170,16 +181,22 @@
             <p><b>Description:</b></p>
             <p>{{getDescription}}</p>
         {{/if}}
-        <a class="btn-flat waves-effect" id="playPause">
-            {{#if isRunning}}
-                <i class="mdi-av-pause"></i>
-            {{else}}
-                <i class="mdi-av-play-arrow"></i>
-            {{/if}}
-        </a>
-        {{duration}}
-        <a class="btn-flat waves-effect" id="reset"><i class="mdi-av-repeat"></i></a>
-        <a class="btn-flat waves-effect" id="save"><i class="mdi-content-save"></i></a>
+    </div>
+    <div class="modal-footer">
+        <div id="timer-module">
+            <a class="btn-flat waves-effect" id="playPause">
+                {{#if isRunning}}
+                    <i class="mdi-av-pause"></i>
+                {{else}}
+                    <i class="mdi-av-play-arrow"></i>
+                {{/if}}
+            </a>
+            {{duration}}
+            <a class="btn-flat waves-effect" id="reset"><i class="mdi-av-repeat"></i></a>
+            <a class="btn-flat waves-effect" id="save"><i class="mdi-content-save"></i></a>
+        </div>
+        <!-- <a href="#!" class="modal-action waves-effect waves-green btn-flat">Edit</a> -->
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </template>
 

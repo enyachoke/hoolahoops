@@ -309,6 +309,10 @@ Template.runningTimesheetModalBody.events({
 				});
 			}
 		}
+	},
+	'click .modal-close': function(){
+		console.log("abcd");
+		$('#runningTimesheetDetailModal').closeModal();
 	}
 });
 

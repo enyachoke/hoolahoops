@@ -89,6 +89,9 @@ var timesheet = function(timesheetData){
 	var caseId;
 	var taskId;
 	var dial;
+	var task;
+	var description;
+
 	this.getCase = function () {
 		return caseId;
 	};
@@ -98,18 +101,36 @@ var timesheet = function(timesheetData){
 	this.getDial = function () {
 		return dial;
 	};
-	this.getTimesheet = function () {
-		return {
-			caseId: getCase(),
-			taskId: getTask(),
-			timerState: getDial().getState()
-		}
+	this.getType = function () {
+		return type;
 	};
+	this.getDescription = function () {
+		return description;
+	};
+
+	this.getTimesheet = function (getTimer) {
+		var currentTimesheet = {};
+		if(getTimer)
+			currentTimesheet.timer = this.getDial();
+		else if(this.getDial())
+			currentTimesheet.timerState = this.getDial().getState();
+		return $.extend({}, currentTimesheet, {
+			caseId: this.getCase(),
+			taskId: this.getTask(),
+			description: this.getDescription(),
+			type: this.getType()
+		});
+	};
+
 	this.setTimesheet = function (data) {
 		if(data.caseId)
 			caseId = data.caseId;
 		if(data.taskId)
 			taskId = data.taskId;
+		if(data.type)
+			type = data.type;
+		if(data.description)
+			description = data.description;
 		if(data.timerState)
 			dial = new timer(data.timerState);
 		else
@@ -131,13 +152,7 @@ window.onunload = window.onbeforeunload = function () {
 	if(currentTimesheets = timesheets.get()){
 		var saveTimesheets = [];
 		for(var i= 0, length=currentTimesheets.length;i<length;i++){
-			saveTimesheets.push(
-				{
-					caseId: currentTimesheets[i].getCase(),
-					taskId: currentTimesheets[i].getTask(),
-					timerState: currentTimesheets[i].getDial().getState()
-				}
-			)
+			saveTimesheets.push(currentTimesheets[i].getTimesheet(false));
 		}
 		window.localStorage.setItem('timesheets', JSON.stringify(saveTimesheets));
 	}
@@ -267,7 +282,9 @@ Template.addTimesheet.events({
 		timesheets.get().push(new timesheet(
 			{
 				caseId: template.find("#timesheet_case").value,
-				taskId: template.find("#timesheet_task").value
+				taskId: template.find("#timesheet_task").value,
+				type: template.find("#timesheet_type").value,
+				description: template.find("#timesheet_description").value
 			}
 		));
 		timesheets.set(timesheets.get());

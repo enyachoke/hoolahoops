@@ -325,13 +325,11 @@ Template.savedTimesheetRow.events({
 })
 
 Template.editTimesheet.helpers({
-	'fetch_duration' : function(){
-		var ms = String_to_ms(this.duration);
-		Session.set('lapTime', ms);
-		return Session.get('timeTracked');
+	'case': function (){
+		return Projects.findOne({_id: this.caseId}).name;
 	},
-	'session_time' : function(){
-		return Session.get('timeTracked');
+	'task': function(){
+		return Tasks.findOne({_id: this.taskId}).desc;
 	}
 });
 

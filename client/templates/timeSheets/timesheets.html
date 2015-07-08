@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col s12">
                             <button class="waves-effect waves-light btn" type="submit" id="create-timer">Create</button>
-                            <a class="waves-effect waves-teal btn-flat" href="/projects" style="position: absolute;">Cancel</a>
+                            <a class="waves-effect waves-teal btn-flat" href="/timesheets">Cancel</a>
                         </div>
                     </div>
                 {{/autoForm}}
@@ -204,42 +204,43 @@
 </template>
 
 <template name="editTimesheet">
+    <style>
+        #timesheet_description{
+            height: 6rem;
+            resize: none;
+        }
+    </style>
     {{> navigation }}
-    <div class="container card-panel add-project">
-        <h4 class="teal form-header">Edit a Timesheet</h4>
-
-        <div class="row form-container">
-
-            {{# autoForm id="insertTimesheetForm" class="col s12" doc=this type="method" meteormethod="saveTimesheetData" schema="timesheetSchema" }}
-
-                <div class="row ">
-                    <div class="input-field col s12">
-
-                        {{> timetracker}}
+    <div class="container add-project">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="teal form-header">Edit a Timesheet</h4>
+                {{# autoForm id="insertTimesheetForm" class="card-panel" doc=this type="method" meteormethod="saveTimesheetData" resetOnSuccess="true" schema="timesheetSchema" }}
+                    <div class="row">
+                        <div class="col s12">
+                            <p><b>Matter: </b>{{case}}</p>
+                            <p><b>Type: </b>{{type}}</p>
+                            <p><b>Task: </b><div>{{task}}</div></p>
+                            {{> afQuickField name='caseId' type="hidden" label=false}}
+                            {{> afQuickField name='taskId' type="hidden" label=false}}
+                        </div>
                     </div>
-                </div>
-                <div class="row ">
-                    <div class="input-field col s12">
 
-                        <input type='text' name="duration" class="form-control" value="{{fetch_duration}}" id="duration"
-                               data-schema-key="duration">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{> afQuickField name='description' label=false id="timesheet_description"}}
+                            <label class="active">Description</label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row input-field col s12">
-                    {{> afFieldInput  type='xautocomplete' formid="insertTimesheetForm" name='caseId' call='cases' fieldref='name' reference='Projects' renderfunction='renderDefaultAutocomplete' id="meeting_case"}}
-                    <label for="meeting_case" class="active">Matter</label>
-                </div>
-
-                <div class="row input-field col s12">
-                    {{> afQuickField name='type' options='allowed' label=false}}
-                    <label for="type" class="active">Type</label>
-                </div>
-
-
-                <button class="waves-effect waves-light btn" type="submit">Insert</button>
-                <a class="waves-effect waves-teal btn-flat" href="/timesheets" style="position: absolute;">Cancel</a>
-            {{/autoForm}}
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="waves-effect waves-light btn" type="submit" id="create-timer">Insert</button>
+                            <a class="waves-effect waves-teal btn-flat" href="/timesheets">Cancel</a>
+                        </div>
+                    </div>
+                {{/autoForm}}
+            </div>
         </div>
     </div>
 </template>

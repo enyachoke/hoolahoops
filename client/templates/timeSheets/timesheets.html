@@ -117,6 +117,8 @@
                 <div class="card-panel">
                     <ul class="collection">
                         <li class="collection-item row">
+                            <input type="checkbox" id="all"/>
+                            <label for="all" style="float: left"></label>
                             <div class="col s3">
                                 <b>Case</b>
                             </div>
@@ -177,7 +179,6 @@
             <a class="btn-flat waves-effect" id="reset"><i class="mdi-av-repeat"></i></a>
             <a class="btn-flat waves-effect" id="save"><i class="mdi-content-save"></i></a>
         </div>
-        <!-- <a href="#!" class="modal-action waves-effect waves-green btn-flat">Edit</a> -->
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </template>
@@ -190,6 +191,8 @@
         }
     </style>
     <div class="valign-wrapper">
+        <input type="checkbox" id="checkbox-{{_id}}" class="checkbox"/>
+        <label for="checkbox-{{_id}}"></label>
         <div class="col s3 truncate">
             {{case}}
         </div>

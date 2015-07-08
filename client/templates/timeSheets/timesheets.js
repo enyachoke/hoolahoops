@@ -200,6 +200,12 @@ Template.timesheets.helpers({
 Template.timesheets.events({
 	'click #runningTimesheetList .collection-item': function (event, template) {
 		template.selectedTimesheet.set(this);
+	},
+	'change #all': function (event, template) {
+		var selectAll = template.find("#all").checked;
+		$(template.findAll('.checkbox')).each(function(){
+			this.checked = selectAll;
+		})
 	}
 });
 

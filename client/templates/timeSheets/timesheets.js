@@ -243,14 +243,8 @@ Template.runningTimesheetRow.helpers({
 	'case' : function(){
 		return Projects.findOne({_id: this.getCase()}).name;
 	},
-	'task' : function () {
-		return Tasks.findOne({_id: this.getTask()}).desc;
-	},
 	'duration': function(){
 		return this.getDial().getTime();
-	},
-	'isRunning': function(){
-		return this.getDial().isRunning();
 	}
 });
 
@@ -311,7 +305,6 @@ Template.runningTimesheetModalBody.events({
 		}
 	},
 	'click .modal-close': function(){
-		console.log("abcd");
 		$('#runningTimesheetDetailModal').closeModal();
 	}
 });
@@ -319,11 +312,17 @@ Template.runningTimesheetModalBody.events({
 Template.savedTimesheetRow.helpers({
 	'case': function(){
 		return Projects.findOne({_id: this.caseId}).name;
-	},
-	'task': function(){
-		return Tasks.findOne({_id: this.taskId}).desc;
 	}
 });
+
+Template.savedTimesheetRow.events({
+	'click .delete': function(){
+		if (confirm("Confirm Delete?")) {
+            Materialize.toast('Timesheet Deleted!', 1500);
+            Timesheets.remove(this._id);
+        }
+	}
+})
 
 Template.editTimesheet.helpers({
 	'fetch_duration' : function(){

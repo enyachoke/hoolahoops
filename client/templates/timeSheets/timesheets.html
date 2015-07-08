@@ -53,20 +53,11 @@
 
 <template name="runningTimesheetRow">
     <div class="valign-wrapper">
-        <div class="col s2">
-            <a class="btn-flat waves-effect state-change">
-                {{#if isRunning}}
-                    <i class="mdi-av-pause"></i>
-                {{else}}
-                    <i class="mdi-av-play-arrow"></i>
-                {{/if}}
-            </a>
-        </div>
-        <div class="col s2 truncate">
+        <div class="col s3 truncate">
             {{case}}
         </div>
-        <div class="col s5 truncate">
-            {{task}}
+        <div class="col s6 truncate">
+            {{getDescription}}
         </div>
         <div class="col s3">
             {{duration}}
@@ -105,14 +96,11 @@
                 <div class="card-panel">
                     <ul class="collection" id="runningTimesheetList">
                         <li class="collection-item row">
-                            <div class="col s2">
-                                <b>State</b>
-                            </div>
-                            <div class="col s2">
+                            <div class="col s3">
                                 <b>Case</b>
                             </div>
-                            <div class="col s5">
-                                <b>Task</b>
+                            <div class="col s6">
+                                <b>Description</b>
                             </div>
                             <div class="col s3">
                                 <b>Time</b>
@@ -129,17 +117,11 @@
                 <div class="card-panel">
                     <ul class="collection">
                         <li class="collection-item row">
-                            <div class="col s2">
-                                <b>State</b>
-                            </div>
-                            <div class="col s2">
+                            <div class="col s3">
                                 <b>Case</b>
                             </div>
-                            <div class="col s5">
-                                <b>Task</b>
-                            </div>
-                            <div class="col s3">
-                                <b>Time</b>
+                            <div class="col s6">
+                                <b>Description</b>
                             </div>
                         </li>
                         {{#each savedTimesheets}}
@@ -201,18 +183,22 @@
 </template>
 
 <template name="savedTimesheetRow">
+    <style type="text/css">
+        .action-icon{
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+        }
+    </style>
     <div class="valign-wrapper">
-        <div class="col s2">
-
-        </div>
-        <div class="col s2 truncate">
+        <div class="col s3 truncate">
             {{case}}
         </div>
-        <div class="col s5 truncate">
-            {{task}}
+        <div class="col s6 truncate">
+            {{description}}
         </div>
-        <div class="col s3">
-            {{duration}}
+        <div class="col s3 right-align">
+            <a href="/timesheets/{{_id}}/edit" class="action-icon"><i class="mdi-editor-mode-edit"></i></a>
+            <a href="#!" class="delete action-icon"><i class="mdi-action-delete"></i></a>
         </div>
     </div>
 </template>

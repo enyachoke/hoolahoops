@@ -82,11 +82,10 @@
         #timer-lists .collection{
             margin: 0;
         }
-        .state-change{
-            padding: 0 10px;
-            margin-right: 10px;
+        .action-icon{
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
         }
-
     </style>
     {{> navigation}}
     <div class="container-fluid">
@@ -127,7 +126,7 @@
                             </div>
                         </li>
                         {{#each savedTimesheets}}
-                            <li class="collection-item row">{{> savedTimesheetRow}}</li>
+                            {{> savedTimesheetRow}}
                         {{/each}}
                     </ul>
                 </div>
@@ -185,25 +184,24 @@
 
 <template name="savedTimesheetRow">
     <style type="text/css">
-        .action-icon{
-            font-size: 1.5rem;
-            padding: 0 0.5rem;
-        }
+
     </style>
-    <div class="valign-wrapper">
-        <input type="checkbox" id="checkbox-{{_id}}" class="checkbox"/>
-        <label for="checkbox-{{_id}}"></label>
-        <div class="col s3 truncate">
-            {{case}}
+    <a href="#!" class="collection-item row select-timesheet black-text">
+        <div class="valign-wrapper">
+            <input type="checkbox" id="checkbox-{{_id}}" class="checkbox"/>
+            <label for="checkbox-{{_id}}"></label>
+            <div class="col s3 truncate">
+                {{case}}
+            </div>
+            <div class="col s6 truncate">
+                {{description}}
+            </div>
+            <div class="col s3 right-align">
+                <a href="/timesheets/{{_id}}/edit" class="action-icon"><i class="mdi-editor-mode-edit"></i></a>
+                <a href="#!" class="delete action-icon"><i class="mdi-action-delete red-text"></i></a>
+            </div>
         </div>
-        <div class="col s6 truncate">
-            {{description}}
-        </div>
-        <div class="col s3 right-align">
-            <a href="/timesheets/{{_id}}/edit" class="action-icon"><i class="mdi-editor-mode-edit"></i></a>
-            <a href="#!" class="delete action-icon"><i class="mdi-action-delete"></i></a>
-        </div>
-    </div>
+    </a>
 </template>
 
 <template name="editTimesheet">

@@ -322,13 +322,19 @@ Template.savedTimesheetRow.helpers({
 });
 
 Template.savedTimesheetRow.events({
-	'click .delete': function(){
+	'click .delete': function(event, template){
+		event.stopPropagation();
 		if (confirm("Confirm Delete?")) {
             Materialize.toast('Timesheet Deleted!', 1500);
             Timesheets.remove(this._id);
         }
+	},
+	'click .select-timesheet': function(event, template){
+		event.stopPropagation();
+		var checkbox = template.find("#checkbox-"+this._id);
+		checkbox.checked = !checkbox.checked;
 	}
-})
+});
 
 Template.editTimesheet.helpers({
 	'case': function (){

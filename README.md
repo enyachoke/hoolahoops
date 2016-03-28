@@ -1,4 +1,4 @@
-##CloudVakil: Practice Management For Lawyers
+##CloudVakil: Open Source Practice Management For Lawyers
 
 ##Leaving todo comments
   If you are unable to do something, leave todo comments in the format //TODO: Something to do here.

@@ -1,4 +1,4 @@
-##CloudVakil: Open Source Practice Management For Lawyers
+##HoolaHoops: Open Source Practice Management For Lawyers
 
 ##Leaving todo comments
   If you are unable to do something, leave todo comments in the format //TODO: Something to do here.
@@ -22,3 +22,6 @@ First of checkout dev and create a new branch from that. The branch should have 
 
 ##Testing
 Please add the steps to test your feature in this document: https://github.com/rishabhsaxena/hoolahoops/wiki/Testing
+
+## Help
+Please drop a mail to thegreatshasha@gmail.com
